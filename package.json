@@ -1,7 +1,12 @@
 {
-  "name": "myapp",
+  "name": "pokemon-database",
+  "description" : "A simple pokemon database website",
   "version": "0.0.0",
   "private": true,
+  "repository" : { 
+   "type" : "git",
+   "url" : "git@github.com:CC-MN/pokemon-api.git"
+ },
   "scripts": {
     "start": "node ./bin/www"
   },
