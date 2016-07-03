@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Pokedex = require('../pokedex');
-
-Pokedex.getPokemon('charmander');
+// var Pokedex = require('../pokedex');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
