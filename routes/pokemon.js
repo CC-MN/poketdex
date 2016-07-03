@@ -3,14 +3,6 @@ var router = express.Router();
 var PokedexLib = require('../pokedex');
 var Pokedex = new PokedexLib();
 
-Pokedex.getPokemon('charmander')
-.then(function(response){
-	console.log(response);
-})
-.catch(function(error){
-	console.log(error);
-});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	var content = {
@@ -24,7 +16,22 @@ router.get('/:id', function(req, res, next) {
 	var content = {
 		title : 'Pokemon API'
 	};
-	res.render('pokemon', content);
+
+	var Pokemon = Pokedex.getPokemon(req.params.id);
+	if(typeof Pokemon.then === 'function'){
+		
+		Pokemon.then(function(response){
+			content.data = response;
+			res.render('pokemon', content);
+		}).catch(function(e){
+			console.log('Error: ' + e);
+		});
+
+	}else{
+		content.data = Pokemon;
+		res.render('pokemon', content);
+	}
+
 });
 
 
