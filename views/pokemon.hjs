@@ -4,9 +4,13 @@
 	<title>{{ title }}</title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/elements.css' />
+	<link rel='stylesheet' href='/stylesheets/elements.css' />
+	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/scripts/function.js"></script>
+	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
-	var pokeApi = {{& stringData }};
-	console.log(pokeApi)
+		var pokeApi = {{& stringData }};
+		console.log(pokeApi)
 	</script>
 </head>
 <body>
