@@ -1,9 +1,10 @@
 /* Type Styles*/
-.element{
+.type{
 	text-align: center;
 	margin-bottom:5px;
+	color:#ffffff;
 }
-.element:last-child{
+.type:last-child{
 	margin-bottom:0;
 }
 .normal {
