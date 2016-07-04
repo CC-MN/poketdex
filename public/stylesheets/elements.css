@@ -1,9 +1,9 @@
 /* Type Styles*/
-.element{
+.pokemonType{
 	text-align: center;
 	margin-bottom:5px;
 }
-.element:last-child{
+.pokemonType:last-child{
 	margin-bottom:0;
 }
 .normal {

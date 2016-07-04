@@ -11,6 +11,8 @@
 	<script type="text/javascript">
 		var pokeApi = {{& pokemonStringData }};
 		console.log(pokeApi)
+		var speciesPokeApi = {{& pokemonSpeciesStringData }};
+		console.log(speciesPokeApi);
 	</script>
 </head>
 <body>
@@ -27,7 +29,7 @@
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
 			{{#pokemonData.types}}
 				{{#.}}
-					<div class='element {{type.name}}'>{{type.name}}</div>
+					<div class='pokemonType {{type.name}}'>{{type.name}}</div>
 				{{/.}}
 			{{/pokemonData.types}}
 		</div>
