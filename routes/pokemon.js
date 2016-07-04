@@ -22,6 +22,7 @@ router.get('/:id', function(req, res, next) {
 		
 		Pokemon.then(function(response){
 			content.data = response;
+			content.stringData = JSON.stringify(response);
 			res.render('pokemon', content);
 		}).catch(function(e){
 			console.log('Error: ' + e);
@@ -29,6 +30,7 @@ router.get('/:id', function(req, res, next) {
 
 	}else{
 		content.data = Pokemon;
+		content.stringData = JSON.stringify(Pokemon);
 		res.render('pokemon', content);
 	}
 

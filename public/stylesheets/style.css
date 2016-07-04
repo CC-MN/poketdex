@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+h1{
+	margin-top:0;
+}
+
+.container{
+
+}
+.pokemon{
+	width:200px;
+	color:#000000;
+	text-transform: capitalize;
+}
+.pokemon .image{
+	text-align: center;
+}

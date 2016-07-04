@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>{{ data.name }}</h1>
-    <p>ID: {{ data.id }}</p>
-    <p>Base Exp: {{ data.base_experience }}</p>
+<head>
+	<title>{{ title }}</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel='stylesheet' href='/stylesheets/elements.css' />
+	<script type="text/javascript">
+	var pokeApi = {{& stringData }};
+	console.log(pokeApi)
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="pokemon">
+			<div class="image">
+				<img src="{{ data.sprites.front_default }}" />
+			</div>
+			<h1>{{ data.name }}</h1>
+			<p>ID: {{ data.id }}</p>
+			<p>Base Exp: {{ data.base_experience }}</p>
 
-  </body>
+			<!-- Loop through type object -->
+			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
+			{{#data.types}}
+				{{#.}}
+					<div class='element {{type.name}}'>{{type.name}}</div>
+				{{/.}}
+			{{/data.types}}
+		</div>
+	</div>
+</body>
 </html>
