@@ -1,9 +1,10 @@
 /* Type Styles*/
-.pokemonType{
+.type{
 	text-align: center;
 	margin-bottom:5px;
+	color:#ffffff;
 }
-.pokemonType:last-child{
+.type:last-child{
 	margin-bottom:0;
 }
 .normal {

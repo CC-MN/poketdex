@@ -3,8 +3,7 @@
 <head>
 	<title>{{ title }}</title>
 	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<link rel='stylesheet' href='/stylesheets/elements.css' />
-	<link rel='stylesheet' href='/stylesheets/elements.css' />
+	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
@@ -29,7 +28,7 @@
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
 			{{#pokemonData.types}}
 				{{#.}}
-					<div class='pokemonType {{type.name}}'>{{type.name}}</div>
+					<div class='type {{type.name}}'>{{type.name}}</div>
 				{{/.}}
 			{{/pokemonData.types}}
 		</div>
