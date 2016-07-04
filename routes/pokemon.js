@@ -18,19 +18,22 @@ router.get('/:id', function(req, res, next) {
 	};
 
 	var Pokemon = Pokedex.getPokemon(req.params.id);
+	// TODO : Need to find a better way of checking if this is a promise or not...
 	if(typeof Pokemon.then === 'function'){
 		
 		Pokemon.then(function(response){
-			content.data = response;
-			content.stringData = JSON.stringify(response);
+
+			content.pokemonData = response;
+			content.pokemonStringData = JSON.stringify(response);
 			res.render('pokemon', content);
+
 		}).catch(function(e){
 			console.log('Error: ' + e);
 		});
 
 	}else{
-		content.data = Pokemon;
-		content.stringData = JSON.stringify(Pokemon);
+		content.pokemonData = Pokemon;
+		content.pokemonStringData = JSON.stringify(Pokemon);
 		res.render('pokemon', content);
 	}
 

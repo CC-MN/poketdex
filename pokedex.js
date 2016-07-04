@@ -2,7 +2,7 @@ const RP = require('request-promise');
 const CACHE = require('memory-cache');
 
 const BASE_URL = 'http://pokeapi.co/api/v2/';	
-const CACHE_TIME = 1000000;
+const CACHE_TIME = 1000000 * 7; // 1 week
 
 function Pokedex(){};
 
@@ -12,16 +12,18 @@ Pokedex.prototype = {
 		var url = BASE_URL + 'pokemon/' + name;
 		return this.getJSON(url);
 	},
+	getSpecies : function(name){
+		var url = BASE_URL + 'pokemon-species/' + name + '/';
+		return this.getJSON(url);
+	},
 	getJSON : function(URL){
 		const cacheResult = CACHE.get(URL);
 		//console.log(CACHE.keys());
 
 		if(cacheResult !== null){
-			console.log('got a cachedResult');
+			console.log('cached');
 			return cacheResult;
 		}
-
-		console.log('no cached result so lets grab some data!');
 
 		var options = {
 			url : URL,
@@ -31,6 +33,7 @@ Pokedex.prototype = {
 		return RP.get(options)
 		.then(function(response){
 			//put response in cache
+			console.log('no cache');
 			CACHE.put(URL, response, CACHE_TIME);
 			console.log(CACHE.keys());
 			return response;

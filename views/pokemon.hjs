@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
-		var pokeApi = {{& stringData }};
+		var pokeApi = {{& pokemonStringData }};
 		console.log(pokeApi)
 	</script>
 </head>
@@ -17,19 +17,19 @@
 	<div class="container">
 		<div class="pokemon">
 			<div class="image">
-				<img src="{{ data.sprites.front_default }}" />
+				<img src="{{ pokemonData.sprites.front_default }}" />
 			</div>
-			<h1>{{ data.name }}</h1>
-			<p>ID: {{ data.id }}</p>
-			<p>Base Exp: {{ data.base_experience }}</p>
+			<h1>{{ pokemonData.name }}</h1>
+			<p>ID: {{ pokemonData.id }}</p>
+			<p>Base Exp: {{ pokemonData.base_experience }}</p>
 
 			<!-- Loop through type object -->
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
-			{{#data.types}}
+			{{#pokemonData.types}}
 				{{#.}}
 					<div class='element {{type.name}}'>{{type.name}}</div>
 				{{/.}}
-			{{/data.types}}
+			{{/pokemonData.types}}
 		</div>
 	</div>
 </body>
