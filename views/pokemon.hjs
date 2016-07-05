@@ -5,9 +5,9 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
-	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script type="text/javascript">
 	var pokeApi = {{& pokemonStringData }};
 		//console.log(pokeApi)
@@ -20,7 +20,7 @@
 		<div class="container">
 			<div class="pokemon">
 				<div class="image">
-					<img src="{{ pokemonData.sprites.front_default }}" />
+					<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
 				</div>
 				<h1>{{ pokemonData.name }}</h1>
 				<p>ID: {{ pokemonData.id }}</p>
@@ -36,7 +36,7 @@
 					{{/pokemonData.types}}
 				</div>
 				<div id="pokedex">
-					<button id="dexter" onclick="speak()">&#9658; Dexter</button>
+					<button id="dexter">&#9658; Dexter</button>
 				</div>
 			</div>
 		</div>
