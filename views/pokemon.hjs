@@ -9,34 +9,40 @@
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
-		var pokeApi = {{& pokemonStringData }};
-		var speciesPokeApi = {{& pokemonSpeciesStringData }};
+	var pokeApi = {{& pokemonStringData }};
+	var speciesPokeApi = {{& pokemonSpeciesStringData }};
 	</script>
 
-	</head>
-	<body>
-		<div class="container">
-			<div class="pokemon">
-				<div class="image">
-					<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
-				</div>
-				<h1>{{ pokemonData.name }}</h1>
-				<p>ID: {{ pokemonData.id }}</p>
-				<p>Base Exp: {{ pokemonData.base_experience }}</p>
+</head>
+<body>
+	<div class="container">
+		<div class="pokemon">
+			<div class="image">
+				<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
+			</div>
+			<h1>{{ pokemonData.name }}</h1>
+			<p>ID: {{ pokemonData.id }}</p>
+			<div class="abilityContainer">
+				{{#pokemonData.abilities}}
+				{{#.}}
+				<div class='ability'>{{ability.name}}</div>
+				{{/.}}
+				{{/pokemonData.abilities}}
+			</div>
 
-				<!-- Loop through type object -->
-				<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
-				<div class="typeContainer">
-					{{#pokemonData.types}}
-					{{#.}}
-						<div class='type {{type.name}}'>{{type.name}}</div>
-					{{/.}}
-					{{/pokemonData.types}}
-				</div>
-				<div id="pokedex">
-					<button id="dexter">&#9658; Dexter</button>
-				</div>
+			<!-- Loop through type object -->
+			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
+			<div class="typeContainer">
+				{{#pokemonData.types}}
+				{{#.}}
+				<div class='type {{type.name}}'>{{type.name}}</div>
+				{{/.}}
+				{{/pokemonData.types}}
+			</div>
+			<div id="pokedex">
+				<button id="dexter">&#9658; Dexter</button>
 			</div>
 		</div>
-	</body>
-	</html>
+	</div>
+</body>
+</html>
