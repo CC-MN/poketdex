@@ -7,31 +7,38 @@
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 	<script type="text/javascript">
-		var pokeApi = {{& pokemonStringData }};
-		console.log(pokeApi)
+	var pokeApi = {{& pokemonStringData }};
+		//console.log(pokeApi)
 		var speciesPokeApi = {{& pokemonSpeciesStringData }};
-		console.log(speciesPokeApi);
-	</script>
-</head>
-<body>
-	<div class="container">
-		<div class="pokemon">
-			<div class="image">
-				<img src="{{ pokemonData.sprites.front_default }}" />
-			</div>
-			<h1>{{ pokemonData.name }}</h1>
-			<p>ID: {{ pokemonData.id }}</p>
-			<p>Base Exp: {{ pokemonData.base_experience }}</p>
+		//console.log(speciesPokeApi);
+		</script>
 
-			<!-- Loop through type object -->
-			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
-			{{#pokemonData.types}}
-				{{#.}}
-					<div class='type {{type.name}}'>{{type.name}}</div>
-				{{/.}}
-			{{/pokemonData.types}}
+	</head>
+	<body>
+		<div class="container">
+			<div class="pokemon">
+				<div class="image">
+					<img src="{{ pokemonData.sprites.front_default }}" />
+				</div>
+				<h1>{{ pokemonData.name }}</h1>
+				<p>ID: {{ pokemonData.id }}</p>
+				<p>Base Exp: {{ pokemonData.base_experience }}</p>
+
+				<!-- Loop through type object -->
+				<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
+				<div id="type_container">
+					{{#pokemonData.types}}
+					{{#.}}
+						<div class='type {{type.name}}'>{{type.name}}</div>
+					{{/.}}
+					{{/pokemonData.types}}
+				</div>
+				<div id="pokedex">
+					<button id="dexter" onclick="speak()">&#9658; Dexter</button>
+				</div>
+			</div>
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>
