@@ -5,15 +5,13 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
-	var pokeApi = {{& pokemonStringData }};
-		//console.log(pokeApi)
+		var pokeApi = {{& pokemonStringData }};
 		var speciesPokeApi = {{& pokemonSpeciesStringData }};
-		//console.log(speciesPokeApi);
-		</script>
+	</script>
 
 	</head>
 	<body>
@@ -28,7 +26,7 @@
 
 				<!-- Loop through type object -->
 				<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
-				<div id="type_container">
+				<div class="typeContainer">
 					{{#pokemonData.types}}
 					{{#.}}
 						<div class='type {{type.name}}'>{{type.name}}</div>

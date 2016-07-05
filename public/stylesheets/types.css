@@ -1,23 +1,18 @@
 /* Type Styles*/
-#type_container {
+.typeContainer {
 	display:flex;
 	flex-direction:column-reverse;
 }
-
-#type_container:after {
+.typeContainer:after {
 	content:" ";
 	clear:both;
 	width: 1px;
 	height: 1px;
 }
-
 .type{
 	text-align: center;
 	margin-bottom:5px;
 	color:#ffffff;
-}
-.type:first-child{
-	margin-bottom:0;
 }
 .normal {
 background:#A8A878;
