@@ -23,7 +23,8 @@ router.get('/:id', function(req, res, next) {
 		content.pokemonData = response;
 		content.pokemonStringData = JSON.stringify(response);
 		//TODO : Find a better way to chain requests
-		Pokedex.getSpecies(response.id).then(function(r){
+		var Species = Pokedex.getSpecies(response.id);
+		Promise.resolve(Species).then(function(r){
 			content.pokemonSpeciesData = r;
 			content.pokemonSpeciesStringData = JSON.stringify(r);
 			res.render('pokemon', content);
