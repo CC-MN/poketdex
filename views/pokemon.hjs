@@ -18,12 +18,11 @@
 	<div class="container">		
 		<div class="pokemon">
 			<div class="row">
-				<div class="float">
+				<div class="float1">
+					<span>ID: {{ pokemonData.id }} <h1>{{ pokemonData.name }}</h1></span>
 					<div class="image">
 						<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
 					</div>
-					<h1>{{ pokemonData.name }}</h1>
-					<p>ID: {{ pokemonData.id }}</p>
 					<div class="abilityContainer">
 						{{#pokemonData.abilities}}
 						{{#.}}
@@ -44,7 +43,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="float">
+				<div class="float2">
 					<div id="pokedex">
 						<button id="dexter" class="buttonDexter">&#9658; Dexter</button>
 					</div>

@@ -29,14 +29,23 @@ h1{
 	width:1px;
 	height:1px;
 }
-.float{
+.float1{
 	/*border:1px solid red;*/
-	width:50%;
+	width:70%;
+	float:left;
+}
+.float2{
+	/*border:1px solid red;*/
+	width:30%;
 	float:left;
 }
 
 .pokemon .image{
-	text-align: center;
+	text-align: left;
+}
+
+.pokemon .image img {
+	width: 70%;
 }
 
 /*Dexter Styling*/
