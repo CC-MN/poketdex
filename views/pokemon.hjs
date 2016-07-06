@@ -15,32 +15,46 @@
 
 </head>
 <body>
-	<div class="container">
+	<div class="container">		
 		<div class="pokemon">
-			<div class="image">
-				<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
-			</div>
-			<h1>{{ pokemonData.name }}</h1>
-			<p>ID: {{ pokemonData.id }}</p>
-			<div class="abilityContainer">
-				{{#pokemonData.abilities}}
-				{{#.}}
-				<div class='ability'>{{ability.name}}</div>
-				{{/.}}
-				{{/pokemonData.abilities}}
-			</div>
+			<div id="containerLeft">
+				<div class="image">
+					<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
+				</div>
+				<h1>{{ pokemonData.name }}</h1>
+				<p>ID: {{ pokemonData.id }}</p>
+				<div class="abilityContainer">
+					{{#pokemonData.abilities}}
+					{{#.}}
+					<div class='ability'>{{ability.name}}</div>
+					{{/.}}
+					{{/pokemonData.abilities}}
+				</div>
 
-			<!-- Loop through type object -->
-			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
-			<div class="typeContainer">
-				{{#pokemonData.types}}
-				{{#.}}
-				<div class='type {{type.name}}'>{{type.name}}</div>
-				{{/.}}
-				{{/pokemonData.types}}
+				<!-- Loop through type object -->
+				<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
+				<div class="typeContainer">
+					{{#pokemonData.types}}
+					{{#.}}
+					<div class='type {{type.name}}'>{{type.name}}</div>
+					{{/.}}
+					{{/pokemonData.types}}
+				</div>
 			</div>
-			<div id="pokedex">
-				<button id="dexter">&#9658; Dexter</button>
+			<div id="containerRight">
+				<div id="pokedex">
+					<button id="dexter" class="buttonDexter">&#9658; Dexter</button>
+				</div>
+				<!-- Image Toggles below -->
+				<div id="imageToggleShiny" class="switch">
+					<input id="image-toggle-1" class="image-toggle image-toggle-round" type="checkbox">
+					<label for="image-toggle-1"></label>
+				</div>
+				<div id="imageToggleFemale" class="switch">
+					<input id="image-toggle-2" class="image-toggle image-toggle-round" type="checkbox">
+					<label for="image-toggle-2"></label>
+				</div>
+				<!-- Image Toggles Above -->
 			</div>
 		</div>
 	</div>
