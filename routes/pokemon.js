@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	var content = {
 		title : 'Pokemon API',
 	};
-	res.render('pokemon', content);
+	renderContent('1'); //default to bulbasaur
 });
 
 /* GET home page. */
@@ -16,8 +16,12 @@ router.get('/:id', function(req, res, next) {
 	var content = {
 		title : 'Pokemon API'
 	};
+	renderContent(req.params.id)
+});
 
-	var Pokemon = Pokedex.getPokemon(req.params.id);
+function renderContent(id){
+	console.log(id);	
+	var Pokemon = Pokedex.getPokemon(id);
 
 	Promise.resolve(Pokemon).then(function(response){
 		content.pokemonData = response;
@@ -30,7 +34,6 @@ router.get('/:id', function(req, res, next) {
 			res.render('pokemon', content);
 		});
 	});
-
-});
+}
 
 module.exports = router;

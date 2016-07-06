@@ -1,5 +1,5 @@
 const RP = require('request-promise');
-const CACHE = require('memory-cache');
+const DITTO = require('memory-cache');
 
 const BASE_URL = 'http://pokeapi.co/api/v2/';	
 const CACHE_TIME = 1000000 * 7; // 1 week
@@ -16,9 +16,13 @@ Pokedex.prototype = {
 		var url = BASE_URL + 'pokemon-species/' + name + '/';
 		return this.getJSON(url);
 	},
+	getEvolutionChain : function(name){
+		var url = BASE_URL + 'evolution-chain/' + name + '/';
+		return this.getJSON(url);
+	},
 	getJSON : function(URL){
-		const cacheResult = CACHE.get(URL);
-		//console.log(CACHE.keys());
+		const cacheResult = DITTO.get(URL);
+		//console.log(DITTO.keys());
 
 		if(cacheResult !== null){
 			console.log('cached');
@@ -34,8 +38,8 @@ Pokedex.prototype = {
 		.then(function(response){
 			//put response in cache
 			console.log('no cache');
-			CACHE.put(URL, response, CACHE_TIME);
-			console.log(CACHE.keys());
+			DITTO.put(URL, response, CACHE_TIME);
+			console.log(DITTO.keys());
 			return response;
 		})
 		.catch(function(err){

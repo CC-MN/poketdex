@@ -1,87 +1,81 @@
 /* Type Styles*/
-.typeContainer {
+.typeContainer{
 	display:flex;
 	flex-direction:column-reverse;
-}
-.typeContainer:after {
-	content:" ";
-	clear:both;
-	width: 1px;
-	height: 1px;
 }
 .type{
 	text-align: center;
 	margin-bottom:5px;
 	color:#ffffff;
 }
-.normal {
+.normal{
 	background:#A8A878;
 }
 
-.fire {
+.fire{
 	background:#F08030;
 }
 
-.fighting {
+.fighting{
 	background:#C03028;
 }
 
-.water {
+.water{
 	background:#6890F0;
 }
 
-.flying {
+.flying{
 	background:#A890F0;
 }
 
-.grass {
+.grass{
 	background:#78C850;
 }
 
-.poison {
+.poison{
 	background:#A040A0;
 }
 
-.electric {
+.electric{
 	background:#F8D030;
 }
 
-.ground {
+.ground{
 	background:#E0C068;
 }
 
-.psychic {
+.psychic{
 	background:#F85888;
 }
 
-.rock {
+.rock{
 	background:#B8A038;
 }
 
-.ice {
+.ice{
 	background:#98D8D8;
 }
 
-.bug {
+.bug{
 	background:#A8B820;
 }
 
-.dragon {
+.dragon{
 	background:#7038F8;
 }
 
-.ghost {
+.ghost{
 	background:#705898;
 }
 
-.dark {
+.dark{
 	background:#705848;
 }
 
-.steel {
+.steel{
 	background:#B8B8D0;
 }
 
-.fairy {
+.fairy{
 	background:#EE99AC;
 }
