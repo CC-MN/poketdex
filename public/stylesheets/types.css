@@ -1,12 +1,16 @@
 /* Type Styles*/
 .typeContainer{
+	/*display: block;*/
 	display:flex;
 	flex-direction:column-reverse;
 }
+
 .type{
 	text-align: center;
 	margin-bottom:5px;
 	color:#ffffff;
+	width: 100%;
+	float: left;
 }
 .normal{
 	background:#A8A878;

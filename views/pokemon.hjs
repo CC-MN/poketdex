@@ -19,20 +19,23 @@
 <body>
 	<div class="container">		
 		<div class="pokemon">
-			<div id="dexIdNameContainer">
-				<span id="dexId">Dex No : {{ pokemonResponse.id }} <span id="dexName">{{ pokemonResponse.name }}</span></span>
+			<!-- SideNav -->
+			<div id="mySidenav" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="#">Pokedex</a>
+				<a href="#">Itemdex</a>
+				<a href="#">Locationdex</a>
+			</div>
+			<!-- SideNav -->
+			<div id="topBar">
+				<span id="navButton" onclick="openNav()">&#9776;</span>
+
+				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span> <span id="dexName">{{ pokemonResponse.name }}</span>
+				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
 			<div class="image">
 				<img src="/images/dex/pokemon-large/{{ pokemonResponse.id }}.png" />
 			</div>
-			<div class="abilityContainer">
-				{{#pokemonResponse.abilities}}
-				{{#.}}
-				<div class='ability'>{{ability.name}}</div>
-				{{/.}}
-				{{/pokemonResponse.abilities}}
-			</div>
-
 			<!-- Loop through type object -->
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
 			<div class="row">
@@ -44,8 +47,14 @@
 					{{/pokemonResponse.types}}
 				</div>
 			</div>
-			<div id="pokedex">
-				<button id="dexter" class="buttonDexter">&#9658; Dexter</button>
+			<div class="abilityContainer">
+				{{#pokemonResponse.abilities}}
+				{{#.}}
+				<div class='ability'>{{ability.name}}</div>
+				{{/.}}
+				{{/pokemonResponse.abilities}}
+			</div>
+			<div id="massive">
 			</div>
 		</div>
 	</div>

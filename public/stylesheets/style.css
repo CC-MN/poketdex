@@ -1,40 +1,51 @@
 body{
 	/*padding: 50px;*/
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	margin: 0px;
 }
 
 a{
 	color: #00B7FF;
 }
 
-#dexIdNameContainer {
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
+#massive {
+	height:700px;
+}
+
+#topBar {
 	/*border: 1px solid green;*/
+	width: 100%;
+	height:5%;
+	background-color: white;
+	left: auto;
+	right: auto;
+	position: fixed;
+	display: inline-block;
+	text-align:center;
 
 }
 #dexId{
-	margin-top:0;
+	/*border: 1px solid blue;*/
 	font-weight: bold;
 	font-size: 3vw;
 }
 #dexName{
-	margin-top:0;
+	/*border: 1px solid red;*/
 	font-weight: bold;
 	font-size: 6vw;
-	/*border: 1px solid yellow;*/
 }
 
 .container{
-	width:100%;
 	/*border: 1px solid green;*/
+	width:100%;
+
 }
 .pokemon{
+	/*border: 1px solid yellow;*/
 	width:100%;
 	color:#000000;
 	text-transform: capitalize;
-	/*border: 1px solid yellow;*/
+
 }
 .row{
 	display: block;
@@ -56,69 +67,71 @@ a{
 
 /*Dexter Styling*/
 .buttonDexter{
+	position: absolute;
+	right: 1%;
 	padding: 2px;
-	width: 120px;
-	height: 60px;
-	display: block;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  color: #fff;
+	background-color: #ffffff;
+	border: none;
+  color: #000000;
   font-family: "Roboto Slab", serif;
-  font-size: 20px;
+  font-size: 5vw;
   text-align: center;
-  line-height: 60px;
 }
 
-/*Image Toggle Styling Below*/
-.image-toggle{
+/*Menu to open SideNav*/
+#navButton {
 	position: absolute;
-	margin-left: -9999px;
-	visibility: hidden;
+	left: 1%;
+	font-size: 5vw;
 }
 
-.image-toggle + label{
-	display: block;
-	position: relative;
-	cursor: pointer;
-	outline: none;
-	user-select: none;
+/*SideNav Stuff*/
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #ffffff; /* White*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
-input.image-toggle-round + label{
-	padding: 2px;
-	width: 120px;
-	height: 60px;
-	background-color: #dddddd;
-	border-radius: 60px;
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 10%;
+    text-decoration: none;
+    font-size: 4vw;
+    color: #818181;
+    display: block;
+    transition: 0.3s
 }
-input.image-toggle-round + label:before,
-input.image-toggle-round + label:after{
-	display: block;
-	position: absolute;
-	top: 1px;
-	left: 1px;
-	bottom: 1px;
-	content: "";
+
+/* When you mouse over the navigation links, change their color */
+/*.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}*/
+
+/* Position and style the close button (top right corner) */
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 5vw !important;
+    margin-left: 50px;
 }
-input.image-toggle-round + label:before{
-	right: 1px;
-	background-color: #f1f1f1;
-	border-radius: 60px;
-	transition: background 0.4s;
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
 }
-input.image-toggle-round + label:after{
-	width: 58px;
-	background-color: #fff;
-	border-radius: 100%;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-	transition: margin 0.4s;
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }
-input.image-toggle-round:checked + label:before{
-	background-color: #8ce196;
-}
-input.image-toggle-round:checked + label:after{
-	margin-left: 60px;
-}
-/*Image Toggle Styling Above*/
