@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>{{ title }}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
@@ -9,8 +11,8 @@
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
-	var pokeApi = {{& pokemonStringData }};
-	var speciesPokeApi = {{& pokemonSpeciesStringData }};
+	var responsePokemon = {{& pokemonResponseString }};
+	var responsePokemonSpecies = {{& pokemonSpeciesDataString }};
 	</script>
 
 </head>
@@ -18,28 +20,28 @@
 	<div class="container">		
 		<div class="pokemon">
 			<div id="dexIdNameContainer">
-				<span id="dexId">Dex No.: {{ pokemonData.id }} <span id="dexName">{{ pokemonData.name }}</span></span>
+				<span id="dexId">Dex No : {{ pokemonResponse.id }} <span id="dexName">{{ pokemonResponse.name }}</span></span>
 			</div>
 			<div class="image">
-				<img src="/images/dex/pokemon/{{ pokemonData.id }}.png" />
+				<img src="/images/dex/pokemon-large/{{ pokemonResponse.id }}.png" />
 			</div>
 			<div class="abilityContainer">
-				{{#pokemonData.abilities}}
+				{{#pokemonResponse.abilities}}
 				{{#.}}
 				<div class='ability'>{{ability.name}}</div>
 				{{/.}}
-				{{/pokemonData.abilities}}
+				{{/pokemonResponse.abilities}}
 			</div>
 
 			<!-- Loop through type object -->
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
 			<div class="row">
 				<div class="typeContainer">
-					{{#pokemonData.types}}
+					{{#pokemonResponse.types}}
 					{{#.}}
 					<div class="type {{type.name}}">{{type.name}}</div>
 					{{/.}}
-					{{/pokemonData.types}}
+					{{/pokemonResponse.types}}
 				</div>
 			</div>
 			<div id="pokedex">

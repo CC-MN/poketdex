@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	//binding dexter click event
 	$('#dexter').click(function(){
-		var pokedexText = speciesPokeApi.flavor_text_entries[1].flavor_text;
+		var pokedexText = responsePokemonSpecies.flavor_text_entries[1].flavor_text;
 		console.log(pokedexText);
 		speak(pokedexText);
 	});
