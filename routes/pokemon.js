@@ -1,5 +1,3 @@
-const MAP = require('promise-map');
-const MAPPROMISE = require('map-promise');
 var express = require('express');
 var router = express.Router();
 var PokedexLib = require('../pokedex');
@@ -22,19 +20,21 @@ router.get('/:id', function(req, res, next) {
 });
 
 function renderContent(id){
-	console.log(id);	
-	var Pokemon = Pokedex.getPokemon(id);
 
-	Promise.resolve(Pokemon).then(function(response){
+	Pokedex.getJSON(Pokedex.getPokemon(id))
+	.then(function(response){
+		//get pokemon info
 		CONTENT.pokemonData = response;
 		CONTENT.pokemonStringData = JSON.stringify(response);
-		//TODO : Find a better way to chain requests
-		var Species = Pokedex.getSpecies(response.id);
-		Promise.resolve(Species).then(function(r){
-			CONTENT.pokemonSpeciesData = r;
-			CONTENT.pokemonSpeciesStringData = JSON.stringify(r);
-			RES.render('pokemon', CONTENT);
-		});
+		return Pokedex.getJSON(Pokedex.getSpecies(id));
+	})
+	.then(function(response){
+		//get species info
+		CONTENT.pokemonSpeciesData = response;
+		CONTENT.pokemonSpeciesStringData = JSON.stringify(response);
+
+		RES.render('pokemon', CONTENT);
 	});
+
 }
 module.exports = router;
