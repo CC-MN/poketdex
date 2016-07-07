@@ -31,7 +31,3 @@ Memory-Cache
 ```
 https://www.npmjs.com/package/memory-cache
 ```
-Promise-Map
-```
-https://www.npmjs.com/package/promise-map
-```

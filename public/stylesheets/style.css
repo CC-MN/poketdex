@@ -103,6 +103,7 @@ nav{
 	/*border: 1px solid green;*/
 	width:100%;
 	padding-top: 5%;
+	text-transform: capitalize;
 }
 .pokemon{
 	/*border: 1px solid yellow;*/
