@@ -17,8 +17,8 @@
 
 </head>
 <body>
-	<div class="container">		
-		<div class="pokemon">
+	<header>
+		<nav>
 			<!-- SideNav -->
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -33,6 +33,11 @@
 				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span> <span id="dexName">{{ pokemonResponse.name }}</span>
 				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
+		</nav>
+	</header>
+	<div class="container">		
+		<div class="pokemon">
+
 			<div class="image">
 				<img src="/images/dex/pokemon-large/{{ pokemonResponse.id }}.png" />
 			</div>

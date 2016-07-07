@@ -17,12 +17,12 @@ var speak = function(pokedexText) {
 	responsiveVoice.speak(pokedexText, "UK English Male");
 };
 
- // Set the width of the side navigation to show 
+// Set the width of the side navigation to show 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "50%";
+	$('#mySidenav').css('width', '50%');
 }
 
- // Set the width of the side navigation to 0 
+// Set the width of the side navigation to 0 
 function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+	$('#mySidenav').css('width','0px');
 }

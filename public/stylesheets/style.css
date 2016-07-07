@@ -7,22 +7,34 @@ body{
 a{
 	color: #00B7FF;
 }
-
-#massive {
-	height:700px;
+.row{
+	display: block;
+}
+.row:after{
+	clear:both;
+	content:' ';
+	width:1px;
+	height:1px;
 }
 
+/************  Nav Styles *************/
+header{
+
+}
+nav{
+
+}
 #topBar {
 	/*border: 1px solid green;*/
 	width: 100%;
-	height:5%;
+	min-height:5%;
 	background-color: white;
 	left: auto;
 	right: auto;
 	position: fixed;
 	display: inline-block;
 	text-align:center;
-
+	text-transform: capitalize;
 }
 #dexId{
 	/*border: 1px solid blue;*/
@@ -34,29 +46,70 @@ a{
 	font-weight: bold;
 	font-size: 6vw;
 }
+/*Menu to open SideNav*/
+#navButton {
+	position: absolute;
+	left: 1%;
+	font-size: 5vw;
+}
 
+/*SideNav Stuff*/
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #ffffff; /* White*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 10%;
+  text-decoration: none;
+  font-size: 4vw;
+  color: #818181;
+  display: block;
+  transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+/*.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}*/
+
+/* Position and style the close button (top right corner) */
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 5vw !important;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/************ End Nav Styles *************/
 .container{
 	/*border: 1px solid green;*/
 	width:100%;
-
+	padding-top: 5%;
 }
 .pokemon{
 	/*border: 1px solid yellow;*/
 	width:100%;
 	color:#000000;
-	text-transform: capitalize;
-
+	
 }
-.row{
-	display: block;
-}
-.row:after{
-	clear:both;
-	content:' ';
-	width:1px;
-	height:1px;
-}
-
 .pokemon .image{
 	text-align: center;
 }
@@ -78,60 +131,12 @@ a{
   text-align: center;
 }
 
-/*Menu to open SideNav*/
-#navButton {
-	position: absolute;
-	left: 1%;
-	font-size: 5vw;
-}
-
-/*SideNav Stuff*/
-/* The side navigation menu */
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #ffffff; /* White*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-/* The navigation menu links */
-.sidenav a {
-    padding: 8px 8px 8px 10%;
-    text-decoration: none;
-    font-size: 4vw;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-}
-
-/* When you mouse over the navigation links, change their color */
-/*.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}*/
-
-/* Position and style the close button (top right corner) */
-.closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 5vw !important;
-    margin-left: 50px;
-}
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-    transition: margin-left .5s;
-    padding: 20px;
+#massive {
+	height:700px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
