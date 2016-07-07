@@ -6,8 +6,24 @@ body{
 a{
 	color: #00B7FF;
 }
-h1{
+
+#dexIdNameContainer {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	/*border: 1px solid green;*/
+
+}
+#dexId{
 	margin-top:0;
+	font-weight: bold;
+	font-size: 3vw;
+}
+#dexName{
+	margin-top:0;
+	font-weight: bold;
+	font-size: 6vw;
+	/*border: 1px solid yellow;*/
 }
 
 .container{
@@ -29,19 +45,9 @@ h1{
 	width:1px;
 	height:1px;
 }
-.float1{
-	/*border:1px solid red;*/
-	width:70%;
-	float:left;
-}
-.float2{
-	/*border:1px solid red;*/
-	width:30%;
-	float:left;
-}
 
 .pokemon .image{
-	text-align: left;
+	text-align: center;
 }
 
 .pokemon .image img {
