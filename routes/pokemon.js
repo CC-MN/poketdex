@@ -1,3 +1,5 @@
+const MAP = require('promise-map');
+const MAPPROMISE = require('map-promise');
 var express = require('express');
 var router = express.Router();
 var PokedexLib = require('../pokedex');
@@ -20,27 +22,19 @@ router.get('/:id', function(req, res, next) {
 });
 
 function renderContent(id){
+	console.log(id);	
+	var Pokemon = Pokedex.getPokemon(id);
 
-	var pokemonUrlList = [];
-	pokemonUrlList.push(Pokedex.getPokemon(id));
-	pokemonUrlList.push(Pokedex.getSpecies(id));
-
-	var pokeAPI = Pokedex.getJSON(pokemonUrlList);
-
-	Promise.resolve(pokeAPI).then(function(array){
-		// console.log(array);
-		//TODO:
-		//Look at response of array and create a better structure for objectname
-		CONTENT.pokemonData = array[0];
-		CONTENT.pokemonStringData = JSON.stringify(array[0]);
-
-		CONTENT.pokemonSpeciesData = array[1];
-		CONTENT.pokemonSpeciesStringData = JSON.stringify(array[1]);
-
-		RES.render('pokemon', CONTENT);
-
+	Promise.resolve(Pokemon).then(function(response){
+		CONTENT.pokemonData = response;
+		CONTENT.pokemonStringData = JSON.stringify(response);
+		//TODO : Find a better way to chain requests
+		var Species = Pokedex.getSpecies(response.id);
+		Promise.resolve(Species).then(function(r){
+			CONTENT.pokemonSpeciesData = r;
+			CONTENT.pokemonSpeciesStringData = JSON.stringify(r);
+			RES.render('pokemon', CONTENT);
+		});
 	});
-
 }
-
 module.exports = router;

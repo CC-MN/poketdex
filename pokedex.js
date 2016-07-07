@@ -10,48 +10,42 @@ Pokedex.prototype = {
 
 	getPokemon : function(name){
 		var url = BASE_URL + 'pokemon/' + name;
-		return url;
-		// return this.getJSON(url);
+		// return url;
+		return this.getJSON(url);
 	},
 	getSpecies : function(name){
 		var url = BASE_URL + 'pokemon-species/' + name + '/';
-		return url;
-		// return this.getJSON(url);
+		// return url;
+		return this.getJSON(url);
 	},
 	getEvolutionChain : function(name){
 		var url = BASE_URL + 'evolution-chain/' + name + '/';
-		return url;
-		// return this.getJSON(url);
+		// return url;
+		return this.getJSON(url);
 	},
-	getJSON : function(URLS){
-
-		return Promise.resolve(URLS).then(MAP(function(url){
-			//loop through our URL list and 
-			//return back an array of the results in order of URLs passed
-			var cacheResult = DITTO.get(url);
-			if(cacheResult !== null){
-				console.log('cached result for [' + url + ']');
-				console.log(DITTO.keys());
-				return cacheResult;
-			}
-
-			var options = {
-				url : url,
-				json : true
-			}
-
-			return RP.get(options).then(function(response){
-				console.log('no cache result for [' + url + ']');
-				DITTO.put(url, response, CACHE_TIME);
-				console.log(DITTO.keys());
-				return response;
-			}).catch(function(err){
-				console.log(err);
-				//throw new Error(err);
-			});
-			
-		}));
-
+	getJSON : function(URL){
+		const cacheResult = DITTO.get(URL);
+		//console.log(DITTO.keys());
+		if(cacheResult !== null){
+			console.log('cached');
+			return cacheResult;
+		}
+		var options = {
+			url : URL,
+			json : true
+		}
+		return RP.get(options)
+		.then(function(response){
+			//put response in cache
+			console.log('no cache');
+			DITTO.put(URL, response, CACHE_TIME);
+			console.log(DITTO.keys());
+			return response;
+		})
+		.catch(function(err){
+			console.log(err);
+			throw error;
+		});
 	}
 
 }
