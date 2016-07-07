@@ -4,10 +4,7 @@ var URL_PARAMS = {};
 $(document).ready(function(){
 	getQS(URL_PARAMS);
 
-	console.log("starting loop");
-	console.log(responsePokemonSpecies.flavor_text_entries);
 	for (var i = 0; i < 5; i ++) {
-		// console.log("this actually works");
 		if (responsePokemonSpecies.flavor_text_entries[i].language.name === "en") {
 			window.pokedexText = responsePokemonSpecies.flavor_text_entries[i].flavor_text
 			console.log("you got: " + responsePokemonSpecies.flavor_text_entries[i].language.name);
