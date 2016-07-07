@@ -55,7 +55,7 @@
 			<div class="abilityContainer">
 				{{#pokemonResponse.abilities}}
 				{{#.}}
-				<div class='ability'>{{ability.name}}</div>
+				<div class='ability hidden{{is_hidden}}'>{{ability.name}}</div>
 				{{/.}}
 				{{/pokemonResponse.abilities}}
 			</div>

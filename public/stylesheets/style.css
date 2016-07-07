@@ -132,6 +132,15 @@ nav{
   text-align: center;
 }
 
+.abilityContainer {
+	display:flex;
+	flex-direction:column-reverse;
+}
+
+.hiddentrue {
+	color:#818181;
+}
+
 #massive {
 	height:700px;
 }
