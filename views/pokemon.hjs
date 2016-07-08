@@ -46,7 +46,9 @@
 		<div class="pokemon">
 
 			<div class="image">
+				<img id="pokemonNavPrevious" src="" />
 				<img src="/images/dex/pokemon-large/{{ pokemonResponse.id }}.png" />
+				<img id="pokemonNavNext" src="" />
 			</div>
 			<!-- Loop through type object -->
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->

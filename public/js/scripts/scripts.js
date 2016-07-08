@@ -3,6 +3,8 @@ var URL_PARAMS = {};
 
 $(document).ready(function(){
 	getQS(URL_PARAMS);
+	var pokemonNavPrevious = responsePokemon.id - 1
+	var pokemonNavNext = responsePokemon.id + 1
 
 	for (var i = 0; i < responsePokemonSpecies.flavor_text_entries.length; i ++) {
 		if (responsePokemonSpecies.flavor_text_entries[i].language.name === "en" && responsePokemonSpecies.flavor_text_entries[i].version.name === "alpha-sapphire") {
@@ -21,6 +23,8 @@ $(document).ready(function(){
 	});
 
 	$("#pokedexList").val(responsePokemon.id);
+	$("#pokemonNavPrevious").src("/images/dex/pokemon-large/" + pokemonNavPrevious ".png");
+	$("#pokemonNavNext").src("/images/dex/pokemon-large/" + pokemonNavNext ".png");
 
 });
 
