@@ -29,8 +29,15 @@
 			<!-- SideNav -->
 			<div id="topBar">
 				<span id="navButton" onclick="openNav()">&#9776;</span>
-
-				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span> <span id="dexName">{{ pokemonResponse.name }}</span>
+				<img class="icon" src="/images/interface/icon-search.png" />&nbsp;
+				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span>
+				<select id="pokedexList" name="pokemon" onchange="changePokemon(this.value)">
+					<option value="5">Charmeleon</option>
+					<option value="6">Charizard</option>
+					<option value="7">Squirtle</option>
+					<option value="8">Wartortle</option>
+				</select>
+				<!-- <span id="dexName">{{ pokemonResponse.name }}</span> -->
 				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
 		</nav>

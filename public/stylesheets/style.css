@@ -99,6 +99,23 @@ nav{
 }
 
 /************ End Nav Styles *************/
+
+img.icon {
+	height: 5vw;
+}
+
+select {
+	border:0px;
+	-webkit-appearance: none;
+	background-color: #ffffff;
+	font-weight: bold;
+	font-size: 6vw;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
 .container{
 	/*border: 1px solid green;*/
 	width:100%;
