@@ -23,8 +23,11 @@ $(document).ready(function(){
 	});
 
 	$("#pokedexList").val(responsePokemon.id);
-	$("#pokemonNavPrevious").src("/images/dex/pokemon-large/" + pokemonNavPrevious ".png");
-	$("#pokemonNavNext").src("/images/dex/pokemon-large/" + pokemonNavNext ".png");
+	//set pokemonNav images and links
+	$("#pokemonNavPreviousImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavPrevious + ".png");
+	$("#pokemonNavNextImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavNext + ".png");
+	$("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
+	$("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
 });
 

@@ -7,6 +7,11 @@ body{
 a{
 	color: #00B7FF;
 }
+
+img{
+	border: none;
+}
+
 .row{
 	display: block;
 }
@@ -130,6 +135,9 @@ select::-ms-expand {
 }
 .pokemon .image{
 	text-align: center;
+}
+.pokemonNav {
+	width: 13% !important;
 }
 
 .pokemon .image img {
