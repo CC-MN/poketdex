@@ -68,8 +68,8 @@
 				{{/.}}
 				{{/pokemonResponse.abilities}}
 			</div>
-			<div id="massive">
-			</div>
+			<!-- <div id="massive">
+			</div> -->
 		</div>
 	</div>
 </body>
