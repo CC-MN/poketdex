@@ -7,8 +7,7 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexNames.js"></script>
