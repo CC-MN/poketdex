@@ -56,8 +56,13 @@ nav{
 	text-transform: capitalize;
 }
 
+#pokedexList {
+	height: 1px !important;
+	font-size: 1vw !important;
+}
+
 #searchContainer {
-	border: 1px solid red;
+/*	border: 1px solid red;*/
 }
 
 #pokemonSearchBox {
