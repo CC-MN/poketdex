@@ -11,6 +11,9 @@ a{
 img{
 	border: none;
 }
+button, #navButton, .icon{
+	cursor: pointer;
+}
 
 .row{
 	display: block;
@@ -219,15 +222,17 @@ img.icon {
 }
 
 /*Used for section titles/headers */
-.title {
+section{
+	cursor: pointer;
+}
+.tab {
 	height:8vw;
 	line-height: 8vw;
 	font-size: 4vw;
-	/*border: 1px solid red;*/
 	vertical-align: middle;
 	border-top: 1px solid #818181;
-	/*border-bottom: 1px solid gray;*/
 }
+
 #abilitiesTitle{
 	border-top: 0px !important;
 }
@@ -252,7 +257,6 @@ img.icon {
 
 #massive {
 	height:700px;
-	/*border: 1px solid black;*/
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

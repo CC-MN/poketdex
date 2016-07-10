@@ -44,20 +44,25 @@ $(document).ready(function(){
 	$("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
 	$("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
+	//binding section tabs
+	$('section div.tab').click(function(){
+		var contentClass = $(this).attr('class').replace('tab', '');
+		showSection(contentClass);
+	});
+
 	//set chart data
 	barChartData = {
-        labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
-        datasets: [{
-            label: 'Dataset 1',
-            backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
-            data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
-        }, 
-        ]
+    labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
+    datasets: [{
+      label: 'Dataset 1',
+      backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
+      data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
+    }]
 
-    };
-    //end chart data
-    console.log("here's chart data: " + responsePokemon.stats[0].base_stat + " and " + responsePokemon.stats[1].base_stat)
-    buildChart(barChartData)
+  };
+  //end chart data
+  console.log("here's chart data: " + responsePokemon.stats[0].base_stat + " and " + responsePokemon.stats[1].base_stat)
+  buildChart(barChartData)
 });
 
 //builds baseStats Chart

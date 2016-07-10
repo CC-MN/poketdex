@@ -8,13 +8,14 @@
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+	<script type="text/javascript" src="/js/chartjs/chartbundle.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
 	var responsePokemon = {{& pokemonResponseString }};
 	var responsePokemonSpecies = {{& pokemonSpeciesDataString }};
+	var responsePokemonNames = {{& allPokemonNamesString}};
 	</script>
 
 </head>
@@ -65,10 +66,10 @@
 				</div>
 			</div>
 			<!-- Section: Abilities -->
-			<div id="abilitiesSection" >
-				<div id="abilitiesTitle" class="title">
+			<section>
+				<div id="abilitiesTitle" class="tab abilitiesContent">
 					<span>Abilities</span>
-					<button id="abilitiesController" class="buttonController" onclick="showSection('abilitiesContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<div id="abilitiesContent" class="hidden">
 					<div class="reverseOrder">
@@ -79,56 +80,56 @@
 						{{/pokemonResponse.abilities}}
 					</div>
 				</div>
-			</div>
+			</section>
 			<!-- Section: Evolution Chain -->
-			<div id="evolutionChainSection" >
-				<div id="evolutionChainTitle" class="title">
+			<section>
+				<div id="evolutionChainTitle" class="tab evolutionChainContent">
 					<span>Evolution Chain</span>
-					<button id="evolutionChainController" class="buttonController" onclick="showSection('evolutionChainContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<div id="evolutionChainContent" class="hidden">
 					<!-- content goes here -->
 				</div>
-			</div>
+			</section>
 
 			<!-- Section: Moves -->
-			<div id="movesSection" >
-				<div id="movesTitle" class="title">
+			<section>
+				<div id="movesTitle" class="tab movesContent">
 					<span>Moves</span>
-					<button id="movesController" class="buttonController" onclick="showSection('movesContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<div id="movesContent" class="hidden">
 					<!-- content goes here -->
 				</div>
-			</div>
+			</section>
 
 			<!-- Section: Breeding -->
-			<div id="breedingSection" >
-				<div id="breedingTitle" class="title">
+			<section>
+				<div id="breedingTitle" class="tab breedingContent">
 					<span>Breeding</span>
-					<button id="breedingController" class="buttonController" onclick="showSection('breedingContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<div id="breedingContent" class="hidden">
 					<!-- content goes here -->
 				</div>
-			</div>
+			</section>
 
 			<!-- Section: Locations -->
-			<div id="locationSection" >
-				<div id="locationTitle" class="title">
+			<section>
+				<div id="locationTitle" class="tab locationContent">
 					<span>Locations</span>
-					<button id="locationController" class="buttonController" onclick="showSection('locationContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<div id="locationContent" class="hidden">
 					<!-- content goes here -->
 				</div>
-			</div>
+			</section>
 
 			<!-- Section: Base Stats -->
-			<div id="baseStatsSection" >
-				<div id="baseStatsTitle" class="title">
+			<section>
+				<div id="baseStatsTitle" class="tab baseStatsContent">
 					<span>Stats</span>
-					<button id="baseStatsController" class="buttonController" onclick="showSection('baseStatsContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
 				<div id="baseStatsContent" class="hidden">
@@ -140,21 +141,19 @@
 					</select>
 					<canvas id="canvas"></canvas>
 				</div>
-			</div>
-			<div id="massive">
-			</div>
+			</section>
 			<!-- sample section below -->
-			<div id="sectionSection" >
-				<div id="sectionTitle" class="title">
+			<section>
+				<div id="sectionTitle" class="tab sectionContent">
 					<span>Section Title</span>
-					<button id="sectionController" class="buttonController" onclick="showSection('sectionContent')">+</button>
+					<button class="buttonController">+</button>
 				</div>
 				<div id="sectionContent" class="hidden">
 					<!-- content goes here -->
 				</div>
 			</div>
 			<!-- sample section above -->
-		</div>
+		</section>
 	</div>
 </body>
 </html>

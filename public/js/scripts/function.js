@@ -48,6 +48,7 @@ function changePokemon(pokemonID) {
 };
 
 function showSearch(){
+  //TODO need to redo this function/css for the search
   if ($( "#searchContainer" ).hasClass("hidden")) {
     $('#searchContainer').removeClass("hidden");
     $('#pokemonSearchBox').addClass("animate");
@@ -63,34 +64,36 @@ function useList() {
 }
 
 function showSection(sectionName){
+  sectionName = sectionName.trim();
+
   if ($( "#" + sectionName ).hasClass("hidden")) {
+    $('#' + sectionName).parent().find('button').html('&#8211;');
     $('#' + sectionName).removeClass("hidden");
-    // $('#pokemonSearchBox').addClass("animate");
     $('#' + sectionName).focus();
   }else {
-    // $('#pokemonSearchBox').addClass("reverseAnimate");
+    $('#' + sectionName).parent().find('button').html('+');
     $('#' + sectionName).addClass("hidden");
   }
 }
 
 function buildChart(barChartData) {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-                    // Elements options apply to all of the options unless overridden in a dataset
-                    // In this case, we are setting the border of each bar to be 2px wide and green
-                    responsive: false,
-                    defaultFontFamily: "Lucida Grande",
-                    defaultFontSize: 14,
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: false
-                    }
-                }
-            });
+  var ctx = document.getElementById("canvas").getContext("2d");
+  window.myBar = new Chart(ctx, {
+    type: 'bar',
+    data: barChartData,
+    options: {
+      // Elements options apply to all of the options unless overridden in a dataset
+      // In this case, we are setting the border of each bar to be 2px wide and green
+      responsive: false,
+      defaultFontFamily: "Lucida Grande",
+      defaultFontSize: 14,
+      legend: {
+        display: false
+      },
+      title: {
+        display: false
+      }
+    }
+  });
 
-    };
+};

@@ -33,6 +33,13 @@ function renderContent(id){
 		CONTENT.pokemonSpeciesData = response;
 		CONTENT.pokemonSpeciesDataString = JSON.stringify(response);
 
+		//get all pokemon so we will not pass through an id/name but a query string
+		return Pokedex.getJSON(Pokedex.getPokemon('?limit=999'));
+		
+	}).then(function(response){
+		CONTENT.allPokemonNames = response;
+		CONTENT.allPokemonNamesString = JSON.stringify(response);
+
 		RES.render('pokemon', CONTENT);
 	});
 
