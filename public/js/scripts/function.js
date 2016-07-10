@@ -44,5 +44,9 @@ function changePokemon(pokemonID) {
   window.location = "./" + pokemonID;
 }
 
+function showSearch(){
+  $('#searchContainer').removeClass("hidden");
+}
+
 //get selected option and set text
 //$( "#myselect option:selected" ).text();

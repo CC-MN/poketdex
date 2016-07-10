@@ -4,9 +4,28 @@ var POKEDEXTEXT = null;
 var POKEMONMAX = 720;
 var POKEMONMIN = 1;
 var DEXTER_STATE = 0;
+// var pokedexList = {"1":"Bulbasaur", "2":"Ivysaur", "3":"Venusaur", "4":"Charmander"};
 
 $(document).ready(function(){
 	getQS(URL_PARAMS);
+
+	// for (var i = 0; i < pokedexList.length; i++) {
+	// 	Things[i]
+	// };
+
+	//builds pokdex list in select input
+	$.each(pokedexList, function(key, value) {
+		$('#pokedexList')
+		.append($("<option></option>")
+			.attr("value",key)
+			.text(value));
+		// console.log("logging: " + key + value)
+	});
+
+	$( "#pokemonSearchBox" ).autocomplete({
+      source: pokedexNames
+    });
+
 
 	//get dexter text
 	$.each(responsePokemonSpecies.flavor_text_entries, function(index, value){
