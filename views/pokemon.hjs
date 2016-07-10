@@ -32,15 +32,15 @@
 				<span id="navButton" onclick="openNav()">&#9776;</span>
 				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
 				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span>
-				<!-- Hidden -->
-				<select id="pokedexList" name="pokemon" class ="hidden" onchange="changePokemon(this.value)">
-				</select>
-				<!-- Hidden -->
 				<span id="dexName" onclick="useList()">{{ pokemonResponse.name }}</span>
 				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
 		</nav>
 	</header>
+	<!-- Hidden -->
+	<select id="pokedexList" name="pokemon" class ="" onchange="changePokemon(this.value)">
+	</select>
+	<!-- Hidden -->
 	<div id="searchContainer" class="hidden">
 		<input id="pokemonSearchBox" onchange="changePokemon(this.value)">
 	</div>
