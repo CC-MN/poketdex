@@ -46,7 +46,10 @@ function changePokemon(pokemonID) {
 
 function showSearch(){
   $('#searchContainer').removeClass("hidden");
+  $('#pokemonSearchBox').addClass("animate");
+  $('#pokemonSearchBox').focus();
 }
 
-//get selected option and set text
-//$( "#myselect option:selected" ).text();
+function useList() {
+  $('#pokedexList').focus();
+}

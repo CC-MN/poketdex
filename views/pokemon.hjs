@@ -7,10 +7,8 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
-	<script type="text/javascript" src="/js/scripts/pokedexNames.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
@@ -21,9 +19,6 @@
 </head>
 <body>
 	<header>
-		<div id="searchContainer" class="ui-widget hidden">
-					<input id="pokemonSearchBox" onchange="changePokemon(this.value)">
-				</div>
 		<nav>
 			<!-- SideNav -->
 			<div id="mySidenav" class="sidenav">
@@ -37,13 +32,18 @@
 				<span id="navButton" onclick="openNav()">&#9776;</span>
 				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
 				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span>
-				<select id="pokedexList" name="pokemon" onchange="changePokemon(this.value)">
+				<!-- Hidden -->
+				<select id="pokedexList" name="pokemon" class ="hidden" onchange="changePokemon(this.value)">
 				</select>
-				<!-- <span id="dexName">{{ pokemonResponse.name }}</span> -->
+				<!-- Hidden -->
+				<span id="dexName" onclick="useList()">{{ pokemonResponse.name }}</span>
 				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
 		</nav>
 	</header>
+	<div id="searchContainer" class="hidden">
+		<input id="pokemonSearchBox" onchange="changePokemon(this.value)">
+	</div>
 	<div class="container">		
 		<div class="pokemon">
 

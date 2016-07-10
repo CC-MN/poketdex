@@ -18,13 +18,9 @@ $(document).ready(function(){
 		$('#pokedexList')
 		.append($("<option></option>")
 			.attr("value",key)
-			.text(value));
+			.text(key + " " + value));
 		// console.log("logging: " + key + value)
 	});
-
-	$( "#pokemonSearchBox" ).autocomplete({
-      source: pokedexNames
-    });
 
 
 	//get dexter text

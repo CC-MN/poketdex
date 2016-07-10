@@ -26,6 +26,16 @@ img{
 	display: none !important;
 }
 
+@keyframes example {
+    from {margin-top: 0%;}
+    to {margin-top: 7%;}
+}
+.animate {
+	animation-name: example;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
 /************  Nav Styles *************/
 header{
 
@@ -46,20 +56,21 @@ nav{
 	text-transform: capitalize;
 }
 
+#searchContainer {
+	border: 1px solid red;
+}
+
 #pokemonSearchBox {
-	position: fixed;
-	border: 0px;
-	left: 10%;
+	/*position: fixed;*/
+	width: 100%;
+	height:6vw;
+	font-size: 4vw;
+	/*border: 0px;*/
+	/*left: 10%;
 	right: 10%;
 	width: 80%;
 	height: 8%;
-	z-index: 1000;
-}
-
-.ui-widget-content {
-	border: 1px solid #aaaaaa;
-	background: #ffffff;
-	color: #222222;
+	z-index: 1000;*/
 }
 
 #dexId{
