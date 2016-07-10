@@ -9,10 +9,6 @@ var DEXTER_STATE = 0;
 $(document).ready(function(){
 	getQS(URL_PARAMS);
 
-	// for (var i = 0; i < pokedexList.length; i++) {
-	// 	Things[i]
-	// };
-
 	//builds pokdex list in select input
 	$.each(pokedexList, function(key, value) {
 		$('#pokedexList')
@@ -49,6 +45,13 @@ $(document).ready(function(){
 	$("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
 });
+
+//builds baseStats Chart
+// for (var i = 0; i < responsePokemon.stats.length; i++) {
+// 	console.log(responsePokemon.stats[i].stat.name + ": " + responsePokemon.stats[i].base_stat);
+// 	$('#stat-' + responsePokemon.stats[i].stat.name).css({"height": responsePokemon.stats[i].base_stat });
+
+// };
 
 $(window).on('beforeunload', function(){
 	if(responsiveVoice.isPlaying()){

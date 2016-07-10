@@ -41,13 +41,21 @@ function closeNav() {
 }
 
 function changePokemon(pokemonID) {
-  window.location = "./" + pokemonID;
-}
+  if (pokemonID !== null) {
+    pokemonID = pokemonID.toLowerCase();
+    window.location = "./" + pokemonID;
+  };
+};
 
 function showSearch(){
-  $('#searchContainer').removeClass("hidden");
-  $('#pokemonSearchBox').addClass("animate");
-  $('#pokemonSearchBox').focus();
+  if ($( "#searchContainer" ).hasClass("hidden")) {
+    $('#searchContainer').removeClass("hidden");
+    $('#pokemonSearchBox').addClass("animate");
+    $('#pokemonSearchBox').focus();
+  }else {
+    $('#pokemonSearchBox').addClass("reverseAnimate");
+    $('#searchContainer').addClass("hidden");
+  }
 }
 
 function useList() {

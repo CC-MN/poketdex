@@ -55,7 +55,7 @@
 			<!-- Loop through type object -->
 			<!-- http://stackoverflow.com/questions/17283776/iterate-through-json-array-with-mustache -->
 			<div class="row">
-				<div class="typeContainer">
+				<div class="reverseOrder">
 					{{#pokemonResponse.types}}
 					{{#.}}
 					<div class="type {{type.name}}">{{type.name}}</div>
@@ -63,16 +63,40 @@
 					{{/pokemonResponse.types}}
 				</div>
 			</div>
-			<div class="abilityContainer">
+			<div class="reverseOrder">
 				{{#pokemonResponse.abilities}}
 				{{#.}}
 				<div class='ability hidden{{is_hidden}}'>{{ability.name}}</div>
 				{{/.}}
 				{{/pokemonResponse.abilities}}
 			</div>
-			<div id="massive">
-			</div>
+			<div id="baseStats" >
+			<!-- 
+				<ul class="chart">
+					<li>
+						<span id="stat-hp" title="HP"></span>
+					</li>
+					<li>
+						<span id="stat-attack" title="Attack"></span>
+					</li>
+					<li>
+						<span id="stat-defense" title="Defense"></span>
+					</li>
+					<li>
+						<span id="stat-special-attack" title="Sp. Attack"></span>
+					</li>
+					<li>
+						<span id="stat-special-defense" title="Sp. Defense"></span>
+					</li>
+					<li>
+						<span id="stat-speed" title="Speed"></span>
+					</li>
+				</ul>    
+			-->
+		</div>
+		<div id="massive">
 		</div>
 	</div>
+</div>
 </body>
 </html>

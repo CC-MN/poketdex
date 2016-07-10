@@ -1,3 +1,5 @@
+@import "compass/css3";
+
 body{
 	/*padding: 50px;*/
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -22,16 +24,30 @@ img{
 	height:1px;
 }
 
+.section {
+	width: 100%;
+}
+
 .hidden {
 	display: none !important;
 }
 
-@keyframes example {
+@keyframes showSearchBox {
     from {margin-top: 0%;}
     to {margin-top: 7%;}
 }
 .animate {
-	animation-name: example;
+	animation-name: showSearchBox;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes hideSearchBox {
+    from {margin-top: 7%;}
+    to {margin-top: 0%;}
+}
+.reverseAnimate {
+	animation-name: hideSearchBox;
 	animation-duration: 1s;
 	animation-fill-mode: forwards;
 }
@@ -58,7 +74,7 @@ nav{
 
 #pokedexList {
 	height: 1px !important;
-	font-size: 1vw !important;
+	font-size: 4vw !important;
 }
 
 #searchContainer {
@@ -194,7 +210,7 @@ select::-ms-expand {
   text-align: center;
 }
 
-.abilityContainer {
+.reverseOrder {
 	display:flex;
 	flex-direction:column-reverse;
 }
@@ -212,3 +228,52 @@ select::-ms-expand {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+
+/*baseStats Charts below here*/
+
+.chart{
+  display:table;
+  table-layout: fixed;   
+  
+  width:60%;
+  max-width:700px;
+  height:200px;
+  margin:0 auto;
+  
+  background-image:linear-gradient(bottom, rgba(0, 0, 0, 0.1) 2%, transparent 2%);
+  background-size: 100% 50px;
+  background-position: left top;
+  
+  li{
+    position:relative;
+    display:table-cell;
+    vertical-align:bottom;
+    height:200px;
+  }
+  
+  span{
+    margin:0 1em;
+    display: block;
+    background: rgba(#d1ecfa, .75);
+    animation: draw 1s ease-in-out;
+    
+    &:before{
+      position:absolute;
+      left:0;right:0;top:100%;
+      padding:5px 1em 0;
+  		display:block;
+      text-align:center;
+      content:attr(title);
+      word-wrap: break-word;
+    }
+    
+  }
+  
+}
+
+@keyframes draw{
+  0%{height:0;} 
+}
+
+/*baseStats Charts above here*/
