@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Bar Chart</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+    
+</head>
+
+<body>
+    <div id="container" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+
+    var barChartData = {
+        labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
+        datasets: [{
+            label: 'Dataset 1',
+            backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
+            data: [1, 2, 3, 4, 5, 6]
+        }, 
+        ]
+
+    };
+
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each bar to be 2px wide and green
+                    elements: {
+                        rectangle: {
+                            borderWidth: 0,
+                            borderColor: 'rgb(0, 255, 0)'
+                        }
+                    },
+                    responsive: false,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: false,
+                        text: 'Base Stats for '
+                    }
+                }
+            });
+
+    };
+    </script>
+</body>
+
+</html>
