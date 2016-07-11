@@ -14,6 +14,10 @@ function getQS(object){
   }
 }
 
+function test() {
+  alert('test completed');
+}
+
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
   if(DEXTER_STATE === 2){
@@ -51,10 +55,8 @@ function showSearch(){
   //TODO need to redo this function/css for the search
   if ($( "#searchContainer" ).hasClass("hidden")) {
     $('#searchContainer').removeClass("hidden");
-    $('#pokemonSearchBox').addClass("animate");
     $('#pokemonSearchBox').focus();
   }else {
-    $('#pokemonSearchBox').addClass("reverseAnimate");
     $('#searchContainer').addClass("hidden");
   }
 }
@@ -69,10 +71,14 @@ function showSection(sectionName){
   if ($( "#" + sectionName ).hasClass("hidden")) {
     $('#' + sectionName).parent().find('button').html('&#8211;');
     $('#' + sectionName).removeClass("hidden");
+    $('#' + sectionName + 'Configure').removeClass('hidden');
+    $('#' + sectionName + 'Filter').removeClass('hidden');
     $('#' + sectionName).focus();
   }else {
     $('#' + sectionName).parent().find('button').html('+');
     $('#' + sectionName).addClass("hidden");
+    $('#' + sectionName + 'Configure').addClass('hidden');
+    $('#' + sectionName + 'Filter').addClass('hidden');
   }
 }
 

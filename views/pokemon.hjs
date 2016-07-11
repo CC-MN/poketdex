@@ -69,7 +69,9 @@
 			<section>
 				<div id="abilitiesTitle" class="tab abilitiesContent">
 					<span>Abilities</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<div id="abilitiesContent" class="hidden">
 					<div class="reverseOrder">
@@ -85,7 +87,9 @@
 			<section>
 				<div id="evolutionChainTitle" class="tab evolutionChainContent">
 					<span>Evolution Chain</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<div id="evolutionChainContent" class="hidden">
 					<!-- content goes here -->
@@ -96,7 +100,10 @@
 			<section>
 				<div id="movesTitle" class="tab movesContent">
 					<span>Moves</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<img src="/images/interface/icon-filter.png" id="movesContentFilter" class="sectionIcon hidden">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<div id="movesContent" class="hidden">
 					<!-- content goes here -->
@@ -107,7 +114,10 @@
 			<section>
 				<div id="breedingTitle" class="tab breedingContent">
 					<span>Breeding</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<img src="/images/interface/icon-filter.png" id="breedingContentFilter" class="sectionIcon hidden">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<div id="breedingContent" class="hidden">
 					<!-- content goes here -->
@@ -118,7 +128,10 @@
 			<section>
 				<div id="locationTitle" class="tab locationContent">
 					<span>Locations</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<img src="/images/interface/icon-filter.png" id="locationContentFilter" class="sectionIcon hidden">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<div id="locationContent" class="hidden">
 					<!-- content goes here -->
@@ -129,7 +142,11 @@
 			<section>
 				<div id="baseStatsTitle" class="tab baseStatsContent">
 					<span>Stats</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<img src="/images/interface/icon-configure.png" id="baseStatsContentConfigure" class="sectionIcon hidden">
+						<img src="/images/interface/icon-filter.png" id="baseStatsContentFilter" class="sectionIcon hidden">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
 				<div id="baseStatsContent" class="hidden">
@@ -146,10 +163,21 @@
 			<section>
 				<div id="sectionTitle" class="tab sectionContent">
 					<span>Section Title</span>
-					<button class="buttonController">+</button>
+					<div class="iconContainer">
+						<img src="/images/interface/icon-configure.png" class="sectionIcon hidden">
+						<img src="/images/interface/icon-filter.png" class="sectionIcon hidden">
+						<button class="buttonController">+</button>
+					</div>
 				</div>
 				<div id="sectionContent" class="hidden">
 					<!-- content goes here -->
+					<div class="iconContainer">
+						<img src="/images/interface/icon-configure.png" class="hidden">
+						<img src="/images/interface/icon-filter.png" class="hidden">
+						<img src="/images/interface/icon-plus.png" class="hidden">
+						<!-- <span class="buttonController">+</span> -->
+						<!-- <button>+</button> -->
+					</div>
 				</div>
 			</div>
 			<!-- sample section above -->
