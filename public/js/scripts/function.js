@@ -14,10 +14,6 @@ function getQS(object){
   }
 }
 
-function test() {
-  alert('test completed');
-}
-
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
   if(DEXTER_STATE === 2){
@@ -82,6 +78,36 @@ function showSection(sectionName){
   }
 }
 
+function requestID(param){
+  param = param.trim();
+  var id = null;
+
+  switch(param) {
+    case 'evolutionChainContent':
+      id = responsePokemonSpecies.evolution_chain.url
+      break;
+    case 'movesContent':
+      id = 'moves wahey';
+      break;
+  }
+  return id;
+
+}
+
+function requestInfo(url){
+  console.log(url);
+  var parameters = { 
+    url : url
+  };
+  $.get( '/request',parameters, function(data) {
+    console.log('results');
+    console.log('--------------');
+    console.log(data);
+    console.log('--------------');
+  });
+}
+
+
 function buildChart(barChartData) {
   var ctx = document.getElementById("canvas").getContext("2d");
   window.myBar = new Chart(ctx, {
@@ -101,5 +127,11 @@ function buildChart(barChartData) {
       }
     }
   });
-
 };
+
+/***************************************
+              Helper Functions
+***************************************/
+function test() {
+  alert('test completed');
+}

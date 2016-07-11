@@ -44,11 +44,20 @@ $(document).ready(function(){
 	$("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
 	$("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
-	//binding section tabs
+	//binding section tabs & configure AJAX requests
 	$('section div.tab').click(function(){
 		var contentClass = $(this).attr('class').replace('tab', '');
+		contentClass = contentClass.replace('request', '');
+
 		showSection(contentClass);
+
+		if($(this).hasClass('request') && !$('#' + contentClass.trim()).hasClass('hidden')){
+			var url = requestID(contentClass.trim());
+			requestInfo(url);
+		}
+		
 	});
+
 
 	//set chart data
 	barChartData = {
@@ -63,6 +72,7 @@ $(document).ready(function(){
   //end chart data
   console.log("here's chart data: " + responsePokemon.stats[0].base_stat + " and " + responsePokemon.stats[1].base_stat)
   buildChart(barChartData)
+
 });
 
 //builds baseStats Chart

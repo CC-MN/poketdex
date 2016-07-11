@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var pokemon = require('./routes/pokemon');
+var request = require('./routes/request');
 
 var app = express();
 // app.set('port', (process.env.PORT || 5000));
@@ -25,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/pokemon', pokemon);
+app.use('/request', request); // AJAX requests
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

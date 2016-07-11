@@ -19,6 +19,7 @@ router.get('/:id', function(req, res, next) {
 	renderContent(req.params.id);
 });
 
+
 function renderContent(id){
 
 	Pokedex.getJSON(Pokedex.getPokemon(id))

@@ -18,7 +18,8 @@ Pokedex.prototype = {
 		// return this.getJSON(url);
 	},
 	getEvolutionChain : function(name){
-		var url = BASE_URL + 'evolution-chain/' + name + '/';
+		//var url = BASE_URL + 'evolution-chain/' + name + '/';
+		var url = name; //this returns us the whole URL
 		return url;
 		// return this.getJSON(url);
 	},
