@@ -8,7 +8,7 @@
 	<link rel='stylesheet' href='/stylesheets/types.css' />
 	<link rel="shortcut icon" href="/images/app/favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="/images/app/ios-icon.png">
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/chartjs/chartbundle.js"></script>
