@@ -107,6 +107,29 @@ function requestInfo(url){
   });
 }
 
+// function flameBody(breedingStepsToHatch) {
+//   console.log("steps to hatch: " + breedingStepsToHatch)
+//   var breedingStepsToHatchFlame = breedingStepsToHatch / 2;
+//   console.log(breedingStepsToHatchFlame);
+//   $("#totalSteps").html(breedingStepsToHatchFlame);
+// }
+
+function flameBody(breedingStepsToHatch){
+   if(window.FLAMEBODY = "off") {
+     console.log("flameBody is: " + window.FLAMEBODY);
+     window.FLAMEBODY = "on";
+     console.log("flameBody is: " + window.FLAMEBODY);
+     console.log("steps to hatch: " + breedingStepsToHatch);
+     window.breedingStepsToHatch = breedingStepsToHatch / 2;
+     console.log(window.breedingStepsToHatch);
+     $("#totalSteps").html(Math.round(window.breedingStepsToHatch));
+     $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
+   }else {
+    window.FLAMEBODY = "off";
+    console.log("turned flameBody off");
+    $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
+   }
+}
 
 function buildChart(barChartData) {
   var ctx = document.getElementById("canvas").getContext("2d");

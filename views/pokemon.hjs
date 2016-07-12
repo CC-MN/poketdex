@@ -124,6 +124,12 @@
 				</div>
 				<div id="breedingContent" class="hidden">
 					<!-- content goes here -->
+					<div id="genderChart"></div>
+					<div id="eggInfo" class="row">
+						<img src="/images/page-pokemon/breeding-egg.png" /><img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" onclick="flameBody(5355)" />
+						<br />
+						<span id="totalSteps"></span>
+					</div>
 				</div>
 			</section>
 

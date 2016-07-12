@@ -4,6 +4,7 @@ var POKEDEXTEXT = null;
 var POKEMONMAX = 720;
 var POKEMONMIN = 1;
 var DEXTER_STATE = 0;
+var FLAMEBODY
 // var pokedexList = {"1":"Bulbasaur", "2":"Ivysaur", "3":"Venusaur", "4":"Charmander"};
 
 $(document).ready(function(){
@@ -61,17 +62,26 @@ $(document).ready(function(){
 
 	//set chart data
 	barChartData = {
-    labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
-    datasets: [{
-      label: 'Dataset 1',
-      backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
-      data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
-    }]
+		labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
+		datasets: [{
+			label: 'Dataset 1',
+			backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
+			data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
+		}]
 
-  };
+	};
   //end chart data
   console.log("here's chart data: " + responsePokemon.stats[0].base_stat + " and " + responsePokemon.stats[1].base_stat)
   buildChart(barChartData)
+
+  //breeding scripts
+  var breedingStepsToHatch = (responsePokemonSpecies.hatch_counter + 1) * 255;
+  $("#totalSteps").html(breedingStepsToHatch);
+
+  // $('#flamebody').click(function(){
+  // 	flameBody(breedingStepsToHatch);
+  // });
+
 
 });
 
