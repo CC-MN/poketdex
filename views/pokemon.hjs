@@ -115,7 +115,7 @@
 
 			<!-- Section: Breeding -->
 			<section>
-				<div id="breedingTitle" class="tab breedingContent request">
+				<div id="breedingTitle" class="tab breedingContent">
 					<span>Breeding</span>
 					<div class="iconContainer">
 						<img src="/images/interface/icon-filter.png" id="breedingContentFilter" class="sectionIcon hidden">
@@ -126,7 +126,9 @@
 					<!-- content goes here -->
 					<div id="genderChart"></div>
 					<div id="eggInfo" class="row">
-						<img src="/images/page-pokemon/breeding-egg.png" /><img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" onclick="flameBody(5355)" />
+						<img src="/images/page-pokemon/breeding-egg.png" />
+						Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
+						O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0">
 						<br />
 						<span id="totalSteps"></span>
 					</div>

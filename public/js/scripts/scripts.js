@@ -4,11 +4,19 @@ var POKEDEXTEXT = null;
 var POKEMONMAX = 720;
 var POKEMONMIN = 1;
 var DEXTER_STATE = 0;
-var FLAMEBODY
-// var pokedexList = {"1":"Bulbasaur", "2":"Ivysaur", "3":"Venusaur", "4":"Charmander"};
+var FLAMEBODY = "off"
+var BREEDING_FLAMEBODYSTEPS = 0;
+var BREEDING_OPOWERSTEPS = 0;
 
 $(document).ready(function(){
 	getQS(URL_PARAMS);
+	
+	//sense checking for breeding
+	// var number = 100
+	// var numberModifier = number / 1.25;
+	// console.log(number);
+	// console.log(numberModifier - number);
+
 
 	//builds pokdex list in select input
 	$.each(pokedexList, function(key, value) {
@@ -59,6 +67,18 @@ $(document).ready(function(){
 		
 	});
 
+	//breeding scripts
+  var breedingStepsToHatch = (responsePokemonSpecies.hatch_counter + 1) * 257;
+  $("#totalSteps").html(breedingStepsToHatch);
+
+  $('#flamebody').click(function(){
+  	flameBody(breedingStepsToHatch);
+  });
+
+  $('#opower').change(function(){
+  	opower(breedingStepsToHatch,this.value);
+  });
+
 
 	//set chart data
 	barChartData = {
@@ -71,16 +91,7 @@ $(document).ready(function(){
 
 	};
   //end chart data
-  console.log("here's chart data: " + responsePokemon.stats[0].base_stat + " and " + responsePokemon.stats[1].base_stat)
-  buildChart(barChartData)
-
-  //breeding scripts
-  var breedingStepsToHatch = (responsePokemonSpecies.hatch_counter + 1) * 255;
-  $("#totalSteps").html(breedingStepsToHatch);
-
-  // $('#flamebody').click(function(){
-  // 	flameBody(breedingStepsToHatch);
-  // });
+  buildChart(barChartData);
 
 
 });

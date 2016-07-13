@@ -84,11 +84,11 @@ function requestID(param){
 
   switch(param) {
     case 'evolutionChainContent':
-      id = responsePokemonSpecies.evolution_chain.url
-      break;
+    id = responsePokemonSpecies.evolution_chain.url
+    break;
     case 'movesContent':
-      id = 'moves wahey';
-      break;
+    id = 'moves wahey';
+    break;
   }
   return id;
 
@@ -107,28 +107,57 @@ function requestInfo(url){
   });
 }
 
-// function flameBody(breedingStepsToHatch) {
-//   console.log("steps to hatch: " + breedingStepsToHatch)
-//   var breedingStepsToHatchFlame = breedingStepsToHatch / 2;
-//   console.log(breedingStepsToHatchFlame);
-//   $("#totalSteps").html(breedingStepsToHatchFlame);
-// }
-
+//Section: Breeding
+//Area: Eggs
 function flameBody(breedingStepsToHatch){
-   if(window.FLAMEBODY = "off") {
-     console.log("flameBody is: " + window.FLAMEBODY);
-     window.FLAMEBODY = "on";
-     console.log("flameBody is: " + window.FLAMEBODY);
-     console.log("steps to hatch: " + breedingStepsToHatch);
-     window.breedingStepsToHatch = breedingStepsToHatch / 2;
-     console.log(window.breedingStepsToHatch);
-     $("#totalSteps").html(Math.round(window.breedingStepsToHatch));
-     $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
-   }else {
-    window.FLAMEBODY = "off";
-    console.log("turned flameBody off");
-    $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
-   }
+ if(FLAMEBODY == "off") {
+   // console.log("flameBody is: " + window.FLAMEBODY);
+   FLAMEBODY = "on";
+   // console.log("flameBody is: " + window.FLAMEBODY);
+   // console.log("steps to hatch: " + breedingStepsToHatch);
+   BREEDING_FLAMEBODYSTEPS = breedingStepsToHatch / 2;
+   // console.log("BREEDING_FLAMEBODYSTEPS: " + window.breedingStepsToHatch);
+   var modifiedSteps = breedingStepsToHatch - (BREEDING_OPOWERSTEPS + BREEDING_FLAMEBODYSTEPS);
+   // console.log("modified steps: " + modifiedSteps);
+   $("#totalSteps").html(Math.round(modifiedSteps));
+   $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
+ }else {
+  window.FLAMEBODY = "off";
+  // console.log("turned flameBody off");
+  $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody.png");
+  BREEDING_FLAMEBODYSTEPS = 0;
+  var modifiedSteps = breedingStepsToHatch - (BREEDING_OPOWERSTEPS + BREEDING_FLAMEBODYSTEPS);
+  // console.log("modified steps: " + modifiedSteps);
+  $("#totalSteps").html(Math.round(modifiedSteps));
+}
+}
+
+function opower(breedingStepsToHatch,opowerLevel){
+  // console.log("opower: " + opowerLevel);
+  // console.log("steps: " + breedingStepsToHatch)
+  if(opowerLevel == 0){
+    var opowerMultiplier = 1;
+  }else if (opowerLevel == 1) {
+    var opowerMultiplier = 1.25;
+  }else if (opowerLevel == 2) {
+    var opowerMultiplier = 1.5;
+  } else {
+    var opowerMultiplier = 2;
+  }
+  // console.log("opower level: " + opowerLevel);
+  // console.log("steps to hatch: " + breedingStepsToHatch);
+  opowerModifier = breedingStepsToHatch / opowerMultiplier;
+  // console.log("modifier: " + opowerMultiplier);
+  // console.log("maths: " + opowerModifier);
+  BREEDING_OPOWERSTEPS = breedingStepsToHatch - opowerModifier;
+  // console.log("opower steps to deduct: " + BREEDING_OPOWERSTEPS);
+  // console.log("steps with opower: " + window.breedingStepsToHatch);
+  var stepsToDeduct = BREEDING_OPOWERSTEPS + BREEDING_FLAMEBODYSTEPS;
+  var modifiedSteps = breedingStepsToHatch - stepsToDeduct;
+  // console.log("steps to deduct: " + stepsToDeduct)
+  // console.log("original: " + breedingStepsToHatch + " opower steps: " + BREEDING_OPOWERSTEPS + " flame steps: " + BREEDING_FLAMEBODYSTEPS);
+  // console.log("modified steps: " + modifiedSteps);
+  $("#totalSteps").html(Math.round(modifiedSteps));
 }
 
 function buildChart(barChartData) {
@@ -152,9 +181,13 @@ function buildChart(barChartData) {
   });
 };
 
-/***************************************
-              Helper Functions
-***************************************/
-function test() {
-  alert('test completed');
-}
+              /***************************************
+                          Helper Functions
+              ***************************************/
+              function test() {
+                alert('test completed');
+              }
+
+              function printVar(val) {
+                console.log(val);
+              }
