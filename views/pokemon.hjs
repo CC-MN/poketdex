@@ -124,7 +124,16 @@
 				</div>
 				<div id="breedingContent" class="hidden">
 					<!-- content goes here -->
-					<div id="genderChart"></div>
+					Gender:
+					<div id="genderContainer" class="row">
+						<div id="genderChart">
+							<div id="genderChartFemale"></div>
+							<div id="genderChartMale"></div>
+						</div>
+					</div>
+					Egg Groups:
+					<div></div>
+					Egg Hatching:
 					<div id="eggInfo" class="row">
 						<img src="/images/page-pokemon/breeding-egg.png" />
 						Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />

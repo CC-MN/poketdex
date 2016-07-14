@@ -76,10 +76,24 @@ $(document).ready(function(){
 	});
 
 	//breeding scripts
-	calculateEggSteps(BREEDING_CYCLES,BREEDING_STEPS_PER_CYCLE);
-  // var breedingStepsToHatch = (responsePokemonSpecies.hatch_counter + 1) * 257;
-  // $("#totalSteps").html(breedingStepsToHatch);
+	//calculating gender
+	if(responsePokemonSpecies.gender_rate == -1){
+		$("#genderContainer").html("This pokemon cannot be bred.");
+	}else {
+		console.log("gender rate: " + responsePokemonSpecies.gender_rate);
+		var genderFemale = responsePokemonSpecies.gender_rate / 8 * 100;
+		var genderMale = 100 - genderFemale;
+		$("#genderChartFemale").width(genderFemale + "%");
+		$("#genderChartFemale").html(genderFemale + "%");
+		$("#genderChartMale").width(genderMale + "%");
+		$("#genderChartMale").html(genderMale + "%");
+	}
 
+	//calculating base egg steps
+	calculateEggSteps(BREEDING_CYCLES,BREEDING_STEPS_PER_CYCLE);
+
+  
+  //binding functions to egg calculator
   $('#flamebody').click(function(){
   	flameBody(BREEDING_CYCLES);
   });
@@ -93,7 +107,7 @@ $(document).ready(function(){
 	barChartData = {
 		labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
 		datasets: [{
-			label: 'Dataset 1',
+			//label: 'Stat',
 			backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
 			data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
 		}]
