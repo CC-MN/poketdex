@@ -83,3 +83,86 @@
 .fairy{
 	background:#EE99AC;
 }
+
+/**********Egg Group Styles**************/
+
+.eggGroup {
+	border-radius: 50vw;
+	width: 50vw;
+	height: 50vw;
+	background-color: #ff0000;
+	opacity: .6;
+	display: table;
+	float: left;
+	line-height: 50vw;
+	text-align: center;
+	color:#ffffff;
+}
+
+.eggGroup:nth-child(1) {
+	margin-left: 5vw;
+}
+
+.eggGroup:nth-child(2) {
+	margin-left: -10vw;
+}
+
+.eggmonster{
+	background: #D25064;
+}
+
+.egghumanlike{
+	background: #D29682;
+}
+
+.eggwater1{
+	background: #97B5FD;
+}
+
+.eggwater2{
+	background: #729AFA;
+}
+
+.eggwater3{
+	background: #5876BE;
+}
+
+.eggbug{
+	background: #AAC22A;
+}
+
+.eggmineral{
+	background: #7A6252;
+}
+
+.eggflying{
+	background: #B29AFA;
+}
+
+.eggamorphous{
+	background: #8A8A8A;
+}
+
+.eggfield{
+	background: #E0C068;
+}
+
+.eggfairy{
+	background: #FFC8F0;
+}
+
+.eggditto{
+	background: #A664BF;
+}
+
+.egggrass{
+	background: #82D25A;
+}
+
+.eggdragon{
+	background: #7A42FF;
+}
+
+.eggundiscovered{
+	background: #333333;
+}

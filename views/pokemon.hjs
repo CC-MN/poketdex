@@ -124,7 +124,7 @@
 				</div>
 				<div id="breedingContent" class="hidden">
 					<!-- content goes here -->
-					Gender:
+					Gender Ratio:
 					<div id="genderContainer" class="row">
 						<div id="genderChart">
 							<div id="genderChartFemale"></div>
@@ -132,7 +132,13 @@
 						</div>
 					</div>
 					Egg Groups:
-					<div></div>
+					<div id="groupContainer" class="row">
+						{{#pokemonSpeciesData.egg_groups}}
+						{{#.}}
+						<div class="eggGroup egg{{name}}">{{name}}</div>
+						{{/.}}
+						{{/pokemonSpeciesData.egg_groups}}
+					</div>
 					Egg Hatching:
 					<div id="eggInfo" class="row">
 						<img src="/images/page-pokemon/breeding-egg.png" />

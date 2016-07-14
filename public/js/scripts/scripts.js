@@ -5,10 +5,6 @@ var POKEMONMAX = 720;
 var POKEMONMIN = 1;
 var DEXTER_STATE = 0;
 var FLAMEBODY = "off"
-var BREEDING_FLAMEBODYSTEPS = 0;
-var BREEDING_OPOWERSTEPS = 0;
-var FLAMEBODY_MOD = 1;
-var OPOWER_MOD = 1;
 var BREEDING_CYCLES = 1;
 var BREEDING_STEPS_PER_CYCLE = 257;
 var BREEDING_MOD_CYCLES = 1;
@@ -18,12 +14,8 @@ $(document).ready(function(){
 	getQS(URL_PARAMS);
 	BREEDING_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 	BREEDING_MOD_CYCLES = responsePokemonSpecies.hatch_counter + 1;
-	
-	//sense checking for breeding
-	// var number = 100
-	// var numberModifier = number / 1.25;
-	// console.log(number);
-	// console.log(numberModifier - number);
+	// console.log(responsePokemonSpecies.egg_groups.length);
+	// console.log(responsePokemonSpecies.egg_groups[0].name);
 
 
 	//builds pokdex list in select input
@@ -52,9 +44,11 @@ $(document).ready(function(){
 		}
 	});
 
+	//handles first and last pokemon
 	$("#pokedexList").val(responsePokemon.id);
 	var pokemonNavPrevious = (parseInt(responsePokemon.id) === POKEMONMIN) ? POKEMONMAX : parseInt(responsePokemon.id) - 1;
 	var pokemonNavNext = (parseInt(responsePokemon.id) === POKEMONMAX) ? POKEMONMIN : parseInt(responsePokemon.id) + 1;
+	
 	//set pokemonNav images and links
 	$("#pokemonNavPreviousImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavPrevious + ".png");
 	$("#pokemonNavNextImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavNext + ".png");
@@ -77,8 +71,8 @@ $(document).ready(function(){
 
 	//breeding scripts
 	//calculating gender
-	if(responsePokemonSpecies.gender_rate == -1){
-		$("#genderContainer").html("This pokemon cannot be bred.");
+	if(responsePokemonSpecies.gender_rate == -1) {
+		$("#genderChart").html("This pokemon has no gender.");
 	}else {
 		console.log("gender rate: " + responsePokemonSpecies.gender_rate);
 		var genderFemale = responsePokemonSpecies.gender_rate / 8 * 100;
@@ -88,6 +82,9 @@ $(document).ready(function(){
 		$("#genderChartMale").width(genderMale + "%");
 		$("#genderChartMale").html(genderMale + "%");
 	}
+
+	//finds egg groups
+	responsePokemonSpecies.egg_groups[0].name
 
 	//calculating base egg steps
 	calculateEggSteps(BREEDING_CYCLES,BREEDING_STEPS_PER_CYCLE);

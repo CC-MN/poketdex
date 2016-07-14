@@ -1,6 +1,6 @@
 body{
 	/*padding: 50px;*/
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 4vw "Lucida Grande", Helvetica, Arial, sans-serif;
 	margin: 0px;
 }
 
@@ -252,6 +252,8 @@ section{
 #genderChart {
 	width: 100%;
 	height: 6vw;
+	background: #cccccc;
+	line-height: 6vw;
 }
 
 #genderChartFemale {
@@ -260,6 +262,9 @@ section{
 	height: 6vw;
 	border: 0px;
 	float: left;
+	text-align: center;
+	line-height: 6vw;
+
 }
 
 #genderChartMale {
@@ -267,6 +272,18 @@ section{
 	color:#ffffff;
 	border: 0px;
 	height: 6vw;
+	float: left;
+	text-align: center;
+	line-height: 6vw;
+}
+
+#groupContainer{
+	width:100%;
+	height:50vw;
+}
+
+#eggInfo img:nth-child(1){
+	height:8vw;
 }
 
 #canvas {
