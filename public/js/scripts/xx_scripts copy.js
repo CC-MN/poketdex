@@ -11,13 +11,12 @@ var FLAMEBODY_MOD = 1;
 var OPOWER_MOD = 1;
 var BREEDING_CYCLES = 1;
 var BREEDING_STEPS_PER_CYCLE = 257;
-var BREEDING_MOD_CYCLES = 1;
-var BREEDING_MOD_STEPS = 257;
 
 $(document).ready(function(){
 	getQS(URL_PARAMS);
+	console.log("cycles: " + BREEDING_CYCLES);
 	BREEDING_CYCLES = responsePokemonSpecies.hatch_counter + 1;
-	BREEDING_MOD_CYCLES = responsePokemonSpecies.hatch_counter + 1;
+	console.log("cycles: " + BREEDING_CYCLES);
 	
 	//sense checking for breeding
 	// var number = 100
@@ -80,13 +79,13 @@ $(document).ready(function(){
   // var breedingStepsToHatch = (responsePokemonSpecies.hatch_counter + 1) * 257;
   // $("#totalSteps").html(breedingStepsToHatch);
 
-  $('#flamebody').click(function(){
-  	flameBody(BREEDING_CYCLES);
-  });
+  // $('#flamebody').click(function(){
+  // 	flameBody(breedingStepsToHatch);
+  // });
 
-  $('#opower').change(function(){
-  	opower(BREEDING_STEPS_PER_CYCLE,this.value);
-  });
+  // $('#opower').change(function(){
+  // 	opower(breedingStepsToHatch,this.value);
+  // });
 
 
 	//set chart data
