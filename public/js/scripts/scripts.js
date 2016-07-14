@@ -64,7 +64,9 @@ $(document).ready(function(){
 
 		if($(this).hasClass('request') && !$('#' + contentClass.trim()).hasClass('hidden')){
 			var url = requestID(contentClass.trim());
-			requestInfo(url);
+			if(url){
+				requestInfo(contentClass.trim(), url);
+			}
 		}
 		
 	});

@@ -86,25 +86,44 @@ function requestID(param){
     case 'evolutionChainContent':
     id = responsePokemonSpecies.evolution_chain.url
     break;
-    case 'movesContent':
-    id = 'moves wahey';
-    break;
+    // case 'movesContent':
+    // id = 'moves wahey';
+    // break;
   }
   return id;
 
 }
 
-function requestInfo(url){
+function requestInfo(type, url){
   console.log(url);
   var parameters = { 
     url : url
   };
   $.get( '/request',parameters, function(data) {
     console.log('results');
-    console.log('--------------');
-    console.log(data);
-    console.log('--------------');
+    determineAjaxEvent(type, data);
   });
+}
+
+function determineAjaxEvent(type, data){
+
+  switch(type) {
+    case 'evolutionChainContent':
+    evolutionChain(type, data);
+    break;
+  }
+}
+
+function evolutionChain(id, data){
+  console.log('evolutionChain');
+  console.log(data);
+
+  var evolutionChain = data.chain.evolves_to;
+  if(!data.chain.evolves_to){
+    //has no evolution
+  }
+
+
 }
 
 //Section: Breeding
@@ -182,13 +201,13 @@ function buildChart(barChartData) {
   });
 };
 
-              /***************************************
-                          Helper Functions
-              ***************************************/
-              function test() {
-                alert('test completed');
-              }
+/***************************************
+            Helper Functions
+***************************************/
+function test() {
+  alert('test completed');
+}
 
-              function printVar(val) {
-                console.log(val);
-              }
+function printVar(val) {
+  console.log(val);
+}
