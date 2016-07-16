@@ -126,6 +126,12 @@ function evolutionChain(id, data){
 
 }
 
+function getAbilityDetail(i){
+  var nthchild = i+1
+  $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[responsePokemon.abilities[i].ability.name] );
+
+}
+
 //Section: Breeding
 //Area: Eggs
 

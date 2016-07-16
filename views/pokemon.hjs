@@ -79,6 +79,7 @@
 				</div>
 				<div id="abilitiesContent" class="content hidden">
 					<div class="reverseOrder">
+						<!-- <div id="testAbility">Insomnia</div> -->
 						{{#pokemonResponse.abilities}}
 						{{#.}}
 						<div class='ability hidden{{is_hidden}}'>{{ability.name}}</div>

@@ -14,8 +14,6 @@ $(document).ready(function(){
 	getQS(URL_PARAMS);
 	BREEDING_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 	BREEDING_MOD_CYCLES = responsePokemonSpecies.hatch_counter + 1;
-	// console.log(responsePokemonSpecies.egg_groups.length);
-	// console.log(responsePokemonSpecies.egg_groups[0].name);
 
 
 	//builds pokdex list in select input
@@ -70,6 +68,11 @@ $(document).ready(function(){
 		}
 		
 	});
+
+	//Gets ability information from abilities.js object
+	for (var i = 0; i < responsePokemon.abilities.length ; i++) {
+		getAbilityDetail(i);
+	};
 	
 
 	//breeding scripts
@@ -118,13 +121,6 @@ $(document).ready(function(){
 
 
 });
-
-//builds baseStats Chart
-// for (var i = 0; i < responsePokemon.stats.length; i++) {
-// 	console.log(responsePokemon.stats[i].stat.name + ": " + responsePokemon.stats[i].base_stat);
-// 	$('#stat-' + responsePokemon.stats[i].stat.name).css({"height": responsePokemon.stats[i].base_stat });
-
-// };
 
 $(window).on('beforeunload', function(){
 	if(responsiveVoice.isPlaying()){
