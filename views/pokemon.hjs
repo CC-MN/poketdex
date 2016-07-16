@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/chartjs/chartbundle.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
+	<script type="text/javascript" src="/js/scripts/abilities.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
@@ -76,7 +77,7 @@
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="abilitiesContent" class="hidden">
+				<div id="abilitiesContent" class="content hidden">
 					<div class="reverseOrder">
 						{{#pokemonResponse.abilities}}
 						{{#.}}
@@ -94,7 +95,7 @@
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="evolutionChainContent" class="hidden">
+				<div id="evolutionChainContent" class="content hidden">
 					<!-- content goes here -->
 				</div>
 			</section>
@@ -108,7 +109,7 @@
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="movesContent" class="hidden">
+				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
 				</div>
 			</section>
@@ -122,7 +123,7 @@
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="breedingContent" class="hidden">
+				<div id="breedingContent" class="content hidden">
 					<!-- content goes here -->
 					Gender Ratio:
 					<div id="genderContainer" class="row">
@@ -159,7 +160,7 @@
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="locationContent" class="hidden">
+				<div id="locationContent" class="content hidden">
 					<!-- content goes here -->
 				</div>
 			</section>
@@ -175,7 +176,7 @@
 					</div>
 				</div>
 				<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
-				<div id="baseStatsContent" class="hidden">
+				<div id="baseStatsContent" class="content hidden">
 					Nature: 
 					<select>
 						<option value="hardy">Hardy</option>
@@ -195,7 +196,7 @@
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="sectionContent" class="hidden">
+				<div id="sectionContent" class="content hidden">
 					<!-- content goes here -->
 					<div class="iconContainer">
 						<img src="/images/interface/icon-configure.png" class="hidden">

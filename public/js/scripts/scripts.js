@@ -70,6 +70,7 @@ $(document).ready(function(){
 		}
 		
 	});
+	
 
 	//breeding scripts
 	//calculating gender

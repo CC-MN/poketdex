@@ -48,7 +48,6 @@ function changePokemon(pokemonID) {
 };
 
 function showSearch(){
-  //TODO need to redo this function/css for the search
   if ($( "#searchContainer" ).hasClass("hidden")) {
     $('#searchContainer').removeClass("hidden");
     $('#pokemonSearchBox').focus();
@@ -69,6 +68,7 @@ function showSection(sectionName){
     $('#' + sectionName).removeClass("hidden");
     $('#' + sectionName + 'Configure').removeClass('hidden');
     $('#' + sectionName + 'Filter').removeClass('hidden');
+    $('#' + sectionName).addClass("expanded");
     $('#' + sectionName).focus();
   }else {
     $('#' + sectionName).parent().find('button').html('+');
