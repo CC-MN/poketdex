@@ -133,7 +133,7 @@
 							<div id="genderChartMale"></div>
 						</div>
 					</div>
-					Egg Groups:
+					<div id="groupTitle">Egg Groups:</div>
 					<div id="groupContainer" class="row">
 						{{#pokemonSpeciesData.egg_groups}}
 						{{#.}}

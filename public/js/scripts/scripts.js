@@ -92,6 +92,12 @@ $(document).ready(function(){
 	//finds egg groups
 	responsePokemonSpecies.egg_groups[0].name
 
+	if (responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
+		console.log("no babies for you");
+		$("#groupTitle").addClass("hidden");
+		$("#groupContainer").addClass("hidden");
+	};
+
 	//calculating base egg steps
 	calculateEggSteps(BREEDING_CYCLES,BREEDING_STEPS_PER_CYCLE);
 
