@@ -73,12 +73,14 @@ $(document).ready(function(){
 	for (var i = 0; i < responsePokemon.abilities.length ; i++) {
 		getAbilityDetail(i);
 	};
+
+	//evolution scripts
 	
 
 	//breeding scripts
 	//calculating gender
 	if(responsePokemonSpecies.gender_rate == -1) {
-		$("#genderChart").html("This pokemon has no gender.");
+		$("#genderChart").html("This Pokémon has no gender.");
 	}else {
 		console.log("gender rate: " + responsePokemonSpecies.gender_rate);
 		var genderFemale = responsePokemonSpecies.gender_rate / 8 * 100;
@@ -96,6 +98,9 @@ $(document).ready(function(){
 		console.log("no babies for you");
 		$("#groupTitle").addClass("hidden");
 		$("#groupContainer").addClass("hidden");
+		$("#hatchingTitle").addClass("hidden");
+		$("#hatchingContainer").addClass("hidden");
+		$("#genderContainer").append("This Pokémon cannot breed.");
 	};
 
 	//calculating base egg steps

@@ -137,7 +137,16 @@ function getAbilityDetail(i){
 
 function calculateEggSteps(cycles,steps){
   var breedingStepsToHatch = cycles * steps;
-  $("#totalSteps").html(Math.round(breedingStepsToHatch));
+  if (FLAMEBODY == "on" && $( "#opower" ).val() > 0) {
+    $("#totalSteps").html("Total steps with Flamebody and O-Power: " + Math.round(breedingStepsToHatch));
+  } else if (FLAMEBODY == "on") {
+    $("#totalSteps").html("Total steps with Flamebody: " + Math.round(breedingStepsToHatch));
+  } else if ($( "#opower" ).val() > 0) {
+    $("#totalSteps").html("Total steps with O-Power: " + Math.round(breedingStepsToHatch));
+  } else {
+    $("#totalSteps").html("Total steps to hatch: " + Math.round(breedingStepsToHatch));
+  }
+  
 }
   
 

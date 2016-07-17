@@ -98,6 +98,7 @@
 				</div>
 				<div id="evolutionChainContent" class="content hidden">
 					<!-- content goes here -->
+					
 				</div>
 			</section>
 
@@ -141,13 +142,14 @@
 						{{/.}}
 						{{/pokemonSpeciesData.egg_groups}}
 					</div>
-					Egg Hatching:
-					<div id="eggInfo" class="row">
-						<img src="/images/page-pokemon/breeding-egg.png" />
+					<div id="hatchingTitle">Egg Hatching:</div>
+					<div id="hatchingContainer" class="row">
+						<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
+						<span id="totalSteps"></span><br />
 						Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
-						O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0">
-						<br />
-						<span id="totalSteps"></span>
+						| O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0">
+						<!-- <br /> -->
+						
 					</div>
 				</div>
 			</section>
