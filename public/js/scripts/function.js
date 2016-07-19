@@ -32,7 +32,7 @@ function speak(pokedexText) {
 
 // Set the width of the side navigation to show 
 function openNav() {
-  $('#mySidenav').css('width', '50%');
+  $('#mySidenav').css('width', '25%');
 }
 
 // Set the width of the side navigation to 0 
