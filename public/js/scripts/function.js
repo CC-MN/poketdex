@@ -123,7 +123,30 @@ function evolutionChain(id, data){
     //has no evolution
   }
 
+}
 
+function getMoveList(){
+
+  var tArray = [];
+  $.each(responsePokemon.moves, function(index, value){
+    var move = value.move.name;
+    var learntLevel = value.version_group_details[0].level_learned_at;
+    var learntMethod = value.version_group_details[0].move_learn_method.name;
+    var item = {
+      moveName : move,
+      learntLevel : learntLevel,
+      learntMethod : learntMethod
+    }
+    tArray.push(item);
+  });
+
+  tArray.sort(function(a,b){ return a.learntLevel - b.learntLevel });
+  return tArray;
+}
+
+function buildMoveList(moves){
+  //#movesContent
+  
 }
 
 function getAbilityDetail(i){

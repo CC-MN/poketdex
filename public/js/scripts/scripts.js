@@ -1,5 +1,6 @@
 // GLOBAL VARIABLES
 var URL_PARAMS = {};
+var POKEMON_MOVES = [];
 var POKEDEXTEXT = null;
 var POKEMONMAX = 720;
 var POKEMONMIN = 1;
@@ -130,6 +131,11 @@ $(document).ready(function(){
   //end chart data
   buildChart(barChartData);
 
+  //pokemon moves, store all the move name in a single array
+  POKEMON_MOVES = getMoveList();
+  if(POKEMON_MOVES.length){
+  	buildMoveList(POKEMON_MOVES);
+  }
 
 });
 
