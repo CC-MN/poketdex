@@ -8,7 +8,8 @@ function Pokedex(){};
 Pokedex.prototype = {
 
 	getPokemon : function(name){
-		var url = BASE_URL + 'pokemon/' + name + '/';
+		name = (name.indexOf('?') > -1) ? name : name + '/'; 
+		var url = BASE_URL + 'pokemon/' + name;
 		return url;
 		// return this.getJSON(url);
 	},

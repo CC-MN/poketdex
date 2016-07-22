@@ -146,7 +146,13 @@ function getMoveList(){
 
 function buildMoveList(moves){
   //#movesContent
-  
+  $.each(POKEMON_MOVES, function(i,v){
+    var moveName = v.moveName;
+    if(MOVE_OBJECT[moveName]){
+      //console.log(MOVE_OBJECT[moveName]);
+
+    }
+  });
 }
 
 function getAbilityDetail(i){
