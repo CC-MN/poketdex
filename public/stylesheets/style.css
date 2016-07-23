@@ -34,7 +34,14 @@ button, #navButton, .icon{
 .hidden {
 	display: none !important;
 }
-
+button:active,
+button:focus,
+button.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 /************  Nav Styles *************/
 header{
 
