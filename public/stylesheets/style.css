@@ -277,7 +277,7 @@ section{
 .column#name{
 	width:18%;
 }
-.column#type, .column#categogy, .column#contest{
+.column#type, .column#category, .column#contest{
 	width:12%;
 }
 .column#pp, .column#power, .column#learntLevel, .column#accuracy{
