@@ -335,6 +335,20 @@ section{
 	height: auto !important;
 }
 
+#locationContent{
+	text-align:center;
+}
+#locationContent img{
+	height:200px;
+	width:auto;
+}
+#locationContent .row{
+	padding:0 2% 2%;
+}
+#locationContent .column{
+	float:left;
+	width:50%;
+}
 #massive {
 	height:700px;
 }

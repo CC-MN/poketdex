@@ -87,11 +87,11 @@ function requestID(param){
 
   switch(param) {
     case 'evolutionChainContent':
-    id = responsePokemonSpecies.evolution_chain.url
-    break;
-    // case 'movesContent':
-    // id = 'moves wahey';
-    // break;
+      id = responsePokemonSpecies.evolution_chain.url
+      break;
+    case 'locationContent':
+      id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+      break;
   }
   return id;
 
@@ -99,6 +99,7 @@ function requestID(param){
 
 function requestInfo(type, url){
   console.log(url);
+  $('#' + type).html('<img src="/images/loader.gif" />');
   var parameters = { 
     url : url
   };
@@ -112,8 +113,11 @@ function determineAjaxEvent(type, data){
 
   switch(type) {
     case 'evolutionChainContent':
-    evolutionChain(type, data);
-    break;
+      evolutionChain(type, data);
+      break;
+    case 'locationContent':
+      encounterLocation(type, data);
+      break;
   }
 }
 
@@ -123,9 +127,45 @@ function evolutionChain(id, data){
 
   var evolutionChain = data.chain.evolves_to;
   if(!data.chain.evolves_to){
-    //has no evolution
+    $('#evolutionChainContent').html('No evolution available');
+    return;
   }
 
+}
+
+function encounterLocation(id, data){
+  console.log('encounterLocation');
+  console.log(data);
+
+  if(!data.length){
+    $('#locationContent').html('No available encounters');
+    return;
+  }
+  var html = '<div class="row">';
+  html += '<div class="header column">Location</div>';
+  html += '<div class="header column">Version</div>';
+  html += '<div class="clearfloat"></div>';
+  html += '</div>';
+  $.each(data, function(index, value){
+   
+    var item = value;
+    var locationName = item.location_area.name;
+    locationName = locationName.replace(/\-/g, ' ');
+    var version = '';
+    $.each(item.version_details, function(i, v){
+      version += v.version.name + ', ';
+    });
+    version = version.substr(0, version.length - 2); //remove trailing ','
+    html += '<div class="row">';
+    html += '<div class="locationName column">'+ locationName + '</div>';
+    html += '<div class="version column">' + version + '</div>';
+    html += '<div class="clearfloat"></div>';
+    html += '</div>';
+
+  });
+
+  $('#locationContent').html(html);
+  return;
 }
 
 function getMoveList(){
