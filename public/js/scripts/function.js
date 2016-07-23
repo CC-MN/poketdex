@@ -20,16 +20,16 @@ function speak(pokedexText) {
     responsiveVoice.resume();
     DEXTER_STATE = 1;
     //add code to change button state
-    $('#dexter').html('&#9616;&#9616;');
+    $('#dexter').html('&#9616;&#9616;').addClass('pause');
   }else if(responsiveVoice.isPlaying()){
     responsiveVoice.pause();
     DEXTER_STATE = 2;
     //add code to change button state
-    $('#dexter').html('&#9658;');
+    $('#dexter').html('&#9658;').removeClass('pause');
   }else{
     responsiveVoice.speak(pokedexText, "UK English Male");
     DEXTER_STATE = 1;
-    $('#dexter').html('&#9616;&#9616;');
+    $('#dexter').html('&#9616;&#9616;').addClass('pause');
   }
 }
 

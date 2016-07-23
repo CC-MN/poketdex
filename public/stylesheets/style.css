@@ -224,6 +224,9 @@ img.icon {
   text-align: center;
   height: 100%;
 }
+.buttonDexter.pause{
+	font-size: 4vw;
+}
 
 .reverseOrder {
 	display:flex;
