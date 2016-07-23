@@ -43,10 +43,30 @@ function closeNav() {
   $('#mySidenav').css('width','0px');
 }
 
+function pokemonAutoComplete() {
+  $.each(responsePokemonNames.results, function(index, value){
+    var name = value.name;
+    POKEMON_NAMES.push(name);
+  });
+  $('#pokemonSearchBox').autocomplete({ 
+    source : POKEMON_NAMES,
+    change : function(event, ui){
+      if(ui.item){
+        changePokemon(ui.item.value);
+      }
+    } 
+  })
+}
+
 function changePokemon(pokemonID) {
+  console.log(pokemonID);
   if (pokemonID !== null) {
     pokemonID = pokemonID.toLowerCase();
-    window.location = "./" + pokemonID;
+    //make sure that pokemon name exists
+    if(POKEMON_NAMES.indexOf(pokemonID) > -1){
+
+      window.location = "./" + pokemonID;
+    }
   };
 };
 
