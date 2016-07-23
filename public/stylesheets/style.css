@@ -271,6 +271,14 @@ section{
 
 }
 
+#evolutionChainContent{
+	text-align: center;
+}
+#evolutionChainContent img{
+	height:200px;
+	width:auto;
+}
+
 #movesContent{
 
 }
