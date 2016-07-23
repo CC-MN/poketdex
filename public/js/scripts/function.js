@@ -158,8 +158,8 @@ function buildMoveList(moves){
       $('#movesContent #learntLevel').append('<div class="learntLevel">' + v.learntLevel + '</div>');
       $('#movesContent #method').append('<div class="learntMethod">' + v.learntMethod + '</div>');
       $('#movesContent #accuracy').append('<div class="accuracy-number">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
-      $('#movesContent #category').append('<div class="category-type">' + MOVE_OBJECT[moveName]['category'] + '</div>');
-      $('#movesContent #contest').append('<div class="contest-type">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
+      $('#movesContent #category').append('<div class="category-type ' + MOVE_OBJECT[moveName]['category'] + '">' + MOVE_OBJECT[moveName]['category'] + '</div>');
+      $('#movesContent #contest').append('<div class="contest-type ' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
     }
 
   });

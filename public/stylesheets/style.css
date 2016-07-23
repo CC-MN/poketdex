@@ -277,11 +277,11 @@ section{
 .column#name{
 	width:18%;
 }
-.column#type{
+.column#type, .column#categogy, .column#contest{
 	width:12%;
 }
 .column#pp, .column#power, .column#learntLevel, .column#accuracy{
-	width:6%;
+	width:7%;
 }
 
 #genderChart {

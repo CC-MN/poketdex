@@ -166,3 +166,28 @@
 .eggno-eggs{
 	background: #333333;
 }
+
+.physical{
+	background: #C92112;
+}
+.special{
+	background: #4F5870;
+}
+.status{
+	background: #8C888C;
+}
+.tough{
+	background: #F8D030;
+}
+.cute{
+	background: #F85888;
+}
+.clever{
+	background: #78C850;
+}
+.beautiful{
+	background: #6890F0;
+}
+.cool{
+	background: #F08030;
+}
