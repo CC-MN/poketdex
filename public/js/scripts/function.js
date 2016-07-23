@@ -27,7 +27,12 @@ function speak(pokedexText) {
     //add code to change button state
     $('#dexter').html('&#9658;').removeClass('pause');
   }else{
-    responsiveVoice.speak(pokedexText, "UK English Male");
+    responsiveVoice.speak(pokedexText, "UK English Male", {
+      onend : function(){
+        DEXTER_STATE = 0;
+        $('#dexter').html('&#9658;').removeClass('pause');
+      }
+    });
     DEXTER_STATE = 1;
     $('#dexter').html('&#9616;&#9616;').addClass('pause');
   }
