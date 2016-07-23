@@ -160,8 +160,8 @@ function buildMoveList(moves){
       $('#movesContent #accuracy').append('<div class="accuracy-number">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
       $('#movesContent #category').append('<div class="category-type">' + MOVE_OBJECT[moveName]['category'] + '</div>');
       $('#movesContent #contest').append('<div class="contest-type">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
-      
     }
+
   });
 }
 

@@ -274,6 +274,12 @@ section{
 	text-align: center;
 	/*padding:0 0% 2%;*/
 }
+.column#name{
+	width:18%;
+}
+.column#type{
+	width:12%;
+}
 .column#pp, .column#power, .column#learntLevel, .column#accuracy{
 	width:6%;
 }
