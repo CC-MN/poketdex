@@ -146,11 +146,21 @@ function getMoveList(){
 
 function buildMoveList(moves){
   //#movesContent
+
   $.each(POKEMON_MOVES, function(i,v){
     var moveName = v.moveName;
     if(MOVE_OBJECT[moveName]){
       //console.log(MOVE_OBJECT[moveName]);
-
+      $('#movesContent #name').append('<div class="move-name">' + moveName + '</div>');
+      $('#movesContent #power').append('<div class="power-number">' + MOVE_OBJECT[moveName]['power'] + '</div>');
+      $('#movesContent #pp').append('<div class="pp-number">' + MOVE_OBJECT[moveName]['pp'] + '</div>');
+      $('#movesContent #type').append('<div class="' + MOVE_OBJECT[moveName]['type'] + '">' + MOVE_OBJECT[moveName]['type'] + '</div>');
+      $('#movesContent #learntLevel').append('<div class="learntLevel">' + v.learntLevel + '</div>');
+      $('#movesContent #method').append('<div class="learntMethod">' + v.learntMethod + '</div>');
+      $('#movesContent #accuracy').append('<div class="accuracy-number">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
+      $('#movesContent #category').append('<div class="category-type">' + MOVE_OBJECT[moveName]['category'] + '</div>');
+      $('#movesContent #contest').append('<div class="contest-type">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
+      
     }
   });
 }

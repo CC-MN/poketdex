@@ -124,7 +124,36 @@
 				</div>
 				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
-				</div>
+					<div class="row">
+						<div id="name" class="column">
+							<h1>Name</h1>
+						</div>
+						<div id="power" class="column">
+							<h1>Pwr</h1>
+						</div>
+						<div id="pp" class="column">
+							<h1>PP</h1>
+						</div>
+						<div id="type" class="column">
+							<h1>Type</h1>
+						</div>
+						<div id="learntLevel" class="column">
+							<h1>Lvl</h1>
+						</div>
+						<div id="method" class="column">
+							<h1>Method</h1>
+						</div>
+						<div id="accuracy" class="column">
+							<h1>Acc</h1>
+						</div>
+						<div id="category" class="column">
+							<h1>Cat</h1>
+						</div>
+						<div id="contest" class="column">
+							<h1>Contest</h1>
+						</div>
+						<div class="clearfloat"></div>
+					</div>
 			</section>
 
 			<!-- Section: Breeding -->

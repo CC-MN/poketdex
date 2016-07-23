@@ -24,7 +24,9 @@ button, #navButton, .icon{
 	width:1px;
 	height:1px;
 }
-
+.clearfloat{
+	clear:both;
+}
 .section {
 	width: 100%;
 }
@@ -259,6 +261,22 @@ section{
 
 }
 
+#movesContent{
+
+}
+#movesContent .row{
+	padding:0 2% 2%;
+}
+#movesContent .column{
+	float:left;
+	width:15%;
+	font-size:2vw;
+	text-align: center;
+	/*padding:0 0% 2%;*/
+}
+.column#pp, .column#power, .column#learntLevel, .column#accuracy{
+	width:6%;
+}
 
 #genderChart {
 	width: 100%;
