@@ -241,8 +241,8 @@ function changeMovesColumns(){
     $('#pp').addClass("hidden");
     $('#accuracy').addClass("hidden");
     $('#category').addClass("hidden");
-    $('#movesContestFilter').removeClass("hidden");
-    $('#movesBattleFilter').addClass("hidden");
+    $('#movesContestList').removeClass("hidden");
+    $('#movesCategoryList').addClass("hidden");
 
     
     
@@ -253,9 +253,18 @@ function changeMovesColumns(){
     $('#pp').removeClass("hidden");
     $('#accuracy').removeClass("hidden");
     $('#category').removeClass("hidden");
-    $('#movesBattleFilter').removeClass("hidden");
-    $('#movesContestFilter').addClass("hidden");
+    $('#movesCategoryList').removeClass("hidden");
+    $('#movesContestList').addClass("hidden");
   }
+}
+
+function resetMovesFilter() {
+  //s
+  $("#movesTypeList").val("");
+  $("#movesCategoryList").val("");
+  $("#movesContestList").val("");
+  $("#movesMethodList").val("");
+  
 }
 
 function filterMoves (moves_filter) {

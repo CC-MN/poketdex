@@ -282,6 +282,7 @@ section{
 #movesContent{
 
 }
+
 #movesContent .row{
 	padding:0 2% 2%;
 }
@@ -301,6 +302,11 @@ section{
 .column#pp, .column#power, .column#learntLevel, .column#accuracy{
 	width:7%;
 }
+
+#movesCategoryList, #movesContestList, #movesMethodList {
+	font-size: 16px;
+}
+
 
 #genderChart {
 	width: 100%;
@@ -402,6 +408,9 @@ section{
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  font-size: 10px;
+  text-align: center;
+  content: "B";
 }
 
 input:checked + .slider {
@@ -416,5 +425,6 @@ input:checked + .slider:before {
   -webkit-transform: translateX(18px);
   -ms-transform: translateX(18px);
   transform: translateX(18px);
+  content: "C" !important;
 }
 

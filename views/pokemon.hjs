@@ -126,15 +126,13 @@
 				</div>
 				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
-					<div>
-						Contest Mode: 
+					<div class="row">
 						<label class="switch">
 							<input type="checkbox" id="movesDataType" name="movesDataType" value="0" onchange="changeMovesColumns()">
 							<div class="slider"></div>
-						</label><br/>
-						Type: 
+						</label><br />
 						<select id="movesTypeList" class ="" onchange="filterMoves(this.value)">
-							<option value ="">All</option>
+							<option value ="">Type</option>
 							<option value ="filter_type_normal">Normal</option>
 							<option value ="filter_type_fire">Fire</option>
 							<option value ="filter_type_fighting">Fighting</option>
@@ -154,29 +152,27 @@
 							<option value ="filter_type_steel">Steel</option>
 							<option value ="filter_type_fairy">Fairy</option>
 						</select>
-						<div id="movesBattleFilter">
-							Category: 
-							<select id="movesCategoryList" class ="" onchange="filterMoves(this.value)">
-								<option>All</option>
+						
+							<select id="movesCategoryList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+								<option value=>Category</option>
 								<option value ="filter_category_special">Special</option>
 								<option value ="filter_category_physical">Physical</option>
 								<option value ="filter_category_status">Status</option>
 							</select>
-						</div>
-						<div id="movesContestFilter" class="hidden">
-							Category: 
-							<select id="movesCategoryList" class ="" onchange="filterMoves(this.value)">
-								<option value ="filter_contest_">All</option>
+						
+						
+							<select id="movesContestList" class ="hidden" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+								<option value ="">Category</option>
 								<option value ="filter_contest_cool">Cool</option>
 								<option value ="filter_contest_beautiful">Beautiful</option>
 								<option value ="filter_contest_cute">Cute</option>
 								<option value ="filter_contest_clever">Clever</option>
 								<option value ="filter_contest_tough">Tough</option>
 							</select>
-						</div>
-						Learn Method: 
-						<select id="movesMethodList" class ="" onchange="filterMoves(this.value)">
-							<option value ="filter_method_">All</option>
+						
+ 
+						<select id="movesMethodList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+							<option value ="">Learn Method</option>
 							<option value ="filter_method_level-up">Level Up</option>
 							<option value ="filter_method_machine">TM/HM</option>
 							<option value ="filter_method_tutor">Move Tutor</option>
