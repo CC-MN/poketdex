@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="/js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/chartjs/chartbundle.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemonMoves.js"></script>
 	<script type="text/javascript" src="/js/scripts/abilities.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
