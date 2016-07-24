@@ -63,6 +63,10 @@ function pokemonAutoComplete() {
   })
 }
 
+function selectPokemon(pokemonID) {
+  window.location = "./" + pokemonID;
+}
+
 function changePokemon(pokemonID) {
   console.log(pokemonID);
   if (pokemonID !== null) {

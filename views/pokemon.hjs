@@ -61,7 +61,7 @@
 	</select>
 	<!-- Hidden -->
 	<div id="searchContainer" class="hidden">
-		<input id="pokemonSearchBox" onchange="changePokemon(this.value)">
+		<input id="pokemonSearchBox" onchange="selectPokemon(this.value)">
 	</div>
 	<div class="container">		
 		<div class="pokemon">
