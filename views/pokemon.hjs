@@ -57,11 +57,11 @@
 		</nav>
 	</header>
 	<!-- Hidden -->
-	<select id="pokedexList" name="pokemon" class ="" onchange="changePokemon(this.value)">
+	<select id="pokedexList" name="pokemon" class ="" onchange="selectPokemon(this.value)">
 	</select>
 	<!-- Hidden -->
 	<div id="searchContainer" class="hidden">
-		<input id="pokemonSearchBox" onchange="selectPokemon(this.value)">
+		<input id="pokemonSearchBox" onchange="changePokemon(this.value)">
 	</div>
 	<div class="container">		
 		<div class="pokemon">
