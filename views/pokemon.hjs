@@ -153,24 +153,24 @@
 							<option value ="filter_type_fairy">Fairy</option>
 						</select>
 						
-							<select id="movesCategoryList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
-								<option value=>Category</option>
-								<option value ="filter_category_special">Special</option>
-								<option value ="filter_category_physical">Physical</option>
-								<option value ="filter_category_status">Status</option>
-							</select>
+						<select id="movesCategoryList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+							<option value=>Category</option>
+							<option value ="filter_category_special">Special</option>
+							<option value ="filter_category_physical">Physical</option>
+							<option value ="filter_category_status">Status</option>
+						</select>
 						
 						
-							<select id="movesContestList" class ="hidden" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
-								<option value ="">Category</option>
-								<option value ="filter_contest_cool">Cool</option>
-								<option value ="filter_contest_beautiful">Beautiful</option>
-								<option value ="filter_contest_cute">Cute</option>
-								<option value ="filter_contest_clever">Clever</option>
-								<option value ="filter_contest_tough">Tough</option>
-							</select>
+						<select id="movesContestList" class ="hidden" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+							<option value ="">Category</option>
+							<option value ="filter_contest_cool">Cool</option>
+							<option value ="filter_contest_beautiful">Beautiful</option>
+							<option value ="filter_contest_cute">Cute</option>
+							<option value ="filter_contest_clever">Clever</option>
+							<option value ="filter_contest_tough">Tough</option>
+						</select>
 						
- 
+
 						<select id="movesMethodList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Learn Method</option>
 							<option value ="filter_method_level-up">Level Up</option>
@@ -232,7 +232,13 @@
 						<div id="groupContainer" class="row">
 							{{#pokemonSpeciesData.egg_groups}}
 							{{#.}}
-							<div class="eggGroup egg{{name}}">{{name}}</div>
+							<div class="eggGroup egg{{name}}">
+								{{name}}
+								<div class="iconContainer">
+									<!-- <img src="/images/interface/icon-expand.png" class="sectionIcon" /> -->
+									+
+								</div>
+							</div>
 							{{/.}}
 							{{/pokemonSpeciesData.egg_groups}}
 						</div>
@@ -241,7 +247,14 @@
 							<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
 							<span id="totalSteps"></span><br />
 							Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
-							| O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0">
+							| <select name="opower" id="opower">
+							<option value="0">O-Power</option>
+							<option value="1">Level 1</option>
+							<option value="2">Level 2</option>
+							<option value="3">Level 3</option>
+							<option value="4">S</option>
+							<option value="5">Max</option>
+						</select><!-- O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0"> -->
 							<!-- <br /> -->
 
 						</div>

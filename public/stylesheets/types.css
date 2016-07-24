@@ -87,7 +87,15 @@
 /**********Egg Group Styles**************/
 
 .eggGroup {
-	border-radius: 50vw;
+	text-align: center;
+	margin-bottom:5px;
+	color:#ffffff;
+	width: 100%;
+	float: left;
+	position: relative;
+	height: 6vw;
+	line-height: 6vw;
+/*	border-radius: 50vw;
 	width: 50vw;
 	height: 50vw;
 	background-color: #ff0000;
@@ -96,16 +104,16 @@
 	float: left;
 	line-height: 50vw;
 	text-align: center;
-	color:#ffffff;
+	color:#ffffff;*/
 }
 
 .eggGroup:nth-child(1) {
-	margin-left: 5vw;
+	margin-top: 5px;
 }
 
-.eggGroup:nth-child(2) {
+/*.eggGroup:nth-child(2) {
 	margin-left: -10vw;
-}
+}*/
 
 .eggmonster{
 	background: #D25064;
