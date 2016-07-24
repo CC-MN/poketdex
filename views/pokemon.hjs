@@ -20,17 +20,17 @@
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
-		var responsePokemon = {{& pokemonResponseString }};
-		var responsePokemonSpecies = {{& pokemonSpeciesDataString }};
-		var responsePokemonNames = {{& allPokemonNamesString}};
+	var responsePokemon = {{& pokemonResponseString }};
+	var responsePokemonSpecies = {{& pokemonSpeciesDataString }};
+	var responsePokemonNames = {{& allPokemonNamesString}};
 	</script>
 	<script type="text/javascript">
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	  ga('create', 'UA-81140038-1', 'auto');
-	  ga('send', 'pageview');
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-81140038-1', 'auto');
+	ga('send', 'pageview');
 	</script>
 
 </head>
@@ -126,6 +126,62 @@
 				</div>
 				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
+					<div>
+						Contest Mode: 
+						<label class="switch">
+							<input type="checkbox" id="movesDataType" name="movesDataType" value="0" onchange="changeMovesColumns()">
+							<div class="slider"></div>
+						</label><br/>
+						Type: 
+						<select id="movesTypeList" class ="" onchange="filterMoves(this.value)">
+							<option value ="">All</option>
+							<option value ="filter_type_normal">Normal</option>
+							<option value ="filter_type_fire">Fire</option>
+							<option value ="filter_type_fighting">Fighting</option>
+							<option value ="filter_type_water">Water</option>
+							<option value ="filter_type_flying">Flying</option>
+							<option value ="filter_type_grass">Grass</option>
+							<option value ="filter_type_poison">Poison</option>
+							<option value ="filter_type_electric">Electric</option>
+							<option value ="filter_type_ground">Ground</option>
+							<option value ="filter_type_psychic">Psychic</option>
+							<option value ="filter_type_rock">Rock</option>
+							<option value ="filter_type_ice">Ice</option>
+							<option value ="filter_type_bug">Bug</option>
+							<option value ="filter_type_dragon">Dragon</option>
+							<option value ="filter_type_ghost">Ghost</option>
+							<option value ="filter_type_dark">Dark</option>
+							<option value ="filter_type_steel">Steel</option>
+							<option value ="filter_type_fairy">Fairy</option>
+						</select>
+						<div id="movesBattleFilter">
+							Category: 
+							<select id="movesCategoryList" class ="" onchange="filterMoves(this.value)">
+								<option>All</option>
+								<option value ="filter_category_special">Special</option>
+								<option value ="filter_category_physical">Physical</option>
+								<option value ="filter_category_status">Status</option>
+							</select>
+						</div>
+						<div id="movesContestFilter" class="hidden">
+							Category: 
+							<select id="movesCategoryList" class ="" onchange="filterMoves(this.value)">
+								<option value ="filter_contest_">All</option>
+								<option value ="filter_contest_cool">Cool</option>
+								<option value ="filter_contest_beautiful">Beautiful</option>
+								<option value ="filter_contest_cute">Cute</option>
+								<option value ="filter_contest_clever">Clever</option>
+								<option value ="filter_contest_tough">Tough</option>
+							</select>
+						</div>
+						Learn Method: 
+						<select id="movesMethodList" class ="" onchange="filterMoves(this.value)">
+							<option value ="filter_method_">All</option>
+							<option value ="filter_method_level-up">Level Up</option>
+							<option value ="filter_method_machine">TM/HM</option>
+							<option value ="filter_method_tutor">Move Tutor</option>
+						</select>
+					</div>
 					<div class="row">
 						<div id="name" class="column">
 							<h1>Name</h1>
@@ -151,109 +207,109 @@
 						<div id="category" class="column">
 							<h1>Cat</h1>
 						</div>
-						<div id="contest" class="column">
+						<div id="contest" class="column hidden">
 							<h1>Contest</h1>
 						</div>
 						<div class="clearfloat"></div>
 					</div>
-			</section>
+				</section>
 
-			<!-- Section: Breeding -->
-			<section>
-				<div id="breedingTitle" class="tab breedingContent">
-					<span>Breeding</span>
-					<div class="iconContainer">
-						<img src="/images/interface/icon-filter.png" id="breedingContentFilter" class="sectionIcon hidden">
-						<button class="buttonController">+</button>
-					</div>
-				</div>
-				<div id="breedingContent" class="content hidden">
-					<!-- content goes here -->
-					Gender Ratio:
-					<div id="genderContainer" class="row">
-						<div id="genderChart">
-							<div id="genderChartFemale"></div>
-							<div id="genderChartMale"></div>
+				<!-- Section: Breeding -->
+				<section>
+					<div id="breedingTitle" class="tab breedingContent">
+						<span>Breeding</span>
+						<div class="iconContainer">
+							<img src="/images/interface/icon-filter.png" id="breedingContentFilter" class="sectionIcon hidden">
+							<button class="buttonController">+</button>
 						</div>
 					</div>
-					<div id="groupTitle">Egg Groups:</div>
-					<div id="groupContainer" class="row">
-						{{#pokemonSpeciesData.egg_groups}}
-						{{#.}}
-						<div class="eggGroup egg{{name}}">{{name}}</div>
-						{{/.}}
-						{{/pokemonSpeciesData.egg_groups}}
-					</div>
-					<div id="hatchingTitle">Egg Hatching:</div>
-					<div id="hatchingContainer" class="row">
-						<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
-						<span id="totalSteps"></span><br />
-						Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
-						| O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0">
-						<!-- <br /> -->
-						
-					</div>
-				</div>
-			</section>
+					<div id="breedingContent" class="content hidden">
+						<!-- content goes here -->
+						Gender Ratio:
+						<div id="genderContainer" class="row">
+							<div id="genderChart">
+								<div id="genderChartFemale"></div>
+								<div id="genderChartMale"></div>
+							</div>
+						</div>
+						<div id="groupTitle">Egg Groups:</div>
+						<div id="groupContainer" class="row">
+							{{#pokemonSpeciesData.egg_groups}}
+							{{#.}}
+							<div class="eggGroup egg{{name}}">{{name}}</div>
+							{{/.}}
+							{{/pokemonSpeciesData.egg_groups}}
+						</div>
+						<div id="hatchingTitle">Egg Hatching:</div>
+						<div id="hatchingContainer" class="row">
+							<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
+							<span id="totalSteps"></span><br />
+							Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
+							| O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0">
+							<!-- <br /> -->
 
-			<!-- Section: Locations -->
-			<section>
-				<div id="locationTitle" class="tab locationContent request">
-					<span>Locations</span>
-					<div class="iconContainer">
-						<img src="/images/interface/icon-filter.png" id="locationContentFilter" class="sectionIcon hidden">
-						<button class="buttonController">+</button>
+						</div>
 					</div>
-				</div>
-				<div id="locationContent" class="content hidden">
-					<!-- content goes here -->
-				</div>
-			</section>
+				</section>
 
-			<!-- Section: Base Stats -->
-			<section>
-				<div id="baseStatsTitle" class="tab baseStatsContent">
-					<span>Stats</span>
-					<div class="iconContainer">
-						<img src="/images/interface/icon-configure.png" id="baseStatsContentConfigure" class="sectionIcon hidden">
-						<img src="/images/interface/icon-filter.png" id="baseStatsContentFilter" class="sectionIcon hidden">
-						<button class="buttonController">+</button>
+				<!-- Section: Locations -->
+				<section>
+					<div id="locationTitle" class="tab locationContent request">
+						<span>Locations</span>
+						<div class="iconContainer">
+							<img src="/images/interface/icon-filter.png" id="locationContentFilter" class="sectionIcon hidden">
+							<button class="buttonController">+</button>
+						</div>
+					</div>
+					<div id="locationContent" class="content hidden">
+						<!-- content goes here -->
+					</div>
+				</section>
+
+				<!-- Section: Base Stats -->
+				<section>
+					<div id="baseStatsTitle" class="tab baseStatsContent">
+						<span>Stats</span>
+						<div class="iconContainer">
+							<img src="/images/interface/icon-configure.png" id="baseStatsContentConfigure" class="sectionIcon hidden">
+							<img src="/images/interface/icon-filter.png" id="baseStatsContentFilter" class="sectionIcon hidden">
+							<button class="buttonController">+</button>
+						</div>
+					</div>
+					<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
+					<div id="baseStatsContent" class="content hidden">
+						Nature: 
+						<select>
+							<option value="hardy">Hardy</option>
+							<option value="lonely">Lonely</option>
+							<option value="brave">Brave</option>
+						</select>
+						<canvas id="canvas"></canvas>
+					</div>
+				</section>
+				<!-- sample section below -->
+				<section>
+					<div id="sectionTitle" class="tab sectionContent">
+						<span>Section Title</span>
+						<div class="iconContainer">
+							<img src="/images/interface/icon-configure.png" class="sectionIcon hidden">
+							<img src="/images/interface/icon-filter.png" class="sectionIcon hidden">
+							<button class="buttonController">+</button>
+						</div>
+					</div>
+					<div id="sectionContent" class="content hidden">
+						<!-- content goes here -->
+						<div class="iconContainer">
+							<img src="/images/interface/icon-configure.png" class="hidden">
+							<img src="/images/interface/icon-filter.png" class="hidden">
+							<img src="/images/interface/icon-plus.png" class="hidden">
+							<!-- <span class="buttonController">+</span> -->
+							<!-- <button>+</button> -->
+						</div>
 					</div>
 				</div>
-				<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
-				<div id="baseStatsContent" class="content hidden">
-					Nature: 
-					<select>
-						<option value="hardy">Hardy</option>
-						<option value="lonely">Lonely</option>
-						<option value="brave">Brave</option>
-					</select>
-					<canvas id="canvas"></canvas>
-				</div>
+				<!-- sample section above -->
 			</section>
-			<!-- sample section below -->
-			<section>
-				<div id="sectionTitle" class="tab sectionContent">
-					<span>Section Title</span>
-					<div class="iconContainer">
-						<img src="/images/interface/icon-configure.png" class="sectionIcon hidden">
-						<img src="/images/interface/icon-filter.png" class="sectionIcon hidden">
-						<button class="buttonController">+</button>
-					</div>
-				</div>
-				<div id="sectionContent" class="content hidden">
-					<!-- content goes here -->
-					<div class="iconContainer">
-						<img src="/images/interface/icon-configure.png" class="hidden">
-						<img src="/images/interface/icon-filter.png" class="hidden">
-						<img src="/images/interface/icon-plus.png" class="hidden">
-						<!-- <span class="buttonController">+</span> -->
-						<!-- <button>+</button> -->
-					</div>
-				</div>
-			</div>
-			<!-- sample section above -->
-		</section>
-	</div>
-</body>
-</html>
+		</div>
+	</body>
+	</html>

@@ -112,11 +112,11 @@ function requestID(param){
 
   switch(param) {
     case 'evolutionChainContent':
-      id = responsePokemonSpecies.evolution_chain.url
-      break;
+    id = responsePokemonSpecies.evolution_chain.url
+    break;
     case 'locationContent':
-      id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
-      break;
+    id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+    break;
   }
   return id;
 
@@ -138,11 +138,11 @@ function determineAjaxEvent(type, data){
 
   switch(type) {
     case 'evolutionChainContent':
-      evolutionChain(type, data);
-      break;
+    evolutionChain(type, data);
+    break;
     case 'locationContent':
-      encounterLocation(type, data);
-      break;
+    encounterLocation(type, data);
+    break;
   }
 }
 
@@ -172,7 +172,7 @@ function encounterLocation(id, data){
   html += '<div class="clearfloat"></div>';
   html += '</div>';
   $.each(data, function(index, value){
-   
+
     var item = value;
     var locationName = item.location_area.name;
     locationName = locationName.replace(/\-/g, ' ');
@@ -211,26 +211,57 @@ function getMoveList(){
   tArray.sort(function(a,b){ return a.learntLevel - b.learntLevel });
   return tArray;
 }
-
+//Section: Moves
 function buildMoveList(moves){
-  //#movesContent
 
   $.each(POKEMON_MOVES, function(i,v){
     var moveName = v.moveName;
     if(MOVE_OBJECT[moveName]){
       //console.log(MOVE_OBJECT[moveName]);
-      $('#movesContent #name').append('<div class="move-name">' + moveName + '</div>');
-      $('#movesContent #power').append('<div class="power-number">' + MOVE_OBJECT[moveName]['power'] + '</div>');
-      $('#movesContent #pp').append('<div class="pp-number">' + MOVE_OBJECT[moveName]['pp'] + '</div>');
-      $('#movesContent #type').append('<div class="' + MOVE_OBJECT[moveName]['type'] + '">' + MOVE_OBJECT[moveName]['type'] + '</div>');
-      $('#movesContent #learntLevel').append('<div class="learntLevel">' + v.learntLevel + '</div>');
-      $('#movesContent #method').append('<div class="learntMethod">' + v.learntMethod + '</div>');
-      $('#movesContent #accuracy').append('<div class="accuracy-number">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
-      $('#movesContent #category').append('<div class="category-type ' + MOVE_OBJECT[moveName]['category'] + '">' + MOVE_OBJECT[moveName]['category'] + '</div>');
-      $('#movesContent #contest').append('<div class="contest-type ' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
+      $('#movesContent #name').append('<div class="move-name filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + moveName + '</div>');
+      $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['power'] + '</div>');
+      $('#movesContent #pp').append('<div class="pp-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['pp'] + '</div>');
+      $('#movesContent #type').append('<div class="' + MOVE_OBJECT[moveName]['type'] + ' filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['type'] + '</div>');
+      $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + v.learntLevel + '</div>');
+      $('#movesContent #method').append('<div class="learntMethod filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + v.learntMethod + '</div>');
+      $('#movesContent #accuracy').append('<div class="accuracy-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
+      $('#movesContent #category').append('<div class="category-type filterable ' + MOVE_OBJECT[moveName]['category'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['category'] + '</div>');
+      $('#movesContent #contest').append('<div class="contest-type filterable ' + MOVE_OBJECT[moveName]['contest'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
     }
 
   });
+}
+
+function changeMovesColumns(){
+  if(document.getElementById('movesDataType').checked){
+    //do something
+    console.log("contest mode");
+    $('#contest').removeClass("hidden");
+    $('#power').addClass("hidden");
+    $('#pp').addClass("hidden");
+    $('#accuracy').addClass("hidden");
+    $('#category').addClass("hidden");
+    $('#movesContestFilter').removeClass("hidden");
+    $('#movesBattleFilter').addClass("hidden");
+
+    
+    
+  }else{
+    console.log("battle mode");
+    $('#contest').addClass("hidden");
+    $('#power').removeClass("hidden");
+    $('#pp').removeClass("hidden");
+    $('#accuracy').removeClass("hidden");
+    $('#category').removeClass("hidden");
+    $('#movesBattleFilter').removeClass("hidden");
+    $('#movesContestFilter').addClass("hidden");
+  }
+}
+
+function filterMoves (moves_filter) {
+  console.log(moves_filter);
+  $('.filterable').addClass("hidden");
+  $('.' + moves_filter).removeClass("hidden");
 }
 
 function getAbilityDetail(i){
@@ -255,7 +286,7 @@ function calculateEggSteps(cycles,steps){
   }
   
 }
-  
+
 
 function flameBody(cycles){
  if(FLAMEBODY == "off") {
@@ -288,18 +319,6 @@ function opower(steps,opowerLevel){
   console.log("opower level: " + opowerLevel);
   console.log("steps per cycle: " + BREEDING_MOD_STEPS);
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
-  // opowerModifier = breedingStepsToHatch / opowerMultiplier;
-  // // console.log("modifier: " + opowerMultiplier);
-  // // console.log("maths: " + opowerModifier);
-  // BREEDING_OPOWERSTEPS = breedingStepsToHatch - opowerModifier;
-  // // console.log("opower steps to deduct: " + BREEDING_OPOWERSTEPS);
-  // // console.log("steps with opower: " + window.breedingStepsToHatch);
-  // var stepsToDeduct = BREEDING_OPOWERSTEPS + BREEDING_FLAMEBODYSTEPS;
-  // var modifiedSteps = breedingStepsToHatch - stepsToDeduct;
-  // // console.log("steps to deduct: " + stepsToDeduct)
-  // // console.log("original: " + breedingStepsToHatch + " opower steps: " + BREEDING_OPOWERSTEPS + " flame steps: " + BREEDING_FLAMEBODYSTEPS);
-  // // console.log("modified steps: " + modifiedSteps);
-  // $("#totalSteps").html(Math.round(modifiedSteps));
 }
 
 function buildChart(barChartData) {
@@ -325,11 +344,11 @@ function buildChart(barChartData) {
 
 /***************************************
             Helper Functions
-***************************************/
-function test() {
-  alert('test completed');
-}
+            ***************************************/
+            function test() {
+              alert('test completed');
+            }
 
-function printVar(val) {
-  console.log(val);
-}
+            function printVar(val) {
+              console.log(val);
+            }

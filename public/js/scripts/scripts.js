@@ -109,7 +109,7 @@ $(document).ready(function(){
 	//calculating base egg steps
 	calculateEggSteps(BREEDING_CYCLES,BREEDING_STEPS_PER_CYCLE);
 
-  
+
   //binding functions to egg calculator
   $('#flamebody').click(function(){
   	flameBody(BREEDING_CYCLES);
