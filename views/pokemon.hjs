@@ -126,7 +126,7 @@
 				</div>
 				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
-					<div class="row">
+					<div>
 						<label class="switch">
 							<input type="checkbox" id="movesDataType" name="movesDataType" value="0" onchange="changeMovesColumns()">
 							<div class="slider"></div>
