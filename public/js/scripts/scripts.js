@@ -17,6 +17,15 @@ $(document).ready(function(){
 	BREEDING_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 	BREEDING_MOD_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 
+	//builds pokdex list in select input
+	$.each(pokedexList, function(key, value) {
+		$('#pokedexList')
+		.append($("<option></option>")
+			.attr("value",key)
+			.text(key + " - " + value));
+		// console.log("logging: " + key + value)
+	});
+
 	//auto complete for pokemon search
 	pokemonAutoComplete();
 
