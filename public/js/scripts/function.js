@@ -177,6 +177,7 @@ function encounterLocation(id, data){
     var item = value;
     var locationName = item.location_area.name;
     locationName = locationName.replace(/\-/g, ' ');
+    locationName = locationName.replace('/(area)/ig', '').trim();
     $.each(item.version_details, function(i, v){
       $.each(v.encounter_details, function(encounterIndex, encounterValue){
         var levels = (encounterValue.min_level === encounterValue.max_level) ? encounterValue.min_level : encounterValue.min_level + '-' + encounterValue.max_level;
