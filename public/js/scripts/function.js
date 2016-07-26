@@ -170,28 +170,55 @@ function encounterLocation(id, data){
     $('#locationContent').html('No available encounters');
     return;
   }
-  var html = '<div class="row">';
-  html += '<div class="header column">Location</div>';
-  html += '<div class="header column">Version</div>';
-  html += '<div class="clearfloat"></div>';
-  html += '</div>';
-  $.each(data, function(index, value){
 
+  //get all the encounters details and store in a single array
+  var encounters = [];
+  $.each(data, function(index, value){
     var item = value;
     var locationName = item.location_area.name;
     locationName = locationName.replace(/\-/g, ' ');
-    var version = '';
     $.each(item.version_details, function(i, v){
-      version += v.version.name + ', ';
+      $.each(v.encounter_details, function(encounterIndex, encounterValue){
+        var levels = (encounterValue.min_level === encounterValue.max_level) ? encounterValue.min_level : encounterValue.min_level + '-' + encounterValue.max_level;
+        var encounterDetail = {
+          locationName : locationName,
+          encounterChance : encounterValue.chance,
+          levels : levels,
+          method : encounterValue.method.name,
+          version : v.version.name
+        }
+        encounters.push(encounterDetail);
+      });
     });
-    version = version.substr(0, version.length - 2); //remove trailing ','
+  });
+
+  encounters = encounters.sort(function(a,b){
+    var textA = a.version.toUpperCase();
+    var textB = b.version.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  });
+
+  var html = '<div class="row">';
+  html += '<div class="header column">Location</div>';
+  html += '<div class="header column">Chance</div>';
+  html += '<div class="header column">Min - Max Lvl</div>';
+  html += '<div class="header column">Method</div>';
+  html += '<div class="header column">Version</div>';
+  html += '<div class="clearfloat"></div>';
+  html += '</div>';
+
+  //display info
+  $.each(encounters, function(i,v){
     html += '<div class="row">';
-    html += '<div class="locationName column">'+ locationName + '</div>';
-    html += '<div class="version column">' + version + '</div>';
+    html += '<div class="locationName column">'+ v.locationName + '</div>';
+    html += '<div class="version column">' + v.encounterChance + '%</div>';
+    html += '<div class="version column">' + v.levels + '</div>';
+    html += '<div class="version column">' + v.method + '</div>';
+    html += '<div class="version column">' + v.version + '</div>';
     html += '<div class="clearfloat"></div>';
     html += '</div>';
-
   });
+
 
   $('#locationContent').html(html);
   return;
