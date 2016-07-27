@@ -288,12 +288,12 @@
 					</div>
 					<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
 					<div id="baseStatsContent" class="content hidden">
-						Nature: 
-						<select class="statsSelect">
+						<!-- Nature: 
+						<select id="nature" class="statsSelect">
 							<option value="hardy">Hardy</option>
 							<option value="lonely">Lonely</option>
 							<option value="brave">Brave</option>
-						</select>
+						</select> -->
 						<canvas id="canvas"></canvas>
 					</div>
 				</section>
