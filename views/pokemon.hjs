@@ -131,7 +131,7 @@
 							<input type="checkbox" id="movesDataType" name="movesDataType" value="0" onchange="changeMovesColumns()">
 							<div class="slider"></div>
 						</label><br />
-						<select id="movesTypeList" class ="movesSelect" onchange="filterMoves(this.value)">
+						<select id="movesTypeList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Type</option>
 							<option value ="filter_type_normal">Normal</option>
 							<option value ="filter_type_fire">Fire</option>
@@ -162,7 +162,7 @@
 						
 						
 						<select id="movesContestList" class ="hidden movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
-							<option value ="">Category</option>
+							<option value ="">Cat</option>
 							<option value ="filter_contest_cool">Cool</option>
 							<option value ="filter_contest_beautiful">Beautiful</option>
 							<option value ="filter_contest_cute">Cute</option>
@@ -175,36 +175,37 @@
 							<option value ="">Method</option>
 							<option value ="filter_method_level-up">Level Up</option>
 							<option value ="filter_method_machine">TM/HM</option>
-							<option value ="filter_method_tutor">Move Tutor</option>
+							<option value ="filter_method_egg">Egg</option>
+							<option value ="filter_method_tutor">Tutor</option>
 						</select>
 					</div>
 					<div class="row">
 						<div id="name" class="column">
-							<h1>Name</h1>
-						</div>
-						<div id="power" class="column">
-							<h1>Pwr</h1>
-						</div>
-						<div id="pp" class="column">
-							<h1>PP</h1>
-						</div>
-						<div id="accuracy" class="column">
-							<h1>Acc</h1>
-						</div>
-						<div id="learntLevel" class="column">
-							<h1>Lvl</h1>
-						</div>
-						<div id="method" class="column">
-							<h1>Method</h1>
+							Name
 						</div>
 						<div id="type" class="column">
-							<h1>Type</h1>
+							Type
 						</div>
+						<div id="power" class="column">
+							Pwr
+						</div>
+						<div id="pp" class="column">
+							PP
+						</div>
+						<div id="accuracy" class="column">
+							Acc
+						</div>
+						<div id="learntLevel" class="column">
+							Lvl
+						</div>
+<!-- 						<div id="method" class="column">
+							Method
+						</div> -->
 						<div id="category" class="column">
-							<h1>Cat</h1>
+							Category
 						</div>
 						<div id="contest" class="column hidden">
-							<h1>Contest</h1>
+							Contest
 						</div>
 						<div class="clearfloat"></div>
 					</div>

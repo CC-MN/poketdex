@@ -247,13 +247,13 @@ section{
 	cursor: pointer;
 }
 .tab {
-	height:30px !important;
-	line-height: 30px;
+	height:40px !important;
+	line-height: 40px;
 	/*font-size: 16px;*/
 	vertical-align: middle;
 	border-top: 1px solid #818181;
 	position: relative;
-	font-weight: bold;
+	font-size: 20px;
 }
 
 #abilitiesTitle{
@@ -295,18 +295,23 @@ section{
 #movesContent .column{
 	float:left;
 	width:15%;
-	font-size:10px;
+	font-size:16px;
 	text-align: center;
 	padding:0 0% 2%;
 }
 .column#name{
-	width:18%;
+	width:30%;
+	font-size: 16px;
 }
-.column#type, .column#category, .column#contest{
-	width:12%;
+
+.column#category, .column#contest, .column#learntLevel{
+	width:20%;
 }
-.column#pp, .column#power, .column#learntLevel, .column#accuracy{
-	width:7%;
+.column#pp, .column#power, .column#accuracy{
+	width:10%;
+}
+.column#type {
+	display: none !important;
 }
 
 #movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
@@ -409,7 +414,7 @@ select {
   float: left;
   width: 60px;
   height: 30px;
-  margin-top: 18px;
+  margin-top: 20px;
   margin-right: 5px;
 }
 
