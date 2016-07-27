@@ -126,12 +126,12 @@
 				</div>
 				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
-					<div>
+					<div class="row">
 						<label class="switch">
 							<input type="checkbox" id="movesDataType" name="movesDataType" value="0" onchange="changeMovesColumns()">
 							<div class="slider"></div>
 						</label><br />
-						<select id="movesTypeList" class ="" onchange="filterMoves(this.value)">
+						<select id="movesTypeList" class ="movesSelect" onchange="filterMoves(this.value)">
 							<option value ="">Type</option>
 							<option value ="filter_type_normal">Normal</option>
 							<option value ="filter_type_fire">Fire</option>
@@ -153,15 +153,15 @@
 							<option value ="filter_type_fairy">Fairy</option>
 						</select>
 						
-						<select id="movesCategoryList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
-							<option value=>Category</option>
+						<select id="movesCategoryList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+							<option value=>Cat</option>
 							<option value ="filter_category_special">Special</option>
 							<option value ="filter_category_physical">Physical</option>
 							<option value ="filter_category_status">Status</option>
 						</select>
 						
 						
-						<select id="movesContestList" class ="hidden" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+						<select id="movesContestList" class ="hidden movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Category</option>
 							<option value ="filter_contest_cool">Cool</option>
 							<option value ="filter_contest_beautiful">Beautiful</option>
@@ -171,8 +171,8 @@
 						</select>
 						
 
-						<select id="movesMethodList" class ="" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
-							<option value ="">Learn Method</option>
+						<select id="movesMethodList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+							<option value ="">Method</option>
 							<option value ="filter_method_level-up">Level Up</option>
 							<option value ="filter_method_machine">TM/HM</option>
 							<option value ="filter_method_tutor">Move Tutor</option>
@@ -247,7 +247,8 @@
 							<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
 							<span id="totalSteps"></span><br />
 							Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
-							| <select name="opower" id="opower">
+							| 
+							<select name="opower" id="opower" class="breedingSelect">
 							<option value="0">O-Power</option>
 							<option value="1">Level 1</option>
 							<option value="2">Level 2</option>
@@ -288,7 +289,7 @@
 					<!-- <button id="#chartButton" onclick="buildChart(barChartData)"> -->
 					<div id="baseStatsContent" class="content hidden">
 						Nature: 
-						<select>
+						<select class="statsSelect">
 							<option value="hardy">Hardy</option>
 							<option value="lonely">Lonely</option>
 							<option value="brave">Brave</option>
