@@ -1,6 +1,6 @@
 body{
 	/*padding: 50px;*/
-	font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 4vw "Lucida Grande", Helvetica, Arial, sans-serif;
 	margin: 0px;
 }
 
@@ -76,8 +76,8 @@ nav{
 #pokemonSearchBox {
 	/*position: fixed;*/
 	width: 100%;
-	height:24px;
-	font-size: 16px;
+	height:6vw;
+	font-size: 4vw;
 	border: 0px;
 	/*left: 10%;
 	right: 10%;
@@ -89,20 +89,18 @@ nav{
 #dexId{
 	/*border: 1px solid blue;*/
 	font-weight: bold;
-	font-size: 12px;
-	/*font-size: 3vw;*/
+	font-size: 3vw;
 }
 #dexName{
 	/*border: 1px solid red;*/
 	font-weight: bold;
-	font-size: 24px;
-	/*font-size: 6vw;*/
+	font-size: 6vw;
 }
 /*Menu to open SideNav*/
 #navButton {
 	position: absolute;
 	left: 1%;
-	font-size: 24px;
+	font-size: 6vw;
 }
 
 /*SideNav Stuff*/
@@ -146,8 +144,8 @@ nav{
 .closebtn {
   position: absolute;
   top: 0;
-  right: 8px;
-  font-size: 20px !important;
+  right: 2vw;
+  font-size: 5vw !important;
   margin-left: 50px;
 }
 
@@ -160,8 +158,7 @@ nav{
 /************ End Nav Styles *************/
 
 img.icon {
-	height: 20px;
-	/*height: 5vw;*/
+	height: 5vw;
 }
 .iconContainer {
 	position:absolute;
@@ -176,8 +173,7 @@ img.icon {
 .sectionIcon {
 	/*position: absolute;*/
 	/*bottom: 0%;*/
-	height: 16px !important;
-	/*height: 4vw !important;*/
+	height: 4vw !important;
 }
 
 #pokedexList {
@@ -185,8 +181,7 @@ img.icon {
 	-webkit-appearance: none;
 	background-color: #ffffff;
 	font-weight: bold;
-	font-size: 24px;
-	/*font-size: 6vw;*/
+	font-size: 6vw;
 }
 
 #pokedexList::-ms-expand {
@@ -225,12 +220,12 @@ img.icon {
 	border: none;
   color: #000000;
   font-family: "Roboto Slab", serif;
-  font-size: 24px;
+  font-size: 6vw;
   text-align: center;
   height: 100%;
 }
 .buttonDexter.pause{
-	font-size: 24px;
+	font-size: 4vw;
 }
 
 .reverseOrder {
@@ -247,9 +242,9 @@ section{
 	cursor: pointer;
 }
 .tab {
-	height:30px;
-	line-height: 30px;
-	/*font-size: 16px;*/
+	height:8vw;
+	line-height: 8vw;
+	font-size: 4vw;
 	vertical-align: middle;
 	border-top: 1px solid #818181;
 	position: relative;
@@ -260,7 +255,7 @@ section{
 }
 /*Used for section display controllers*/
 .buttonController {
-	height:24px;
+	height:6vw;
 	/*position: absolute;
 	right: 1%;*/
 	padding: 0px;
@@ -268,7 +263,7 @@ section{
 	border: none;
   color: #000000;
   font-family: "Roboto Slab", serif;
-  font-size: 24px;
+  font-size: 6vw;
   font-weight: bold;
   /*text-align: center;*/
 }
@@ -315,18 +310,18 @@ section{
 
 #genderChart {
 	width: 100%;
-	height: 6px;
-	line-height: 6px;
+	height: 6vw;
+	line-height: 6vw;
 }
 
 #genderChartFemale {
 	background-color: #F85888;
 	color:#ffffff;
-	height: 24px;
+	height: 6vw;
 	border: 0px;
 	float: left;
 	text-align: center;
-	line-height: 24px;
+	line-height: 6vw;
 
 }
 
@@ -334,10 +329,14 @@ section{
 	background-color: #6890F0;
 	color:#ffffff;
 	border: 0px;
-	height: 24px;
+	height: 6vw;
 	float: left;
 	text-align: center;
-	line-height: 24px;
+	line-height: 6vw;
+}
+
+#eggInfo img:nth-child(1){
+	height:8vw;
 }
 
 #canvas {
@@ -357,7 +356,7 @@ section{
 }
 #locationContent .column{
 	float:left;
-	width:50%;
+	width:20%;
 }
 #massive {
 	height:700px;
@@ -405,7 +404,7 @@ section{
   -webkit-transition: .4s;
   transition: .4s;
   line-height: 26px;
-  font-size: 16px;
+  font-size: 4vw;
   text-align: center;
   content: "B";
 }
