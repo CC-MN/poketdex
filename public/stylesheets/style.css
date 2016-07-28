@@ -321,7 +321,7 @@ section{
 	font-size: 16px;
 }
 
-
+/*Section: Gender*/
 .baseChart {
 	width: 100%;
 	height: 24px;
@@ -376,11 +376,12 @@ section{
 	background-color: #6890F0;
 }
 
+/*Section: Stats*/
 #canvas {
 	width:100% !important;
 	height: auto !important;
 }
-
+/*Section: Location*/
 #locationContent{
 	text-align:center;
 }
@@ -397,6 +398,11 @@ section{
 	width:20%;
 }
 
+#locationContent .row:nth-of-type(even){
+	background-color: #ccc;
+}
+
+/*Layout Containers*/
 .half{
 	float: left;
 	width: 49%;
@@ -408,6 +414,7 @@ section{
 	float: left;
 	width: 66%;
 	line-height: 30px;
+	text-align: center;
 }
 
 .onethird{

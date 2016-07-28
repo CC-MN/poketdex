@@ -320,12 +320,12 @@
 					</div>
 					<div id="locationContent" class="content ">
 						<!-- <div class="row">
-							<div class="version versionX">X</div>
-							<div class="version versionY">Y</div>
+							<div class="half versionX">X</div>
+							<div class="half versionY">Y</div>
 						</div>
 						<div class="row">
-							<div class="version versionRuby">Ruby</div>
-							<div class="version versionSapphire">Sapphire</div>
+							<div class="half versionRuby">Ruby</div>
+							<div class="half versionSapphire">Sapphire</div>
 						</div> -->
 						<!-- content goes here -->
 					</div>

@@ -200,11 +200,11 @@ function encounterLocation(id, data){
   });
 
   var html = '<div class="row">';
-  html += '<div class="header column">Location</div>';
-  html += '<div class="header column">Chance</div>';
-  html += '<div class="header column">Min - Max Lvl</div>';
-  html += '<div class="header column">Method</div>';
-  html += '<div class="header column">Version</div>';
+  html += '<div class="locationName header column">Location</div>';
+  html += '<div class="locationChance header column">Chance</div>';
+  html += '<div class="locationLevel header column">Level</div>';
+  html += '<div class="locationMethod header column">Method</div>';
+  html += '<div class="locationVersion header column">Version</div>';
   html += '<div class="clearfloat"></div>';
   html += '</div>';
 
@@ -212,10 +212,10 @@ function encounterLocation(id, data){
   $.each(encounters, function(i,v){
     html += '<div class="row">';
     html += '<div class="locationName column">'+ v.locationName + '</div>';
-    html += '<div class="version column">' + v.encounterChance + '%</div>';
-    html += '<div class="version column">' + v.levels + '</div>';
-    html += '<div class="version column">' + v.method + '</div>';
-    html += '<div class="version column">' + v.version + '</div>';
+    html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
+    html += '<div class="locationLevel column">' + v.levels + '</div>';
+    html += '<div class="locationMethod column">' + v.method + '</div>';
+    html += '<div class="locationVersion column">' + v.version + '</div>';
     html += '<div class="clearfloat"></div>';
     html += '</div>';
   });
