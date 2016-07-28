@@ -294,7 +294,7 @@ function toggleMovesMode(){
     // need to hide type column and hide type when switched
     $("#movesToggleTypeContainer").addClass("hidden");
     $("#movesToggleTypeContainer").removeClass("half");
-    $(".type").addClass("toggle_hide");
+    $("#type").addClass("toggle_hide");
   }else{
     console.log("battle mode");
     $('#contest').addClass("hidden");
@@ -306,7 +306,7 @@ function toggleMovesMode(){
     $('#movesContestList').addClass("hidden");
     $("#movesToggleTypeContainer").removeClass("hidden");
     $("#movesToggleTypeContainer").addClass("half");
-    $(".type").removeClass("toggle_hide");
+    $("#type").removeClass("toggle_hide");
   }
 }
 

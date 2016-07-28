@@ -309,14 +309,11 @@ section{
 	/*font-size: 15px;*/
 }
 
-.column#category, .column#contest, .column#learntLevel{
+.column#category, .column#contest, .column#learntLevel, .column#type{
 	width:20%;
 }
 .column#pp, .column#power, .column#accuracy{
 	width:10%;
-}
-.column#type {
-	/*display: none !important;*/
 }
 
 #movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
@@ -427,10 +424,6 @@ select {
 
 .breedingSelect, .statsSelect {
 	width: 120px;
-}
-
-.table {
-	text-align: center;
 }
 
 .filterRow{
