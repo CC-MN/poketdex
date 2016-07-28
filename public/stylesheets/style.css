@@ -31,7 +31,7 @@ button, #navButton, .icon{
 	width: 100%;
 }
 
-.hidden {
+.hidden, .toggle_hide {
 	display: none !important;
 }
 button:active,
@@ -295,13 +295,18 @@ section{
 #movesContent .column{
 	float:left;
 	width:15%;
-	font-size:16px;
+	font-size:13px;
 	text-align: center;
 	padding:0 0% 2%;
 }
+
+.pp-number:nth-of-type(odd), .power-number:nth-of-type(odd), .accuracy-number:nth-of-type(odd), .learntLevel:nth-of-type(odd) {
+	background-color: #ccc;
+}
+
 .column#name{
 	width:30%;
-	font-size: 16px;
+	/*font-size: 15px;*/
 }
 
 .column#category, .column#contest, .column#learntLevel{
@@ -311,7 +316,7 @@ section{
 	width:10%;
 }
 .column#type {
-	display: none !important;
+	/*display: none !important;*/
 }
 
 #movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
@@ -361,10 +366,28 @@ section{
 #locationContent .row{
 	padding:0 2% 2%;
 }
+
 #locationContent .column{
 	float:left;
 	width:20%;
 }
+
+.half{
+	float: left;
+	width: 49%;
+	/*border: 1px solid black;*/
+}
+
+.twothirds{
+	float: left;
+	width: 66%;
+}
+
+.onethird{
+	float: left;
+	width: 33%;
+}
+
 #massive {
 	height:700px;
 }
@@ -399,11 +422,25 @@ select {
 }
 
 .movesSelect {
-	width: 92px;
+	width: 30%;
 }
 
 .breedingSelect, .statsSelect {
 	width: 120px;
+}
+
+.table {
+	text-align: center;
+}
+
+.filterRow{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.sliderLabel {
+	line-height: 30px;
 }
 
 /*Toggle CSS*/
@@ -414,8 +451,9 @@ select {
   float: left;
   width: 60px;
   height: 30px;
-  margin-top: 20px;
+  /*margin-top: -25px;*/
   margin-right: 5px;
+  /*margin-left: 125px;*/
 }
 
 /* Hide default HTML checkbox */
@@ -447,7 +485,7 @@ select {
   line-height: 26px;
   font-size: 16px;
   text-align: center;
-  content: "B";
+  /*content: "B";*/
 }
 
 input:checked + .slider {
@@ -462,7 +500,7 @@ input:checked + .slider:before {
   -webkit-transform: translateX(27px);
   -ms-transform: translateX(27px);
   transform: translateX(27px);
-  content: "C" !important;
+  /*content: "C" !important;*/
 }
 
 /** {

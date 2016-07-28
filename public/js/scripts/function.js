@@ -248,6 +248,7 @@ function buildMoveList(moves){
 
   $.each(POKEMON_MOVES, function(i,v){
     var moveName = v.moveName;
+    // var movePower = MOVE_OBJECT[moveName]['power'];
     if(MOVE_OBJECT[moveName]){
       //console.log(MOVE_OBJECT[moveName]);
       $('#movesContent #name').append('<div class="move-name filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + ' ' + MOVE_OBJECT[moveName]['type'] + '">' + moveName + '</div>');
@@ -258,6 +259,12 @@ function buildMoveList(moves){
       $('#movesContent #accuracy').append('<div class="accuracy-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
       $('#movesContent #category').append('<div class="category-type filterable ' + MOVE_OBJECT[moveName]['category'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['category'] + '</div>');
       $('#movesContent #contest').append('<div class="contest-type filterable ' + MOVE_OBJECT[moveName]['contest'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
+
+      // if (movePower === null) {
+      //   $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '"> - </div>');
+      // } else {
+      //   $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + moveName + MOVE_OBJECT[moveName]['power'] + '</div>');
+      // }
 
       if (v.learntMethod == "tutor") {
         $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">Tutor</div>');
@@ -273,8 +280,8 @@ function buildMoveList(moves){
   });
 }
 
-function changeMovesColumns(){
-  if(document.getElementById('movesDataType').checked){
+function toggleMovesMode(){
+  if(document.getElementById('movesToggleMode').checked){
     //do something
     console.log("contest mode");
     $('#contest').removeClass("hidden");
@@ -284,9 +291,10 @@ function changeMovesColumns(){
     $('#category').addClass("hidden");
     $('#movesContestList').removeClass("hidden");
     $('#movesCategoryList').addClass("hidden");
-
-    
-    
+    // need to hide type column and hide type when switched
+    $("#movesToggleTypeContainer").addClass("hidden");
+    $("#movesToggleTypeContainer").removeClass("half");
+    $(".type").addClass("toggle_hide");
   }else{
     console.log("battle mode");
     $('#contest').addClass("hidden");
@@ -296,6 +304,22 @@ function changeMovesColumns(){
     $('#category').removeClass("hidden");
     $('#movesCategoryList').removeClass("hidden");
     $('#movesContestList').addClass("hidden");
+    $("#movesToggleTypeContainer").removeClass("hidden");
+    $("#movesToggleTypeContainer").addClass("half");
+    $(".type").removeClass("toggle_hide");
+  }
+}
+
+function toggleMovesTypes(){
+  if(document.getElementById('movesToggleType').checked){
+    //do something
+    console.log("show category");
+    $('#category').removeClass("toggle_hide");
+    $('#type').addClass("toggle_hide");
+  }else{
+    console.log("show types");
+    $('#type').removeClass("toggle_hide");
+    $('#category').addClass("toggle_hide");
   }
 }
 

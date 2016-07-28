@@ -436,7 +436,7 @@ var MOVE_OBJECT = {
    "category": "special",
    "contest": "cool",
    "pp": "20",
-   "power": "",
+   "power": "-",
    "accuracy": "90%",
    "gen": "i"
  },
@@ -733,7 +733,7 @@ var MOVE_OBJECT = {
    "category": "special",
    "contest": "cool",
    "pp": "10",
-   "power": "",
+   "power": "-",
    "accuracy": "100%",
    "gen": "i"
  },

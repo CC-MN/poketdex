@@ -127,10 +127,34 @@
 				<div id="movesContent" class="content hidden">
 					<!-- content goes here -->
 					<div class="row">
-						<label class="switch">
-							<input type="checkbox" id="movesDataType" name="movesDataType" value="0" onchange="changeMovesColumns()">
-							<div class="slider"></div>
-						</label><br />
+						<div class="half" id="movesToggleModeContainer">
+							<div class="twothirds sliderLabel">
+								Battle/Contest: 
+							</div>
+							<div class="onethird">
+								<label class="switch">
+									<input type="checkbox" id="movesToggleMode" name="movesToggleMode" value="0" onchange="toggleMovesMode()">
+									<div class="slider"></div>
+								</label>
+							</div>
+						</div>
+						<div class="half" id="movesToggleTypeContainer">
+							<div class="twothirds sliderLabel">
+								Type/Category: 
+							</div>
+							<div class="onethird">
+								<label class="switch">
+									<input type="checkbox" id="movesToggleType" name="movesToggleType" value="0" onchange="toggleMovesTypes()">
+									<div class="slider"></div>
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					
+
+					<br /><br />
+					<div class="filterRow">
 						<select id="movesTypeList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Type</option>
 							<option value ="filter_type_normal">Normal</option>
@@ -152,15 +176,15 @@
 							<option value ="filter_type_steel">Steel</option>
 							<option value ="filter_type_fairy">Fairy</option>
 						</select>
-						
+
 						<select id="movesCategoryList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value=>Cat</option>
 							<option value ="filter_category_special">Special</option>
 							<option value ="filter_category_physical">Physical</option>
 							<option value ="filter_category_status">Status</option>
 						</select>
-						
-						
+
+
 						<select id="movesContestList" class ="hidden movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Cat</option>
 							<option value ="filter_contest_cool">Cool</option>
@@ -169,7 +193,7 @@
 							<option value ="filter_contest_clever">Clever</option>
 							<option value ="filter_contest_tough">Tough</option>
 						</select>
-						
+
 
 						<select id="movesMethodList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Method</option>
@@ -179,12 +203,16 @@
 							<option value ="filter_method_tutor">Tutor</option>
 						</select>
 					</div>
+					
 					<div class="row">
 						<div id="name" class="column">
 							Name
 						</div>
 						<div id="type" class="column">
 							Type
+						</div>
+						<div id="category" class="column toggle_hide">
+							Category
 						</div>
 						<div id="power" class="column">
 							Pwr
@@ -201,9 +229,7 @@
 <!-- 						<div id="method" class="column">
 							Method
 						</div> -->
-						<div id="category" class="column">
-							Category
-						</div>
+						
 						<div id="contest" class="column hidden">
 							Contest
 						</div>
@@ -250,13 +276,13 @@
 							Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
 							| 
 							<select name="opower" id="opower" class="breedingSelect">
-							<option value="0">O-Power</option>
-							<option value="1">Level 1</option>
-							<option value="2">Level 2</option>
-							<option value="3">Level 3</option>
-							<option value="4">S</option>
-							<option value="5">Max</option>
-						</select><!-- O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0"> -->
+								<option value="0">O-Power</option>
+								<option value="1">Level 1</option>
+								<option value="2">Level 2</option>
+								<option value="3">Level 3</option>
+								<option value="4">S</option>
+								<option value="5">Max</option>
+							</select><!-- O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0"> -->
 							<!-- <br /> -->
 
 						</div>
@@ -272,7 +298,15 @@
 							<button class="buttonController">+</button>
 						</div>
 					</div>
-					<div id="locationContent" class="content hidden">
+					<div id="locationContent" class="content ">
+						<!-- <div class="row">
+							<div class="version versionX">X</div>
+							<div class="version versionY">Y</div>
+						</div>
+						<div class="row">
+							<div class="version versionRuby">Ruby</div>
+							<div class="version versionSapphire">Sapphire</div>
+						</div> -->
 						<!-- content goes here -->
 					</div>
 				</section>
