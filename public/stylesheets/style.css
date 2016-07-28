@@ -17,6 +17,7 @@ button, #navButton, .icon{
 
 .row{
 	display: block;
+	width: 100%;
 }
 .row:after{
 	clear:both;
@@ -321,10 +322,14 @@ section{
 }
 
 
-#genderChart {
+.baseChart {
 	width: 100%;
-	height: 6px;
-	line-height: 6px;
+	height: 24px;
+	line-height: 24px;
+	background-color: #CCC;
+	margin-bottom:5px;
+	margin-top:5px;
+	color: #ffffff;
 }
 
 #genderChartFemale {
@@ -346,6 +351,29 @@ section{
 	float: left;
 	text-align: center;
 	line-height: 24px;
+}
+
+#hatchingContainer{
+	height: 40px;
+	line-height: 40px;
+}
+
+#totalSteps{
+	text-align: center;
+	float: left;
+	/*background-color: #ff0000;*/
+}
+
+.stepsFlameBodyOPower {
+	background-color: #7038F8;
+}
+
+.stepsFlameBody{
+	background-color: #F08030;
+}
+
+.stepsOPower{
+	background-color: #6890F0;
 }
 
 #canvas {
@@ -373,16 +401,19 @@ section{
 	float: left;
 	width: 49%;
 	/*border: 1px solid black;*/
+	line-height: 30px;
 }
 
 .twothirds{
 	float: left;
 	width: 66%;
+	line-height: 30px;
 }
 
 .onethird{
 	float: left;
 	width: 33%;
+	line-height: 30px;
 }
 
 #massive {
@@ -490,9 +521,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(27px);
-  -ms-transform: translateX(27px);
-  transform: translateX(27px);
+  -webkit-transform: translateX(28px);
+  -ms-transform: translateX(28px);
+  transform: translateX(28px);
   /*content: "C" !important;*/
 }
 

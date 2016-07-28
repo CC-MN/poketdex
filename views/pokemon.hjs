@@ -250,7 +250,7 @@
 						<!-- content goes here -->
 						Gender Ratio:
 						<div id="genderContainer" class="row">
-							<div id="genderChart">
+							<div id="genderChart" class="baseChart">
 								<div id="genderChartFemale"></div>
 								<div id="genderChartMale"></div>
 							</div>
@@ -269,20 +269,40 @@
 							{{/.}}
 							{{/pokemonSpeciesData.egg_groups}}
 						</div>
-						<div id="hatchingTitle">Egg Hatching:</div>
+						<div id="hatchingTitle">Steps To Hatch Egg:</div>
+						<div class="baseChart">
+							<div id="totalSteps"></div>
+						</div>
 						<div id="hatchingContainer" class="row">
 							<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
-							<span id="totalSteps"></span><br />
-							Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" />
-							| 
-							<select name="opower" id="opower" class="breedingSelect">
-								<option value="0">O-Power</option>
-								<option value="1">Level 1</option>
-								<option value="2">Level 2</option>
-								<option value="3">Level 3</option>
-								<option value="4">S</option>
-								<option value="5">Max</option>
-							</select><!-- O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0"> -->
+							<!-- <span id="totalSteps"></span><br /> -->
+							<!-- Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" /> -->
+							<div class="half">
+								<div class="half">
+									Flamebody: 
+								</div>
+								<div class="half">
+								<label class="switch">
+									<input type="checkbox" id="flamebody" name="flamebody" value="0">
+									<div class="slider"></div>
+								</label>
+							</div>
+							</div>
+							<div class="half">
+								<div class="onethird">
+								OPower: 
+							</div>
+							<div class="twothirds">
+								<select name="opower" id="opower" class="breedingSelect">
+									<option value="0">Off</option>
+									<option value="1">Level 1</option>
+									<option value="2">Level 2</option>
+									<option value="3">Level 3</option>
+									<option value="4">S</option>
+									<option value="5">Max</option>
+								</select>
+							</div>
+							</div><!-- O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0"> -->
 							<!-- <br /> -->
 
 						</div>

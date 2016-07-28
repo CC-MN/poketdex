@@ -349,30 +349,45 @@ function getAbilityDetail(i){
 
 function calculateEggSteps(cycles,steps){
   var breedingStepsToHatch = cycles * steps;
-  if (FLAMEBODY == "on" && $( "#opower" ).val() > 0) {
-    $("#totalSteps").html("Total steps with Flamebody and O-Power: " + Math.round(breedingStepsToHatch));
-  } else if (FLAMEBODY == "on") {
-    $("#totalSteps").html("Total steps with Flamebody: " + Math.round(breedingStepsToHatch));
+  var maxSteps = BREEDING_CYCLES * BREEDING_STEPS_PER_CYCLE;
+  var stepsWidth = breedingStepsToHatch / maxSteps * 100;
+  console.log("width: "+ stepsWidth);
+  $("#totalSteps").width(stepsWidth + "%");
+  if (document.getElementById('flamebody').checked && $( "#opower" ).val() > 0) {
+    // $("#totalSteps").html("Total steps with Flamebody and O-Power: " + Math.round(breedingStepsToHatch));
+    $("#totalSteps").html(Math.round(breedingStepsToHatch));
+    $("#totalSteps").removeClass();
+    $("#totalSteps").addClass("stepsFlameBodyOPower");
+  } else if (document.getElementById('flamebody').checked) {
+    // $("#totalSteps").html("Total steps with Flamebody: " + Math.round(breedingStepsToHatch));
+    $("#totalSteps").html(Math.round(breedingStepsToHatch));
+    $("#totalSteps").removeClass();
+    $("#totalSteps").addClass("stepsFlameBody");
   } else if ($( "#opower" ).val() > 0) {
-    $("#totalSteps").html("Total steps with O-Power: " + Math.round(breedingStepsToHatch));
+    // $("#totalSteps").html("Total steps with O-Power: " + Math.round(breedingStepsToHatch));
+    $("#totalSteps").html(Math.round(breedingStepsToHatch));
+    $("#totalSteps").removeClass();
+    $("#totalSteps").addClass("stepsOPower");
   } else {
-    $("#totalSteps").html("Total steps to hatch: " + Math.round(breedingStepsToHatch));
+    // $("#totalSteps").html("Total steps to hatch: " + Math.round(breedingStepsToHatch));
+    $("#totalSteps").html(Math.round(breedingStepsToHatch));
+    $("#totalSteps").removeClass();
   }
   
 }
-
+// if(document.getElementById('movesToggleMode').checked){
 
 function flameBody(cycles){
- if(FLAMEBODY == "off") {
+ if(document.getElementById('flamebody').checked) {
    // console.log("flameBody is: " + FLAMEBODY);
-   FLAMEBODY = "on";
+   // FLAMEBODY = "on";
    BREEDING_MOD_CYCLES = cycles / 2;
-   $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
+   // $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
    calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
  }else {
-  window.FLAMEBODY = "off";
+  // window.FLAMEBODY = "off";
   // console.log("turned flameBody off");
-  $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody.png");
+  // $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody.png");
   BREEDING_MOD_CYCLES = BREEDING_CYCLES;
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
 }
