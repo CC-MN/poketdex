@@ -390,12 +390,29 @@ nav{
 	width:auto;
 }
 #locationContent .row{
-	padding:0 2% 2%;
+	padding:2% 0 2%;	
+	width: 100%;	
 }
 
 #locationContent .column{
 	float:left;
-	width:20%;
+	/*width:20%;*/
+	/*border: 1px solid red;*/
+	/*box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;*/
+}
+
+.locationName{
+	width: 30%;
+}
+
+.locationChance, .locationLevel{
+	width: 15%;
+}
+
+.locationMethod, .locationVersion {
+	width: 20%;
 }
 
 #locationContent .row:nth-of-type(even){
