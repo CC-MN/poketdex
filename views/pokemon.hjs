@@ -139,10 +139,10 @@
 							</div>
 						</div>
 						<div class="half" id="movesToggleTypeContainer">
-							<div class="twothirds sliderLabel">
-								Type/Category: 
+							<div class="half sliderLabel">
+								Type/Cat: 
 							</div>
-							<div class="onethird">
+							<div class="half">
 								<label class="switch">
 									<input type="checkbox" id="movesToggleType" name="movesToggleType" value="0" onchange="toggleMovesTypes()">
 									<div class="slider"></div>
@@ -318,7 +318,7 @@
 							<button class="buttonController">+</button>
 						</div>
 					</div>
-					<div id="locationContent" class="content ">
+					<div id="locationContent" class="content hidden">
 						<!-- <div class="row">
 							<div class="half versionX">X</div>
 							<div class="half versionY">Y</div>

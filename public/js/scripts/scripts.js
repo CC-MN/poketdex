@@ -11,6 +11,13 @@ var BREEDING_CYCLES = 1;
 var BREEDING_STEPS_PER_CYCLE = 257;
 var BREEDING_MOD_CYCLES = 1;
 var BREEDING_MOD_STEPS = 257;
+var VERSION_GEN1 = ["blue","red"];
+var VERSION_GEN2 = ["gold","silver","crystal"];
+var VERSION_GEN3 = ["firered","leafgreen","emerald"];
+var VERSION_GEN4 = ["diamond","pearl","platinum","heartgold","soulsilver"];
+var VERSION_GEN5 = ["black","white","black-2","white-2"];
+var VERSION_GEN6 = ["x","y","ruby","sapphire"];
+
 
 $(document).ready(function(){
 	getQS(URL_PARAMS);

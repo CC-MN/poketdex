@@ -210,19 +210,45 @@ function encounterLocation(id, data){
 
   //display info
   $.each(encounters, function(i,v){
-    html += '<div class="row">';
-    html += '<div class="locationName column">'+ v.locationName + '</div>';
-    html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
-    html += '<div class="locationLevel column">' + v.levels + '</div>';
-    html += '<div class="locationMethod column">' + v.method + '</div>';
-    html += '<div class="locationVersion column">' + v.version + '</div>';
-    html += '<div class="clearfloat"></div>';
-    html += '</div>';
+    // html += '<div class="row">';
+    // html += '<div class="locationName column">'+ v.locationName + '</div>';
+    // html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
+    // html += '<div class="locationLevel column">' + v.levels + '</div>';
+    // html += '<div class="locationMethod column">' + v.method + '</div>';
+    // html += '<div class="locationVersion column">' + v.version + '</div>';
+    // html += '<div class="clearfloat"></div>';
+    // html += '</div>';
+    if (VERSION_GEN1.indexOf(v.version) > -1 || VERSION_GEN2.indexOf(v.version) > -1 || VERSION_GEN3.indexOf(v.version) > -1 || VERSION_GEN4.indexOf(v.version) > -1 || VERSION_GEN5.indexOf(v.version) > -1){
+      // console.log("dont need this: " + v.version + " " + v.locationName);
+    }else{
+      html += '<div class="row filter_gameVersion_' + v .version + '">';
+      html += '<div class="locationName column">'+ v.locationName + '</div>';
+      html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
+      html += '<div class="locationLevel column">' + v.levels + '</div>';
+      html += '<div class="locationMethod column">' + v.method + '</div>';
+      html += '<div class="locationVersion column">' + v.version + '</div>';
+      html += '<div class="clearfloat"></div>';
+      html += '</div>';
+    }
   });
 
 
-  $('#locationContent').html(html);
-  return;
+$('#locationContent').html(html);
+$('#locationContent').prepend("<div class='gameRow'><div class='half selected' id='versionx'>X</div><div class='half selected' id='versiony'>Y</div></div><div class='gameRow'><div class='half selected' id='versionruby'>Ruby</div><div class='half selected' id='versionsapphire'>Sapphire</div></div>");
+//binding functions to game versions
+  $('#versionx').click(function(){
+    filterGameVersion("x");
+  });
+  $('#versiony').click(function(){
+    filterGameVersion("y");
+  });
+  $('#versionruby').click(function(){
+    filterGameVersion("ruby");
+  });
+  $('#versionsapphire').click(function(){
+    filterGameVersion("sapphire");
+  });
+return;
 }
 
 function getMoveList(){
@@ -377,8 +403,8 @@ function calculateEggSteps(cycles,steps){
 }
 // if(document.getElementById('movesToggleMode').checked){
 
-function flameBody(cycles){
- if(document.getElementById('flamebody').checked) {
+  function flameBody(cycles){
+   if(document.getElementById('flamebody').checked) {
    // console.log("flameBody is: " + FLAMEBODY);
    // FLAMEBODY = "on";
    BREEDING_MOD_CYCLES = cycles / 2;
@@ -408,6 +434,19 @@ function opower(steps,opowerLevel){
   console.log("opower level: " + opowerLevel);
   console.log("steps per cycle: " + BREEDING_MOD_STEPS);
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
+}
+
+function filterGameVersion(gameVersion){
+  if ($( ".filter_gameVersion_" + gameVersion ).hasClass("hidden")) {
+    console.log("showing game version row" + gameVersion);
+    $("#version" + gameVersion).addClass("selected");
+    $(".filter_gameVersion_" + gameVersion).removeClass("hidden");
+  }else{
+    console.log("hiding game version row" + gameVersion);
+    $("#version" + gameVersion).removeClass("selected");
+    console.log("#version" + gameVersion);
+    $(".filter_gameVersion_" + gameVersion).addClass("hidden");
+  };
 }
 
 function buildChart(barChartData) {
