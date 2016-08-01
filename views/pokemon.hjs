@@ -128,10 +128,10 @@
 					<!-- content goes here -->
 					<div class="row">
 						<div class="half" id="movesToggleModeContainer">
-							<div class="twothirds sliderLabel">
-								Battle/Contest: 
+							<div class="half sliderLabel">
+								Mode: 
 							</div>
-							<div class="onethird">
+							<div class="half">
 								<label class="switch">
 									<input type="checkbox" id="movesToggleMode" name="movesToggleMode" value="0" onchange="toggleMovesMode()">
 									<div class="slider"></div>
@@ -353,7 +353,7 @@
 					</div>
 				</section>
 				<!-- sample section below -->
-				<section>
+				<!-- <section>
 					<div id="sectionTitle" class="tab sectionContent">
 						<span>Section Title</span>
 						<div class="iconContainer">
@@ -363,16 +363,16 @@
 						</div>
 					</div>
 					<div id="sectionContent" class="content hidden">
-						<!-- content goes here -->
+						content goes here
 						<div class="iconContainer">
 							<img src="/images/interface/icon-configure.png" class="hidden">
 							<img src="/images/interface/icon-filter.png" class="hidden">
 							<img src="/images/interface/icon-plus.png" class="hidden">
-							<!-- <span class="buttonController">+</span> -->
-							<!-- <button>+</button> -->
+							<span class="buttonController">+</span>
+							<button>+</button>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- sample section above -->
 			</section>
 		</div>

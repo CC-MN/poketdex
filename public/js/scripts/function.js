@@ -231,10 +231,31 @@ function encounterLocation(id, data){
       html += '</div>';
     }
   });
+//hiding generation select until we decide if we want to support additional generations
+var gameGenerationContainer = '<div id="gameGenerationContainer">';
+// gameGenerationContainer += '<select id="gameGenerationSelect" onchange="">'
+// gameGenerationContainer += '<option value="1">Generation 1</option>'
+// gameGenerationContainer += '<option value="2">Generation 2</option>'
+// gameGenerationContainer += '<option value="3">Generation 3</option>'
+// gameGenerationContainer += '<option value="4">Generation 4</option>'
+// gameGenerationContainer += '<option value="5">Generation 5</option>'
+// gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
+// gameGenerationContainer += '</select>'
+gameGenerationContainer += '</div>'
 
+var gameGeneration6 = '<div class="gameRow">';
+gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
+gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
+gameGeneration6 += '</div>'
+gameGeneration6 += '<div class="gameRow">'
+gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
+gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
+gameGeneration6 += '</div>'
 
 $('#locationContent').html(html);
-$('#locationContent').prepend("<div class='gameRow'><div class='half selected' id='versionx'>X</div><div class='half selected' id='versiony'>Y</div></div><div class='gameRow'><div class='half selected' id='versionruby'>Ruby</div><div class='half selected' id='versionsapphire'>Sapphire</div></div>");
+$('#locationContent').prepend(gameGenerationContainer);
+$('#gameGenerationContainer').append(gameGeneration6);
+
 //binding functions to game versions
   $('#versionx').click(function(){
     filterGameVersion("x");
