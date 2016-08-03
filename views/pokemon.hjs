@@ -132,7 +132,7 @@
 								Mode: 
 							</div>
 							<div class="half">
-								<label class="switch">
+								<label id="movesToggleSwitch" class="switch">
 									<input type="checkbox" id="movesToggleMode" name="movesToggleMode" value="0" onchange="toggleMovesMode()">
 									<div class="slider"></div>
 								</label>

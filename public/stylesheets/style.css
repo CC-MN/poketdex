@@ -567,7 +567,6 @@ select {
 	line-height: 26px;
 	font-size: 16px;
 	text-align: center;
-	/*content: "B";*/
 }
 
 input:checked + .slider {
@@ -582,7 +581,15 @@ input:checked + .slider:before {
 	-webkit-transform: translateX(28px);
 	-ms-transform: translateX(28px);
 	transform: translateX(28px);
-	/*content: "C" !important;*/
+}
+
+/*For Battle/Contest Toggle*/
+#movesToggleSwitch .slider:before{
+	content: "B";
+}
+
+#movesToggleSwitch input:checked + .slider:before{
+	content: "C" !important;
 }
 
 /** {

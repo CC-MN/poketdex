@@ -98,15 +98,15 @@ function showSection(sectionName){
   if ($( "#" + sectionName ).hasClass("hidden")) {
     $('#' + sectionName).parent().find('button').html('&#8211;');
     $('#' + sectionName).removeClass("hidden");
-    $('#' + sectionName + 'Configure').removeClass('hidden');
-    $('#' + sectionName + 'Filter').removeClass('hidden');
+    // $('#' + sectionName + 'Configure').removeClass('hidden');
+    // $('#' + sectionName + 'Filter').removeClass('hidden');
     $('#' + sectionName).addClass("expanded");
     $('#' + sectionName).focus();
   }else {
     $('#' + sectionName).parent().find('button').html('+');
     $('#' + sectionName).addClass("hidden");
-    $('#' + sectionName + 'Configure').addClass('hidden');
-    $('#' + sectionName + 'Filter').addClass('hidden');
+    // $('#' + sectionName + 'Configure').addClass('hidden');
+    // $('#' + sectionName + 'Filter').addClass('hidden');
   }
 }
 
@@ -210,14 +210,6 @@ function encounterLocation(id, data){
 
   //display info
   $.each(encounters, function(i,v){
-    // html += '<div class="row">';
-    // html += '<div class="locationName column">'+ v.locationName + '</div>';
-    // html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
-    // html += '<div class="locationLevel column">' + v.levels + '</div>';
-    // html += '<div class="locationMethod column">' + v.method + '</div>';
-    // html += '<div class="locationVersion column">' + v.version + '</div>';
-    // html += '<div class="clearfloat"></div>';
-    // html += '</div>';
     if (VERSION_GEN1.indexOf(v.version) > -1 || VERSION_GEN2.indexOf(v.version) > -1 || VERSION_GEN3.indexOf(v.version) > -1 || VERSION_GEN4.indexOf(v.version) > -1 || VERSION_GEN5.indexOf(v.version) > -1){
       // console.log("dont need this: " + v.version + " " + v.locationName);
     }else{
@@ -247,28 +239,28 @@ var gameGeneration6 = '<div class="gameRow">';
 gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
 gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
 gameGeneration6 += '</div>'
-gameGeneration6 += '<div class="gameRow">'
-gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
-gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
-gameGeneration6 += '</div>'
+// gameGeneration6 += '<div class="gameRow">'
+// gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
+// gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
+// gameGeneration6 += '</div>'
 
 $('#locationContent').html(html);
 $('#locationContent').prepend(gameGenerationContainer);
 $('#gameGenerationContainer').append(gameGeneration6);
 
 //binding functions to game versions
-  $('#versionx').click(function(){
-    filterGameVersion("x");
-  });
-  $('#versiony').click(function(){
-    filterGameVersion("y");
-  });
-  $('#versionruby').click(function(){
-    filterGameVersion("ruby");
-  });
-  $('#versionsapphire').click(function(){
-    filterGameVersion("sapphire");
-  });
+$('#versionx').click(function(){
+  filterGameVersion("x");
+});
+$('#versiony').click(function(){
+  filterGameVersion("y");
+});
+  // $('#versionruby').click(function(){
+  //   filterGameVersion("omega-ruby");
+  // });
+  // $('#versionsapphire').click(function(){
+  //   filterGameVersion("alpha-sapphire");
+  // });
 return;
 }
 
@@ -295,24 +287,14 @@ function buildMoveList(moves){
 
   $.each(POKEMON_MOVES, function(i,v){
     var moveName = v.moveName;
-    // var movePower = MOVE_OBJECT[moveName]['power'];
     if(MOVE_OBJECT[moveName]){
-      //console.log(MOVE_OBJECT[moveName]);
       $('#movesContent #name').append('<div class="move-name filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + ' ' + MOVE_OBJECT[moveName]['type'] + '">' + moveName + '</div>');
       $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['power'] + '</div>');
       $('#movesContent #pp').append('<div class="pp-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['pp'] + '</div>');
       $('#movesContent #type').append('<div class="' + MOVE_OBJECT[moveName]['type'] + ' filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['type'] + '</div>');
-      // $('#movesContent #method').append('<div class="learntMethod filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + v.learntMethod + '</div>');
       $('#movesContent #accuracy').append('<div class="accuracy-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
       $('#movesContent #category').append('<div class="category-type filterable ' + MOVE_OBJECT[moveName]['category'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['category'] + '</div>');
       $('#movesContent #contest').append('<div class="contest-type filterable ' + MOVE_OBJECT[moveName]['contest'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
-
-      // if (movePower === null) {
-      //   $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '"> - </div>');
-      // } else {
-      //   $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + moveName + MOVE_OBJECT[moveName]['power'] + '</div>');
-      // }
-
       if (v.learntMethod == "tutor") {
         $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">Tutor</div>');
       } else if (v.learntMethod == "machine") {
@@ -329,8 +311,9 @@ function buildMoveList(moves){
 
 function toggleMovesMode(){
   if(document.getElementById('movesToggleMode').checked){
-    //do something
     console.log("contest mode");
+    $('#movesToggleType').prop('checked', false);
+    toggleMovesTypes();
     $('#contest').removeClass("hidden");
     $('#power').addClass("hidden");
     $('#pp').addClass("hidden");
@@ -338,7 +321,6 @@ function toggleMovesMode(){
     $('#category').addClass("hidden");
     $('#movesContestList').removeClass("hidden");
     $('#movesCategoryList').addClass("hidden");
-    // need to hide type column and hide type when switched
     $("#movesToggleTypeContainer").addClass("hidden");
     $("#movesToggleTypeContainer").removeClass("half");
     $("#type").addClass("toggle_hide");
@@ -359,7 +341,6 @@ function toggleMovesMode(){
 
 function toggleMovesTypes(){
   if(document.getElementById('movesToggleType').checked){
-    //do something
     console.log("show category");
     $('#category').removeClass("toggle_hide");
     $('#type').addClass("toggle_hide");
@@ -371,18 +352,22 @@ function toggleMovesTypes(){
 }
 
 function resetMovesFilter() {
-  //s
   $("#movesTypeList").val("");
   $("#movesCategoryList").val("");
   $("#movesContestList").val("");
   $("#movesMethodList").val("");
-  
+  filterMoves();
 }
 
 function filterMoves (moves_filter) {
-  console.log(moves_filter);
-  $('.filterable').addClass("hidden");
-  $('.' + moves_filter).removeClass("hidden");
+  if (moves_filter == null) {
+    // reset filters
+    $('.filterable').removeClass("hidden");
+  } else{
+    console.log("filtering to: " + moves_filter);
+    $('.filterable').addClass("hidden");
+    $('.' + moves_filter).removeClass("hidden");
+  }
 }
 
 function getAbilityDetail(i){
@@ -393,7 +378,6 @@ function getAbilityDetail(i){
 
 //Section: Breeding
 //Area: Eggs
-
 function calculateEggSteps(cycles,steps){
   var breedingStepsToHatch = cycles * steps;
   var maxSteps = BREEDING_CYCLES * BREEDING_STEPS_PER_CYCLE;
@@ -401,48 +385,35 @@ function calculateEggSteps(cycles,steps){
   console.log("width: "+ stepsWidth);
   $("#totalSteps").width(stepsWidth + "%");
   if (document.getElementById('flamebody').checked && $( "#opower" ).val() > 0) {
-    // $("#totalSteps").html("Total steps with Flamebody and O-Power: " + Math.round(breedingStepsToHatch));
     $("#totalSteps").html(Math.round(breedingStepsToHatch));
     $("#totalSteps").removeClass();
     $("#totalSteps").addClass("stepsFlameBodyOPower");
   } else if (document.getElementById('flamebody').checked) {
-    // $("#totalSteps").html("Total steps with Flamebody: " + Math.round(breedingStepsToHatch));
     $("#totalSteps").html(Math.round(breedingStepsToHatch));
     $("#totalSteps").removeClass();
     $("#totalSteps").addClass("stepsFlameBody");
   } else if ($( "#opower" ).val() > 0) {
-    // $("#totalSteps").html("Total steps with O-Power: " + Math.round(breedingStepsToHatch));
     $("#totalSteps").html(Math.round(breedingStepsToHatch));
     $("#totalSteps").removeClass();
     $("#totalSteps").addClass("stepsOPower");
   } else {
-    // $("#totalSteps").html("Total steps to hatch: " + Math.round(breedingStepsToHatch));
     $("#totalSteps").html(Math.round(breedingStepsToHatch));
     $("#totalSteps").removeClass();
   }
   
 }
-// if(document.getElementById('movesToggleMode').checked){
 
-  function flameBody(cycles){
-   if(document.getElementById('flamebody').checked) {
-   // console.log("flameBody is: " + FLAMEBODY);
-   // FLAMEBODY = "on";
+function flameBody(cycles){
+ if(document.getElementById('flamebody').checked) {
    BREEDING_MOD_CYCLES = cycles / 2;
-   // $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody-on.png");
    calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
  }else {
-  // window.FLAMEBODY = "off";
-  // console.log("turned flameBody off");
-  // $("#flamebody").attr("src","/images/page-pokemon/breeding-flamebody.png");
   BREEDING_MOD_CYCLES = BREEDING_CYCLES;
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
 }
 }
 
 function opower(steps,opowerLevel){
-  // console.log("opower: " + opowerLevel);
-  // console.log("steps: " + breedingStepsToHatch)
   if(opowerLevel == 0){
     BREEDING_MOD_STEPS = steps;
   }else if (opowerLevel == 1) {
@@ -457,6 +428,8 @@ function opower(steps,opowerLevel){
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
 }
 
+//Section: Locations
+//Area: Encounters
 function filterGameVersion(gameVersion){
   if ($( ".filter_gameVersion_" + gameVersion ).hasClass("hidden")) {
     console.log("showing game version row" + gameVersion);
@@ -470,6 +443,9 @@ function filterGameVersion(gameVersion){
   };
 }
 
+
+//Section: Stats
+//Area: Chart
 function buildChart(barChartData) {
   var ctx = document.getElementById("canvas").getContext("2d");
   window.myBar = new Chart(ctx, {
