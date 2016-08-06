@@ -17,7 +17,9 @@
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemonMoves.js"></script>
 	<script type="text/javascript" src="/js/scripts/abilities.js"></script>
+	<script type="text/javascript" src="/js/scripts/typeEffectiveness.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
+	<script type="text/javascript" src="/js/scripts/sorttable.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
 	var responsePokemon = {{& pokemonResponseString }};
@@ -82,6 +84,22 @@
 					{{/pokemonResponse.types}}
 				</div>
 			</div>
+
+
+			<!-- Section: Evolution Chain -->
+			<section>
+				<div id="evolutionChainTitle" class="tab evolutionChainContent request">
+					<span>Evolution Chain</span>
+					<div class="iconContainer">
+						<button class="buttonController">+</button>
+					</div>
+				</div>
+				<div id="evolutionChainContent" class="content hidden">
+					<!-- content goes here -->
+					
+				</div>
+			</section>
+
 			<!-- Section: Abilities -->
 			<section>
 				<div id="abilitiesTitle" class="tab abilitiesContent">
@@ -101,17 +119,83 @@
 					</div>
 				</div>
 			</section>
-			<!-- Section: Evolution Chain -->
+
+			<!-- Section: Damage Chart -->
 			<section>
-				<div id="evolutionChainTitle" class="tab evolutionChainContent request">
-					<span>Evolution Chain</span>
+				<div id="sectionTitle" class="tab sectionContent">
+					<span>Damage Chart</span>
 					<div class="iconContainer">
+						<img src="/images/interface/icon-configure.png" class="sectionIcon hidden">
+						<img src="/images/interface/icon-filter.png" class="sectionIcon hidden">
 						<button class="buttonController">+</button>
 					</div>
 				</div>
-				<div id="evolutionChainContent" class="content hidden">
-					<!-- content goes here -->
-					
+				<div id="sectionContent" class="content hidden">
+					<table>
+						<tr>
+							<!-- <td class="damageChartCell damageLabelCell"></td> -->
+							<td class="normal damageChartCell damageLabelCell damageLabelCell"><div class="rotate">Normal</div></td>
+							<td class="fire damageChartCell damageLabelCell"><div class="rotate">Fire</div></td>
+							<td class="water damageChartCell damageLabelCell"><div class="rotate">Water</div></td>
+							<td class="electric damageChartCell damageLabelCell"><div class="rotate">Electric</div></td>
+							<td class="grass damageChartCell damageLabelCell"><div class="rotate">Grass</div></td>
+							<td class="ice damageChartCell damageLabelCell"><div class="rotate">Ice</div></td>
+							<td class="fighting damageChartCell damageLabelCell"><div class="rotate">Fighting</div></td>
+							<td class="poison damageChartCell damageLabelCell"><div class="rotate">Poison</div></td>
+							<td class="ground damageChartCell damageLabelCell"><div class="rotate">Ground</div></td>
+							<td class="flying damageChartCell damageLabelCell"><div class="rotate">Flying</div></td>
+							<td class="psychic damageChartCell damageLabelCell"><div class="rotate">Psychic</div></td>
+							<td class="bug damageChartCell damageLabelCell"><div class="rotate">Bug</div></td>
+							<td class="rock damageChartCell damageLabelCell"><div class="rotate">Rock</div></td>
+							<td class="ghost damageChartCell damageLabelCell"><div class="rotate">Ghost</div></td>
+							<td class="dragon damageChartCell damageLabelCell"><div class="rotate">Dragon</div></td>
+							<td class="dark damageChartCell damageLabelCell"><div class="rotate">Dark</div></td>
+							<td class="steel damageChartCell damageLabelCell"><div class="rotate">Steel</div></td>
+							<td class="fairy damageChartCell damageLabelCell"><div class="rotate">Fairy</div></td>
+						</tr>
+						<tr>
+							<!-- <td class="damageChartCell damageLabelCell"></td> -->
+							<td class="normal damageChartCell damageValueCell"></td>
+							<td class="fire damageChartCell damageValueCell"></td>
+							<td class="water damageChartCell damageValueCell"></td>
+							<td class="electric damageChartCell damageValueCell"></td>
+							<td class="grass damageChartCell damageValueCell"></td>
+							<td class="ice damageChartCell damageValueCell"></td>
+							<td class="fighting damageChartCell damageValueCell"></td>
+							<td class="poison damageChartCell damageValueCell"></td>
+							<td class="ground damageChartCell damageValueCell"></td>
+							<td class="flying damageChartCell damageValueCell"></td>
+							<td class="psychic damageChartCell damageValueCell"></td>
+							<td class="bug damageChartCell damageValueCell"></td>
+							<td class="rock damageChartCell damageValueCell"></td>
+							<td class="ghost damageChartCell damageValueCell"></td>
+							<td class="dragon damageChartCell damageValueCell"></td>
+							<td class="dark damageChartCell damageValueCell"></td>
+							<td class="steel damageChartCell damageValueCell"></td>
+							<td class="fairy damageChartCell damageValueCell"></td>
+						</tr>
+					</table>
+					<div class="row" id="damageControls">
+						<div class="half"id="abilityModifier">
+							Consider Ability:<br />
+							<select id="abilitySelect">
+								<option value="">Choose Ability</option>
+							</select>
+						</div>
+						<div class="half" id="abilityHiddenModifier">
+							Hidden Ability?:<br />
+							<div class="row">
+								<div id="abilityHiddenModifierName" class="twothirds">
+								</div>
+								<div class="onethird">
+									<label id="abilityHiddenToggleSwitch" class="switch">
+										<input type="checkbox" id="abilityHiddenToggle" name="abilityHiddenToggle" value="0" onchange="abilityHiddenToggle()">
+										<div class="slider"></div>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -282,26 +366,26 @@
 									Flamebody: 
 								</div>
 								<div class="half">
-								<label class="switch">
-									<input type="checkbox" id="flamebody" name="flamebody" value="0">
-									<div class="slider"></div>
-								</label>
-							</div>
+									<label class="switch">
+										<input type="checkbox" id="flamebody" name="flamebody" value="0">
+										<div class="slider"></div>
+									</label>
+								</div>
 							</div>
 							<div class="half">
 								<div class="onethird">
-								OPower: 
-							</div>
-							<div class="twothirds">
-								<select name="opower" id="opower" class="breedingSelect">
-									<option value="0">Off</option>
-									<option value="1">Level 1</option>
-									<option value="2">Level 2</option>
-									<option value="3">Level 3</option>
-									<option value="4">S</option>
-									<option value="5">Max</option>
-								</select>
-							</div>
+									OPower: 
+								</div>
+								<div class="twothirds">
+									<select name="opower" id="opower" class="breedingSelect">
+										<option value="0">Off</option>
+										<option value="1">Level 1</option>
+										<option value="2">Level 2</option>
+										<option value="3">Level 3</option>
+										<option value="4">S</option>
+										<option value="5">Max</option>
+									</select>
+								</div>
 							</div><!-- O-Power <input type="range" name="opower" id="opower" min="0" max="5" value="0"> -->
 							<!-- <br /> -->
 

@@ -257,7 +257,7 @@ nav{
     	font-size: 20px;
     }
 
-    #abilitiesTitle{
+    section:nth-of-type(1) .tab{
     	border-top: 0px !important;
     }
     /*Used for section display controllers*/
@@ -278,6 +278,19 @@ nav{
 
 }
 
+.rotate{
+	/*margin-top: 100px;
+	margin-left: 150px;*/
+	transform: rotate(-90deg);
+	height: 19px;
+	/*width:70px;*/
+	/*transform-origin: right, top;*/
+}
+
+.float{
+	float: left;
+}
+
 #evolutionChainContent{
 	text-align: center;
 }
@@ -285,6 +298,53 @@ nav{
 	height:200px;
 	width:auto;
 }
+
+.damageChartCell{
+	width: 19px;
+	max-width: 19px !important;
+}
+
+.damageLabelCell{
+	height: 70px;
+	/*text-align: left;*/
+	vertical-align: bottom;
+	padding-bottom: 5px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.damageValueCell{
+	height:20px;
+	text-align: center;
+}
+
+.damageRate1, .damageRate2, .damageRate4{
+	background-color: #4e9a06 !important;
+}
+
+.damageRate½, .damageRate¼ {
+	background-color: #a40000 !important;
+}
+
+.damageRate0 {
+	background-color: #2e3436 !important;
+	color: #ffffff;
+}
+
+.damageRateModified{
+	box-sizing: border-box;
+	border: 2px solid green;
+}
+
+#damageControls{
+	height: 80px;
+}
+
+#abilityHiddenModifierName{
+	text-align: left;
+}
+
 
 #movesContent{
 
@@ -468,7 +528,7 @@ nav{
 	line-height: 30px;
 }
 
-#massive {
+.massive {
 	height:700px;
 }
 
@@ -499,6 +559,10 @@ select {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	text-align: center;
+}
+
+#abilitySelect{
+	width: 90% !important;
 }
 
 .movesSelect {

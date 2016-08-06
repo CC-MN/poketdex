@@ -149,7 +149,14 @@ function determineAjaxEvent(type, data){
     break;
   }
 }
+//Section: Abilities
+function getAbilityDetail(i){
+  var nthchild = i+1
+  $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[responsePokemon.abilities[i].ability.name] );
 
+}
+
+//Section Evolution Chain
 function evolutionChain(id, data){
   console.log('evolutionChain');
   console.log(data);
@@ -162,108 +169,166 @@ function evolutionChain(id, data){
 
 }
 
-function encounterLocation(id, data){
-  console.log('encounterLocation');
-  console.log(data);
-
-  if(!data.length){
-    $('#locationContent').html('No available encounters');
-    return;
-  }
-
-  //get all the encounters details and store in a single array
-  var encounters = [];
-  $.each(data, function(index, value){
-    var item = value;
-    var locationName = item.location_area.name;
-    locationName = locationName.replace(/\-/g, ' ');
-    locationName = locationName.replace('/(area)/ig', '').trim();
-    $.each(item.version_details, function(i, v){
-      $.each(v.encounter_details, function(encounterIndex, encounterValue){
-        var levels = (encounterValue.min_level === encounterValue.max_level) ? encounterValue.min_level : encounterValue.min_level + '-' + encounterValue.max_level;
-        var encounterDetail = {
-          locationName : locationName,
-          encounterChance : encounterValue.chance,
-          levels : levels,
-          method : encounterValue.method.name,
-          version : v.version.name
-        }
-        encounters.push(encounterDetail);
-      });
-    });
-  });
-
-  encounters = encounters.sort(function(a,b){
-    var textA = a.version.toUpperCase();
-    var textB = b.version.toUpperCase();
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  });
-
-  var html = '<div class="row">';
-  html += '<div class="locationName header column">Location</div>';
-  html += '<div class="locationChance header column">Chance</div>';
-  html += '<div class="locationLevel header column">Level</div>';
-  html += '<div class="locationMethod header column">Method</div>';
-  html += '<div class="locationVersion header column">Version</div>';
-  html += '<div class="clearfloat"></div>';
-  html += '</div>';
-
-  //display info
-  $.each(encounters, function(i,v){
-    if (VERSION_GEN1.indexOf(v.version) > -1 || VERSION_GEN2.indexOf(v.version) > -1 || VERSION_GEN3.indexOf(v.version) > -1 || VERSION_GEN4.indexOf(v.version) > -1 || VERSION_GEN5.indexOf(v.version) > -1){
-      // console.log("dont need this: " + v.version + " " + v.locationName);
-    }else{
-      html += '<div class="row filter_gameVersion_' + v .version + '">';
-      html += '<div class="locationName column">'+ v.locationName + '</div>';
-      html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
-      html += '<div class="locationLevel column">' + v.levels + '</div>';
-      html += '<div class="locationMethod column">' + v.method + '</div>';
-      html += '<div class="locationVersion column">' + v.version + '</div>';
-      html += '<div class="clearfloat"></div>';
-      html += '</div>';
+//Section: Damage Chart
+function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
+  // console.log("damage_to_type object:");
+  // console.log(DAMAGE_TO_TYPE);
+  // console.log("responsePokemon object:");
+  // console.log(responsePokemon);
+  if (responsePokemon.types.length < 2) {
+    //calculate a single type effectiveness
+    var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
+    for(key in damageObjectType1){
+      //converts decimal values to symbols
+      if (damageObjectType1[key] == 0.25) {
+        damageObjectType1[key] = "¼"
+      }else if (damageObjectType1[key] == 0.5) {
+        damageObjectType1[key] = "½"
+      };
+      //
+      $("td." + key + ".damageValueCell").html(damageObjectType1[key]);
+      //removes any existing damageRate classes from last select
+      $("td." + key + ".damageValueCell").removeClass("damageRate0");
+      $("td." + key + ".damageValueCell").removeClass("damageRate¼");
+      $("td." + key + ".damageValueCell").removeClass("damageRate½");
+      $("td." + key + ".damageValueCell").removeClass("damageRate1");
+      $("td." + key + ".damageValueCell").removeClass("damageRate2");
+      $("td." + key + ".damageValueCell").removeClass("damageRate4");
+      //adds appropriate damageRate class
+      $("td." + key + ".damageValueCell").addClass("damageRate" + damageObjectType1[key]);
     }
-  });
-//hiding generation select until we decide if we want to support additional generations
-var gameGenerationContainer = '<div id="gameGenerationContainer">';
-// gameGenerationContainer += '<select id="gameGenerationSelect" onchange="">'
-// gameGenerationContainer += '<option value="1">Generation 1</option>'
-// gameGenerationContainer += '<option value="2">Generation 2</option>'
-// gameGenerationContainer += '<option value="3">Generation 3</option>'
-// gameGenerationContainer += '<option value="4">Generation 4</option>'
-// gameGenerationContainer += '<option value="5">Generation 5</option>'
-// gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
-// gameGenerationContainer += '</select>'
-gameGenerationContainer += '</div>'
-
-var gameGeneration6 = '<div class="gameRow">';
-gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
-gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
-gameGeneration6 += '</div>'
-// gameGeneration6 += '<div class="gameRow">'
-// gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
-// gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
-// gameGeneration6 += '</div>'
-
-$('#locationContent').html(html);
-$('#locationContent').prepend(gameGenerationContainer);
-$('#gameGenerationContainer').append(gameGeneration6);
-
-//binding functions to game versions
-$('#versionx').click(function(){
-  filterGameVersion("x");
-});
-$('#versiony').click(function(){
-  filterGameVersion("y");
-});
-  // $('#versionruby').click(function(){
-  //   filterGameVersion("omega-ruby");
-  // });
-  // $('#versionsapphire').click(function(){
-  //   filterGameVersion("alpha-sapphire");
-  // });
-return;
+  }else {
+    // calculate for both
+    var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
+    var damageObjectType2 = DAMAGE_TO_TYPE[responsePokemon.types[1].type.name];
+    for(key in damageObjectType2){
+      var combinedTypeDamage = damageObjectType2[key] * damageObjectType1[key];
+      if (combinedTypeDamage == 0.25) {
+        combinedTypeDamage = "¼"
+      }else if (combinedTypeDamage == 0.5) {
+        combinedTypeDamage = "½"
+      };
+      $("td." + key + ".damageValueCell").html(combinedTypeDamage);
+      //removes any existing damageRate classes from last select
+      $("td." + key + ".damageValueCell").removeClass("damageRate0");
+      $("td." + key + ".damageValueCell").removeClass("damageRate¼");
+      $("td." + key + ".damageValueCell").removeClass("damageRate½");
+      $("td." + key + ".damageValueCell").removeClass("damageRate1");
+      $("td." + key + ".damageValueCell").removeClass("damageRate2");
+      $("td." + key + ".damageValueCell").removeClass("damageRate4");
+      //adds appropriate damageRate class
+      $("td." + key + ".damageValueCell").addClass("damageRate" + combinedTypeDamage);
+    }
+  }
 }
 
+function changeAbility(){
+  if (document.getElementById('abilityHiddenToggle').checked) {
+    damageChartModifiers($("#abilitySelect").val(),false);
+    damageChartModifiers($("#abilityHiddenModifierName").html(),true);
+  }else{
+    damageChartModifiers($("#abilitySelect").val(),false); 
+  }
+}
+
+function damageChartModifiers(modifier,isHidden){
+  //reset stats before modifying
+  if (isHidden == true) {
+    console.log("we wont reset the damage stats when applying a hidden ability as they should stack");
+  } else{
+    console.log("resetting damage stats as these abilities shouldn't stack");
+    damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon);
+  };
+  if (modifier == "dry-skin") {
+    //fire does 25% more water does 0
+    var newFireValue = $("td.fire.damageValueCell").html() * 1.25;
+    $("td.fire.damageValueCell").html(newFireValue);
+    $("td.fire.damageValueCell").addClass("damageRate" + newFireValue);
+    $("td.water.damageValueCell").html("0");
+    $("td.water.damageValueCell").addClass("damageRate0");
+  }
+  else if (modifier == "filter") {
+    //Filter reduces super effective damage by ¼.
+    //Come back to this one.
+  } else if (modifier == "flash-fire") {
+    //Makes pokemon immune to fire type moves
+    if ($("td.fire.damageValueCell").html() == "½") {
+      $("td.fire.damageValueCell").html(0.5)
+    }else if ($("td.fire.damageValueCell").html() == "¼") {
+      $("td.fire.damageValueCell").html(0.25)
+    };
+    $("td.fire.damageValueCell").html("0");
+    $("td.fire.damageValueCell").addClass("damageRate0");
+  } else if (modifier == "heatproof") {
+    //Halves the damage done by Fire type attacks.
+    console.log($("td.fire.damageValueCell").html());
+    if ($("td.fire.damageValueCell").html() == "½") {
+      $("td.fire.damageValueCell").html(0.5)
+    }else if ($("td.fire.damageValueCell").html() == "¼") {
+      $("td.fire.damageValueCell").html(0.25)
+    };
+    var newFireValue = $("td.fire.damageValueCell").html() / 2;
+    console.log("newFireValue: " + newFireValue);
+    $("td.fire.damageValueCell").html(newFireValue);
+    $("td.fire.damageValueCell").addClass("damageRate" + newFireValue);
+  } else if (modifier == "levitate") {
+    //Makes pokemon immune to ground type moves
+    $("td.ground.damageValueCell").html("0");
+    $("td.ground.damageValueCell").addClass("damageRate0");
+  } else if (modifier == "sap-sipper") {
+    //Makes pokemon immune to grass type moves
+    $("td.grass.damageValueCell").html("0");
+    $("td.grass.damageValueCell").addClass("damageRate0");
+  } else if (modifier == "solid-rock") {
+    //Solid Rock reduces super effective damage by ¼.
+    //Come back to this one.
+  } else if (modifier == "thick-fat") {
+    //Halves damage from fire and ice attacks
+    if ($("td.fire.damageValueCell").html() == "½") {
+      $("td.fire.damageValueCell").html(0.5)
+    }else if ($("td.fire.damageValueCell").html() == "¼") {
+      $("td.fire.damageValueCell").html(0.25)
+    };
+    var newFireValue = $("td.fire.damageValueCell").html() / 2;
+    $("td.fire.damageValueCell").html(newFireValue);
+    $("td.fire.damageValueCell").addClass("damageRate" + newFireValue);
+    if ($("td.ice.damageValueCell").html() == "½") {
+      $("td.ice.damageValueCell").html(0.5)
+    }else if ($("td.ice.damageValueCell").html() == "¼") {
+      $("td.ice.damageValueCell").html(0.25)
+    };
+    var newIceValue = $("td.ice.damageValueCell").html() / 2;
+    $("td.ice.damageValueCell").html(newIceValue);
+    $("td.ice.damageValueCell").addClass("damageRate" + newIceValue);
+  } else if (modifier == "volt-absorb") {
+    //Makes pokemone immune to electric attacks
+    $("td.electric.damageValueCell").html("0");
+    $("td.electric.damageValueCell").addClass("damageRate0");
+  } else if (modifier == "water-absorb") {
+    //Makes pokemone immune to water attacks
+    $("td.water.damageValueCell").html("0");
+    $("td.water.damageValueCell").addClass("damageRate0");
+  } else if (modifier == "wonder-guard") {
+    //
+  };
+};
+
+function abilityHiddenToggle(){
+  if (document.getElementById('abilityHiddenToggle').checked) {
+    //calc dmg
+    console.log("hidden ability on");
+    console.log($("#abilityHiddenToggle").val());
+    damageChartModifiers($("#abilityHiddenModifierName").html(),true);
+  }else{
+    //reset stats & calc dmg with select value
+    console.log("hidden ability off");
+    console.log($("#abilityHiddenToggle").val());
+    damageChartModifiers($("#abilitySelect").val(),false)
+  }
+};
+
+
+//Section: Moves
 function getMoveList(){
 
   var tArray = [];
@@ -370,12 +435,6 @@ function filterMoves (moves_filter) {
   }
 }
 
-function getAbilityDetail(i){
-  var nthchild = i+1
-  $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[responsePokemon.abilities[i].ability.name] );
-
-}
-
 //Section: Breeding
 //Area: Eggs
 function calculateEggSteps(cycles,steps){
@@ -430,6 +489,110 @@ function opower(steps,opowerLevel){
 
 //Section: Locations
 //Area: Encounters
+
+
+function encounterLocation(id, data){
+  console.log('encounterLocation');
+  console.log(data);
+
+  if(!data.length){
+    $('#locationContent').html('No available encounters');
+    return;
+  }
+
+  //get all the encounters details and store in a single array
+  var encounters = [];
+  $.each(data, function(index, value){
+    var item = value;
+    var locationName = item.location_area.name;
+    locationName = locationName.replace(/\-/g, ' ');
+    locationName = locationName.replace('/(area)/ig', '').trim();
+    $.each(item.version_details, function(i, v){
+      $.each(v.encounter_details, function(encounterIndex, encounterValue){
+        var levels = (encounterValue.min_level === encounterValue.max_level) ? encounterValue.min_level : encounterValue.min_level + '-' + encounterValue.max_level;
+        var encounterDetail = {
+          locationName : locationName,
+          encounterChance : encounterValue.chance,
+          levels : levels,
+          method : encounterValue.method.name,
+          version : v.version.name
+        }
+        encounters.push(encounterDetail);
+      });
+    });
+  });
+
+  encounters = encounters.sort(function(a,b){
+    var textA = a.version.toUpperCase();
+    var textB = b.version.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  });
+
+  var html = '<div class="row">';
+  html += '<div class="locationName header column">Location</div>';
+  html += '<div class="locationChance header column">Chance</div>';
+  html += '<div class="locationLevel header column">Level</div>';
+  html += '<div class="locationMethod header column">Method</div>';
+  html += '<div class="locationVersion header column">Version</div>';
+  html += '<div class="clearfloat"></div>';
+  html += '</div>';
+
+  //display info
+  $.each(encounters, function(i,v){
+    if (VERSION_GEN1.indexOf(v.version) > -1 || VERSION_GEN2.indexOf(v.version) > -1 || VERSION_GEN3.indexOf(v.version) > -1 || VERSION_GEN4.indexOf(v.version) > -1 || VERSION_GEN5.indexOf(v.version) > -1){
+      // console.log("dont need this: " + v.version + " " + v.locationName);
+    }else{
+      html += '<div class="row filter_gameVersion_' + v .version + '">';
+      html += '<div class="locationName column">'+ v.locationName + '</div>';
+      html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
+      html += '<div class="locationLevel column">' + v.levels + '</div>';
+      html += '<div class="locationMethod column">' + v.method + '</div>';
+      html += '<div class="locationVersion column">' + v.version + '</div>';
+      html += '<div class="clearfloat"></div>';
+      html += '</div>';
+    }
+  });
+//hiding generation select until we decide if we want to support additional generations
+var gameGenerationContainer = '<div id="gameGenerationContainer">';
+// gameGenerationContainer += '<select id="gameGenerationSelect" onchange="">'
+// gameGenerationContainer += '<option value="1">Generation 1</option>'
+// gameGenerationContainer += '<option value="2">Generation 2</option>'
+// gameGenerationContainer += '<option value="3">Generation 3</option>'
+// gameGenerationContainer += '<option value="4">Generation 4</option>'
+// gameGenerationContainer += '<option value="5">Generation 5</option>'
+// gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
+// gameGenerationContainer += '</select>'
+gameGenerationContainer += '</div>'
+
+var gameGeneration6 = '<div class="gameRow">';
+gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
+gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
+gameGeneration6 += '</div>'
+// gameGeneration6 += '<div class="gameRow">'
+// gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
+// gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
+// gameGeneration6 += '</div>'
+
+$('#locationContent').html(html);
+$('#locationContent').prepend(gameGenerationContainer);
+$('#gameGenerationContainer').append(gameGeneration6);
+
+//binding functions to game versions
+$('#versionx').click(function(){
+  filterGameVersion("x");
+});
+$('#versiony').click(function(){
+  filterGameVersion("y");
+});
+  // $('#versionruby').click(function(){
+  //   filterGameVersion("omega-ruby");
+  // });
+  // $('#versionsapphire').click(function(){
+  //   filterGameVersion("alpha-sapphire");
+  // });
+return;
+}
+
 function filterGameVersion(gameVersion){
   if ($( ".filter_gameVersion_" + gameVersion ).hasClass("hidden")) {
     console.log("showing game version row" + gameVersion);

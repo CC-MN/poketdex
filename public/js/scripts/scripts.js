@@ -84,6 +84,76 @@ $(document).ready(function(){
 		getAbilityDetail(i);
 	};
 
+
+	//type chart scripts
+	damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon);
+	//moved the below to function.js, keeping short-term for reference
+	// if (responsePokemon.types.length < 2) {
+	// 	//calculate a single type effectiveness
+	// 	var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
+	// 	for(key in damageObjectType1){
+	// 		//converts decimal values to symbols
+	// 		if (damageObjectType1[key] == 0.25) {
+	// 			damageObjectType1[key] = "¼"
+	// 		}else if (damageObjectType1[key] == 0.5) {
+	// 			damageObjectType1[key] = "½"
+	// 		};
+	// 		$("td." + key + ".damageValueCell").html(damageObjectType1[key]);
+	// 	}
+	// }else {
+	// 	// calculate for both
+	// 	var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
+	// 	var damageObjectType2 = DAMAGE_TO_TYPE[responsePokemon.types[1].type.name];
+	// 	for(key in damageObjectType2){
+	// 		var combinedTypeDamage = damageObjectType2[key] * damageObjectType1[key];
+	// 		if (combinedTypeDamage == 0.25) {
+	// 			combinedTypeDamage = "¼"
+	// 		}else if (combinedTypeDamage == 0.5) {
+	// 			combinedTypeDamage = "½"
+	// 		};
+	// 		$("td." + key + ".damageValueCell").html(combinedTypeDamage);
+	// 		$("td." + key + ".damageValueCell").addClass("damageRate" + combinedTypeDamage);
+	// 	}
+	// }
+	console.log("number of abilities: " + responsePokemon.abilities.length);
+	var damageChartAbilities = [];
+	var damageChartAbilitiesHidden = [];
+	for (var i = 0; i < responsePokemon.abilities.length; i++) {
+		console.log(responsePokemon.abilities[i].ability.name);
+		if (responsePokemon.abilities[i].ability.name == "dry-skin" ||
+			responsePokemon.abilities[i].ability.name == "filter" ||
+			responsePokemon.abilities[i].ability.name == "flash-fire" ||
+			responsePokemon.abilities[i].ability.name == "heatproof" ||
+			responsePokemon.abilities[i].ability.name == "levitate" ||
+			responsePokemon.abilities[i].ability.name == "sap-sipper" ||
+			responsePokemon.abilities[i].ability.name == "solid-rock" ||
+			responsePokemon.abilities[i].ability.name == "thick-fat" ||
+			responsePokemon.abilities[i].ability.name == "volt-absorb" ||
+			responsePokemon.abilities[i].ability.name == "water-absorb") {
+			if (responsePokemon.abilities[i].is_hidden == true) {
+				damageChartAbilitiesHidden.push(responsePokemon.abilities[i].ability.name);
+				$("#abilityHiddenModifierName").html(responsePokemon.abilities[i].ability.name);
+			}else{
+				damageChartAbilities.push(responsePokemon.abilities[i].ability.name)
+				$("#abilitySelect").append("<option value='" + responsePokemon.abilities[i].ability.name + "'>" + responsePokemon.abilities[i].ability.name + "</option>");
+			}
+		};
+	};
+	console.log("chart abilities: " + damageChartAbilities);
+	if (damageChartAbilities.length < 1 && damageChartAbilitiesHidden < 1) {
+		$("#damageControls").addClass("hidden");		
+	} else if (damageChartAbilities.length < 1) {
+		$("#abilityModifier").addClass("hidden");
+	} else if (damageChartAbilitiesHidden.length < 1) {
+		$("#abilityHiddenModifier").addClass("hidden");
+	};
+	if (damageChartAbilities.length >= 1) {
+		//binding modify function to select
+		$('#abilitySelect').change(function(){
+			changeAbility();
+		});
+	};
+
 	//evolution scripts
 	
 
