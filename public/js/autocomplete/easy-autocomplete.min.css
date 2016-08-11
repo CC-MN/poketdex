@@ -11,10 +11,10 @@
 /*# sourceMappingURL=easy-autocomplete.min.css.map */
 @media screen and (max-width:1024px){
 	#searchContainer{
-		margin-top:6px;
+		margin-top:6%;
 	}
 	.easy-autocomplete-container {
-		margin-top:6px;
+		margin-top:6%;
 	}
 	.easy-autocomplete.eac-square ul{
 		margin-top:6%;
