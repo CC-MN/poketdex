@@ -53,8 +53,8 @@ nav{
 #topBar {
 	/*border: 1px solid green;*/
 	width: 100%;
-	/*min-height:5%;*/
-	height:6%;
+	min-height:5%;
+	/*height:6%;*/
 	background-color: white;
 	left: auto;
 	right: auto;
