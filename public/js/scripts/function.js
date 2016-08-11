@@ -49,18 +49,29 @@ function closeNav() {
 }
 
 function pokemonAutoComplete() {
+
   $.each(responsePokemonNames.results, function(index, value){
     var name = value.name;
     POKEMON_NAMES.push(name);
   });
-  $('#pokemonSearchBox').autocomplete({ 
-    source : POKEMON_NAMES,
-    change : function(event, ui){
-      if(ui.item){
-        changePokemon(ui.item.value);
+  var options = {
+    data        :   POKEMON_NAMES,
+    theme       :   'square',
+    adjustWidth : false,
+
+    list        :   {
+      match          : {
+        enabled: true
+      },
+      onChooseEvent   :   function(){
+        var pokemonName = $("#pokemonSearchBox").getSelectedItemData();
+        changePokemon(pokemonName);
       }
-    } 
-  })
+    }
+  }
+
+  $('#pokemonSearchBox').easyAutocomplete(options);
+
 }
 
 function selectPokemon(pokemonID) {

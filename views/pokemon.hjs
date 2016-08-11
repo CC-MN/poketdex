@@ -6,12 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel='stylesheet' href='/stylesheets/types.css' />
-	<link rel='stylesheet' href='/stylesheets/jquery-ui.min.css' />
+	<link rel='stylesheet' href='/js/autocomplete/easy-autocomplete.min.css' />
+	<link rel='stylesheet' href='/js/autocomplete/easy-autocomplete.themes.min.css' />
 	<link rel="shortcut icon" href="/images/app/favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="/images/app/ios-icon.png">
 	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/jquery/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/chartjs/chartbundle.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="/js/scripts/typeEffectiveness.js"></script>
 	<script type="text/javascript" src="/js/scripts/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/sorttable.js"></script>
+	<script type="text/javascript" src="/js/autocomplete/jquery.easy-autocomplete.min.js"></script>
 	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
 	<script type="text/javascript">
 	var responsePokemon = {{& pokemonResponseString }};
@@ -59,11 +60,11 @@
 		</nav>
 	</header>
 	<!-- Hidden -->
-	<select id="pokedexList" name="pokemon" class ="" onchange="selectPokemon(this.value)">
-	</select>
+	<!-- <select id="pokedexList" name="pokemon" class ="" onchange="selectPokemon(this.value)">
+	</select> -->
 	<!-- Hidden -->
 	<div id="searchContainer" class="hidden">
-		<input id="pokemonSearchBox" onchange="changePokemon(this.value)">
+		<input id="pokemonSearchBox" placeholder="Enter Pokemon Name" onchange="changePokemon(this.value)">
 	</div>
 	<div class="container">		
 		<div class="pokemon">
