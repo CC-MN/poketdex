@@ -24,12 +24,16 @@ function renderContent(id){
 
 	Pokedex.getJSON(Pokedex.getPokemon(id))
 	.then(function(response){
+
+		errorHandling(response);
+
 		//get pokemon info
 		CONTENT.pokemonResponse = response;
 		CONTENT.pokemonResponseString = JSON.stringify(response);
 		return Pokedex.getJSON(Pokedex.getSpecies(id));
 	})
 	.then(function(response){
+
 		//get species info
 		CONTENT.pokemonSpeciesData = response;
 		CONTENT.pokemonSpeciesDataString = JSON.stringify(response);
@@ -38,11 +42,26 @@ function renderContent(id){
 		return Pokedex.getJSON(Pokedex.getPokemon('?limit=999'));
 		
 	}).then(function(response){
+
 		CONTENT.allPokemonNames = response;
 		CONTENT.allPokemonNamesString = JSON.stringify(response);
 
-		RES.render('pokemon', CONTENT);
+		if(response.type !== 'err'){
+			RES.render('pokemon', CONTENT);
+		}
+
 	});
 
 }
+
+function errorHandling(response){
+	if(response.type === 'err'){
+		if(RES.headersSent){
+			//return next(response);
+		}
+		RES.status(response.status);
+		RES.render('error', {err : response.err, message : response.message, response: response.err });
+	}
+}
+
 module.exports = router;

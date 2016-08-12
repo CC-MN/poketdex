@@ -44,8 +44,15 @@ Pokedex.prototype = {
 			return response;
 		})
 		.catch(function(err){
-			console.log(err);
-			throw error;
+			//console.log(err);
+			//throw err;
+			var error = {
+				err : err, 
+				status : 500,
+				type : 'err',
+				message : 'PokeAPI Issue'
+			}
+			return error;
 		});
 	}
 
