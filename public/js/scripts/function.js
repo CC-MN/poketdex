@@ -171,12 +171,90 @@ function getAbilityDetail(i){
 function evolutionChain(id, data){
   console.log('evolutionChain');
   console.log(data);
-
-  var evolutionChain = data.chain.evolves_to;
+  
   if(!data.chain.evolves_to){
     $('#evolutionChainContent').html('No evolution available');
     return;
   }
+
+  var evolutionChain = data.chain.evolves_to;
+  var evolutionMap = [];
+
+  $('#evolutionChainContent').html('<div class="column"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></div>');
+  $.each(evolutionChain, function(i, v){
+
+    var evolutionInformation = v;
+    console.log(evolutionInformation);
+    buildEvolutionContent('chain-1', evolutionInformation);
+    //check to see if they have a third form
+    if(v.evolves_to.length === 0){
+      return true; //skip iteration
+    }
+
+    $.each(v.evolves_to, function(i2, v2){
+
+      var evolutionInformation = v2;
+      buildEvolutionContent('chain-2', evolutionInformation);
+
+    });
+
+  });
+
+  $('#evolutionChainContent').append('<div class="clearfloat"></div>');
+
+  //count how many columns we have to dynamically set the width
+  var columnAmount = $('#evolutionChainContent .column').length;
+  $('#evolutionChainContent .column').css({
+    'width' : (90 / parseInt(columnAmount))+'%'
+  });
+
+  return;
+
+}
+
+function getIDFromSpeciesURL(url){
+  var id = url.replace(/(.*)pokemon\-species\/(.*)\//, '$2');
+  return id;
+}
+
+function buildEvolutionContent(className, evolutionInformation){
+
+  //check to see if it is level, item or location
+  var evolutionDetail = evolutionInformation.evolution_details[0];
+
+  var evolutionType = (evolutionDetail.item) ? evolutionDetail.item.name : null;
+  evolutionType = (!evolutionType && evolutionDetail.location) ? evolutionDetail.location.name : evolutionType;
+  evolutionType = (!evolutionType) ? 'Level: ' + evolutionDetail.min_level : evolutionType; 
+
+  //potentially happiness required and time of day (pesky eevee's!)
+  evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : evolutionType;
+  evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : evolutionType;
+
+  var evolutionTime = (evolutionDetail.time_of_day !== '') ? 'At: ' + evolutionDetail.time_of_day : null;
+
+  var evolutionName = evolutionInformation.species.name;
+  var evolutionURL = evolutionInformation.species.url;
+
+  //dump out pokemon data here
+  var content = {
+    evolutionType : evolutionType,
+    evolutionName : evolutionName,
+    evolutionURL : evolutionURL,
+    evolutionTime : evolutionTime
+  }
+
+  if($('#evolutionChainContent').find('.' + className).length === 0){
+    $('#evolutionChainContent').append('<div class="column '+ className +'"></div>');
+  }
+
+  $('#evolutionChainContent .' + className).append('<div class="pokemon">');
+  $('#evolutionChainContent .' + className).append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '.png" />');
+  $('#evolutionChainContent .' + className).append('<div class="evolutionName">' + content.evolutionName + ' </div>');
+  $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
+  if(evolutionTime){
+    $('#evolutionChainContent .' + className).append('<div class="evolutionTime">' + content.evolutionTime + ' </div>');
+  }
+  $('#evolutionChainContent .' + className).append('</div>');
 
 }
 

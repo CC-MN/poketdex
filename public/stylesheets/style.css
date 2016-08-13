@@ -295,12 +295,19 @@ nav{
 
 #evolutionChainContent{
 	text-align: center;
+	margin-bottom:20px;
 }
 #evolutionChainContent img{
 	height:200px;
 	width:auto;
 }
-
+#evolutionChainContent .column{
+	float:left;
+}
+#evolutionChainContent .column img{
+	width:120px;
+	height:120px;
+}
 .damageChartCell{
 	width: 18px;
 	max-width: 18px !important;
