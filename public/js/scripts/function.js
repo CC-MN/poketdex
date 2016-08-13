@@ -178,9 +178,14 @@ function evolutionChain(id, data){
   }
 
   var evolutionChain = data.chain.evolves_to;
+
   var evolutionMap = [];
 
-  $('#evolutionChainContent').html('<div class="column"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></div>');
+  $('#evolutionChainContent').html('<div class="column"></div>');
+  $('#evolutionChainContent .column').append('<div class="pokemon">');
+  $('#evolutionChainContent .column').append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" />');
+  $('#evolutionChainContent .column').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
+  $('#evolutionChainContent .column').append('</div>');
   $.each(evolutionChain, function(i, v){
 
     var evolutionInformation = v;
