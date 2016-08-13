@@ -723,14 +723,3 @@ function buildChart(barChartData) {
     }
   });
 };
-
-/***************************************
-            Helper Functions
-            ***************************************/
-            function test() {
-              alert('test completed');
-            }
-
-            function printVar(val) {
-              console.log(val);
-            }
