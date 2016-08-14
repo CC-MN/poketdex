@@ -90,7 +90,7 @@
 			<!-- Section: Evolution Chain -->
 			<section>
 				<div id="evolutionChainTitle" class="tab evolutionChainContent request">
-					<span>Evolution Chain</span>
+					<span>Evolution &amp; Forms</span>
 					<div class="iconContainer">
 						<button class="buttonController">+</button>
 					</div>

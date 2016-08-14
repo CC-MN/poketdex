@@ -171,11 +171,6 @@ function getAbilityDetail(i){
 function evolutionChain(id, data){
   console.log('evolutionChain');
   console.log(data);
-
-  if (data.baby_trigger_item) {
-    console.log("hey craig: " + data.baby_trigger_item.name);
-    $('.evolutionName').append(' ' + data.baby_trigger_item.name + ' ');
-  };
   
   if(!data.chain.evolves_to){
     $('#evolutionChainContent').html('No evolution available');
@@ -185,9 +180,11 @@ function evolutionChain(id, data){
   var evolutionChain = data.chain.evolves_to;
 
   var evolutionMap = [];
+  //this will contain a sprite toggle to show shinys
+  $('#evolutionChainContent').html('<div class="row"></div>');
 
-  //builds a column for each pokemon in the chain
-  $('#evolutionChainContent').html('<div class="column"></div>');
+  //builds a column for first pokemon in the chain
+  $('#evolutionChainContent').append('<div class="column"></div>');
   $('#evolutionChainContent .column').append('<div class="pokemon">');
   $('#evolutionChainContent .column').append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" />');
   $('#evolutionChainContent .column').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
@@ -214,23 +211,49 @@ function evolutionChain(id, data){
       buildEvolutionContent('chain-2', evolutionInformation);
 
     });
-
   });
 
   $('#evolutionChainContent').append('<div class="clearfloat"></div>');
+  
+  //add mega evolutions if present
+  $('#evolutionChainContent').append('<div class="row hidden" id ="megaEvolution">');
+  $('#megaEvolution').append('<div class="tab leftAlign">Mega Evolution</div>')
+  $('#evolutionChainContent').append('</div>');
+  $('#megaEvolution').append('<div id="megaEvolutionContainer"></div>')
+  if (responsePokemonSpecies.forms_switchable == true) {
+    for (var i = 0; i < responsePokemonSpecies.varieties.length; i++) {
+      if (responsePokemonSpecies.varieties[i].pokemon.name.indexOf('mega') > 0) {
+        $('#megaEvolution').removeClass('hidden');
+        console.log("mega evolution " + responsePokemonSpecies.varieties[i].pokemon.name);
+        $('#megaEvolutionContainer').append('<div class="column2"></div>');
+        $('#megaEvolutionContainer .column2').append('<div class="pokemon">');
+        var megaName = responsePokemonSpecies.varieties[i].pokemon.name.replace(responsePokemon.name, '');
+        console.log(megaName);
+        $('#megaEvolutionContainer .column2').append('<img src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" />');
+        $('#megaEvolutionContainer .column2').append('<div class="evolutionName">' + responsePokemonSpecies.varieties[i].pokemon.name + '</div>');
+        $('#megaEvolutionContainer .column2').append('</div>');
+        // console.log("mega evolutions yo")
+        // $('#evolutionChainContent').append('<div class="row" id ="megaEvolution">');
+        // $('#megaEvolution').append('<div class="tab leftAlign">Mega Evolution</div>')
+        // $('#evolutionChainContent').append('</div>');
+      };
+    };
+  }
 
   //count how many columns we have to dynamically set the width
   var columnAmount = $('#evolutionChainContent .column').length;
   $('#evolutionChainContent .column').css({
-    'width' : (90 / parseInt(columnAmount))+'%'
+    'width' : (85 / parseInt(columnAmount))+'%'
   });
-
   return;
-
 }
 
 function getIDFromSpeciesURL(url){
   var id = url.replace(/(.*)pokemon\-species\/(.*)\//, '$2');
+  return id;
+}
+function getIDFromPokemonURL(url){
+  var id = url.replace(/(.*)pokemon\/(.*)\//, '$2');
   return id;
 }
 

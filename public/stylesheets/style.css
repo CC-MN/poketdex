@@ -257,6 +257,7 @@ nav{
     	border-top: 1px solid #818181;
     	position: relative;
     	font-size: 20px;
+    	text-align: left;
     }
 
     section:nth-of-type(1) .tab{
@@ -293,7 +294,7 @@ nav{
 	float: left;
 }
 
-#evolutionChainContent{
+#evolutionChainContent, #megaEvolutionContainer{
 	text-align: center;
 	margin-bottom:20px;
 }
@@ -309,7 +310,7 @@ nav{
 	background-color: #CCCCCC;
 }*/
 
-#evolutionChainContent .column img{
+#evolutionChainContent .column img, #megaEvolutionContainer .column2 img{
 	width:120px;
 	height:120px;
 }
