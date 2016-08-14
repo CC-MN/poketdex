@@ -303,10 +303,19 @@ nav{
 }
 #evolutionChainContent .column{
 	float:left;
+	padding: 0px 2% 0px 2%;
 }
+/*#evolutionChainContent .column:nth-of-type(even){
+	background-color: #CCCCCC;
+}*/
+
 #evolutionChainContent .column img{
 	width:120px;
 	height:120px;
+}
+.evolutionItem img{
+	height: 16px !important;
+	width: auto !important;
 }
 .damageChartCell{
 	width: 18px;

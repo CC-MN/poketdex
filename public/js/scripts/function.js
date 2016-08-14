@@ -171,6 +171,11 @@ function getAbilityDetail(i){
 function evolutionChain(id, data){
   console.log('evolutionChain');
   console.log(data);
+
+  if (data.baby_trigger_item) {
+    console.log("hey craig: " + data.baby_trigger_item.name);
+    $('.evolutionName').append(' ' + data.baby_trigger_item.name + ' ');
+  };
   
   if(!data.chain.evolves_to){
     $('#evolutionChainContent').html('No evolution available');
@@ -181,11 +186,18 @@ function evolutionChain(id, data){
 
   var evolutionMap = [];
 
+  //builds a column for each pokemon in the chain
   $('#evolutionChainContent').html('<div class="column"></div>');
   $('#evolutionChainContent .column').append('<div class="pokemon">');
   $('#evolutionChainContent .column').append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" />');
   $('#evolutionChainContent .column').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
+  //if a baby pokemon that requires a trigger item, include that
+  if (data.baby_trigger_item) {
+    $('.evolutionName').append('<div class="babyTriggerItem">(Hatch by breeding parents holding ' + data.baby_trigger_item.name + ')</div>');
+  };
+  //close off pokemon column
   $('#evolutionChainContent .column').append('</div>');
+
   $.each(evolutionChain, function(i, v){
 
     var evolutionInformation = v;
@@ -227,25 +239,99 @@ function buildEvolutionContent(className, evolutionInformation){
   //check to see if it is level, item or location
   var evolutionDetail = evolutionInformation.evolution_details[0];
 
-  var evolutionType = (evolutionDetail.item) ? evolutionDetail.item.name : null;
-  evolutionType = (!evolutionType && evolutionDetail.location) ? evolutionDetail.location.name : evolutionType;
-  evolutionType = (!evolutionType) ? 'Level: ' + evolutionDetail.min_level : evolutionType; 
+  // var evolutionType = (evolutionDetail.item) ? evolutionDetail.item.name : null;
+  //accounts for trade based (and trade w/ item) evolutions:
+  // evolutionType = (!evolutionType && evolutionDetail.trigger.name == "trade" && evolutionDetail.held_item != null) ? evolutionDetail.trigger.name + " while holding " + evolutionDetail.held_item.name : evolutionType;
+  // evolutionType = (!evolutionType && evolutionDetail.trigger.name == "trade") ? evolutionDetail.trigger.name : evolutionType;
+
+  //evolutions triggered by levelling up in location
+  // evolutionType = (!evolutionType && evolutionDetail.location) ? evolutionDetail.location.name : evolutionType;
+
+  //if beauty is required
+  // evolutionType = (!evolutionType && evolutionDetail.min_beauty) ? 'Min Beauty: ' + evolutionDetail.min_beauty : evolutionType;
 
   //potentially happiness required and time of day (pesky eevee's!)
-  evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : evolutionType;
-  evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : evolutionType;
+  // evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : evolutionType;
+  // evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : evolutionType;
 
-  var evolutionTime = (evolutionDetail.time_of_day !== '') ? 'At: ' + evolutionDetail.time_of_day : null;
+  //evolution based on having another pokemon in party
+  // evolutionType = (!evolutionType && evolutionDetail.party_species != null) ? 'with ' + evolutionDetail.party_species.name + ' in party' : null;
 
+  //evolution based on trading for a specific pokemon
+  // evolutionType = (!evolutionType && evolutionDetail.trade_species != null) ? 'trade for a ' + evolutionDetail.trade_species.name : null;
+
+  //if a pokemon evolves at a specific level
+  // evolutionType = (!evolutionType && evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : evolutionType;
+  //lowest common denominator should go last - print the trigger method
+  // evolutionType = (!evolutionType) ? '' : evolutionType;
+
+  //checks if evolution is gender based and sets appropriate gender requirement
+  if (evolutionDetail.gender != null) {
+    if (evolutionDetail.gender == 1) {
+      var evolutionGender = "Gender: Female";
+    } else if (evolutionDetail.gender == 2) {
+      var evolutionGender = "Gender: Male"
+    }
+  }
+
+  //checks if evolution is based on stats and provides information on conditions
+  if (evolutionDetail.relative_physical_stats != null) {
+    if (evolutionDetail.relative_physical_stats > 0) {
+      var evolutionStats = 'With Attack > Defense'
+    } else if (evolutionDetail.relative_physical_stats < 0) {
+      var evolutionStats = 'With Defense > Attack'
+    } else {
+      var evolutionStats = 'When Attack = Defense'
+    }
+  }
+
+  var evolutionItem = (evolutionDetail.item) ? evolutionDetail.item.name : null;
+  var evolutionLevel = (evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : null;
+  var evolutionLocation = (evolutionDetail.location) ? 'at ' + evolutionDetail.location.name : null;
+  var evolutionBeauty = (evolutionDetail.min_beauty) ? 'Min Beauty: ' + evolutionDetail.min_beauty : null;
+  var evolutionHappiness = (evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : null;
+  var evolutionAffection = (evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : null;
+  var evolutionPartySpecies = (evolutionDetail.party_species != null) ? 'with ' + evolutionDetail.party_species.name + ' in party' : null;
+  var evolutionPartySpeciesType = (evolutionDetail.party_type != null) ? 'with a ' + evolutionDetail.party_type.name + '-type in party' : null;
+  var evolutionTradeSpecies = (evolutionDetail.trade_species != null) ? 'trade for a ' + evolutionDetail.trade_species.name : null;
+  var evolutionTime = (evolutionDetail.time_of_day !== '') ? 'during ' + evolutionDetail.time_of_day : null;
+  var evolutionHeldItem = (evolutionDetail.held_item != null) ? 'while holding ' + evolutionDetail.held_item.name : null;
+  var evolutionAttack = (evolutionDetail.known_move != null) ? 'knows ' + evolutionDetail.known_move.name : null;
+  var evolutionAttackType = (evolutionDetail.known_move_type != null) ? 'knows a ' + evolutionDetail.known_move_type.name + '-type move' : null;
+  var evolutionWeather = (evolutionDetail.needs_overworld_rain == true) ? 'in the rain' : null;
+  var evolutionConsoleState = (evolutionDetail.turn_upside_down == true) ? 'turn 3DS upside-down' : null;
   var evolutionName = evolutionInformation.species.name;
   var evolutionURL = evolutionInformation.species.url;
+  var evolutionTrigger = evolutionDetail.trigger.name;
+
+  //builds baby trigger info, but that shouldnt sit here
+  // if (evolutionInformation.is_baby == true && evolutionInformation.baby_trigger_item != null) {
+  //   evolutionTrigger = 'Triggered by breeding parents holding' + evolutionInformation.baby_trigger_item.name;
+  // }
 
   //dump out pokemon data here
   var content = {
-    evolutionType : evolutionType,
+    // evolutionType : evolutionType,
+    evolutionTrigger : evolutionTrigger,
     evolutionName : evolutionName,
     evolutionURL : evolutionURL,
-    evolutionTime : evolutionTime
+    evolutionItem : evolutionItem,
+    evolutionLevel : evolutionLevel,
+    evolutionLocation : evolutionLocation,
+    evolutionTime : evolutionTime,
+    evolutionHeldItem : evolutionHeldItem,
+    evolutionAttack : evolutionAttack,
+    evolutionAttackType : evolutionAttackType,
+    evolutionWeather : evolutionWeather,
+    evolutionConsoleState : evolutionConsoleState,
+    evolutionStats : evolutionStats,
+    evolutionBeauty : evolutionBeauty,
+    evolutionHappiness : evolutionHappiness,
+    evolutionAffection : evolutionAffection,
+    evolutionPartySpecies : evolutionPartySpecies,
+    evolutionPartySpeciesType : evolutionPartySpeciesType,
+    evolutionTradeSpecies : evolutionTradeSpecies,
+    evolutionGender : evolutionGender
   }
 
   if($('#evolutionChainContent').find('.' + className).length === 0){
@@ -255,9 +341,58 @@ function buildEvolutionContent(className, evolutionInformation){
   $('#evolutionChainContent .' + className).append('<div class="pokemon">');
   $('#evolutionChainContent .' + className).append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '.png" />');
   $('#evolutionChainContent .' + className).append('<div class="evolutionName">' + content.evolutionName + ' </div>');
-  $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
+  $('#evolutionChainContent .' + className).append('<div class="evolutionTrigger">' + content.evolutionTrigger + ' </div>');
+  // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
+  if (evolutionItem) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionItem"><a href="/item/' + content.evolutionItem + '">' + content.evolutionItem + ' <img src="/images/dex/item/' + content.evolutionItem + '.png"></a></div>');
+  } 
+  if (evolutionLevel) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionLevel">' + content.evolutionLevel + ' </div>');
+  }
+  if (evolutionLocation) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionLocation">' + content.evolutionLocation + ' </div>');
+  } 
   if(evolutionTime){
     $('#evolutionChainContent .' + className).append('<div class="evolutionTime">' + content.evolutionTime + ' </div>');
+  }
+  if (evolutionHeldItem) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionHeldItem">' + content.evolutionHeldItem + ' </div>');
+  }
+  if (evolutionAttack) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionAttack">' + content.evolutionAttack + ' </div>');
+  }
+  if (evolutionAttackType) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionAttackType">' + content.evolutionAttackType + ' </div>');
+  }
+  if (evolutionWeather) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionWeather">' + content.evolutionWeather + ' </div>');
+  }
+  if (evolutionConsoleState) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionConsoleState">' + content.evolutionConsoleState + ' </div>');
+  } 
+  if (evolutionStats) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionStats">' + content.evolutionStats + ' </div>');
+  }
+  if (evolutionBeauty) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionBeauty">' + content.evolutionBeauty + ' </div>');
+  } 
+  if (evolutionHappiness) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionHappiness">' + content.evolutionHappiness + ' </div>');
+  }
+  if (evolutionAffection) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionAffection">' + content.evolutionAffection + ' </div>');
+  }
+  if (evolutionPartySpecies) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionPartySpecies">' + content.evolutionPartySpecies + ' </div>');
+  }
+  if (evolutionPartySpeciesType) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionPartySpeciesType">' + content.evolutionPartySpeciesType + ' </div>');
+  } 
+  if (evolutionTradeSpecies) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionTradeSpecies">' + content.evolutionTradeSpecies + ' </div>');
+  }
+  if (evolutionGender) {
+    $('#evolutionChainContent .' + className).append('<div class="evolutionGender">' + content.evolutionGender + ' </div>');
   }
   $('#evolutionChainContent .' + className).append('</div>');
 
