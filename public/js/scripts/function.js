@@ -186,7 +186,7 @@ function evolutionChain(id, data){
   //builds a column for first pokemon in the chain
   $('#evolutionChainContent').append('<div class="column"></div>');
   $('#evolutionChainContent .column').append('<div class="pokemon">');
-  $('#evolutionChainContent .column').append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" />');
+  $('#evolutionChainContent .column').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
   $('#evolutionChainContent .column').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
   //if a baby pokemon that requires a trigger item, include that
   if (data.baby_trigger_item) {
@@ -229,7 +229,7 @@ function evolutionChain(id, data){
         $('#megaEvolutionContainer .column2').append('<div class="pokemon">');
         var megaName = responsePokemonSpecies.varieties[i].pokemon.name.replace(responsePokemon.name, '');
         console.log(megaName);
-        $('#megaEvolutionContainer .column2').append('<img src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" />');
+        $('#megaEvolutionContainer .column2').append('<a href="/pokemon/' + getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>');
         $('#megaEvolutionContainer .column2').append('<div class="evolutionName">' + responsePokemonSpecies.varieties[i].pokemon.name + '</div>');
         $('#megaEvolutionContainer .column2').append('</div>');
         // console.log("mega evolutions yo")
@@ -261,32 +261,6 @@ function buildEvolutionContent(className, evolutionInformation){
 
   //check to see if it is level, item or location
   var evolutionDetail = evolutionInformation.evolution_details[0];
-
-  // var evolutionType = (evolutionDetail.item) ? evolutionDetail.item.name : null;
-  //accounts for trade based (and trade w/ item) evolutions:
-  // evolutionType = (!evolutionType && evolutionDetail.trigger.name == "trade" && evolutionDetail.held_item != null) ? evolutionDetail.trigger.name + " while holding " + evolutionDetail.held_item.name : evolutionType;
-  // evolutionType = (!evolutionType && evolutionDetail.trigger.name == "trade") ? evolutionDetail.trigger.name : evolutionType;
-
-  //evolutions triggered by levelling up in location
-  // evolutionType = (!evolutionType && evolutionDetail.location) ? evolutionDetail.location.name : evolutionType;
-
-  //if beauty is required
-  // evolutionType = (!evolutionType && evolutionDetail.min_beauty) ? 'Min Beauty: ' + evolutionDetail.min_beauty : evolutionType;
-
-  //potentially happiness required and time of day (pesky eevee's!)
-  // evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : evolutionType;
-  // evolutionType = (!evolutionDetail.min_level && evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : evolutionType;
-
-  //evolution based on having another pokemon in party
-  // evolutionType = (!evolutionType && evolutionDetail.party_species != null) ? 'with ' + evolutionDetail.party_species.name + ' in party' : null;
-
-  //evolution based on trading for a specific pokemon
-  // evolutionType = (!evolutionType && evolutionDetail.trade_species != null) ? 'trade for a ' + evolutionDetail.trade_species.name : null;
-
-  //if a pokemon evolves at a specific level
-  // evolutionType = (!evolutionType && evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : evolutionType;
-  //lowest common denominator should go last - print the trigger method
-  // evolutionType = (!evolutionType) ? '' : evolutionType;
 
   //checks if evolution is gender based and sets appropriate gender requirement
   if (evolutionDetail.gender != null) {
@@ -362,7 +336,7 @@ function buildEvolutionContent(className, evolutionInformation){
   }
 
   $('#evolutionChainContent .' + className).append('<div class="pokemon">');
-  $('#evolutionChainContent .' + className).append('<img src="/images/dex/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '.png" />');
+  $('#evolutionChainContent .' + className).append('<a href="/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '.png" /></a>');
   $('#evolutionChainContent .' + className).append('<div class="evolutionName">' + content.evolutionName + ' </div>');
   $('#evolutionChainContent .' + className).append('<div class="evolutionTrigger">' + content.evolutionTrigger + ' </div>');
   // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
