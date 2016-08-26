@@ -13,7 +13,6 @@
 	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
-	<script type="text/javascript" src="/js/chartjs/chartbundle.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokedexList.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemonMoves.js"></script>
 	<script type="text/javascript" src="/js/scripts/abilities.js"></script>
@@ -355,7 +354,7 @@
 							{{/pokemonSpeciesData.egg_groups}}
 						</div>
 						<div id="hatchingTitle">Steps To Hatch Egg:</div>
-						<div class="baseChart">
+						<div id="stepsChart" class="baseChart">
 							<div id="totalSteps"></div>
 						</div>
 						<div id="hatchingContainer" class="row">
@@ -434,7 +433,43 @@
 							<option value="lonely">Lonely</option>
 							<option value="brave">Brave</option>
 						</select> -->
-						<canvas id="canvas"></canvas>
+						<div class="row">
+							<div class="statName statHP column">HP</div>
+							<div class="statChartContainer statHP column">
+								<div id="statHP" class="statChart statHP">100</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="statName statAttack column">Attack</div>
+							<div class="statChartContainer statAttack column">
+								<div id="statAttack" class="statChart statAttack">100</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="statName statDefense column">Defense</div>
+							<div class="statChartContainer statDefense column">
+								<div id="statDefense" class="statChart statDefense">100</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="statName statSpAttack column">Sp. Attack</div>
+							<div class="statChartContainer statSpAttack column">
+								<div id="statSpAttack" class="statChart statSpAttack">100</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="statName statSpDefense column">Sp. Defense</div>
+							<div class="statChartContainer statSpDefense column">
+								<div id="statSpDefense" class="statChart statSpDefense">100</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="statName statSpeed column">Speed</div>
+							<div class="statChartContainer statSpeed column">
+								<div id="statSpeed" class="statChart statSpeed">100</div>
+							</div>
+						</div>
+
 					</div>
 				</section>
 				<!-- sample section below -->

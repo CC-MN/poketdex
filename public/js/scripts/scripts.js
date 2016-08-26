@@ -180,6 +180,7 @@ $(document).ready(function(){
 		$("#groupContainer").addClass("hidden");
 		$("#hatchingTitle").addClass("hidden");
 		$("#hatchingContainer").addClass("hidden");
+		$("#stepsChart").addClass("hidden");
 		$("#genderContainer").append("This Pokémon cannot breed.");
 	};
 
@@ -195,20 +196,39 @@ $(document).ready(function(){
   $('#opower').change(function(){
   	opower(BREEDING_STEPS_PER_CYCLE,this.value);
   });
+  
+  //build css chart
+  // console.log(responsePokemon.stats[5].base_stat);
+  // console.log(responsePokemon.stats[5].base_stat / 255 * 100);
+  $('#statHP').width(responsePokemon.stats[5].base_stat / 255 * 100 + "%");
+  $('#statHP').html(responsePokemon.stats[5].base_stat);
+  $('#statAttack').width(responsePokemon.stats[4].base_stat / 255 * 100 + "%");
+  $('#statAttack').html(responsePokemon.stats[4].base_stat);
+  $('#statDefense').width(responsePokemon.stats[3].base_stat / 255 * 100 + "%");
+  $('#statDefense').html(responsePokemon.stats[3].base_stat);
+  $('#statSpAttack').width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
+  $('#statSpAttack').html(responsePokemon.stats[2].base_stat);
+  $('#statSpDefense').width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
+  $('#statSpDefense').html(responsePokemon.stats[1].base_stat);
+  $('#statSpeed').width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
+  $('#statSpeed').html(responsePokemon.stats[0].base_stat);
 
 
-	//set chart data
-	barChartData = {
-		labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
-		datasets: [{
-			//label: 'Stat',
-			backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
-			data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
-		}]
+	// //set chart data
+	// barChartData = {
+	// 	labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
+	// 	datasets: [{
+	// 		//label: 'Stat',
+	// 		backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
+	// 		data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
+	// 	}]
 
-	};
-  //end chart data
-  buildChart(barChartData);
+	// };
+ //  //end chart data
+ //  buildChart(barChartData);
+
+  //build css chart
+  
 
   //pokemon moves, store all the move name in a single array
   POKEMON_MOVES = getMoveList();

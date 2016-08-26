@@ -460,6 +460,58 @@ nav{
 	width:100% !important;
 	height: auto !important;
 }
+
+#baseStatsContent .column{
+	float:left;
+	/*width:30%;*/
+	line-height: 30px;
+	/*font-size:13px;*/
+	/*padding:0 0% 2%;*/
+}
+.statName {
+	width: 110px;
+	/*box-sizing: border-box;
+	border: 1px solid red;*/
+	text-align: right;
+	padding: 3px 5px 3px;
+}
+
+.statChartContainer {
+	width: 265px;
+	/*background-color: #cccccc;*/
+	padding: 3px 0px 3px;
+}
+
+.statChart {
+	color: #ffffff;
+	height: 30px;
+	padding-left: 3px;
+}
+
+.statChart.statHP {
+	background-color: #F5AC78;
+}
+
+.statChart.statAttack{
+	background-color: #FF5959;
+}
+
+.statChart.statDefense{
+	background-color: #FAE078;
+}
+
+.statChart.statSpAttack{
+	background-color: #9DB7F5;
+}
+
+.statChart.statSpDefense{
+	background-color: #A7DB8D;
+}
+
+.statChart.statSpeed{
+	background-color: #FA92B2;
+}
+
 /*Section: Location*/
 #locationContent{
 	text-align:center;
