@@ -472,28 +472,6 @@
 
 					</div>
 				</section>
-				<!-- sample section below -->
-				<!-- <section>
-					<div id="sectionTitle" class="tab sectionContent">
-						<span>Section Title</span>
-						<div class="iconContainer">
-							<img src="/images/interface/icon-configure.png" class="sectionIcon hidden">
-							<img src="/images/interface/icon-filter.png" class="sectionIcon hidden">
-							<button class="buttonController">+</button>
-						</div>
-					</div>
-					<div id="sectionContent" class="content hidden">
-						content goes here
-						<div class="iconContainer">
-							<img src="/images/interface/icon-configure.png" class="hidden">
-							<img src="/images/interface/icon-filter.png" class="hidden">
-							<img src="/images/interface/icon-plus.png" class="hidden">
-							<span class="buttonController">+</span>
-							<button>+</button>
-						</div>
-					</div>
-				</div> -->
-				<!-- sample section above -->
 			</section>
 		</div>
 	</body>

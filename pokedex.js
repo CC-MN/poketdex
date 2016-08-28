@@ -24,6 +24,10 @@ Pokedex.prototype = {
 		return url;
 		// return this.getJSON(url);
 	},
+	getItem : function(name){
+		var url = BASE_URL + 'item/' + name + '/';
+		return url;
+	},
 	getJSON : function(URL){
 		const cacheResult = DITTO.get(URL);
 		//console.log(DITTO.keys());
