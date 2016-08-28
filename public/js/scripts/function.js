@@ -184,16 +184,15 @@ function evolutionChain(id, data){
   $('#evolutionChainContent').html('<div class="row"></div>');
 
   //builds a column for first pokemon in the chain
-  $('#evolutionChainContent').append('<div class="column"></div>');
-  $('#evolutionChainContent .column').append('<div class="pokemon">');
-  $('#evolutionChainContent .column').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
-  $('#evolutionChainContent .column').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
+  $('#evolutionChainContent .row').append('<div class="column"></div>');
+
+  $('#evolutionChainContent .row .column').append('<div class="pokemon"></div>');
+  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
+  $('#evolutionChainContent .row .column .pokemon').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
   //if a baby pokemon that requires a trigger item, include that
   if (data.baby_trigger_item) {
     $('.evolutionName').append('<div class="babyTriggerItem">(Hatch by breeding parents holding ' + data.baby_trigger_item.name + ')</div>');
   };
-  //close off pokemon column
-  $('#evolutionChainContent .column').append('</div>');
 
   $.each(evolutionChain, function(i, v){
 
@@ -208,42 +207,44 @@ function evolutionChain(id, data){
     $.each(v.evolves_to, function(i2, v2){
 
       var evolutionInformation = v2;
+      console.log(evolutionInformation);
       buildEvolutionContent('chain-2', evolutionInformation);
 
     });
+
   });
 
   $('#evolutionChainContent').append('<div class="clearfloat"></div>');
   
+  
   //add mega evolutions if present
-  $('#evolutionChainContent').append('<div class="row hidden" id ="megaEvolution">');
+  $('#evolutionChainContent').append('<div class="row hidden" id="megaEvolution">');
   $('#megaEvolution').append('<div class="tab leftAlign">Mega Evolution</div>')
-  $('#evolutionChainContent').append('</div>');
   $('#megaEvolution').append('<div id="megaEvolutionContainer"></div>')
   if (responsePokemonSpecies.forms_switchable == true) {
     for (var i = 0; i < responsePokemonSpecies.varieties.length; i++) {
       if (responsePokemonSpecies.varieties[i].pokemon.name.indexOf('mega') > 0) {
-        $('#megaEvolution').removeClass('hidden');
-        console.log("mega evolution " + responsePokemonSpecies.varieties[i].pokemon.name);
-        $('#megaEvolutionContainer').append('<div class="column2"></div>');
-        $('#megaEvolutionContainer .column2').append('<div class="pokemon">');
         var megaName = responsePokemonSpecies.varieties[i].pokemon.name.replace(responsePokemon.name, '');
         console.log(megaName);
-        $('#megaEvolutionContainer .column2').append('<a href="/pokemon/' + getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>');
-        $('#megaEvolutionContainer .column2').append('<div class="evolutionName">' + responsePokemonSpecies.varieties[i].pokemon.name + '</div>');
-        $('#megaEvolutionContainer .column2').append('</div>');
-        // console.log("mega evolutions yo")
-        // $('#evolutionChainContent').append('<div class="row" id ="megaEvolution">');
-        // $('#megaEvolution').append('<div class="tab leftAlign">Mega Evolution</div>')
-        // $('#evolutionChainContent').append('</div>');
+        $('#megaEvolution').removeClass('hidden');
+        var html = '';
+        html += '<div class="pokemon">';
+        html += '<a href="/pokemon/' + getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>';
+        html += '<div class="evolutionName">' + responsePokemonSpecies.varieties[i].pokemon.name + '</div>';
+        html += '</div>';
+
+        $('#megaEvolutionContainer').append(html);
+
       };
     };
   }
 
+  
+
   //count how many columns we have to dynamically set the width
   var columnAmount = $('#evolutionChainContent .column').length;
   $('#evolutionChainContent .column').css({
-    'width' : (85 / parseInt(columnAmount))+'%'
+    'width' : (columnAmount === 1) ? '100%' : (85 / parseInt(columnAmount))+'%'
   });
   return;
 }
@@ -282,116 +283,61 @@ function buildEvolutionContent(className, evolutionInformation){
     }
   }
 
-  var evolutionItem = (evolutionDetail.item) ? evolutionDetail.item.name : null;
-  var evolutionLevel = (evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : null;
-  var evolutionLocation = (evolutionDetail.location) ? 'at ' + evolutionDetail.location.name : null;
-  var evolutionBeauty = (evolutionDetail.min_beauty) ? 'Min Beauty: ' + evolutionDetail.min_beauty : null;
-  var evolutionHappiness = (evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : null;
-  var evolutionAffection = (evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : null;
-  var evolutionPartySpecies = (evolutionDetail.party_species != null) ? 'with ' + evolutionDetail.party_species.name + ' in party' : null;
-  var evolutionPartySpeciesType = (evolutionDetail.party_type != null) ? 'with a ' + evolutionDetail.party_type.name + '-type in party' : null;
-  var evolutionTradeSpecies = (evolutionDetail.trade_species != null) ? 'trade for a ' + evolutionDetail.trade_species.name : null;
-  var evolutionTime = (evolutionDetail.time_of_day !== '') ? 'during ' + evolutionDetail.time_of_day : null;
-  var evolutionHeldItem = (evolutionDetail.held_item != null) ? 'while holding ' + evolutionDetail.held_item.name : null;
-  var evolutionAttack = (evolutionDetail.known_move != null) ? 'knows ' + evolutionDetail.known_move.name : null;
-  var evolutionAttackType = (evolutionDetail.known_move_type != null) ? 'knows a ' + evolutionDetail.known_move_type.name + '-type move' : null;
-  var evolutionWeather = (evolutionDetail.needs_overworld_rain == true) ? 'in the rain' : null;
-  var evolutionConsoleState = (evolutionDetail.turn_upside_down == true) ? 'turn 3DS upside-down' : null;
-  var evolutionName = evolutionInformation.species.name;
+
+    //dump out pokemon data here
+  var content = {
+    // evolutionType : evolutionType,
+    evolutionTrigger : evolutionDetail.trigger.name,
+    evolutionName : evolutionInformation.species.name,
+    evolutionItem : (evolutionDetail.item) ? evolutionDetail.item.name : null,
+    evolutionLevel : (evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : null,
+    evolutionLocation : (evolutionDetail.location) ? 'at ' + evolutionDetail.location.name : null,
+    evolutionTime : (evolutionDetail.time_of_day !== '') ? 'during ' + evolutionDetail.time_of_day : null,
+    evolutionHeldItem : (evolutionDetail.held_item != null) ? 'while holding ' + evolutionDetail.held_item.name : null,
+    evolutionAttack : (evolutionDetail.known_move != null) ? 'knows ' + evolutionDetail.known_move.name : null,
+    evolutionAttackType : (evolutionDetail.known_move_type != null) ? 'knows a ' + evolutionDetail.known_move_type.name + '-type move' : null,
+    evolutionWeather : (evolutionDetail.needs_overworld_rain == true) ? 'in the rain' : null,
+    evolutionConsoleState : (evolutionDetail.turn_upside_down == true) ? 'turn 3DS upside-down' : null,
+    evolutionStats : evolutionStats,
+    evolutionBeauty : (evolutionDetail.min_beauty) ? 'Min Beauty: ' + evolutionDetail.min_beauty : null,
+    evolutionHappiness : (evolutionDetail.min_happiness) ? 'Min Happiness: ' + evolutionDetail.min_happiness : null,
+    evolutionAffection : (evolutionDetail.min_affection) ? 'Min Affection: ' + evolutionDetail.min_affection : null,
+    evolutionPartySpecies : (evolutionDetail.party_species != null) ? 'with ' + evolutionDetail.party_species.name + ' in party' : null,
+    evolutionPartySpeciesType : (evolutionDetail.party_type != null) ? 'with a ' + evolutionDetail.party_type.name + '-type in party' : null,
+    evolutionTradeSpecies : (evolutionDetail.trade_species != null) ? 'trade for a ' + evolutionDetail.trade_species.name : null,
+    evolutionGender : evolutionGender
+  }
+
   var evolutionURL = evolutionInformation.species.url;
-  var evolutionTrigger = evolutionDetail.trigger.name;
 
   //builds baby trigger info, but that shouldnt sit here
   // if (evolutionInformation.is_baby == true && evolutionInformation.baby_trigger_item != null) {
   //   evolutionTrigger = 'Triggered by breeding parents holding' + evolutionInformation.baby_trigger_item.name;
   // }
 
-  //dump out pokemon data here
-  var content = {
-    // evolutionType : evolutionType,
-    evolutionTrigger : evolutionTrigger,
-    evolutionName : evolutionName,
-    evolutionURL : evolutionURL,
-    evolutionItem : evolutionItem,
-    evolutionLevel : evolutionLevel,
-    evolutionLocation : evolutionLocation,
-    evolutionTime : evolutionTime,
-    evolutionHeldItem : evolutionHeldItem,
-    evolutionAttack : evolutionAttack,
-    evolutionAttackType : evolutionAttackType,
-    evolutionWeather : evolutionWeather,
-    evolutionConsoleState : evolutionConsoleState,
-    evolutionStats : evolutionStats,
-    evolutionBeauty : evolutionBeauty,
-    evolutionHappiness : evolutionHappiness,
-    evolutionAffection : evolutionAffection,
-    evolutionPartySpecies : evolutionPartySpecies,
-    evolutionPartySpeciesType : evolutionPartySpeciesType,
-    evolutionTradeSpecies : evolutionTradeSpecies,
-    evolutionGender : evolutionGender
-  }
-
   if($('#evolutionChainContent').find('.' + className).length === 0){
     $('#evolutionChainContent').append('<div class="column '+ className +'"></div>');
   }
 
-  $('#evolutionChainContent .' + className).append('<div class="pokemon">');
-  $('#evolutionChainContent .' + className).append('<a href="/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(content.evolutionURL) + '.png" /></a>');
-  $('#evolutionChainContent .' + className).append('<div class="evolutionName">' + content.evolutionName + ' </div>');
-  $('#evolutionChainContent .' + className).append('<div class="evolutionTrigger">' + content.evolutionTrigger + ' </div>');
+  var html = '<div class="pokemon">';
+  html += '<a href="/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '.png" /></a>';
+
   // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
-  if (evolutionItem) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionItem"><a href="/item/' + content.evolutionItem + '">' + content.evolutionItem + ' <img src="/images/dex/item/' + content.evolutionItem + '.png"></a></div>');
-  } 
-  if (evolutionLevel) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionLevel">' + content.evolutionLevel + ' </div>');
-  }
-  if (evolutionLocation) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionLocation">' + content.evolutionLocation + ' </div>');
-  } 
-  if(evolutionTime){
-    $('#evolutionChainContent .' + className).append('<div class="evolutionTime">' + content.evolutionTime + ' </div>');
-  }
-  if (evolutionHeldItem) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionHeldItem">' + content.evolutionHeldItem + ' </div>');
-  }
-  if (evolutionAttack) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionAttack">' + content.evolutionAttack + ' </div>');
-  }
-  if (evolutionAttackType) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionAttackType">' + content.evolutionAttackType + ' </div>');
-  }
-  if (evolutionWeather) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionWeather">' + content.evolutionWeather + ' </div>');
-  }
-  if (evolutionConsoleState) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionConsoleState">' + content.evolutionConsoleState + ' </div>');
-  } 
-  if (evolutionStats) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionStats">' + content.evolutionStats + ' </div>');
-  }
-  if (evolutionBeauty) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionBeauty">' + content.evolutionBeauty + ' </div>');
-  } 
-  if (evolutionHappiness) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionHappiness">' + content.evolutionHappiness + ' </div>');
-  }
-  if (evolutionAffection) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionAffection">' + content.evolutionAffection + ' </div>');
-  }
-  if (evolutionPartySpecies) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionPartySpecies">' + content.evolutionPartySpecies + ' </div>');
-  }
-  if (evolutionPartySpeciesType) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionPartySpeciesType">' + content.evolutionPartySpeciesType + ' </div>');
-  } 
-  if (evolutionTradeSpecies) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionTradeSpecies">' + content.evolutionTradeSpecies + ' </div>');
-  }
-  if (evolutionGender) {
-    $('#evolutionChainContent .' + className).append('<div class="evolutionGender">' + content.evolutionGender + ' </div>');
-  }
-  $('#evolutionChainContent .' + className).append('</div>');
+
+  //loop through content object
+  $.each(content, function(k, v){
+    if(!content[k]){
+      return true; //skip iteration
+    }
+    if(k === 'evolutionItem'){
+      html += '<div class="' + k + '"><a href="/item/' + v + '">' + v + ' <img src="/images/dex/item/' + v + '.png"></a></div>'
+    }else{
+      html += '<div class="' + k + '">' + v + '</div>';
+    }
+  });
+
+  html += '</div>';
+  $('#evolutionChainContent .' + className).append(html);
 
 }
 

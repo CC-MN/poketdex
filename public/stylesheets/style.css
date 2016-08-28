@@ -310,7 +310,7 @@ nav{
 	background-color: #CCCCCC;
 }*/
 
-#evolutionChainContent .column img, #megaEvolutionContainer .column2 img{
+#evolutionChainContent .column img, #megaEvolutionContainer img{
 	width:120px;
 	height:120px;
 }
