@@ -1,18 +1,4 @@
-function getQS(object){
-  /*
-  Query string values get returned back to the object
-  Use object.key|object[key] //returns value
-  */
-  var pl     = /\+/g;  // Regex for replacing addition symbol with a space
-  var search = /([^&=]+)=?([^&]*)/g;
-  var decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); };
-  var query  = window.location.search.substring(1);
-  var match;
 
-  while (match = search.exec(query)){
-    object[decode(match[1])] = decode(match[2]);
-  }
-}
 
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
@@ -109,57 +95,15 @@ function showSection(sectionName){
   if ($( "#" + sectionName ).hasClass("hidden")) {
     $('#' + sectionName).parent().find('button').html('&#8211;');
     $('#' + sectionName).removeClass("hidden");
-    // $('#' + sectionName + 'Configure').removeClass('hidden');
-    // $('#' + sectionName + 'Filter').removeClass('hidden');
     $('#' + sectionName).addClass("expanded");
     $('#' + sectionName).focus();
   }else {
     $('#' + sectionName).parent().find('button').html('+');
     $('#' + sectionName).addClass("hidden");
-    // $('#' + sectionName + 'Configure').addClass('hidden');
-    // $('#' + sectionName + 'Filter').addClass('hidden');
   }
 }
 
-function requestID(param){
-  param = param.trim();
-  var id = null;
 
-  switch(param) {
-    case 'evolutionChainContent':
-    id = responsePokemonSpecies.evolution_chain.url
-    break;
-    case 'locationContent':
-    id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
-    break;
-  }
-  return id;
-
-}
-
-function requestInfo(type, url){
-  console.log(url);
-  $('#' + type).html('<img src="/images/loader.gif" />');
-  var parameters = { 
-    url : url
-  };
-  $.get( '/request',parameters, function(data) {
-    console.log('results');
-    determineAjaxEvent(type, data);
-  });
-}
-
-function determineAjaxEvent(type, data){
-
-  switch(type) {
-    case 'evolutionChainContent':
-    evolutionChain(type, data);
-    break;
-    case 'locationContent':
-    encounterLocation(type, data);
-    break;
-  }
-}
 //Section: Abilities
 function getAbilityDetail(i){
   var nthchild = i+1
@@ -249,14 +193,7 @@ function evolutionChain(id, data){
   return;
 }
 
-function getIDFromSpeciesURL(url){
-  var id = url.replace(/(.*)pokemon\-species\/(.*)\//, '$2');
-  return id;
-}
-function getIDFromPokemonURL(url){
-  var id = url.replace(/(.*)pokemon\/(.*)\//, '$2');
-  return id;
-}
+
 
 function buildEvolutionContent(className, evolutionInformation){
 
@@ -283,12 +220,11 @@ function buildEvolutionContent(className, evolutionInformation){
     }
   }
 
-
-    //dump out pokemon data here
+  //dump out pokemon data here
   var content = {
     // evolutionType : evolutionType,
-    evolutionTrigger : evolutionDetail.trigger.name,
     evolutionName : evolutionInformation.species.name,
+    evolutionTrigger : evolutionDetail.trigger.name,
     evolutionItem : (evolutionDetail.item) ? evolutionDetail.item.name : null,
     evolutionLevel : (evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : null,
     evolutionLocation : (evolutionDetail.location) ? 'at ' + evolutionDetail.location.name : null,
@@ -551,25 +487,17 @@ function toggleMovesMode(){
     console.log("contest mode");
     $('#movesToggleType').prop('checked', false);
     toggleMovesTypes();
-    $('#contest').removeClass("hidden");
-    $('#power').addClass("hidden");
-    $('#pp').addClass("hidden");
-    $('#accuracy').addClass("hidden");
-    $('#category').addClass("hidden");
-    $('#movesContestList').removeClass("hidden");
-    $('#movesCategoryList').addClass("hidden");
+    $('.contestMoves').removeClass('hidden');
+    $('.battleMoves').addClass('hidden');
+
     $("#movesToggleTypeContainer").addClass("hidden");
     $("#movesToggleTypeContainer").removeClass("half");
     $("#type").addClass("toggle_hide");
   }else{
     console.log("battle mode");
-    $('#contest').addClass("hidden");
-    $('#power').removeClass("hidden");
-    $('#pp').removeClass("hidden");
-    $('#accuracy').removeClass("hidden");
-    $('#category').removeClass("hidden");
-    $('#movesCategoryList').removeClass("hidden");
-    $('#movesContestList').addClass("hidden");
+    $('.contestMoves').addClass('hidden');
+    $('.battleMoves').removeClass('hidden');
+
     $("#movesToggleTypeContainer").removeClass("hidden");
     $("#movesToggleTypeContainer").addClass("half");
     $("#type").removeClass("toggle_hide");
@@ -662,7 +590,6 @@ function opower(steps,opowerLevel){
 //Section: Locations
 //Area: Encounters
 
-
 function encounterLocation(id, data){
   console.log('encounterLocation');
   console.log(data);
@@ -724,45 +651,45 @@ function encounterLocation(id, data){
       html += '</div>';
     }
   });
-//hiding generation select until we decide if we want to support additional generations
-var gameGenerationContainer = '<div id="gameGenerationContainer">';
-// gameGenerationContainer += '<select id="gameGenerationSelect" onchange="">'
-// gameGenerationContainer += '<option value="1">Generation 1</option>'
-// gameGenerationContainer += '<option value="2">Generation 2</option>'
-// gameGenerationContainer += '<option value="3">Generation 3</option>'
-// gameGenerationContainer += '<option value="4">Generation 4</option>'
-// gameGenerationContainer += '<option value="5">Generation 5</option>'
-// gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
-// gameGenerationContainer += '</select>'
-gameGenerationContainer += '</div>'
+  //hiding generation select until we decide if we want to support additional generations
+  var gameGenerationContainer = '<div id="gameGenerationContainer">';
+  // gameGenerationContainer += '<select id="gameGenerationSelect" onchange="">'
+  // gameGenerationContainer += '<option value="1">Generation 1</option>'
+  // gameGenerationContainer += '<option value="2">Generation 2</option>'
+  // gameGenerationContainer += '<option value="3">Generation 3</option>'
+  // gameGenerationContainer += '<option value="4">Generation 4</option>'
+  // gameGenerationContainer += '<option value="5">Generation 5</option>'
+  // gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
+  // gameGenerationContainer += '</select>'
+  gameGenerationContainer += '</div>'
 
-var gameGeneration6 = '<div class="gameRow">';
-gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
-gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
-gameGeneration6 += '</div>'
-// gameGeneration6 += '<div class="gameRow">'
-// gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
-// gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
-// gameGeneration6 += '</div>'
+  var gameGeneration6 = '<div class="gameRow">';
+  gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
+  gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
+  gameGeneration6 += '</div>'
+  // gameGeneration6 += '<div class="gameRow">'
+  // gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
+  // gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
+  // gameGeneration6 += '</div>'
 
-$('#locationContent').html(html);
-$('#locationContent').prepend(gameGenerationContainer);
-$('#gameGenerationContainer').append(gameGeneration6);
+  $('#locationContent').html(html);
+  $('#locationContent').prepend(gameGenerationContainer);
+  $('#gameGenerationContainer').append(gameGeneration6);
 
-//binding functions to game versions
-$('#versionx').click(function(){
-  filterGameVersion("x");
-});
-$('#versiony').click(function(){
-  filterGameVersion("y");
-});
-  // $('#versionruby').click(function(){
-  //   filterGameVersion("omega-ruby");
-  // });
-  // $('#versionsapphire').click(function(){
-  //   filterGameVersion("alpha-sapphire");
-  // });
-return;
+  //binding functions to game versions
+  $('#versionx').click(function(){
+    filterGameVersion("x");
+  });
+  $('#versiony').click(function(){
+    filterGameVersion("y");
+  });
+    // $('#versionruby').click(function(){
+    //   filterGameVersion("omega-ruby");
+    // });
+    // $('#versionsapphire').click(function(){
+    //   filterGameVersion("alpha-sapphire");
+    // });
+  return;
 }
 
 function filterGameVersion(gameVersion){
@@ -778,9 +705,12 @@ function filterGameVersion(gameVersion){
   };
 }
 
+/*
+  Stats and Charts
+  //Section: Stats
+  //Area: Chart
+*/
 
-//Section: Stats
-//Area: Chart
 function buildChart(barChartData) {
   var ctx = document.getElementById("canvas").getContext("2d");
   window.myBar = new Chart(ctx, {
@@ -801,3 +731,77 @@ function buildChart(barChartData) {
     }
   });
 };
+
+
+/*
+  AJAX Request Functions
+*/
+
+function requestID(param){
+  param = param.trim();
+  var id = null;
+
+  switch(param) {
+    case 'evolutionChainContent':
+    id = responsePokemonSpecies.evolution_chain.url
+    break;
+    case 'locationContent':
+    id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+    break;
+  }
+  return id;
+
+}
+
+function requestInfo(type, url){
+  console.log(url);
+  $('#' + type).html('<img src="/images/loader.gif" />');
+  var parameters = { 
+    url : url
+  };
+  $.get( '/request',parameters, function(data) {
+    console.log('results');
+    determineAjaxEvent(type, data);
+  });
+}
+
+function determineAjaxEvent(type, data){
+
+  switch(type) {
+    case 'evolutionChainContent':
+    evolutionChain(type, data);
+    break;
+    case 'locationContent':
+    encounterLocation(type, data);
+    break;
+  }
+}
+
+
+/*
+  Utility Functions
+*/
+function getQS(object){
+  /*
+  Query string values get returned back to the object
+  Use object.key|object[key] //returns value
+  */
+  var pl     = /\+/g;  // Regex for replacing addition symbol with a space
+  var search = /([^&=]+)=?([^&]*)/g;
+  var decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); };
+  var query  = window.location.search.substring(1);
+  var match;
+
+  while (match = search.exec(query)){
+    object[decode(match[1])] = decode(match[2]);
+  }
+}
+
+function getIDFromSpeciesURL(url){
+  var id = url.replace(/(.*)pokemon\-species\/(.*)\//, '$2');
+  return id;
+}
+function getIDFromPokemonURL(url){
+  var id = url.replace(/(.*)pokemon\/(.*)\//, '$2');
+  return id;
+}
