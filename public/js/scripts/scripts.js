@@ -17,7 +17,7 @@ var VERSION_GEN3 = ["ruby","sapphire", "emerald", "firered","leafgreen"];
 var VERSION_GEN4 = ["diamond","pearl","platinum","heartgold","soulsilver"];
 var VERSION_GEN5 = ["black","white","black-2","white-2"];
 var VERSION_GEN6 = ["x","y","omega-ruby","alpha-sapphire"];
-var HIDDEN_ABILITIES = ['dry-skin', 'filter', 'flash-fire', 'heatproof', 'levitate', 'sap-sipper', 'solid-rock', 'thick-fat', 'volt-absorb', 'water-absorb'];
+var MODIFIER_ABILITIES = ['dry-skin', 'filter', 'flash-fire', 'heatproof', 'levitate', 'sap-sipper', 'solid-rock', 'thick-fat', 'volt-absorb', 'water-absorb'];
 
 
 $(document).ready(function(){
@@ -94,7 +94,7 @@ $(document).ready(function(){
 	var damageChartAbilitiesHidden = [];
 	for (var i = 0; i < responsePokemon.abilities.length; i++) {
 		console.log(responsePokemon.abilities[i].ability.name);
-		if ( HIDDEN_ABILITIES.indexOf(responsePokemon.abilities[i].ability.name) > -1 ) {
+		if ( MODIFIER_ABILITIES.indexOf(responsePokemon.abilities[i].ability.name) > -1 ) {
 			if (responsePokemon.abilities[i].is_hidden == true) {
 				damageChartAbilitiesHidden.push(responsePokemon.abilities[i].ability.name);
 				$("#abilityHiddenModifierName").html(responsePokemon.abilities[i].ability.name);
