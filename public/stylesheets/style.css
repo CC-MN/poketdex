@@ -53,7 +53,8 @@ nav{
 #topBar {
 	/*border: 1px solid green;*/
 	width: 100%;
-	min-height:5%;
+	/*min-height:5%;*/
+	height:30px;
 	/*height:6%;*/
 	background-color: white;
 	left: auto;
@@ -77,7 +78,8 @@ nav{
 
 #searchContainer {
 	/*	border: 1px solid red;*/
-	margin-top:5%;
+	/*margin-top:5%;*/
+	margin-top:30px;
 }
 
 #pokemonSearchBox {
@@ -203,7 +205,7 @@ nav{
     .container{
     	/*border: 1px solid green;*/
     	width:100%;
-    	padding-top: 5%;
+    	padding-top: 30px;
     	text-transform: capitalize;
     }
     .pokemon{
@@ -479,7 +481,8 @@ nav{
 	/*padding:0 0% 2%;*/
 }
 .statName {
-	width: 110px;
+	/*width: 110px;*/
+	width: 30%;
 	/*box-sizing: border-box;
 	border: 1px solid red;*/
 	text-align: right;
@@ -487,7 +490,8 @@ nav{
 }
 
 .statChartContainer {
-	width: 210px;
+	/*width: 210px;*/
+	width: 60%;
 	/*background-color: #cccccc;*/
 	padding: 3px 0px 3px;
 }
@@ -499,11 +503,11 @@ nav{
 }
 
 .statChart.statHP {
-	background-color: #F5AC78;
+	background-color: #FF5959;
 }
 
 .statChart.statAttack{
-	background-color: #FF5959;
+	background-color: #F5AC78;
 }
 
 .statChart.statDefense{
@@ -556,7 +560,7 @@ nav{
 	width: 20%;
 }
 
-#locationContent .row:nth-of-type(even){
+#locationContent .shown:nth-of-type(even){
 	background-color: #ccc;
 }
 /*Game Version Styling*/

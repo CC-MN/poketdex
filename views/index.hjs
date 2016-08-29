@@ -25,9 +25,9 @@
 			<!-- SideNav -->
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="http://www.poketdex.com/"><img src="/images/interface/nav-home.png" /><br />Home</a>
-				<a href="http://www.poketdex.com/pokemon/"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
-				<a href="http://www.poketdex.com/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
+				<a href="/"><img src="/images/interface/nav-home.png" /><br />Home</a>
+				<a href="/pokemon/"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
+				<a href="/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
 				<a href="#"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
 				<a href="#"><img src="/images/interface/nav-settings.png" /><br />Settings</a>
 			</div>

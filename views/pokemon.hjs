@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PoketDex - A Mobile Pokedex</title>
+	<title>PoketDex: {{ pokemonResponse.name }}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel='stylesheet' href='/stylesheets/style.css' media="screen"/>
@@ -42,9 +42,9 @@
 			<!-- SideNav -->
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="#"><img src="/images/interface/nav-home.png" /><br />Home</a>
-				<a href="#"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
-				<a href="#"><img src="/images/interface/nav-items.png" /><br />Items</a>
+				<a href="/"><img src="/images/interface/nav-home.png" /><br />Home</a>
+				<a href="javascript:void(0)" onclick="closeNav()"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
+				<a href="/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
 				<a href="#"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
 				<a href="#"><img src="/images/interface/nav-settings.png" /><br />Settings</a>
 			</div>

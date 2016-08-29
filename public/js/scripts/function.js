@@ -280,7 +280,7 @@ function buildEvolutionContent(className, evolutionInformation){
 //Section: Damage Chart
 function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
   // console.log("damage_to_type object:");
-  // console.log(DAMAGE_TO_TYPE);
+  console.log(DAMAGE_TO_TYPE);
   // console.log("responsePokemon object:");
   // console.log(responsePokemon);
   if (responsePokemon.types.length < 2) {
@@ -350,21 +350,26 @@ function damageChartModifiers(modifier,isHidden){
   if (modifier == "dry-skin") {
     //fire does 25% more water does 0
     var newFireValue = $("td.fire.damageValueCell").html() * 1.25;
-    $("td.fire.damageValueCell").html(newFireValue);
-    $("td.fire.damageValueCell").addClass("damageRate" + newFireValue);
+    newFireValue = convertDamageValueForChart(newFireValue.toFixed(2),"fire");
     $("td.water.damageValueCell").html("0");
     $("td.water.damageValueCell").addClass("damageRate0");
   }
-  else if (modifier == "filter") {
+  else if (modifier == "filter" || modifier == "solid-rock") {
     //Filter reduces super effective damage by ¼.
-    //Come back to this one.
+    var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
+    var damageObjectType2 = DAMAGE_TO_TYPE[responsePokemon.types[1].type.name];
+    for (key in damageObjectType2) {
+      var combinedTypeDamage = damageObjectType2[key] * damageObjectType1[key];
+      console.log ("combined dmg: " + combinedTypeDamage);
+      if (combinedTypeDamage >= 2) {
+        combinedTypeDamage = combinedTypeDamage * 0.75;
+        combinedTypeDamage = combinedTypeDamage.toFixed(2);
+        console.log("before converting: " + combinedTypeDamage);
+        convertDamageValueForChart(combinedTypeDamage,key);
+      }
+    };
   } else if (modifier == "flash-fire") {
     //Makes pokemon immune to fire type moves
-    if ($("td.fire.damageValueCell").html() == "½") {
-      $("td.fire.damageValueCell").html(0.5)
-    }else if ($("td.fire.damageValueCell").html() == "¼") {
-      $("td.fire.damageValueCell").html(0.25)
-    };
     $("td.fire.damageValueCell").html("0");
     $("td.fire.damageValueCell").addClass("damageRate0");
   } else if (modifier == "heatproof") {
@@ -376,9 +381,8 @@ function damageChartModifiers(modifier,isHidden){
       $("td.fire.damageValueCell").html(0.25)
     };
     var newFireValue = $("td.fire.damageValueCell").html() / 2;
-    console.log("newFireValue: " + newFireValue);
-    $("td.fire.damageValueCell").html(newFireValue);
-    $("td.fire.damageValueCell").addClass("damageRate" + newFireValue);
+    newFireValue = newFireValue.toFixed(2);
+    convertDamageValueForChart(newFireValue,"fire");
   } else if (modifier == "levitate") {
     //Makes pokemon immune to ground type moves
     $("td.ground.damageValueCell").html("0");
@@ -387,27 +391,12 @@ function damageChartModifiers(modifier,isHidden){
     //Makes pokemon immune to grass type moves
     $("td.grass.damageValueCell").html("0");
     $("td.grass.damageValueCell").addClass("damageRate0");
-  } else if (modifier == "solid-rock") {
-    //Solid Rock reduces super effective damage by ¼.
-    //Come back to this one.
   } else if (modifier == "thick-fat") {
     //Halves damage from fire and ice attacks
-    if ($("td.fire.damageValueCell").html() == "½") {
-      $("td.fire.damageValueCell").html(0.5)
-    }else if ($("td.fire.damageValueCell").html() == "¼") {
-      $("td.fire.damageValueCell").html(0.25)
-    };
     var newFireValue = $("td.fire.damageValueCell").html() / 2;
-    $("td.fire.damageValueCell").html(newFireValue);
-    $("td.fire.damageValueCell").addClass("damageRate" + newFireValue);
-    if ($("td.ice.damageValueCell").html() == "½") {
-      $("td.ice.damageValueCell").html(0.5)
-    }else if ($("td.ice.damageValueCell").html() == "¼") {
-      $("td.ice.damageValueCell").html(0.25)
-    };
+    newFireValue = convertDamageValueForChart(newFireValue.toFixed(2),"fire");
     var newIceValue = $("td.ice.damageValueCell").html() / 2;
-    $("td.ice.damageValueCell").html(newIceValue);
-    $("td.ice.damageValueCell").addClass("damageRate" + newIceValue);
+    newIceValue = convertDamageValueForChart(newIceValue.toFixed(2),"ice");
   } else if (modifier == "volt-absorb") {
     //Makes pokemone immune to electric attacks
     $("td.electric.damageValueCell").html("0");
@@ -638,35 +627,45 @@ function encounterLocation(id, data){
 
   //display info
   $.each(encounters, function(i,v){
-    if (VERSION_GEN1.indexOf(v.version) > -1 || VERSION_GEN2.indexOf(v.version) > -1 || VERSION_GEN3.indexOf(v.version) > -1 || VERSION_GEN4.indexOf(v.version) > -1 || VERSION_GEN5.indexOf(v.version) > -1){
+    if (VERSION_GEN1.indexOf(v.version) > -1 ){
+      html += '<div class="row shown filterable filter_gameVersion_' + v .version + ' filter_gameGeneration_1 hidden">';
       // console.log("dont need this: " + v.version + " " + v.locationName);
-    }else{
-      html += '<div class="row filter_gameVersion_' + v .version + '">';
-      html += '<div class="locationName column">'+ v.locationName + '</div>';
-      html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
-      html += '<div class="locationLevel column">' + v.levels + '</div>';
-      html += '<div class="locationMethod column">' + v.method + '</div>';
-      html += '<div class="locationVersion column">' + v.version + '</div>';
-      html += '<div class="clearfloat"></div>';
-      html += '</div>';
+    } else if (VERSION_GEN2.indexOf(v.version) > -1) {
+      html += '<div class="row shown filterable filter_gameVersion_' + v .version + ' filter_gameGeneration_2 hidden">';
+    } else if (VERSION_GEN3.indexOf(v.version) > -1) {
+      html += '<div class="row shown filterable filter_gameVersion_' + v .version + ' filter_gameGeneration_3 hidden">';
+    } else if (VERSION_GEN4.indexOf(v.version) > -1) {
+      html += '<div class="row shown filterable filter_gameVersion_' + v .version + ' filter_gameGeneration_4 hidden">';
+    } else if (VERSION_GEN5.indexOf(v.version) > -1) {
+      html += '<div class="row shown filterable filter_gameVersion_' + v .version + ' filter_gameGeneration_5 hidden">';
+    } else {
+      html += '<div class="row shown filterable filter_gameVersion_' + v .version + ' filter_gameGeneration_6">';
     }
+    // html += '<div class="row filter_gameVersion_' + v .version + '">';
+    html += '<div class="locationName column">'+ v.locationName + '</div>';
+    html += '<div class="locationChance column">' + v.encounterChance + '%</div>';
+    html += '<div class="locationLevel column">' + v.levels + '</div>';
+    html += '<div class="locationMethod column">' + v.method + '</div>';
+    html += '<div class="locationVersion column">' + v.version + '</div>';
+    html += '<div class="clearfloat"></div>';
+    html += '</div>';
   });
-  //hiding generation select until we decide if we want to support additional generations
-  var gameGenerationContainer = '<div id="gameGenerationContainer">';
-  // gameGenerationContainer += '<select id="gameGenerationSelect" onchange="">'
-  // gameGenerationContainer += '<option value="1">Generation 1</option>'
-  // gameGenerationContainer += '<option value="2">Generation 2</option>'
-  // gameGenerationContainer += '<option value="3">Generation 3</option>'
-  // gameGenerationContainer += '<option value="4">Generation 4</option>'
-  // gameGenerationContainer += '<option value="5">Generation 5</option>'
-  // gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
-  // gameGenerationContainer += '</select>'
-  gameGenerationContainer += '</div>'
 
-  var gameGeneration6 = '<div class="gameRow">';
-  gameGeneration6 += '<div class="half selected" id="versionx">X</div>'
-  gameGeneration6 += '<div class="half selected" id="versiony">Y</div>'
-  gameGeneration6 += '</div>'
+var gameGenerationContainer = '<div id="gameGenerationContainer">';
+gameGenerationContainer += '<select id="gameGenerationSelect" onchange="filterGameGeneration(this.value)">'
+gameGenerationContainer += '<option value="1">Generation 1</option>'
+gameGenerationContainer += '<option value="2">Generation 2</option>'
+gameGenerationContainer += '<option value="3">Generation 3</option>'
+gameGenerationContainer += '<option value="4">Generation 4</option>'
+gameGenerationContainer += '<option value="5">Generation 5</option>'
+gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
+gameGenerationContainer += '</select>'
+gameGenerationContainer += '</div>'
+
+var gameGeneration6 = '<div class="gameRow">';
+gameGeneration6 += '<div class="half gameFilter selected" id="versionx">X</div>'
+gameGeneration6 += '<div class="half gameFilter selected" id="versiony">Y</div>'
+gameGeneration6 += '</div>'
   // gameGeneration6 += '<div class="gameRow">'
   // gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
   // gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
@@ -689,7 +688,7 @@ function encounterLocation(id, data){
     // $('#versionsapphire').click(function(){
     //   filterGameVersion("alpha-sapphire");
     // });
-  return;
+return;
 }
 
 function filterGameVersion(gameVersion){
@@ -705,18 +704,31 @@ function filterGameVersion(gameVersion){
   };
 }
 
+function filterGameGeneration(gameGeneration){
+  $('#locationContent .filterable').removeClass("shown");
+  $('#locationContent .filterable').addClass("hidden");
+  $('.gameRow').addClass('hidden');
+  $('.gameFilter').addClass('selected');
+  $('.filter_gameGeneration_' + gameGeneration).removeClass('hidden');
+  $('.filter_gameGeneration_' + gameGeneration).addClass('shown');
+  if (gameGeneration == 6) {
+    $('.gameRow').removeClass('hidden');
+  }
+};
+
+
 /*
   Stats and Charts
   //Section: Stats
   //Area: Chart
-*/
+  */
 
-function buildChart(barChartData) {
-  var ctx = document.getElementById("canvas").getContext("2d");
-  window.myBar = new Chart(ctx, {
-    type: 'bar',
-    data: barChartData,
-    options: {
+  function buildChart(barChartData) {
+    var ctx = document.getElementById("canvas").getContext("2d");
+    window.myBar = new Chart(ctx, {
+      type: 'bar',
+      data: barChartData,
+      options: {
       // Elements options apply to all of the options unless overridden in a dataset
       // In this case, we are setting the border of each bar to be 2px wide and green
       responsive: false,
@@ -730,58 +742,58 @@ function buildChart(barChartData) {
       }
     }
   });
-};
+  };
 
 
 /*
   AJAX Request Functions
-*/
+  */
 
-function requestID(param){
-  param = param.trim();
-  var id = null;
+  function requestID(param){
+    param = param.trim();
+    var id = null;
 
-  switch(param) {
-    case 'evolutionChainContent':
-    id = responsePokemonSpecies.evolution_chain.url
-    break;
-    case 'locationContent':
-    id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
-    break;
+    switch(param) {
+      case 'evolutionChainContent':
+      id = responsePokemonSpecies.evolution_chain.url
+      break;
+      case 'locationContent':
+      id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+      break;
+    }
+    return id;
+
   }
-  return id;
 
-}
-
-function requestInfo(type, url){
-  console.log(url);
-  $('#' + type).html('<img src="/images/loader.gif" />');
-  var parameters = { 
-    url : url
-  };
-  $.get( '/request',parameters, function(data) {
-    console.log('results');
-    determineAjaxEvent(type, data);
-  });
-}
-
-function determineAjaxEvent(type, data){
-
-  switch(type) {
-    case 'evolutionChainContent':
-    evolutionChain(type, data);
-    break;
-    case 'locationContent':
-    encounterLocation(type, data);
-    break;
+  function requestInfo(type, url){
+    console.log(url);
+    $('#' + type).html('<img src="/images/loader.gif" />');
+    var parameters = { 
+      url : url
+    };
+    $.get( '/request',parameters, function(data) {
+      console.log('results');
+      determineAjaxEvent(type, data);
+    });
   }
-}
+
+  function determineAjaxEvent(type, data){
+
+    switch(type) {
+      case 'evolutionChainContent':
+      evolutionChain(type, data);
+      break;
+      case 'locationContent':
+      encounterLocation(type, data);
+      break;
+    }
+  }
 
 
 /*
   Utility Functions
-*/
-function getQS(object){
+  */
+  function getQS(object){
   /*
   Query string values get returned back to the object
   Use object.key|object[key] //returns value
@@ -804,4 +816,34 @@ function getIDFromSpeciesURL(url){
 function getIDFromPokemonURL(url){
   var id = url.replace(/(.*)pokemon\/(.*)\//, '$2');
   return id;
+}
+
+function convertDamageValueForChart(value,type){
+  //remember to ensure that the value passed is fixed with .toFixed(2)
+  var decimalValue = String(value);
+  decimalValue = decimalValue.split(".");
+  var roundedDecimal = 25 * Math.round(decimalValue[1] / 25);
+  if (roundedDecimal == 25) {
+    roundedDecimal = "¼";
+  } else if (roundedDecimal == 50) {
+    roundedDecimal = "½";
+  } else if (roundedDecimal == 75) {
+    roundedDecimal = "¾";
+  }
+  var integer = parseInt(decimalValue[0]);
+  if (integer >= 1 && decimalValue[1] != 0) {
+    var convertedValue = decimalValue[0] + "<br>" + roundedDecimal;
+  } else if (integer >= 1) {
+    var convertedValue = integer;
+  } else {
+    var convertedValue = roundedDecimal;
+  }
+  if (convertedValue == "¼" || convertedValue == "½" || convertedValue == "¾" ) {
+    $("td." + type + ".damageValueCell").addClass("damageRate½");
+  } else if (integer >= 1) {
+    $("td." + type + ".damageValueCell").addClass("damageRate1");
+  } else {
+    $("td." + type + ".damageValueCell").addClass("damageRate0");
+  }
+  $("td." + type + ".damageValueCell").html(convertedValue);
 }
