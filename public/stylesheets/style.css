@@ -88,11 +88,7 @@ nav{
 	height:24px;
 	font-size: 16px;
 	border: 0px;
-	/*left: 10%;
-	right: 10%;
-	width: 80%;
-	height: 8%;
-	z-index: 1000;*/
+	z-index: 998;
 }
 
 #dexId{

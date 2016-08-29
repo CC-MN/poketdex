@@ -125,13 +125,15 @@ function evolutionChain(id, data){
 
   var evolutionMap = [];
   //this will contain a sprite toggle to show shinys
-  $('#evolutionChainContent').html('<div class="row"></div>');
+  $('#evolutionChainContent').html('<div class="half"><div class="onethird">Shiny:</div><div class="twothirds"><label id="shinyToggleSwitch" class="switch"><input type="checkbox" id="shinyToggleMode" name="shinyToggleMode" value="0" onchange="toggleShinyModels()"><div class="slider"></div></label></div></div>');
+  $('#evolutionChainContent').append('<div class="half">&nbsp;</div>');
+  $('#evolutionChainContent').append('<div class="row"></div>');
 
   //builds a column for first pokemon in the chain
   $('#evolutionChainContent .row').append('<div class="column"></div>');
 
   $('#evolutionChainContent .row .column').append('<div class="pokemon"></div>');
-  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
+  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
   $('#evolutionChainContent .row .column .pokemon').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
   //if a baby pokemon that requires a trigger item, include that
   if (data.baby_trigger_item) {
@@ -193,6 +195,20 @@ function evolutionChain(id, data){
   return;
 }
 
+function toggleShinyModels(){
+  if (document.getElementById('shinyToggleMode').checked) {
+    $("#evolutionChainContent").find(".pokemon").each(function () {
+      var img = $(this).find("img");
+      img.prop("src", img.prop("src").replace("pokemon/", "pokemon/shiny/"));
+    });    
+  } else {
+    $("#evolutionChainContent").find(".pokemon").each(function () {
+    var img = $(this).find("img");
+    img.prop("src", img.prop("src").replace("pokemon/shiny/", "pokemon/"));
+  });
+  }
+  
+}
 
 
 function buildEvolutionContent(className, evolutionInformation){
@@ -256,7 +272,7 @@ function buildEvolutionContent(className, evolutionInformation){
   }
 
   var html = '<div class="pokemon">';
-  html += '<a href="/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '"><img src="/images/dex/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '.png" /></a>';
+  html += '<a href="/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '.png" /></a>';
 
   // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
 
