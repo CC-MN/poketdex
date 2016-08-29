@@ -236,6 +236,12 @@ nav{
     	font-size: 24px;
     }
 
+    .shareIcon{
+    	position: absolute;
+    	right: 1%;
+    	padding: 6px 0px 0px 0px;
+    }
+
     .reverseOrder {
     	display:flex;
     	flex-direction:column-reverse;
