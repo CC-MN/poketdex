@@ -17,6 +17,7 @@ var VERSION_GEN3 = ["ruby","sapphire", "emerald", "firered","leafgreen"];
 var VERSION_GEN4 = ["diamond","pearl","platinum","heartgold","soulsilver"];
 var VERSION_GEN5 = ["black","white","black-2","white-2"];
 var VERSION_GEN6 = ["x","y","omega-ruby","alpha-sapphire"];
+var HIDDEN_ABILITIES = ['dry-skin', 'filter', 'flash-fire', 'heatproof', 'levitate', 'sap-sipper', 'solid-rock', 'thick-fat', 'volt-absorb', 'water-absorb'];
 
 
 $(document).ready(function(){
@@ -69,7 +70,7 @@ $(document).ready(function(){
 		contentClass = contentClass.replace('request', '');
 
 		showSection(contentClass);
-
+		//if there is a class 'request' it will make an ajax request
 		if($(this).hasClass('request') && !$('#' + contentClass.trim()).hasClass('hidden')){
 			var url = requestID(contentClass.trim());
 			if(url){
@@ -87,49 +88,13 @@ $(document).ready(function(){
 
 	//type chart scripts
 	damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon);
-	//moved the below to function.js, keeping short-term for reference
-	// if (responsePokemon.types.length < 2) {
-	// 	//calculate a single type effectiveness
-	// 	var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
-	// 	for(key in damageObjectType1){
-	// 		//converts decimal values to symbols
-	// 		if (damageObjectType1[key] == 0.25) {
-	// 			damageObjectType1[key] = "¼"
-	// 		}else if (damageObjectType1[key] == 0.5) {
-	// 			damageObjectType1[key] = "½"
-	// 		};
-	// 		$("td." + key + ".damageValueCell").html(damageObjectType1[key]);
-	// 	}
-	// }else {
-	// 	// calculate for both
-	// 	var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
-	// 	var damageObjectType2 = DAMAGE_TO_TYPE[responsePokemon.types[1].type.name];
-	// 	for(key in damageObjectType2){
-	// 		var combinedTypeDamage = damageObjectType2[key] * damageObjectType1[key];
-	// 		if (combinedTypeDamage == 0.25) {
-	// 			combinedTypeDamage = "¼"
-	// 		}else if (combinedTypeDamage == 0.5) {
-	// 			combinedTypeDamage = "½"
-	// 		};
-	// 		$("td." + key + ".damageValueCell").html(combinedTypeDamage);
-	// 		$("td." + key + ".damageValueCell").addClass("damageRate" + combinedTypeDamage);
-	// 	}
-	// }
+	
 	console.log("number of abilities: " + responsePokemon.abilities.length);
 	var damageChartAbilities = [];
 	var damageChartAbilitiesHidden = [];
 	for (var i = 0; i < responsePokemon.abilities.length; i++) {
 		console.log(responsePokemon.abilities[i].ability.name);
-		if (responsePokemon.abilities[i].ability.name == "dry-skin" ||
-			responsePokemon.abilities[i].ability.name == "filter" ||
-			responsePokemon.abilities[i].ability.name == "flash-fire" ||
-			responsePokemon.abilities[i].ability.name == "heatproof" ||
-			responsePokemon.abilities[i].ability.name == "levitate" ||
-			responsePokemon.abilities[i].ability.name == "sap-sipper" ||
-			responsePokemon.abilities[i].ability.name == "solid-rock" ||
-			responsePokemon.abilities[i].ability.name == "thick-fat" ||
-			responsePokemon.abilities[i].ability.name == "volt-absorb" ||
-			responsePokemon.abilities[i].ability.name == "water-absorb") {
+		if ( HIDDEN_ABILITIES.indexOf(responsePokemon.abilities[i].ability.name) > -1 ) {
 			if (responsePokemon.abilities[i].is_hidden == true) {
 				damageChartAbilitiesHidden.push(responsePokemon.abilities[i].ability.name);
 				$("#abilityHiddenModifierName").html(responsePokemon.abilities[i].ability.name);
@@ -139,7 +104,7 @@ $(document).ready(function(){
 			}
 		};
 	};
-	console.log("chart abilities: " + damageChartAbilities);
+
 	if (damageChartAbilities.length < 1 && damageChartAbilitiesHidden < 1) {
 		$("#damageControls").addClass("hidden");		
 	} else if (damageChartAbilities.length < 1) {
@@ -153,10 +118,7 @@ $(document).ready(function(){
 			changeAbility();
 		});
 	};
-
-	//evolution scripts
 	
-
 	//breeding scripts
 	//calculating gender
 	if(responsePokemonSpecies.gender_rate == -1) {
@@ -165,10 +127,9 @@ $(document).ready(function(){
 		console.log("gender rate: " + responsePokemonSpecies.gender_rate);
 		var genderFemale = responsePokemonSpecies.gender_rate / 8 * 100;
 		var genderMale = 100 - genderFemale;
-		$("#genderChartFemale").width(genderFemale + "%");
-		$("#genderChartFemale").html(genderFemale + "%");
-		$("#genderChartMale").width(genderMale + "%");
-		$("#genderChartMale").html(genderMale + "%");
+		// $("#genderChartFemale").width(genderFemale + "%");
+		$("#genderChartFemale").html(genderFemale + "%").width(genderFemale + '%');
+		$("#genderChartMale").html(genderMale + "%").width(genderMale + '%');
 	}
 
 	//finds egg groups
@@ -176,11 +137,7 @@ $(document).ready(function(){
 
 	if (responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
 		console.log("no babies for you");
-		$("#groupTitle").addClass("hidden");
-		$("#groupContainer").addClass("hidden");
-		$("#hatchingTitle").addClass("hidden");
-		$("#hatchingContainer").addClass("hidden");
-		$("#stepsChart").addClass("hidden");
+		$('.eggGrouping').addClass('hidden');
 		$("#genderContainer").append("This Pokémon cannot breed.");
 	};
 
@@ -198,34 +155,12 @@ $(document).ready(function(){
   });
   
   //build css chart
-  // console.log(responsePokemon.stats[5].base_stat);
-  // console.log(responsePokemon.stats[5].base_stat / 255 * 100);
-  $('#statHP').width(responsePokemon.stats[5].base_stat / 255 * 100 + "%");
-  $('#statHP').html(responsePokemon.stats[5].base_stat);
-  $('#statAttack').width(responsePokemon.stats[4].base_stat / 255 * 100 + "%");
-  $('#statAttack').html(responsePokemon.stats[4].base_stat);
-  $('#statDefense').width(responsePokemon.stats[3].base_stat / 255 * 100 + "%");
-  $('#statDefense').html(responsePokemon.stats[3].base_stat);
-  $('#statSpAttack').width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
-  $('#statSpAttack').html(responsePokemon.stats[2].base_stat);
-  $('#statSpDefense').width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
-  $('#statSpDefense').html(responsePokemon.stats[1].base_stat);
-  $('#statSpeed').width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
-  $('#statSpeed').html(responsePokemon.stats[0].base_stat);
-
-
-	// //set chart data
-	// barChartData = {
-	// 	labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
-	// 	datasets: [{
-	// 		//label: 'Stat',
-	// 		backgroundColor: ["#FF5959", "#F5AC78", "#FAE078", "#9DB7F5", "#A7DB8D", "#FA92B2"],
-	// 		data: [responsePokemon.stats[5].base_stat, responsePokemon.stats[4].base_stat, responsePokemon.stats[3].base_stat, responsePokemon.stats[2].base_stat, responsePokemon.stats[1].base_stat, responsePokemon.stats[0].base_stat]
-	// 	}]
-
-	// };
- //  //end chart data
- //  buildChart(barChartData);
+  $('#statHP').html(responsePokemon.stats[5].base_stat).width(responsePokemon.stats[5].base_stat / 255 * 100 + "%");
+  $('#statAttack').html(responsePokemon.stats[4].base_stat).width(responsePokemon.stats[4].base_stat / 255 * 100 + "%");
+  $('#statDefense').html(responsePokemon.stats[3].base_stat).width(responsePokemon.stats[3].base_stat / 255 * 100 + "%");
+  $('#statSpAttack').html(responsePokemon.stats[2].base_stat).width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
+  $('#statSpDefense').html(responsePokemon.stats[1].base_stat).width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
+  $('#statSpeed').html(responsePokemon.stats[0].base_stat).width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
 
   //build css chart
   

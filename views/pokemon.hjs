@@ -261,7 +261,7 @@
 							<option value ="filter_type_fairy">Fairy</option>
 						</select>
 
-						<select id="movesCategoryList" class ="movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+						<select id="movesCategoryList" class ="movesSelect battleMoves" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value=>Cat</option>
 							<option value ="filter_category_special">Special</option>
 							<option value ="filter_category_physical">Physical</option>
@@ -269,7 +269,7 @@
 						</select>
 
 
-						<select id="movesContestList" class ="hidden movesSelect" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
+						<select id="movesContestList" class ="hidden movesSelect contestMoves" onclick="resetMovesFilter()" onchange="filterMoves(this.value)">
 							<option value ="">Cat</option>
 							<option value ="filter_contest_cool">Cool</option>
 							<option value ="filter_contest_beautiful">Beautiful</option>
@@ -295,16 +295,16 @@
 						<div id="type" class="column">
 							Type
 						</div>
-						<div id="category" class="column toggle_hide">
+						<div id="category" class="column toggle_hide battleMoves">
 							Category
 						</div>
-						<div id="power" class="column">
+						<div id="power" class="column battleMoves">
 							Pwr
 						</div>
-						<div id="pp" class="column">
+						<div id="pp" class="column battleMoves">
 							PP
 						</div>
-						<div id="accuracy" class="column">
+						<div id="accuracy" class="column battleMoves">
 							Acc
 						</div>
 						<div id="learntLevel" class="column">
@@ -314,7 +314,7 @@
 							Method
 						</div> -->
 						
-						<div id="contest" class="column hidden">
+						<div id="contest" class="column hidden contestMoves">
 							Contest
 						</div>
 						<div class="clearfloat"></div>
@@ -339,8 +339,8 @@
 								<div id="genderChartMale"></div>
 							</div>
 						</div>
-						<div id="groupTitle">Egg Groups:</div>
-						<div id="groupContainer" class="row">
+						<div id="groupTitle" class="eggGrouping">Egg Groups:</div>
+						<div id="groupContainer" class="row eggGrouping">
 							{{#pokemonSpeciesData.egg_groups}}
 							{{#.}}
 							<div class="eggGroup egg{{name}}">
@@ -353,11 +353,11 @@
 							{{/.}}
 							{{/pokemonSpeciesData.egg_groups}}
 						</div>
-						<div id="hatchingTitle">Steps To Hatch Egg:</div>
-						<div id="stepsChart" class="baseChart">
+						<div id="hatchingTitle" class="eggGrouping">Steps To Hatch Egg:</div>
+						<div id="stepsChart" class="baseChart eggGrouping">
 							<div id="totalSteps"></div>
 						</div>
-						<div id="hatchingContainer" class="row">
+						<div id="hatchingContainer" class="row eggGrouping">
 							<!-- <img src="/images/page-pokemon/breeding-egg.png" /> -->
 							<!-- <span id="totalSteps"></span><br /> -->
 							<!-- Flamebody <img src="/images/page-pokemon/breeding-flamebody.png" height="21px" id="flamebody" /> -->
