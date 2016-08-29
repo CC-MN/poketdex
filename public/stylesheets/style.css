@@ -239,7 +239,7 @@ nav{
     .shareIcon{
     	position: absolute;
     	right: 1%;
-    	padding: 2px;
+    	padding: 6px 0px 0px 0px;
     }
 
     .reverseOrder {
