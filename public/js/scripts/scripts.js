@@ -3,8 +3,6 @@ var URL_PARAMS = {};
 var POKEMON_MOVES = [];
 var POKEMON_NAMES = [];
 var POKEDEXTEXT = null;
-var POKEMONMAX = 720;
-var POKEMONMIN = 1;
 var DEXTER_STATE = 0;
 var FLAMEBODY = "off"
 var BREEDING_CYCLES = 1;
@@ -52,17 +50,6 @@ $(document).ready(function(){
 			speak(POKEDEXTEXT);
 		}
 	});
-
-	//handles first and last pokemon
-	// $("#pokedexList").val(responsePokemon.id);
-	// var pokemonNavPrevious = (parseInt(responsePokemon.id) === POKEMONMIN) ? POKEMONMAX : parseInt(responsePokemon.id) - 1;
-	// var pokemonNavNext = (parseInt(responsePokemon.id) === POKEMONMAX) ? POKEMONMIN : parseInt(responsePokemon.id) + 1;
-	
-	// //set pokemonNav images and links
-	// $("#pokemonNavPreviousImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavPrevious + ".png");
-	// $("#pokemonNavNextImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavNext + ".png");
-	// $("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
-	// $("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
 	//binding section tabs
 	$('section div.tab').click(function(){
