@@ -64,20 +64,23 @@ $(document).ready(function(){
 	$("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
 	$("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
-	//binding section tabs & configure AJAX requests
+	//binding section tabs
 	$('section div.tab').click(function(){
 		var contentClass = $(this).attr('class').replace('tab', '');
 		contentClass = contentClass.replace('request', '');
 
 		showSection(contentClass);
-		//if there is a class 'request' it will make an ajax request
-		if($(this).hasClass('request') && !$('#' + contentClass.trim()).hasClass('hidden')){
-			var url = requestID(contentClass.trim());
-			if(url){
-				requestInfo(contentClass.trim(), url);
-			}
-		}
 		
+	});
+
+	//AJAX Binding
+	$('.request').click(function(){
+		var className = $(this).attr('data-request');
+		var url = requestID(className);
+		console.log(url);
+		if(url){
+			requestInfo(className, url);
+		}
 	});
 
 	//Gets ability information from abilities.js object

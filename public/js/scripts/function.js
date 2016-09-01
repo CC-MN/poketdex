@@ -1,5 +1,3 @@
-
-
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
   if(DEXTER_STATE === 2){
@@ -117,7 +115,7 @@ function evolutionChain(id, data){
   console.log(data);
   
   if(!data.chain.evolves_to){
-    $('#evolutionChainContent').html('No evolution available');
+    $('#' + id).html('No evolution available');
     return;
   }
 
@@ -133,7 +131,7 @@ function evolutionChain(id, data){
   $('#evolutionChainContent .row').append('<div class="column"></div>');
 
   $('#evolutionChainContent .row .column').append('<div class="pokemon"></div>');
-  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
+  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromPokemonURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(data.chain.species.url) + '.png" /></a>');
   $('#evolutionChainContent .row .column .pokemon').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
   //if a baby pokemon that requires a trigger item, include that
   if (data.baby_trigger_item) {
@@ -272,7 +270,7 @@ function buildEvolutionContent(className, evolutionInformation){
   }
 
   var html = '<div class="pokemon">';
-  html += '<a href="/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '.png" /></a>';
+  html += '<a href="/pokemon/' + getIDFromPokemonURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(evolutionURL) + '.png" /></a>';
 
   // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
 
@@ -592,6 +590,12 @@ function opower(steps,opowerLevel){
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
 }
 
+function showPokemonEggGroup(type, data){
+  console.log('showPokemonEggGroup');
+  console.log(data);
+  $('#' + type).html('HELLO!');
+}
+
 //Section: Locations
 //Area: Encounters
 
@@ -767,15 +771,20 @@ function filterGameGeneration(gameGeneration){
 
   function requestID(param){
     param = param.trim();
+    var selector = param.trim().split('-')[0];
     var id = null;
 
-    switch(param) {
+    switch(selector) {
       case 'evolutionChainContent':
       id = responsePokemonSpecies.evolution_chain.url
       break;
       case 'locationContent':
       id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
       break;
+      case 'eggGroup':
+      var eggGroup = $('.'+ param + ' label').text().trim();
+      id = 'http://pokeapi.co/api/v2/egg-group/' + eggGroup + '/';
+      break; 
     }
     return id;
 
@@ -783,6 +792,7 @@ function filterGameGeneration(gameGeneration){
 
   function requestInfo(type, url){
     console.log(url);
+
     $('#' + type).html('<img src="/images/loader.gif" />');
     var parameters = { 
       url : url
@@ -795,13 +805,18 @@ function filterGameGeneration(gameGeneration){
 
   function determineAjaxEvent(type, data){
 
-    switch(type) {
+    var selector = type.trim().split('-')[0];
+
+    switch(selector) {
       case 'evolutionChainContent':
-      evolutionChain(type, data);
-      break;
+        evolutionChain(type, data);
+        break;
       case 'locationContent':
-      encounterLocation(type, data);
-      break;
+        encounterLocation(type, data);
+        break;
+      case 'eggGroup':
+        showPokemonEggGroup(type, data);
+        break;
     }
   }
 
@@ -825,12 +840,8 @@ function filterGameGeneration(gameGeneration){
   }
 }
 
-function getIDFromSpeciesURL(url){
-  var id = url.replace(/(.*)pokemon\-species\/(.*)\//, '$2');
-  return id;
-}
 function getIDFromPokemonURL(url){
-  var id = url.replace(/(.*)pokemon\/(.*)\//, '$2');
+  var id = url.replace(/(.*)(pokemon|pokemon\-species)\/(.*)\//, '$3');
   return id;
 }
 
