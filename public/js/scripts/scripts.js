@@ -54,15 +54,15 @@ $(document).ready(function(){
 	});
 
 	//handles first and last pokemon
-	$("#pokedexList").val(responsePokemon.id);
-	var pokemonNavPrevious = (parseInt(responsePokemon.id) === POKEMONMIN) ? POKEMONMAX : parseInt(responsePokemon.id) - 1;
-	var pokemonNavNext = (parseInt(responsePokemon.id) === POKEMONMAX) ? POKEMONMIN : parseInt(responsePokemon.id) + 1;
+	// $("#pokedexList").val(responsePokemon.id);
+	// var pokemonNavPrevious = (parseInt(responsePokemon.id) === POKEMONMIN) ? POKEMONMAX : parseInt(responsePokemon.id) - 1;
+	// var pokemonNavNext = (parseInt(responsePokemon.id) === POKEMONMAX) ? POKEMONMIN : parseInt(responsePokemon.id) + 1;
 	
-	//set pokemonNav images and links
-	$("#pokemonNavPreviousImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavPrevious + ".png");
-	$("#pokemonNavNextImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavNext + ".png");
-	$("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
-	$("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
+	// //set pokemonNav images and links
+	// $("#pokemonNavPreviousImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavPrevious + ".png");
+	// $("#pokemonNavNextImage").attr("src", "/images/dex/pokemon-large/" + pokemonNavNext + ".png");
+	// $("#pokemonNavPreviousLink").attr("href", "./" + pokemonNavPrevious);
+	// $("#pokemonNavNextLink").attr("href", "./" + pokemonNavNext);
 
 	//binding section tabs
 	$('section div.tab').click(function(){
@@ -84,10 +84,7 @@ $(document).ready(function(){
 	});
 
 	//Gets ability information from abilities.js object
-	for (var i = 0; i < responsePokemon.abilities.length ; i++) {
-		getAbilityDetail(i);
-	};
-
+	getAbilityDetail(responsePokemon.abilities);
 
 	//type chart scripts
 	damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon);
@@ -136,7 +133,6 @@ $(document).ready(function(){
 	}
 
 	//finds egg groups
-	responsePokemonSpecies.egg_groups[0].name
 
 	if (responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
 		console.log("no babies for you");
@@ -158,21 +154,11 @@ $(document).ready(function(){
   });
   
   //build css chart
-  $('#statHP').html(responsePokemon.stats[5].base_stat).width(responsePokemon.stats[5].base_stat / 255 * 100 + "%");
-  $('#statAttack').html(responsePokemon.stats[4].base_stat).width(responsePokemon.stats[4].base_stat / 255 * 100 + "%");
-  $('#statDefense').html(responsePokemon.stats[3].base_stat).width(responsePokemon.stats[3].base_stat / 255 * 100 + "%");
-  $('#statSpAttack').html(responsePokemon.stats[2].base_stat).width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
-  $('#statSpDefense').html(responsePokemon.stats[1].base_stat).width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
-  $('#statSpeed').html(responsePokemon.stats[0].base_stat).width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
-
-  //build css chart
-  
+  buildStatsChart();
 
   //pokemon moves, store all the move name in a single array
-  POKEMON_MOVES = getMoveList();
-  if(POKEMON_MOVES.length){
-  	buildMoveList(POKEMON_MOVES);
-  }
+  getMoveList();
+  
 
 });
 

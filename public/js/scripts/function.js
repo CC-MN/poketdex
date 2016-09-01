@@ -103,10 +103,11 @@ function showSection(sectionName){
 
 
 //Section: Abilities
-function getAbilityDetail(i){
-  var nthchild = i+1
-  $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[responsePokemon.abilities[i].ability.name] );
-
+function getAbilityDetail(pokemonAbilities){
+  $.each(pokemonAbilities, function(i, v){
+    var nthchild = i+1;
+    $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[v.ability.name] );
+  });
 }
 
 //Section Evolution Chain
@@ -452,13 +453,17 @@ function getMoveList(){
       learntLevel : learntLevel,
       learntMethod : learntMethod
     }
-    tArray.push(item);
+    POKEMON_MOVES.push(item);
   });
 
-  tArray.sort(function(a,b){ return a.learntLevel - b.learntLevel });
-  return tArray;
+  POKEMON_MOVES.sort(function(a,b){ return a.learntLevel - b.learntLevel });
+
+  if(POKEMON_MOVES.length){
+    buildMoveList(POKEMON_MOVES);
+  }
+  // return tArray;
 }
-//Section: Moves
+
 function buildMoveList(moves){
 
   $.each(POKEMON_MOVES, function(i,v){
@@ -743,27 +748,14 @@ function filterGameGeneration(gameGeneration){
   //Area: Chart
   */
 
-  function buildChart(barChartData) {
-    var ctx = document.getElementById("canvas").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData,
-      options: {
-      // Elements options apply to all of the options unless overridden in a dataset
-      // In this case, we are setting the border of each bar to be 2px wide and green
-      responsive: false,
-      defaultFontFamily: "Lucida Grande",
-      defaultFontSize: 14,
-      legend: {
-        display: false
-      },
-      title: {
-        display: false
-      }
-    }
-  });
-  };
-
+function buildStatsChart(){
+  $('#statHP').html(responsePokemon.stats[5].base_stat).width(responsePokemon.stats[5].base_stat / 255 * 100 + "%");
+  $('#statAttack').html(responsePokemon.stats[4].base_stat).width(responsePokemon.stats[4].base_stat / 255 * 100 + "%");
+  $('#statDefense').html(responsePokemon.stats[3].base_stat).width(responsePokemon.stats[3].base_stat / 255 * 100 + "%");
+  $('#statSpAttack').html(responsePokemon.stats[2].base_stat).width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
+  $('#statSpDefense').html(responsePokemon.stats[1].base_stat).width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
+  $('#statSpeed').html(responsePokemon.stats[0].base_stat).width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
+}
 
 /*
   AJAX Request Functions
