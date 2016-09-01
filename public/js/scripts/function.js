@@ -1,5 +1,3 @@
-
-
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
   if(DEXTER_STATE === 2){
@@ -105,10 +103,11 @@ function showSection(sectionName){
 
 
 //Section: Abilities
-function getAbilityDetail(i){
-  var nthchild = i+1
-  $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[responsePokemon.abilities[i].ability.name] );
-
+function getAbilityDetail(pokemonAbilities){
+  $.each(pokemonAbilities, function(i, v){
+    var nthchild = i+1;
+    $( ".ability:nth-child(" + nthchild + ")" ).append( ": " + abilities[v.ability.name] );
+  });
 }
 
 //Section Evolution Chain
@@ -117,7 +116,7 @@ function evolutionChain(id, data){
   console.log(data);
   
   if(!data.chain.evolves_to){
-    $('#evolutionChainContent').html('No evolution available');
+    $('#' + id).html('No evolution available');
     return;
   }
 
@@ -133,7 +132,7 @@ function evolutionChain(id, data){
   $('#evolutionChainContent .row').append('<div class="column"></div>');
 
   $('#evolutionChainContent .row .column').append('<div class="pokemon"></div>');
-  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromSpeciesURL(data.chain.species.url) + '.png" /></a>');
+  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromPokemonURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(data.chain.species.url) + '.png" /></a>');
   $('#evolutionChainContent .row .column .pokemon').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
   //if a baby pokemon that requires a trigger item, include that
   if (data.baby_trigger_item) {
@@ -272,7 +271,7 @@ function buildEvolutionContent(className, evolutionInformation){
   }
 
   var html = '<div class="pokemon">';
-  html += '<a href="/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromSpeciesURL(evolutionURL) + '.png" /></a>';
+  html += '<a href="/pokemon/' + getIDFromPokemonURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(evolutionURL) + '.png" /></a>';
 
   // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
 
@@ -454,13 +453,17 @@ function getMoveList(){
       learntLevel : learntLevel,
       learntMethod : learntMethod
     }
-    tArray.push(item);
+    POKEMON_MOVES.push(item);
   });
 
-  tArray.sort(function(a,b){ return a.learntLevel - b.learntLevel });
-  return tArray;
+  POKEMON_MOVES.sort(function(a,b){ return a.learntLevel - b.learntLevel });
+
+  if(POKEMON_MOVES.length){
+    buildMoveList(POKEMON_MOVES);
+  }
+  // return tArray;
 }
-//Section: Moves
+
 function buildMoveList(moves){
 
   $.each(POKEMON_MOVES, function(i,v){
@@ -590,6 +593,12 @@ function opower(steps,opowerLevel){
   console.log("opower level: " + opowerLevel);
   console.log("steps per cycle: " + BREEDING_MOD_STEPS);
   calculateEggSteps(BREEDING_MOD_CYCLES,BREEDING_MOD_STEPS);
+}
+
+function showPokemonEggGroup(type, data){
+  console.log('showPokemonEggGroup');
+  console.log(data);
+  $('#' + type).html('HELLO!');
 }
 
 //Section: Locations
@@ -739,27 +748,14 @@ function filterGameGeneration(gameGeneration){
   //Area: Chart
   */
 
-  function buildChart(barChartData) {
-    var ctx = document.getElementById("canvas").getContext("2d");
-    window.myBar = new Chart(ctx, {
-      type: 'bar',
-      data: barChartData,
-      options: {
-      // Elements options apply to all of the options unless overridden in a dataset
-      // In this case, we are setting the border of each bar to be 2px wide and green
-      responsive: false,
-      defaultFontFamily: "Lucida Grande",
-      defaultFontSize: 14,
-      legend: {
-        display: false
-      },
-      title: {
-        display: false
-      }
-    }
-  });
-  };
-
+function buildStatsChart(){
+  $('#statHP').html(responsePokemon.stats[5].base_stat).width(responsePokemon.stats[5].base_stat / 255 * 100 + "%");
+  $('#statAttack').html(responsePokemon.stats[4].base_stat).width(responsePokemon.stats[4].base_stat / 255 * 100 + "%");
+  $('#statDefense').html(responsePokemon.stats[3].base_stat).width(responsePokemon.stats[3].base_stat / 255 * 100 + "%");
+  $('#statSpAttack').html(responsePokemon.stats[2].base_stat).width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
+  $('#statSpDefense').html(responsePokemon.stats[1].base_stat).width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
+  $('#statSpeed').html(responsePokemon.stats[0].base_stat).width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
+}
 
 /*
   AJAX Request Functions
@@ -767,15 +763,20 @@ function filterGameGeneration(gameGeneration){
 
   function requestID(param){
     param = param.trim();
+    var selector = param.trim().split('-')[0];
     var id = null;
 
-    switch(param) {
+    switch(selector) {
       case 'evolutionChainContent':
       id = responsePokemonSpecies.evolution_chain.url
       break;
       case 'locationContent':
       id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
       break;
+      case 'eggGroup':
+      var eggGroup = $('.'+ param + ' label').text().trim();
+      id = 'http://pokeapi.co/api/v2/egg-group/' + eggGroup + '/';
+      break; 
     }
     return id;
 
@@ -783,6 +784,7 @@ function filterGameGeneration(gameGeneration){
 
   function requestInfo(type, url){
     console.log(url);
+
     $('#' + type).html('<img src="/images/loader.gif" />');
     var parameters = { 
       url : url
@@ -795,13 +797,18 @@ function filterGameGeneration(gameGeneration){
 
   function determineAjaxEvent(type, data){
 
-    switch(type) {
+    var selector = type.trim().split('-')[0];
+
+    switch(selector) {
       case 'evolutionChainContent':
-      evolutionChain(type, data);
-      break;
+        evolutionChain(type, data);
+        break;
       case 'locationContent':
-      encounterLocation(type, data);
-      break;
+        encounterLocation(type, data);
+        break;
+      case 'eggGroup':
+        showPokemonEggGroup(type, data);
+        break;
     }
   }
 
@@ -825,12 +832,8 @@ function filterGameGeneration(gameGeneration){
   }
 }
 
-function getIDFromSpeciesURL(url){
-  var id = url.replace(/(.*)pokemon\-species\/(.*)\//, '$2');
-  return id;
-}
 function getIDFromPokemonURL(url){
-  var id = url.replace(/(.*)pokemon\/(.*)\//, '$2');
+  var id = url.replace(/(.*)(pokemon|pokemon\-species)\/(.*)\//, '$3');
   return id;
 }
 

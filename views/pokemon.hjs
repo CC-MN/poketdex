@@ -88,7 +88,7 @@
 
 			<!-- Section: Evolution Chain -->
 			<section>
-				<div id="evolutionChainTitle" class="tab evolutionChainContent request">
+				<div id="evolutionChainTitle" class="tab evolutionChainContent request" data-request="evolutionChainContent">
 					<span>Evolution &amp; Forms</span>
 					<div class="iconContainer">
 						<button class="buttonController">+</button>
@@ -201,7 +201,7 @@
 
 			<!-- Section: Moves -->
 			<section>
-				<div id="movesTitle" class="tab movesContent request">
+				<div id="movesTitle" class="tab movesContent">
 					<span>Moves</span>
 					<div class="iconContainer">
 						<img src="/images/interface/icon-filter.png" id="movesContentFilter" class="sectionIcon hidden">
@@ -343,12 +343,14 @@
 						<div id="groupContainer" class="row eggGrouping">
 							{{#pokemonSpeciesData.egg_groups}}
 							{{#.}}
-							<div class="eggGroup egg{{name}}">
-								{{name}}
+							<div class="eggGroup egg{{name}} eggGroup-{{name}} request" data-request="eggGroup-{{name}}">
+								<label>{{name}}</label>
 								<div class="iconContainer">
 									<!-- <img src="/images/interface/icon-expand.png" class="sectionIcon" /> -->
 									+
 								</div>
+							</div>
+							<div id="eggGroup-{{name}}" class="content hidden">
 							</div>
 							{{/.}}
 							{{/pokemonSpeciesData.egg_groups}}
@@ -395,7 +397,7 @@
 
 				<!-- Section: Locations -->
 				<section>
-					<div id="locationTitle" class="tab locationContent request">
+					<div id="locationTitle" class="tab locationContent request" data-request="locationContent">
 						<span>Locations</span>
 						<div class="iconContainer">
 							<img src="/images/interface/icon-filter.png" id="locationContentFilter" class="sectionIcon hidden">
