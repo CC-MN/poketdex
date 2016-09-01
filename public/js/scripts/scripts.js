@@ -64,7 +64,6 @@ $(document).ready(function(){
 	$('.request').click(function(){
 		var className = $(this).attr('data-request');
 		var url = requestID(className);
-		console.log(url);
 		if(url){
 			requestInfo(className, url);
 		}

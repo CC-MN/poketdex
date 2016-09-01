@@ -142,7 +142,7 @@ function evolutionChain(id, data){
   $.each(evolutionChain, function(i, v){
 
     var evolutionInformation = v;
-    console.log(evolutionInformation);
+    // console.log(evolutionInformation);
     buildEvolutionContent('chain-1', evolutionInformation);
     //check to see if they have a third form
     if(v.evolves_to.length === 0){
@@ -152,7 +152,7 @@ function evolutionChain(id, data){
     $.each(v.evolves_to, function(i2, v2){
 
       var evolutionInformation = v2;
-      console.log(evolutionInformation);
+      // console.log(evolutionInformation);
       buildEvolutionContent('chain-2', evolutionInformation);
 
     });
@@ -215,6 +215,16 @@ function buildEvolutionContent(className, evolutionInformation){
   //check to see if it is level, item or location
   var evolutionDetail = evolutionInformation.evolution_details[0];
 
+  //check for multiple location
+  var evolutionLocations = [];
+  if(evolutionDetail.location){
+    $.each(evolutionInformation.evolution_details, function(index, value){
+      if(value.location.name){
+        evolutionLocations.push(value.location);
+      }
+    });
+  }
+
   //checks if evolution is gender based and sets appropriate gender requirement
   if (evolutionDetail.gender != null) {
     if (evolutionDetail.gender == 1) {
@@ -242,7 +252,7 @@ function buildEvolutionContent(className, evolutionInformation){
     evolutionTrigger : evolutionDetail.trigger.name,
     evolutionItem : (evolutionDetail.item) ? evolutionDetail.item.name : null,
     evolutionLevel : (evolutionDetail.min_level != null) ? 'Level: ' + evolutionDetail.min_level : null,
-    evolutionLocation : (evolutionDetail.location) ? 'at ' + evolutionDetail.location.name : null,
+    evolutionLocation : (evolutionLocations.length) ? evolutionLocations : null,
     evolutionTime : (evolutionDetail.time_of_day !== '') ? 'during ' + evolutionDetail.time_of_day : null,
     evolutionHeldItem : (evolutionDetail.held_item != null) ? 'while holding ' + evolutionDetail.held_item.name : null,
     evolutionAttack : (evolutionDetail.known_move != null) ? 'knows ' + evolutionDetail.known_move.name : null,
@@ -261,19 +271,12 @@ function buildEvolutionContent(className, evolutionInformation){
 
   var evolutionURL = evolutionInformation.species.url;
 
-  //builds baby trigger info, but that shouldnt sit here
-  // if (evolutionInformation.is_baby == true && evolutionInformation.baby_trigger_item != null) {
-  //   evolutionTrigger = 'Triggered by breeding parents holding' + evolutionInformation.baby_trigger_item.name;
-  // }
-
   if($('#evolutionChainContent').find('.' + className).length === 0){
     $('#evolutionChainContent').append('<div class="column '+ className +'"></div>');
   }
 
   var html = '<div class="pokemon">';
   html += '<a href="/pokemon/' + getIDFromPokemonURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(evolutionURL) + '.png" /></a>';
-
-  // $('#evolutionChainContent .' + className).append('<div class="evolutionDetail">' + content.evolutionType + ' </div>');
 
   //loop through content object
   $.each(content, function(k, v){
@@ -282,6 +285,10 @@ function buildEvolutionContent(className, evolutionInformation){
     }
     if(k === 'evolutionItem'){
       html += '<div class="' + k + '"><a href="/item/' + v + '">' + v + ' <img src="/images/dex/item/' + v + '.png"></a></div>'
+    }else if(k === 'evolutionLocation'){
+      $.each(v, function(index, value){
+        html += '<div class="' + k + '">at ' + value.name.replace(/\-/g, ' ') + '</div>';
+      });
     }else{
       html += '<div class="' + k + '">' + v + '</div>';
     }
@@ -294,10 +301,8 @@ function buildEvolutionContent(className, evolutionInformation){
 
 //Section: Damage Chart
 function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
-  // console.log("damage_to_type object:");
+
   console.log(DAMAGE_TO_TYPE);
-  // console.log("responsePokemon object:");
-  // console.log(responsePokemon);
   if (responsePokemon.types.length < 2) {
     //calculate a single type effectiveness
     var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
@@ -443,7 +448,6 @@ function abilityHiddenToggle(){
 //Section: Moves
 function getMoveList(){
 
-  var tArray = [];
   $.each(responsePokemon.moves, function(index, value){
     var move = value.move.name;
     var learntLevel = value.version_group_details[0].level_learned_at;
@@ -461,7 +465,7 @@ function getMoveList(){
   if(POKEMON_MOVES.length){
     buildMoveList(POKEMON_MOVES);
   }
-  // return tArray;
+
 }
 
 function buildMoveList(moves){
@@ -790,7 +794,6 @@ function buildStatsChart(){
       url : url
     };
     $.get( '/request',parameters, function(data) {
-      console.log('results');
       determineAjaxEvent(type, data);
     });
   }
