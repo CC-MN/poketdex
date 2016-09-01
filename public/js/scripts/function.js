@@ -602,7 +602,14 @@ function opower(steps,opowerLevel){
 function showPokemonEggGroup(type, data){
   console.log('showPokemonEggGroup');
   console.log(data);
-  $('#' + type).html('HELLO!');
+  console.log(type);
+  $('#' + type).removeClass('hidden');
+  $('#' + type).html('');
+  $('.' + type + ' .iconContainer').html('-');
+  for (var i = 0; i < data.pokemon_species.length; i++) {
+    var pkmnID = getIDFromPokemonURL(data.pokemon_species[i].url);
+    $('#' + type).append('<a href="/pokemon/' + pkmnID +'"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>');
+  };
 }
 
 //Section: Locations

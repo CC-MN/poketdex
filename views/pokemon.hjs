@@ -350,7 +350,7 @@
 									+
 								</div>
 							</div>
-							<div id="eggGroup-{{name}}" class="content hidden">
+							<div id="eggGroup-{{name}}" class="content egg{{name}} eggspand hidden">
 							</div>
 							{{/.}}
 							{{/pokemonSpeciesData.egg_groups}}
