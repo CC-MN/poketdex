@@ -197,7 +197,7 @@ function evolutionChain(id, data){
 function toggleShinyModels(){
   if (document.getElementById('shinyToggleMode').checked) {
     $("#evolutionChainContent").find(".pokemon").each(function () {
-      var img = $(this).find("img");
+      var img = $(this).find(".model");
       img.prop("src", img.prop("src").replace("pokemon/", "pokemon/shiny/"));
     });    
   } else {
@@ -796,7 +796,8 @@ function buildStatsChart(){
   function requestInfo(type, url){
     console.log(url);
 
-    $('#' + type).html('<img src="/images/loader.gif" />');
+    // $('#' + type).html('<img src="/images/loader.gif" />');
+    $('#' + type).html('<div class="sk-three-bounce"><img src="/images/pokeball.png" class="sk-child sk-bounce1"><img src="/images/premierball.png" class="sk-child sk-bounce2"><img src="/images/pokeball.png" class="sk-child sk-bounce3"></div>');
     var parameters = { 
       url : url
     };
