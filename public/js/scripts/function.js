@@ -230,8 +230,6 @@ function evolutionChain(id, data){
     };
   }
 
-  
-
   //count how many columns we have to dynamically set the width
   var columnAmount = $('#evolutionChainContent .column').length;
   $('#evolutionChainContent .column').css({
@@ -254,7 +252,6 @@ function toggleShinyModels(){
   }
   
 }
-
 
 function buildEvolutionContent(className, evolutionInformation){
 
@@ -891,59 +888,56 @@ function buildStatsChart(){
 
 /*
   AJAX Request Functions
-  */
+*/
 
-  function requestID(param){
-    param = param.trim();
-    var selector = param.trim().split('-')[0];
-    var id = null;
+function requestID(param){
+  param = param.trim();
+  var selector = param.trim().split('-')[0];
+  var id = null;
 
-    switch(selector) {
-      case 'evolutionChainContent':
-      id = responsePokemonSpecies.evolution_chain.url
+  switch(selector) {
+    case 'evolutionChainContent':
+    id = responsePokemonSpecies.evolution_chain.url
+    break;
+    case 'locationContent':
+    id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+    break;
+    case 'eggGroup':
+    var eggGroup = $('.'+ param + ' label').text().trim();
+    id = 'http://pokeapi.co/api/v2/egg-group/' + eggGroup + '/';
+    break; 
+  }
+  return id;
+
+}
+
+function requestInfo(type, url){
+  console.log(url);
+
+  // $('#' + type).html('<img src="/images/loader.gif" />');
+  $('#' + type).html('<div class="sk-three-bounce"><img src="/images/pokeball.png" class="sk-child sk-bounce1"><img src="/images/premierball.png" class="sk-child sk-bounce2"><img src="/images/pokeball.png" class="sk-child sk-bounce3"></div>');
+  var parameters = { 
+    url : url
+  };
+  $.get( '/request',parameters, function(data) {
+    determineAjaxEvent(type, data);
+  });
+}
+
+function determineAjaxEvent(type, data){
+  var selector = type.trim().split('-')[0];
+  switch(selector) {
+    case 'evolutionChainContent':
+      evolutionChain(type, data);
       break;
-      case 'locationContent':
-      id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+    case 'locationContent':
+      encounterLocation(type, data);
       break;
-      case 'eggGroup':
-      var eggGroup = $('.'+ param + ' label').text().trim();
-      id = 'http://pokeapi.co/api/v2/egg-group/' + eggGroup + '/';
-      break; 
-    }
-    return id;
-
+    case 'eggGroup':
+      showPokemonEggGroup(type, data);
+      break;
   }
-
-  function requestInfo(type, url){
-    console.log(url);
-
-    // $('#' + type).html('<img src="/images/loader.gif" />');
-    $('#' + type).html('<div class="sk-three-bounce"><img src="/images/pokeball.png" class="sk-child sk-bounce1"><img src="/images/premierball.png" class="sk-child sk-bounce2"><img src="/images/pokeball.png" class="sk-child sk-bounce3"></div>');
-    var parameters = { 
-      url : url
-    };
-    $.get( '/request',parameters, function(data) {
-      determineAjaxEvent(type, data);
-    });
-  }
-
-  function determineAjaxEvent(type, data){
-
-    var selector = type.trim().split('-')[0];
-
-    switch(selector) {
-      case 'evolutionChainContent':
-        evolutionChain(type, data);
-        break;
-      case 'locationContent':
-        encounterLocation(type, data);
-        break;
-      case 'eggGroup':
-        showPokemonEggGroup(type, data);
-        break;
-    }
-  }
-
+}
 
 /*
   Utility Functions
