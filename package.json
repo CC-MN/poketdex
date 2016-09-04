@@ -17,6 +17,10 @@
     "express": "~4.13.4",
     "hjs": "~0.0.6",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "memory-cache" : "^0.1.6",
+    "nodemon" : "~1.9.2",
+    "request-promise" : "~3.0.0",
+    "jade" : "~1.11.0"
   }
 }
