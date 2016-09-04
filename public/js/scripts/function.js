@@ -439,6 +439,36 @@ function changeAbility(){
   }
 }
 
+function convertDamageValueForChart(value,type){
+  //remember to ensure that the value passed is fixed with .toFixed(2)
+  var decimalValue = String(value);
+  decimalValue = decimalValue.split(".");
+  var roundedDecimal = 25 * Math.round(decimalValue[1] / 25);
+  if (roundedDecimal == 25) {
+    roundedDecimal = "¼";
+  } else if (roundedDecimal == 50) {
+    roundedDecimal = "½";
+  } else if (roundedDecimal == 75) {
+    roundedDecimal = "¾";
+  }
+  var integer = parseInt(decimalValue[0]);
+  if (integer >= 1 && decimalValue[1] != 0) {
+    var convertedValue = decimalValue[0] + "<br>" + roundedDecimal;
+  } else if (integer >= 1) {
+    var convertedValue = integer;
+  } else {
+    var convertedValue = roundedDecimal;
+  }
+  if (convertedValue == "¼" || convertedValue == "½" || convertedValue == "¾" ) {
+    $("td." + type + ".damageValueCell").addClass("damageRate½");
+  } else if (integer >= 1) {
+    $("td." + type + ".damageValueCell").addClass("damageRate1");
+  } else {
+    $("td." + type + ".damageValueCell").addClass("damageRate0");
+  }
+  $("td." + type + ".damageValueCell").html(convertedValue);
+}
+
 function damageChartModifiers(modifier,isHidden){
   //reset stats before modifying
   if (isHidden == true) {
@@ -941,32 +971,3 @@ function getIDFromPokemonURL(url){
   return id;
 }
 
-function convertDamageValueForChart(value,type){
-  //remember to ensure that the value passed is fixed with .toFixed(2)
-  var decimalValue = String(value);
-  decimalValue = decimalValue.split(".");
-  var roundedDecimal = 25 * Math.round(decimalValue[1] / 25);
-  if (roundedDecimal == 25) {
-    roundedDecimal = "¼";
-  } else if (roundedDecimal == 50) {
-    roundedDecimal = "½";
-  } else if (roundedDecimal == 75) {
-    roundedDecimal = "¾";
-  }
-  var integer = parseInt(decimalValue[0]);
-  if (integer >= 1 && decimalValue[1] != 0) {
-    var convertedValue = decimalValue[0] + "<br>" + roundedDecimal;
-  } else if (integer >= 1) {
-    var convertedValue = integer;
-  } else {
-    var convertedValue = roundedDecimal;
-  }
-  if (convertedValue == "¼" || convertedValue == "½" || convertedValue == "¾" ) {
-    $("td." + type + ".damageValueCell").addClass("damageRate½");
-  } else if (integer >= 1) {
-    $("td." + type + ".damageValueCell").addClass("damageRate1");
-  } else {
-    $("td." + type + ".damageValueCell").addClass("damageRate0");
-  }
-  $("td." + type + ".damageValueCell").html(convertedValue);
-}
