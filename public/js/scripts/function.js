@@ -161,7 +161,7 @@ function getAbilityDetail(pokemonAbilities){
 //Section Evolution Chain
 function evolutionChain(id, data){
   console.log('evolutionChain');
-  console.log(data);
+  // console.log(data);
   
   if(!data.chain.evolves_to){
     $('#' + id).html('No evolution available');
@@ -702,7 +702,7 @@ function opower(steps,opowerLevel){
 
 function showPokemonEggGroup(type, data){
   console.log('showPokemonEggGroup');
-  console.log(data);
+  // console.log(data);
   var html = '';
   for (var i = 0; i < data.pokemon_species.length; i++) {
     var pkmnID = getIDFromPokemonURL(data.pokemon_species[i].url);
@@ -716,7 +716,7 @@ function showPokemonEggGroup(type, data){
 
 function encounterLocation(id, data){
   console.log('encounterLocation');
-  console.log(data);
+  // console.log(data);
 
   if(!data.length){
     $('#locationContent').html('No available encounters');
