@@ -136,16 +136,14 @@ function useList() {
 
 function showSection(sectionName){
   sectionName = sectionName.trim();
-  console.log(sectionName);
 
   if ($( "#" + sectionName ).hasClass("hidden")) {
     $('.' + sectionName + ' button').html('&#8211;');
-    $('#' + sectionName).removeClass("hidden");
-    $('#' + sectionName).addClass("expanded");
+    $('#' + sectionName).removeClass("hidden").addClass("expanded");
     $('#' + sectionName).focus();
   }else {
     $('.' + sectionName + ' button').html('+');
-    $('#' + sectionName).addClass("hidden");
+    $('#' + sectionName).addClass("hidden").removeClass("expanded");
   }
 }
 
