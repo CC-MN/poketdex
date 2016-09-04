@@ -398,6 +398,38 @@ function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
   }
 }
 
+function checkAbilityDamageModifier(responsePokemon){
+  console.log("number of abilities: " + responsePokemon.abilities.length);
+  var damageChartAbilities = [];
+  var damageChartAbilitiesHidden = [];
+  for (var i = 0; i < responsePokemon.abilities.length; i++) {
+    console.log(responsePokemon.abilities[i].ability.name);
+    if ( MODIFIER_ABILITIES.indexOf(responsePokemon.abilities[i].ability.name) > -1 ) {
+      if (responsePokemon.abilities[i].is_hidden == true) {
+        damageChartAbilitiesHidden.push(responsePokemon.abilities[i].ability.name);
+        $("#abilityHiddenModifierName").html(responsePokemon.abilities[i].ability.name);
+      }else{
+        damageChartAbilities.push(responsePokemon.abilities[i].ability.name)
+        $("#abilitySelect").append("<option value='" + responsePokemon.abilities[i].ability.name + "'>" + responsePokemon.abilities[i].ability.name + "</option>");
+      }
+    };
+  };
+
+  if (damageChartAbilities.length < 1 && damageChartAbilitiesHidden < 1) {
+    $("#damageControls").addClass("hidden");    
+  } else if (damageChartAbilities.length < 1) {
+    $("#abilityModifier").addClass("hidden");
+  } else if (damageChartAbilitiesHidden.length < 1) {
+    $("#abilityHiddenModifier").addClass("hidden");
+  };
+  if (damageChartAbilities.length >= 1) {
+    //binding modify function to select
+    $('#abilitySelect').change(function(){
+      changeAbility();
+    });
+  };
+}
+
 function changeAbility(){
   if (document.getElementById('abilityHiddenToggle').checked) {
     damageChartModifiers($("#abilitySelect").val(),false);
@@ -597,6 +629,27 @@ function filterMoves (moves_filter) {
 
 //Section: Breeding
 //Area: Eggs
+function determineGenderAndBreeding(responsePokemonSpecies){
+  //calculating gender
+  if(responsePokemonSpecies.gender_rate == -1) {
+    $("#genderChart").html("This Pokémon has no gender.");
+  }else {
+    console.log("gender rate: " + responsePokemonSpecies.gender_rate);
+    var genderFemale = responsePokemonSpecies.gender_rate / 8 * 100;
+    var genderMale = 100 - genderFemale;
+    // $("#genderChartFemale").width(genderFemale + "%");
+    $("#genderChartFemale").html(genderFemale + "%").width(genderFemale + '%');
+    $("#genderChartMale").html(genderMale + "%").width(genderMale + '%');
+  }
+
+  //finds egg groups
+  if (responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
+    console.log("no babies for you");
+    $('.eggGrouping').addClass('hidden');
+    $("#genderContainer").append("This Pokémon cannot breed.");
+  };
+}
+
 function calculateEggSteps(cycles,steps){
   var breedingStepsToHatch = cycles * steps;
   var maxSteps = BREEDING_CYCLES * BREEDING_STEPS_PER_CYCLE;
