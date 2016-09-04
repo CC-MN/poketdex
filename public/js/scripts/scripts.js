@@ -20,54 +20,14 @@ var MODIFIER_ABILITIES = ['dry-skin', 'filter', 'flash-fire', 'heatproof', 'levi
 
 $(document).ready(function(){
 	getQS(URL_PARAMS);
+
 	BREEDING_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 	BREEDING_MOD_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 
-	//builds pokdex list in select input
-	$.each(pokedexList, function(key, value) {
-		$('#pokedexList')
-		.append($("<option></option>")
-			.attr("value",key)
-			.text(key + " - " + value));
-		// console.log("logging: " + key + value)
-	});
-
 	//auto complete for pokemon search
 	pokemonAutoComplete();
-
-	//get dexter text
-	$.each(responsePokemonSpecies.flavor_text_entries, function(index, value){
-		var v = value;
-		if(v.language.name === 'en'){
-			POKEDEXTEXT = v.flavor_text;
-			return false; //break out of .each loop
-		}
-	});
-
-	// binding dexter click event
-	$('#dexter').click(function(){
-		if(POKEDEXTEXT){
-			speak(POKEDEXTEXT);
-		}
-	});
-
-	//binding section tabs
-	$('section div.tab').click(function(){
-		var contentClass = $(this).attr('class').replace('tab', '');
-		contentClass = contentClass.replace('request', '');
-
-		showSection(contentClass);
-		
-	});
-
-	//AJAX Binding
-	$('.request').click(function(){
-		var className = $(this).attr('data-request');
-		var url = requestID(className);
-		if(url){
-			requestInfo(className, url);
-		}
-	});
+	//set POKEDEXTEXT
+	getDexterText();
 
 	//Gets ability information from abilities.js object
 	getAbilityDetail(responsePokemon.abilities);
@@ -128,16 +88,6 @@ $(document).ready(function(){
 
 	//calculating base egg steps
 	calculateEggSteps(BREEDING_CYCLES,BREEDING_STEPS_PER_CYCLE);
-
-
-  //binding functions to egg calculator
-  $('#flamebody').click(function(){
-  	flameBody(BREEDING_CYCLES);
-  });
-
-  $('#opower').change(function(){
-  	opower(BREEDING_STEPS_PER_CYCLE,this.value);
-  });
   
   //build css chart
   buildStatsChart();
@@ -145,6 +95,8 @@ $(document).ready(function(){
   //pokemon moves, store all the move name in a single array
   getMoveList();
   
+  //page bindings
+  setPokemonPageBindings();
 
 });
 

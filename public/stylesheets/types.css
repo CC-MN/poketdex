@@ -88,23 +88,14 @@
 
 .eggGroup {
 	text-align: center;
-	margin-bottom:5px;
+	/*margin-bottom:5px;*/
 	color:#ffffff;
 	width: 100%;
-	float: left;
 	position: relative;
-	height: 24px;
+	height: 30px !important;
 	line-height: 24px;
-/*	border-radius: 50vw;
-	width: 50vw;
-	height: 50vw;
-	background-color: #ff0000;
-	opacity: .6;
-	display: table;
-	float: left;
-	line-height: 50vw;
-	text-align: center;
-	color:#ffffff;*/
+	border-top:none;
+	font-size:16px;
 }
 
 .eggGroup:nth-child(1) {

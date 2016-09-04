@@ -1,3 +1,14 @@
+function getDexterText(){
+  //get dexter text
+  $.each(responsePokemonSpecies.flavor_text_entries, function(index, value){
+    var v = value;
+    if(v.language.name === 'en'){
+      POKEDEXTEXT = v.flavor_text;
+      return false; //break out of .each loop
+    }
+  });
+}
+
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
   if(DEXTER_STATE === 2){
@@ -30,6 +41,42 @@ function openNav() {
 // Set the width of the side navigation to 0 
 function closeNav() {
   $('#mySidenav').css('width','0px');
+}
+
+//set bindings
+function setPokemonPageBindings(){
+  // binding dexter click event
+  $('#dexter').click(function(){
+    if(POKEDEXTEXT){
+      speak(POKEDEXTEXT);
+    }
+  });
+
+  //binding section tabs
+  $('section div.tab').click(function(){
+    var contentClass = $(this).attr('data-content') || null;
+    if(contentClass){
+      showSection(contentClass);
+    }
+  });
+
+  //AJAX Binding
+  $('.request').click(function(){
+    var className = $(this).attr('data-request');
+    var url = requestID(className);
+    if(url){
+      requestInfo(className, url);
+    }
+  });
+
+    //binding functions to egg calculator
+  $('#flamebody').click(function(){
+    flameBody(BREEDING_CYCLES);
+  });
+
+  $('#opower').change(function(){
+    opower(BREEDING_STEPS_PER_CYCLE,this.value);
+  });
 }
 
 function pokemonAutoComplete() {
@@ -89,14 +136,15 @@ function useList() {
 
 function showSection(sectionName){
   sectionName = sectionName.trim();
+  console.log(sectionName);
 
   if ($( "#" + sectionName ).hasClass("hidden")) {
-    $('#' + sectionName).parent().find('button').html('&#8211;');
+    $('.' + sectionName + ' button').html('&#8211;');
     $('#' + sectionName).removeClass("hidden");
     $('#' + sectionName).addClass("expanded");
     $('#' + sectionName).focus();
   }else {
-    $('#' + sectionName).parent().find('button').html('+');
+    $('.' + sectionName + ' button').html('+');
     $('#' + sectionName).addClass("hidden");
   }
 }
@@ -302,7 +350,7 @@ function buildEvolutionContent(className, evolutionInformation){
 //Section: Damage Chart
 function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
 
-  console.log(DAMAGE_TO_TYPE);
+  // console.log(DAMAGE_TO_TYPE);
   if (responsePokemon.types.length < 2) {
     //calculate a single type effectiveness
     var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
@@ -602,14 +650,12 @@ function opower(steps,opowerLevel){
 function showPokemonEggGroup(type, data){
   console.log('showPokemonEggGroup');
   console.log(data);
-  console.log(type);
-  $('#' + type).removeClass('hidden');
-  $('#' + type).html('');
-  $('.' + type + ' .iconContainer').html('-');
+  var html = '';
   for (var i = 0; i < data.pokemon_species.length; i++) {
     var pkmnID = getIDFromPokemonURL(data.pokemon_species[i].url);
-    $('#' + type).append('<a href="/pokemon/' + pkmnID +'"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>');
+    html += '<a href="/pokemon/' + pkmnID +'"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>';
   };
+  $('#' + type).html(html);
 }
 
 //Section: Locations
@@ -687,21 +733,21 @@ function encounterLocation(id, data){
     html += '</div>';
   });
 
-var gameGenerationContainer = '<div id="gameGenerationContainer">';
-gameGenerationContainer += '<select id="gameGenerationSelect" onchange="filterGameGeneration(this.value)">'
-gameGenerationContainer += '<option value="1">Generation 1</option>'
-gameGenerationContainer += '<option value="2">Generation 2</option>'
-gameGenerationContainer += '<option value="3">Generation 3</option>'
-gameGenerationContainer += '<option value="4">Generation 4</option>'
-gameGenerationContainer += '<option value="5">Generation 5</option>'
-gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
-gameGenerationContainer += '</select>'
-gameGenerationContainer += '</div>'
+  var gameGenerationContainer = '<div id="gameGenerationContainer">';
+  gameGenerationContainer += '<select id="gameGenerationSelect" onchange="filterGameGeneration(this.value)">'
+  gameGenerationContainer += '<option value="1">Generation 1</option>'
+  gameGenerationContainer += '<option value="2">Generation 2</option>'
+  gameGenerationContainer += '<option value="3">Generation 3</option>'
+  gameGenerationContainer += '<option value="4">Generation 4</option>'
+  gameGenerationContainer += '<option value="5">Generation 5</option>'
+  gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
+  gameGenerationContainer += '</select>'
+  gameGenerationContainer += '</div>'
 
-var gameGeneration6 = '<div class="gameRow">';
-gameGeneration6 += '<div class="half gameFilter selected" id="versionx">X</div>'
-gameGeneration6 += '<div class="half gameFilter selected" id="versiony">Y</div>'
-gameGeneration6 += '</div>'
+  var gameGeneration6 = '<div class="gameRow">';
+  gameGeneration6 += '<div class="half gameFilter selected" id="versionx">X</div>'
+  gameGeneration6 += '<div class="half gameFilter selected" id="versiony">Y</div>'
+  gameGeneration6 += '</div>'
   // gameGeneration6 += '<div class="gameRow">'
   // gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
   // gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
@@ -718,12 +764,6 @@ gameGeneration6 += '</div>'
   $('#versiony').click(function(){
     filterGameVersion("y");
   });
-    // $('#versionruby').click(function(){
-    //   filterGameVersion("omega-ruby");
-    // });
-    // $('#versionsapphire').click(function(){
-    //   filterGameVersion("alpha-sapphire");
-    // });
 return;
 }
 

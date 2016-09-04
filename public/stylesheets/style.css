@@ -3,18 +3,15 @@ body{
 	font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 	margin: 0px;
 }
-
 a{
 	color: #00B7FF;
 }
-
 img{
 	border: none;
 }
 button, #navButton, .icon{
 	cursor: pointer;
 }
-
 .row{
 	display: block;
 	width: 100%;
@@ -143,141 +140,136 @@ nav{
 }
 
 /* When you mouse over the navigation links, change their color */
-/*.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-    }*/
 
-    /* Position and style the close button (top right corner) */
-    .closebtn {
-    	position: absolute;
-    	top: 0;
-    	right: 8px;
-    	font-size: 20px !important;
-    	margin-left: 50px;
-    }
+/* Position and style the close button (top right corner) */
+.closebtn {
+	position: absolute;
+	top: 0;
+	right: 8px;
+	font-size: 20px !important;
+	margin-left: 50px;
+}
 
-    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-    #main {
-    	transition: margin-left .5s;
-    	padding: 20px;
-    }
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+	transition: margin-left .5s;
+	padding: 20px;
+}
 
-    /************ End Nav Styles *************/
+/************ End Nav Styles *************/
 
-    img.icon {
-    	height: 20px;
-    	/*height: 5vw;*/
-    }
-    .iconContainer {
-    	position:absolute;
-    	right: 1%;
-    	top:2%;
-    	z-index: 1;
-    	/*border: 1px solid red;*/
-    	/*vertical-align: top;*/
+img.icon {
+	height: 20px;
+	/*height: 5vw;*/
+}
+.iconContainer {
+	position:absolute;
+	right: 1%;
+	top:2%;
+	z-index: 1;
+	/*border: 1px solid red;*/
+	/*vertical-align: top;*/
 
-    }
+}
 
-    .sectionIcon {
-    	/*position: absolute;*/
-    	/*bottom: 0%;*/
-    	height: 16px !important;
-    	/*height: 4vw !important;*/
-    }
+.sectionIcon {
+	/*position: absolute;*/
+	/*bottom: 0%;*/
+	height: 16px !important;
+	/*height: 4vw !important;*/
+}
 
-    #pokedexList {
-    	border:0px;
-    	-webkit-appearance: none;
-    	background-color: #ffffff;
-    	font-weight: bold;
-    	font-size: 24px;
-    	/*font-size: 6vw;*/
-    }
-
-    #pokedexList::-ms-expand {
-    	display: none;
-    }
-
-    .container{
-    	/*border: 1px solid green;*/
-    	width:100%;
-    	padding-top: 30px;
-    	text-transform: capitalize;
-    }
-    .pokemon{
-    	/*border: 1px solid yellow;*/
-    	width:100%;
-    	color:#000000;
-
-    }
-    .pokemon .image{
-    	text-align: center;
-    }
-    .pokemonNav {
-    	width: 13% !important;
-    }
-
-    .pokemon .image img {
-    	width: 70%;
-    }
-
-    /*Dexter Styling*/
-    .buttonDexter{
-    	position: absolute;
-    	right: 1%;
-    	padding: 2px;
-    	background-color: #ffffff;
-    	border: none;
-    	color: #000000;
-    	font-family: "Roboto Slab", serif;
-    	font-size: 24px;
-    	text-align: center;
-    	height: 100%;
-    }
-    .buttonDexter.pause{
-    	font-size: 24px;
-    }
-
-    .shareIcon{
-    	position: absolute;
-    	right: 1%;
-    	padding: 6px 0px 0px;
-    }
-
-    .reverseOrder {
-    	display:flex;
-    	flex-direction:column-reverse;
-    }
-
-    .hiddentrue {
-    	color:#818181;
-    }
-
-    /*Used for section titles/headers */
-    section{
-    	cursor: pointer;
-    }
-    .tab {
-    	height:40px !important;
-    	line-height: 40px;
-    	/*font-size: 16px;*/
-    	vertical-align: middle;
-    	border-top: 1px solid #818181;
-    	position: relative;
-    	font-size: 20px;
-    	text-align: left;
-    }
-
-    section:nth-of-type(1) .tab{
-    	border-top: 0px !important;
-    }
-    /*Used for section display controllers*/
-    .buttonController {
-    	height:24px;
-	/*position: absolute;
-	right: 1%;*/
-	padding: 0px;
+#pokedexList {
+	border:0px;
+	-webkit-appearance: none;
 	background-color: #ffffff;
+	font-weight: bold;
+	font-size: 24px;
+	/*font-size: 6vw;*/
+}
+
+#pokedexList::-ms-expand {
+	display: none;
+}
+
+.container{
+	/*border: 1px solid green;*/
+	width:100%;
+	padding-top: 30px;
+	text-transform: capitalize;
+}
+.pokemon{
+	/*border: 1px solid yellow;*/
+	width:100%;
+	color:#000000;
+
+}
+.pokemon .image{
+	text-align: center;
+}
+.pokemonNav {
+	width: 13% !important;
+}
+
+.pokemon .image img {
+	width: 70%;
+}
+
+/*Dexter Styling*/
+.buttonDexter{
+	position: absolute;
+	right: 1%;
+	padding: 2px;
+	background-color: #ffffff;
+	border: none;
+	color: #000000;
+	font-family: "Roboto Slab", serif;
+	font-size: 24px;
+	text-align: center;
+	height: 100%;
+}
+.buttonDexter.pause{
+	font-size: 24px;
+}
+
+.shareIcon{
+	position: absolute;
+	right: 1%;
+	padding: 6px 0px 0px;
+}
+
+.reverseOrder {
+	display:flex;
+	flex-direction:column-reverse;
+}
+
+.hiddentrue {
+	color:#818181;
+}
+
+/*Used for section titles/headers */
+.tab:hover{
+	cursor: pointer;
+}
+.tab {
+	height:40px !important;
+	line-height: 40px;
+	/*font-size: 16px;*/
+	vertical-align: middle;
+	border-top: 1px solid #818181;
+	position: relative;
+	font-size: 20px;
+	text-align: left;
+}
+
+section:nth-of-type(1) .tab{
+	border-top: 0px !important;
+}
+/*Used for section display controllers*/
+.buttonController {
+  height:24px;
+	padding: 0px;
+	background-color: transparent;
 	border: none;
 	color: #000000;
 	font-family: "Roboto Slab", serif;
@@ -737,29 +729,25 @@ input:checked + .slider:before {
 	content: "C" !important;
 }
 
-/** {
-	border: 1px solid red;
-}*/
-
 /*****************Animations****************/
 .sk-three-bounce {
   margin: 10px auto;
   width: 200px;
   text-align: center; }
-  .sk-three-bounce .sk-child {
-    width: 30px !important;
-    height: 30px !important;
-    background-color: #333;
-    border-radius: 100%;
-    display: inline-block;
-    -webkit-animation: sk-three-bounce 2s ease-in-out 0s infinite both;
-            animation: sk-three-bounce 2s ease-in-out 0s infinite both; }
-  .sk-three-bounce .sk-bounce1 {
-    -webkit-animation-delay: -0.32s;
-            animation-delay: -0.32s; }
-  .sk-three-bounce .sk-bounce2 {
-    -webkit-animation-delay: -0.16s;
-            animation-delay: -0.16s; }
+.sk-three-bounce .sk-child {
+  width: 30px !important;
+  height: 30px !important;
+  background-color: #333;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-three-bounce 2s ease-in-out 0s infinite both;
+          animation: sk-three-bounce 2s ease-in-out 0s infinite both; }
+.sk-three-bounce .sk-bounce1 {
+  -webkit-animation-delay: -0.32s;
+          animation-delay: -0.32s; }
+.sk-three-bounce .sk-bounce2 {
+  -webkit-animation-delay: -0.16s;
+          animation-delay: -0.16s; }
 
 @-webkit-keyframes sk-three-bounce {
   0%, 80%, 100% {
