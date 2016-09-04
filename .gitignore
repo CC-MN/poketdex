@@ -1,3 +1,4 @@
-/.DS_Store
-/pokemon-api.sublime-project
-/pokemon-api.sublime-workspace
+.DS_Store
+pokemon-api.sublime-project
+pokemon-api.sublime-workspace
+node_modules
