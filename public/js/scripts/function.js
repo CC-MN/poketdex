@@ -1,3 +1,14 @@
+function getDexterText(){
+  //get dexter text
+  $.each(responsePokemonSpecies.flavor_text_entries, function(index, value){
+    var v = value;
+    if(v.language.name === 'en'){
+      POKEDEXTEXT = v.flavor_text;
+      return false; //break out of .each loop
+    }
+  });
+}
+
 function speak(pokedexText) {
   // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
   if(DEXTER_STATE === 2){
@@ -30,6 +41,42 @@ function openNav() {
 // Set the width of the side navigation to 0 
 function closeNav() {
   $('#mySidenav').css('width','0px');
+}
+
+//set bindings
+function setPokemonPageBindings(){
+  // binding dexter click event
+  $('#dexter').click(function(){
+    if(POKEDEXTEXT){
+      speak(POKEDEXTEXT);
+    }
+  });
+
+  //binding section tabs
+  $('section div.tab').click(function(){
+    var contentClass = $(this).attr('data-content') || null;
+    if(contentClass){
+      showSection(contentClass);
+    }
+  });
+
+  //AJAX Binding
+  $('.request').click(function(){
+    var className = $(this).attr('data-request');
+    var url = requestID(className);
+    if(url){
+      requestInfo(className, url);
+    }
+  });
+
+    //binding functions to egg calculator
+  $('#flamebody').click(function(){
+    flameBody(BREEDING_CYCLES);
+  });
+
+  $('#opower').change(function(){
+    opower(BREEDING_STEPS_PER_CYCLE,this.value);
+  });
 }
 
 function pokemonAutoComplete() {
@@ -91,13 +138,12 @@ function showSection(sectionName){
   sectionName = sectionName.trim();
 
   if ($( "#" + sectionName ).hasClass("hidden")) {
-    $('#' + sectionName).parent().find('button').html('&#8211;');
-    $('#' + sectionName).removeClass("hidden");
-    $('#' + sectionName).addClass("expanded");
+    $('.' + sectionName + ' button').html('&#8211;');
+    $('#' + sectionName).removeClass("hidden").addClass("expanded");
     $('#' + sectionName).focus();
   }else {
-    $('#' + sectionName).parent().find('button').html('+');
-    $('#' + sectionName).addClass("hidden");
+    $('.' + sectionName + ' button').html('+');
+    $('#' + sectionName).addClass("hidden").removeClass("expanded");
   }
 }
 
@@ -113,7 +159,7 @@ function getAbilityDetail(pokemonAbilities){
 //Section Evolution Chain
 function evolutionChain(id, data){
   console.log('evolutionChain');
-  console.log(data);
+  // console.log(data);
   
   if(!data.chain.evolves_to){
     $('#' + id).html('No evolution available');
@@ -184,8 +230,6 @@ function evolutionChain(id, data){
     };
   }
 
-  
-
   //count how many columns we have to dynamically set the width
   var columnAmount = $('#evolutionChainContent .column').length;
   $('#evolutionChainContent .column').css({
@@ -208,7 +252,6 @@ function toggleShinyModels(){
   }
   
 }
-
 
 function buildEvolutionContent(className, evolutionInformation){
 
@@ -302,7 +345,7 @@ function buildEvolutionContent(className, evolutionInformation){
 //Section: Damage Chart
 function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
 
-  console.log(DAMAGE_TO_TYPE);
+  // console.log(DAMAGE_TO_TYPE);
   if (responsePokemon.types.length < 2) {
     //calculate a single type effectiveness
     var damageObjectType1 = DAMAGE_TO_TYPE[responsePokemon.types[0].type.name];
@@ -350,6 +393,38 @@ function damageChartSetStats(DAMAGE_TO_TYPE,responsePokemon){
   }
 }
 
+function checkAbilityDamageModifier(responsePokemon){
+  console.log("number of abilities: " + responsePokemon.abilities.length);
+  var damageChartAbilities = [];
+  var damageChartAbilitiesHidden = [];
+  for (var i = 0; i < responsePokemon.abilities.length; i++) {
+    console.log(responsePokemon.abilities[i].ability.name);
+    if ( MODIFIER_ABILITIES.indexOf(responsePokemon.abilities[i].ability.name) > -1 ) {
+      if (responsePokemon.abilities[i].is_hidden == true) {
+        damageChartAbilitiesHidden.push(responsePokemon.abilities[i].ability.name);
+        $("#abilityHiddenModifierName").html(responsePokemon.abilities[i].ability.name);
+      }else{
+        damageChartAbilities.push(responsePokemon.abilities[i].ability.name)
+        $("#abilitySelect").append("<option value='" + responsePokemon.abilities[i].ability.name + "'>" + responsePokemon.abilities[i].ability.name + "</option>");
+      }
+    };
+  };
+
+  if (damageChartAbilities.length < 1 && damageChartAbilitiesHidden < 1) {
+    $("#damageControls").addClass("hidden");    
+  } else if (damageChartAbilities.length < 1) {
+    $("#abilityModifier").addClass("hidden");
+  } else if (damageChartAbilitiesHidden.length < 1) {
+    $("#abilityHiddenModifier").addClass("hidden");
+  };
+  if (damageChartAbilities.length >= 1) {
+    //binding modify function to select
+    $('#abilitySelect').change(function(){
+      changeAbility();
+    });
+  };
+}
+
 function changeAbility(){
   if (document.getElementById('abilityHiddenToggle').checked) {
     damageChartModifiers($("#abilitySelect").val(),false);
@@ -357,6 +432,36 @@ function changeAbility(){
   }else{
     damageChartModifiers($("#abilitySelect").val(),false); 
   }
+}
+
+function convertDamageValueForChart(value,type){
+  //remember to ensure that the value passed is fixed with .toFixed(2)
+  var decimalValue = String(value);
+  decimalValue = decimalValue.split(".");
+  var roundedDecimal = 25 * Math.round(decimalValue[1] / 25);
+  if (roundedDecimal == 25) {
+    roundedDecimal = "¼";
+  } else if (roundedDecimal == 50) {
+    roundedDecimal = "½";
+  } else if (roundedDecimal == 75) {
+    roundedDecimal = "¾";
+  }
+  var integer = parseInt(decimalValue[0]);
+  if (integer >= 1 && decimalValue[1] != 0) {
+    var convertedValue = decimalValue[0] + "<br>" + roundedDecimal;
+  } else if (integer >= 1) {
+    var convertedValue = integer;
+  } else {
+    var convertedValue = roundedDecimal;
+  }
+  if (convertedValue == "¼" || convertedValue == "½" || convertedValue == "¾" ) {
+    $("td." + type + ".damageValueCell").addClass("damageRate½");
+  } else if (integer >= 1) {
+    $("td." + type + ".damageValueCell").addClass("damageRate1");
+  } else {
+    $("td." + type + ".damageValueCell").addClass("damageRate0");
+  }
+  $("td." + type + ".damageValueCell").html(convertedValue);
 }
 
 function damageChartModifiers(modifier,isHidden){
@@ -549,6 +654,27 @@ function filterMoves (moves_filter) {
 
 //Section: Breeding
 //Area: Eggs
+function determineGenderAndBreeding(responsePokemonSpecies){
+  //calculating gender
+  if(responsePokemonSpecies.gender_rate == -1) {
+    $("#genderChart").html("This Pokémon has no gender.");
+  }else {
+    console.log("gender rate: " + responsePokemonSpecies.gender_rate);
+    var genderFemale = responsePokemonSpecies.gender_rate / 8 * 100;
+    var genderMale = 100 - genderFemale;
+    // $("#genderChartFemale").width(genderFemale + "%");
+    $("#genderChartFemale").html(genderFemale + "%").width(genderFemale + '%');
+    $("#genderChartMale").html(genderMale + "%").width(genderMale + '%');
+  }
+
+  //finds egg groups
+  if (responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
+    console.log("no babies for you");
+    $('.eggGrouping').addClass('hidden');
+    $("#genderContainer").append("This Pokémon cannot breed.");
+  };
+}
+
 function calculateEggSteps(cycles,steps){
   var breedingStepsToHatch = cycles * steps;
   var maxSteps = BREEDING_CYCLES * BREEDING_STEPS_PER_CYCLE;
@@ -601,15 +727,13 @@ function opower(steps,opowerLevel){
 
 function showPokemonEggGroup(type, data){
   console.log('showPokemonEggGroup');
-  console.log(data);
-  console.log(type);
-  $('#' + type).removeClass('hidden');
-  $('#' + type).html('');
-  $('.' + type + ' .iconContainer').html('-');
+  // console.log(data);
+  var html = '';
   for (var i = 0; i < data.pokemon_species.length; i++) {
     var pkmnID = getIDFromPokemonURL(data.pokemon_species[i].url);
-    $('#' + type).append('<a href="/pokemon/' + pkmnID +'"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>');
+    html += '<a href="/pokemon/' + pkmnID +'"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>';
   };
+  $('#' + type).html(html);
 }
 
 //Section: Locations
@@ -617,7 +741,7 @@ function showPokemonEggGroup(type, data){
 
 function encounterLocation(id, data){
   console.log('encounterLocation');
-  console.log(data);
+  // console.log(data);
 
   if(!data.length){
     $('#locationContent').html('No available encounters');
@@ -687,21 +811,21 @@ function encounterLocation(id, data){
     html += '</div>';
   });
 
-var gameGenerationContainer = '<div id="gameGenerationContainer">';
-gameGenerationContainer += '<select id="gameGenerationSelect" onchange="filterGameGeneration(this.value)">'
-gameGenerationContainer += '<option value="1">Generation 1</option>'
-gameGenerationContainer += '<option value="2">Generation 2</option>'
-gameGenerationContainer += '<option value="3">Generation 3</option>'
-gameGenerationContainer += '<option value="4">Generation 4</option>'
-gameGenerationContainer += '<option value="5">Generation 5</option>'
-gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
-gameGenerationContainer += '</select>'
-gameGenerationContainer += '</div>'
+  var gameGenerationContainer = '<div id="gameGenerationContainer">';
+  gameGenerationContainer += '<select id="gameGenerationSelect" onchange="filterGameGeneration(this.value)">'
+  gameGenerationContainer += '<option value="1">Generation 1</option>'
+  gameGenerationContainer += '<option value="2">Generation 2</option>'
+  gameGenerationContainer += '<option value="3">Generation 3</option>'
+  gameGenerationContainer += '<option value="4">Generation 4</option>'
+  gameGenerationContainer += '<option value="5">Generation 5</option>'
+  gameGenerationContainer += '<option value="6" selected>Generation 6</option>'
+  gameGenerationContainer += '</select>'
+  gameGenerationContainer += '</div>'
 
-var gameGeneration6 = '<div class="gameRow">';
-gameGeneration6 += '<div class="half gameFilter selected" id="versionx">X</div>'
-gameGeneration6 += '<div class="half gameFilter selected" id="versiony">Y</div>'
-gameGeneration6 += '</div>'
+  var gameGeneration6 = '<div class="gameRow">';
+  gameGeneration6 += '<div class="half gameFilter selected" id="versionx">X</div>'
+  gameGeneration6 += '<div class="half gameFilter selected" id="versiony">Y</div>'
+  gameGeneration6 += '</div>'
   // gameGeneration6 += '<div class="gameRow">'
   // gameGeneration6 += '<div class="half selected" id="versionruby">Omega Ruby</div>'
   // gameGeneration6 += '<div class="half selected" id="versionsapphire">Alpha Sapphire</div></div>'
@@ -718,12 +842,6 @@ gameGeneration6 += '</div>'
   $('#versiony').click(function(){
     filterGameVersion("y");
   });
-    // $('#versionruby').click(function(){
-    //   filterGameVersion("omega-ruby");
-    // });
-    // $('#versionsapphire').click(function(){
-    //   filterGameVersion("alpha-sapphire");
-    // });
 return;
 }
 
@@ -770,59 +888,56 @@ function buildStatsChart(){
 
 /*
   AJAX Request Functions
-  */
+*/
 
-  function requestID(param){
-    param = param.trim();
-    var selector = param.trim().split('-')[0];
-    var id = null;
+function requestID(param){
+  param = param.trim();
+  var selector = param.trim().split('-')[0];
+  var id = null;
 
-    switch(selector) {
-      case 'evolutionChainContent':
-      id = responsePokemonSpecies.evolution_chain.url
+  switch(selector) {
+    case 'evolutionChainContent':
+    id = responsePokemonSpecies.evolution_chain.url
+    break;
+    case 'locationContent':
+    id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+    break;
+    case 'eggGroup':
+    var eggGroup = $('.'+ param + ' label').text().trim();
+    id = 'http://pokeapi.co/api/v2/egg-group/' + eggGroup + '/';
+    break; 
+  }
+  return id;
+
+}
+
+function requestInfo(type, url){
+  console.log(url);
+
+  // $('#' + type).html('<img src="/images/loader.gif" />');
+  $('#' + type).html('<div class="sk-three-bounce"><img src="/images/pokeball.png" class="sk-child sk-bounce1"><img src="/images/premierball.png" class="sk-child sk-bounce2"><img src="/images/pokeball.png" class="sk-child sk-bounce3"></div>');
+  var parameters = { 
+    url : url
+  };
+  $.get( '/request',parameters, function(data) {
+    determineAjaxEvent(type, data);
+  });
+}
+
+function determineAjaxEvent(type, data){
+  var selector = type.trim().split('-')[0];
+  switch(selector) {
+    case 'evolutionChainContent':
+      evolutionChain(type, data);
       break;
-      case 'locationContent':
-      id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
+    case 'locationContent':
+      encounterLocation(type, data);
       break;
-      case 'eggGroup':
-      var eggGroup = $('.'+ param + ' label').text().trim();
-      id = 'http://pokeapi.co/api/v2/egg-group/' + eggGroup + '/';
-      break; 
-    }
-    return id;
-
+    case 'eggGroup':
+      showPokemonEggGroup(type, data);
+      break;
   }
-
-  function requestInfo(type, url){
-    console.log(url);
-
-    // $('#' + type).html('<img src="/images/loader.gif" />');
-    $('#' + type).html('<div class="sk-three-bounce"><img src="/images/pokeball.png" class="sk-child sk-bounce1"><img src="/images/premierball.png" class="sk-child sk-bounce2"><img src="/images/pokeball.png" class="sk-child sk-bounce3"></div>');
-    var parameters = { 
-      url : url
-    };
-    $.get( '/request',parameters, function(data) {
-      determineAjaxEvent(type, data);
-    });
-  }
-
-  function determineAjaxEvent(type, data){
-
-    var selector = type.trim().split('-')[0];
-
-    switch(selector) {
-      case 'evolutionChainContent':
-        evolutionChain(type, data);
-        break;
-      case 'locationContent':
-        encounterLocation(type, data);
-        break;
-      case 'eggGroup':
-        showPokemonEggGroup(type, data);
-        break;
-    }
-  }
-
+}
 
 /*
   Utility Functions
@@ -848,32 +963,3 @@ function getIDFromPokemonURL(url){
   return id;
 }
 
-function convertDamageValueForChart(value,type){
-  //remember to ensure that the value passed is fixed with .toFixed(2)
-  var decimalValue = String(value);
-  decimalValue = decimalValue.split(".");
-  var roundedDecimal = 25 * Math.round(decimalValue[1] / 25);
-  if (roundedDecimal == 25) {
-    roundedDecimal = "¼";
-  } else if (roundedDecimal == 50) {
-    roundedDecimal = "½";
-  } else if (roundedDecimal == 75) {
-    roundedDecimal = "¾";
-  }
-  var integer = parseInt(decimalValue[0]);
-  if (integer >= 1 && decimalValue[1] != 0) {
-    var convertedValue = decimalValue[0] + "<br>" + roundedDecimal;
-  } else if (integer >= 1) {
-    var convertedValue = integer;
-  } else {
-    var convertedValue = roundedDecimal;
-  }
-  if (convertedValue == "¼" || convertedValue == "½" || convertedValue == "¾" ) {
-    $("td." + type + ".damageValueCell").addClass("damageRate½");
-  } else if (integer >= 1) {
-    $("td." + type + ".damageValueCell").addClass("damageRate1");
-  } else {
-    $("td." + type + ".damageValueCell").addClass("damageRate0");
-  }
-  $("td." + type + ".damageValueCell").html(convertedValue);
-}
