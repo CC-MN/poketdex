@@ -11,18 +11,14 @@ Pokedex.prototype = {
 		name = (name.indexOf('?') > -1) ? name : name + '/'; 
 		var url = BASE_URL + 'pokemon/' + name;
 		return url;
-		// return this.getJSON(url);
 	},
 	getSpecies : function(name){
 		var url = BASE_URL + 'pokemon-species/' + name + '/';
 		return url;
-		// return this.getJSON(url);
 	},
 	getEvolutionChain : function(name){
-		//var url = BASE_URL + 'evolution-chain/' + name + '/';
 		var url = name; //this returns us the whole URL
 		return url;
-		// return this.getJSON(url);
 	},
 	getItem : function(name){
 		var url = BASE_URL + 'item/' + name + '/';
@@ -30,7 +26,7 @@ Pokedex.prototype = {
 	},
 	getJSON : function(URL){
 		const cacheResult = DITTO.get(URL);
-		//console.log(DITTO.keys());
+
 		if(cacheResult !== null){
 			console.log('cached for [' + URL + ']');
 			return Promise.resolve(cacheResult); //allows us to use .then

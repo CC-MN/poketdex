@@ -3,64 +3,66 @@ var router = express.Router();
 var PokedexLib = require('../pokedex');
 var Pokedex = new PokedexLib();
 var CONTENT = {};
-var RES;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	CONTENT.title = 'Pokemon API';
-	RES = res;
-	renderContent('1'); //default to bulbasaur
+	renderContent('1', req, res, next); //default to bulbasaur
 });
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
 	CONTENT.title = 'Pokemon API';
-	RES = res;
-	renderContent(req.params.id);
+	renderContent(req.params.id, req, res, next);
 });
 
 
-function renderContent(id){
+function renderContent(id, req, res, next){
+	try{
+		Pokedex.getJSON(Pokedex.getPokemon(id))
+		.then(function(response){
 
-	Pokedex.getJSON(Pokedex.getPokemon(id))
-	.then(function(response){
+			errorHandling(response, res, next);
 
-		errorHandling(response);
+			//get pokemon info
+			CONTENT.pokemonResponse = response;
+			CONTENT.pokemonResponseString = JSON.stringify(response);
+			return Pokedex.getJSON(Pokedex.getSpecies(id));
+		})
+		.then(function(response){
 
-		//get pokemon info
-		CONTENT.pokemonResponse = response;
-		CONTENT.pokemonResponseString = JSON.stringify(response);
-		return Pokedex.getJSON(Pokedex.getSpecies(id));
-	})
-	.then(function(response){
+			//get species info
+			CONTENT.pokemonSpeciesData = response;
+			CONTENT.pokemonSpeciesDataString = JSON.stringify(response);
 
-		//get species info
-		CONTENT.pokemonSpeciesData = response;
-		CONTENT.pokemonSpeciesDataString = JSON.stringify(response);
+			//get all pokemon so we will not pass through an id/name but a query string
+			return Pokedex.getJSON(Pokedex.getPokemon('?limit=999'));
+			
+		}).then(function(response){
 
-		//get all pokemon so we will not pass through an id/name but a query string
-		return Pokedex.getJSON(Pokedex.getPokemon('?limit=999'));
-		
-	}).then(function(response){
+			CONTENT.allPokemonNames = response;
+			CONTENT.allPokemonNamesString = JSON.stringify(response);
 
-		CONTENT.allPokemonNames = response;
-		CONTENT.allPokemonNamesString = JSON.stringify(response);
-
-		if(response.type !== 'err'){
-			RES.render('pokemon', CONTENT);
-		}
-
-	});
+			if(response.type !== 'err'){
+				res.render('pokemon', CONTENT);
+			}
+		});
+	}catch(e){
+		console.log(e);
+		res.render('error', {err : response.err, message : response.message, response: response.err });
+	}
 
 }
 
-function errorHandling(response){
+function errorHandling(response, res, next){
 	if(response.type === 'err'){
-		if(RES.headersSent){
+		if(res.headersSent){
 			//return next(response);
+		}else{
+			res.status(response.status);
+			res.render('error', {err : response.err, message : response.message, response: response.err });
+			next();
 		}
-		RES.status(response.status);
-		RES.render('error', {err : response.err, message : response.message, response: response.err });
 	}
 }
 

@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/pokemon', pokemon);
 app.use('/item', item);
-app.use('/request', request); // AJAX requests
+app.use('/request', request);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -64,10 +64,7 @@ app.use(function(err, req, res, next) {
 
 app.listen(app.get('port'), function() {
   var portNumber = app.get('port');
-  var msg = '-----------------------------\n'; 
-  msg += 'Node app running: \n';
-  msg += 'http://localhost:' + portNumber;
-  msg += '\n-----------------------------'
+  var msg = 'http://localhost:' + portNumber;
   console.log(msg)
 });
 

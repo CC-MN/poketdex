@@ -3,10 +3,11 @@
 /**
  * Module dependencies.
  */
-
+var cluster = require('cluster');
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
+var numCPUs = require('os').cpus().length;
 
 /**
  * Get port from environment and store in Express.
@@ -15,19 +16,40 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+if (cluster.isMaster) {
+  // Fork workers.
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+  console.log(numCPUs);
+  // If a worker dies, log it to the console and start another worker.
+  cluster.on('exit', function(worker, code, signal) {
+    console.log('Worker ' + worker.process.pid + ' died.');
+    cluster.fork();
+  });
 
-var server = http.createServer(app);
+  // Log when a worker starts listening
+  cluster.on('listening', function(worker, address) {
+    console.log('Worker started with PID ' + worker.process.pid + '.');
+  });
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+} else {
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+  /**
+   * Create HTTP server.
+   */
+
+  var server = http.createServer(app);
+
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+
+}
 
 /**
  * Normalize a port into a number, string, or false.

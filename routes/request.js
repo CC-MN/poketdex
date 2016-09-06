@@ -3,11 +3,10 @@ var router = express.Router();
 var PokedexLib = require('../pokedex');
 var Pokedex = new PokedexLib();
 var CONTENT = {};
-var RES;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	RES = res;
+
 	var url = req.query.url || null;
 	
 	if(!url ){
@@ -15,14 +14,14 @@ router.get('/', function(req, res, next) {
 	}
 
 	Pokedex.getJSON(url).then(function(response){
-		sendResults(response);
+		sendResults(response, res);
 	});
 
 });
 
-function sendResults(results){
+function sendResults(results, res){
 	//send here so we only have one res.send on the page
-	RES.send(results);
+	res.send(results);
 }
 
 module.exports = router;

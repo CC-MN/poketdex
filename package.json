@@ -21,6 +21,7 @@
     "memory-cache" : "^0.1.6",
     "nodemon" : "~1.9.2",
     "request-promise" : "~3.0.0",
-    "jade" : "~1.11.0"
+    "cluster" : "~0.7.7",
+    "os" : "~0.1.1"
   }
 }
