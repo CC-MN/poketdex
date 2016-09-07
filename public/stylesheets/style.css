@@ -21,6 +21,8 @@ button, #navButton, .icon{
 	content:' ';
 	width:1px;
 	height:1px;
+	display: block;
+	visibility: hidden;
 }
 .clearfloat{
 	clear:both;
