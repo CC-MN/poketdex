@@ -204,9 +204,6 @@ function evolutionChain(id, data){
     });
 
   });
-
-  $('#evolutionChainContent').append('<div class="clearfloat"></div>');
-  
   
   //add mega evolutions if present
   $('#evolutionChainContent').append('<div class="row hidden" id="megaEvolution">');
@@ -315,7 +312,7 @@ function buildEvolutionContent(className, evolutionInformation){
   var evolutionURL = evolutionInformation.species.url;
 
   if($('#evolutionChainContent').find('.' + className).length === 0){
-    $('#evolutionChainContent').append('<div class="column '+ className +'"></div>');
+    $('#evolutionChainContent .row').append('<div class="column '+ className +'"></div>');
   }
 
   var html = '<div class="pokemon">';
@@ -338,7 +335,7 @@ function buildEvolutionContent(className, evolutionInformation){
   });
 
   html += '</div>';
-  $('#evolutionChainContent .' + className).append(html);
+  $('#evolutionChainContent .row .' + className).append(html);
 
 }
 
