@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var PokedexLib = require('../pokedex');
 var Pokedex = new PokedexLib();
-var CONTENT = {};
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

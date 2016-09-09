@@ -3,11 +3,9 @@ var router = express.Router();
 var PokedexLib = require('../pokedex');
 var Pokedex = new PokedexLib();
 var CONTENT = {};
-var RES;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	CONTENT.title = 'Pokemon API';
 	//error out
 	res.status(500);
 	res.render('error', {err : '', message : 'no item name passed', response : ''});
@@ -15,35 +13,36 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-	CONTENT.title = 'Pokemon API';
-	RES = res;
-	renderContent(req.params.id);
+	renderContent(req.params.id, req, res, next);
 });
 
 
-function renderContent(id){
+function renderContent(id, req, res, next){
+	var content = { title : 'Pokemon API' }
 
 	Pokedex.getJSON(Pokedex.getItem(id))
 	.then(function(response){
-		errorHandling(response);
+		errorHandling(response, req, res, next);
 		//get item info
-		CONTENT.itemResponse = response;
-		CONTENT.itemResponseString = JSON.stringify(response);
+		content.itemResponse = response;
+		content.itemResponseString = JSON.stringify(response);
 		if(response.type !== 'err'){
-			RES.render('item', CONTENT);
+			res.render('item', content);
 		}
 		
 	});
 
 }
 
-function errorHandling(response){
+function errorHandling(response, req, res, next){
 	if(response.type === 'err'){
-		if(RES.headersSent){
+		if(res.headersSent){
 			//return next(response);
+		}else{
+			res.status(response.status);
+			res.render('error', {err : response.err, message : response.message, response: response.err });
+			// next();
 		}
-		RES.status(response.status);
-		RES.render('error', {err : response.err, message : response.message, response: response.err });
 	}
 }
 
