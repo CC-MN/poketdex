@@ -12,16 +12,16 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-	renderContent(req.params.id, req, res, next);
+	renderContent(req.params.id, req, res);
 });
 
 
-function renderContent(id, req, res, next){
+function renderContent(id, req, res){
 	var content = { title : 'Pokemon API' }
 
 	Pokedex.getJSON(Pokedex.getItem(id))
 	.then(function(response){
-		errorHandling(response, req, res, next);
+		errorHandling(response, req, res);
 		//get item info
 		content.itemResponse = response;
 		content.itemResponseString = JSON.stringify(response);
@@ -33,14 +33,13 @@ function renderContent(id, req, res, next){
 
 }
 
-function errorHandling(response, req, res, next){
+function errorHandling(response, req, res){
 	if(response.type === 'err'){
 		if(res.headersSent){
 			//return next(response);
 		}else{
 			res.status(response.status);
 			res.render('error', {err : response.err, message : response.message, response: response.err });
-			// next();
 		}
 	}
 }

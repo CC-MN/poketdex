@@ -1,48 +1,3 @@
-function getDexterText(){
-  //get dexter text
-  $.each(responsePokemonSpecies.flavor_text_entries, function(index, value){
-    var v = value;
-    if(v.language.name === 'en'){
-      POKEDEXTEXT = v.flavor_text;
-      return false; //break out of .each loop
-    }
-  });
-}
-
-function speak(pokedexText) {
-  // DEXTER_STATE's 0 = stopped, 1 = playing, 2 = paused
-  if(DEXTER_STATE === 2){
-    responsiveVoice.resume();
-    DEXTER_STATE = 1;
-    //add code to change button state
-    $('#dexter').html('&#9616;&#9616;').addClass('pause');
-  }else if(responsiveVoice.isPlaying()){
-    responsiveVoice.pause();
-    DEXTER_STATE = 2;
-    //add code to change button state
-    $('#dexter').html('&#9658;').removeClass('pause');
-  }else{
-    responsiveVoice.speak(pokedexText, "UK English Male", {
-      onend : function(){
-        DEXTER_STATE = 0;
-        $('#dexter').html('&#9658;').removeClass('pause');
-      }
-    });
-    DEXTER_STATE = 1;
-    $('#dexter').html('&#9616;&#9616;').addClass('pause');
-  }
-}
-
-// Set the width of the side navigation to show 
-function openNav() {
-  $('#mySidenav').css('width', '25%');
-}
-
-// Set the width of the side navigation to 0 
-function closeNav() {
-  $('#mySidenav').css('width','0px');
-}
-
 //set bindings
 function setPokemonPageBindings(){
   // binding dexter click event
@@ -652,8 +607,9 @@ function filterMoves (moves_filter) {
 //Section: Breeding
 //Area: Eggs
 function determineGenderAndBreeding(responsePokemonSpecies){
+
   //calculating gender
-  if(responsePokemonSpecies.gender_rate == -1) {
+  if(!responsePokemonSpecies.hasOwnProperty('gender_rate') || responsePokemonSpecies.gender_rate == -1) {
     $("#genderChart").html("This Pokémon has no gender.");
   }else {
     console.log("gender rate: " + responsePokemonSpecies.gender_rate);
@@ -665,7 +621,7 @@ function determineGenderAndBreeding(responsePokemonSpecies){
   }
 
   //finds egg groups
-  if (responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
+  if (!responsePokemonSpecies.hasOwnProperty('egg_groups') || responsePokemonSpecies.egg_groups[0].name == "no-eggs") {
     console.log("no babies for you");
     $('.eggGrouping').addClass('hidden');
     $("#genderContainer").append("This Pokémon cannot breed.");
@@ -894,7 +850,7 @@ function requestID(param){
 
   switch(selector) {
     case 'evolutionChainContent':
-    id = responsePokemonSpecies.evolution_chain.url
+    id = (responsePokemonSpecies.hasOwnProperty('evolution_chain')) ? responsePokemonSpecies.evolution_chain.url : null;
     break;
     case 'locationContent':
     id = 'http://pokeapi.co' + responsePokemon.location_area_encounters;
@@ -933,25 +889,6 @@ function determineAjaxEvent(type, data){
     case 'eggGroup':
       showPokemonEggGroup(type, data);
       break;
-  }
-}
-
-/*
-  Utility Functions
-  */
-  function getQS(object){
-  /*
-  Query string values get returned back to the object
-  Use object.key|object[key] //returns value
-  */
-  var pl     = /\+/g;  // Regex for replacing addition symbol with a space
-  var search = /([^&=]+)=?([^&]*)/g;
-  var decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); };
-  var query  = window.location.search.substring(1);
-  var match;
-
-  while (match = search.exec(query)){
-    object[decode(match[1])] = decode(match[2]);
   }
 }
 

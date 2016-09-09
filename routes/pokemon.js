@@ -5,22 +5,22 @@ var Pokedex = new PokedexLib();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	renderContent('1', req, res, next); //default to bulbasaur
+	renderContent('1', req, res); //default to bulbasaur
 });
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-	renderContent(req.params.id, req, res, next);
+	renderContent(req.params.id, req, res);
 });
 
 
-function renderContent(id, req, res, next){
+function renderContent(id, req, res){
 	var content = { title : 'Pokemon API'};
 	try{
 		Pokedex.getJSON(Pokedex.getPokemon(id))
 		.then(function(response){
 
-			errorHandling(response, res, next);
+			errorHandling(response, res);
 
 			//get pokemon info
 			content.pokemonResponse = response;
@@ -52,14 +52,13 @@ function renderContent(id, req, res, next){
 
 }
 
-function errorHandling(response, res, next){
+function errorHandling(response, res){
 	if(response.type === 'err'){
 		if(res.headersSent){
 			//return next(response);
 		}else{
 			res.status(response.status);
 			res.render('error', {err : response.err, message : response.message, response: response.err });
-			// next();
 		}
 	}
 }

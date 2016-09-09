@@ -12,14 +12,16 @@
 	<link rel="apple-touch-icon" href="/images/app/ios-icon.png">
 	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
-	<script type="text/javascript" src="/js/scripts/pokemonMoves.js"></script>
-	<script type="text/javascript" src="/js/scripts/abilities.js"></script>
-	<script type="text/javascript" src="/js/scripts/typeEffectiveness.js"></script>
-	<script type="text/javascript" src="/js/scripts/function.js"></script>
-	<script type="text/javascript" src="/js/scripts/sorttable.js"></script>
 	<script type="text/javascript" src="/js/autocomplete/jquery.easy-autocomplete.min.js"></script>
-	<script type="text/javascript" src="/js/scripts/scripts.js"></script>
+	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
+	<script type="text/javascript" src="/js/scripts/util.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/pokemonMoves.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/abilities.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/typeEffectiveness.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/sorttable.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/function.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/scripts.js"></script>
 	<script type="text/javascript">
 		var responsePokemon = {{& pokemonResponseString }};
 		var responsePokemonSpecies = {{& pokemonSpeciesDataString }};
@@ -93,7 +95,7 @@
 				</div>
 				<div id="evolutionChainContent" class="content hidden">
 					<!-- content goes here -->
-					
+					No evolution available
 				</div>
 			</section>
 
