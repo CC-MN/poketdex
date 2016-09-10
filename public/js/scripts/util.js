@@ -12,6 +12,15 @@ function closeNav() {
   $('#mySidenav').css('width','0px');
 }
 
+function getIDFromPokemonURL(url){
+  /* 
+    Grabs the value between the last two /'s 
+    (i.e http://pokeapi.co/api/v2/pokemon/1/ => 1)
+  */
+  // var id = url.replace(/(.*)(pokemon|pokemon\-species)\/(.*)\//, '$3');
+  var id = url.replace(/.*\/.*\/(.*?)\//, '$1');
+  return id;
+}
 
 function getQS(object){
   /*

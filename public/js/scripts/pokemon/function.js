@@ -60,10 +60,6 @@ function pokemonAutoComplete() {
 
 }
 
-function selectPokemon(pokemonID) {
-  window.location = "./" + pokemonID;
-}
-
 function changePokemon(pokemonID) {
   console.log(pokemonID);
   if (pokemonID !== null) {
@@ -83,10 +79,6 @@ function showSearch(){
   }else {
     $('#searchContainer').addClass("hidden");
   }
-}
-
-function useList() {
-  $('#pokedexList').focus();
 }
 
 function showSection(sectionName){
@@ -891,9 +883,3 @@ function determineAjaxEvent(type, data){
       break;
   }
 }
-
-function getIDFromPokemonURL(url){
-  var id = url.replace(/(.*)(pokemon|pokemon\-species)\/(.*)\//, '$3');
-  return id;
-}
-
