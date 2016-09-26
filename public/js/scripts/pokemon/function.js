@@ -164,7 +164,7 @@ function evolutionChain(id, data){
         $('#megaEvolution').removeClass('hidden');
         var html = '';
         html += '<div class="pokemon">';
-        html += '<a href="/pokemon/' + getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>';
+        html += '<a href="/pokemon/' + getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img class="model" src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>';
         html += '<div class="evolutionName">' + responsePokemonSpecies.varieties[i].pokemon.name + '</div>';
         html += '</div>';
 
@@ -190,7 +190,7 @@ function toggleShinyModels(){
     });    
   } else {
     $("#evolutionChainContent").find(".pokemon").each(function () {
-    var img = $(this).find("img");
+    var img = $(this).find(".model");
     img.prop("src", img.prop("src").replace("pokemon/shiny/", "pokemon/"));
   });
   }
