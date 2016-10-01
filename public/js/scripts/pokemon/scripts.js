@@ -1,5 +1,6 @@
 // GLOBAL VARIABLES
 var URL_PARAMS = {};
+var PAGE_TYPE = "pokemon";
 var POKEMON_MOVES = [];
 var POKEMON_NAMES = [];
 var POKEDEXTEXT = null;

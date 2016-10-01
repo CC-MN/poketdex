@@ -3,6 +3,12 @@ body{
 	font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 	margin: 0px;
 }
+
+/**{
+	border: 1px solid red;
+	box-sizing:border-box;
+}*/
+
 a{
 	color: #00B7FF;
 }
@@ -81,7 +87,7 @@ nav{
 	margin-top:30px;
 }
 
-#pokemonSearchBox {
+#pokemonSearchBox, #itemSearchBox {
 	position: fixed;
 	width: 100%;
 	height:24px;
@@ -269,7 +275,7 @@ section:nth-of-type(1) .tab{
 }
 /*Used for section display controllers*/
 .buttonController {
-  height:24px;
+	height:24px;
 	padding: 0px;
 	background-color: transparent;
 	border: none;
@@ -310,169 +316,169 @@ section:nth-of-type(1) .tab{
 }
 /*#evolutionChainContent .column:nth-of-type(even){
 	background-color: #CCCCCC;
-}*/
+	}*/
 
-#evolutionChainContent .column img, #megaEvolutionContainer img{
-	width:120px;
-	height:120px;
-}
-.evolutionItem img{
-	height: 16px !important;
-	width: auto !important;
-}
-.damageChartCell{
-	width: 18px;
-	max-width: 18px !important;
-}
+	#evolutionChainContent .column img, #megaEvolutionContainer img{
+		width:120px;
+		height:120px;
+	}
+	.evolutionItem img{
+		height: 16px !important;
+		width: auto !important;
+	}
+	.damageChartCell{
+		width: 18px;
+		max-width: 18px !important;
+	}
 
-.damageLabelCell{
-	height: 70px;
-	/*text-align: left;*/
-	vertical-align: bottom;
-	padding-bottom: 5px;
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-}
+	.damageLabelCell{
+		height: 70px;
+		/*text-align: left;*/
+		vertical-align: bottom;
+		padding-bottom: 5px;
+		padding-top: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 
-.damageValueCell{
-	height:20px;
-	text-align: center;
-}
+	.damageValueCell{
+		height:20px;
+		text-align: center;
+	}
 
-.damageRate1, .damageRate2, .damageRate4{
-	background-color: #4e9a06 !important;
-}
+	.damageRate1, .damageRate2, .damageRate4{
+		background-color: #4e9a06 !important;
+	}
 
-.damageRate½, .damageRate¼ {
-	background-color: #a40000 !important;
-}
+	.damageRate½, .damageRate¼ {
+		background-color: #a40000 !important;
+	}
 
-.damageRate0 {
-	background-color: #2e3436 !important;
-	color: #ffffff;
-}
+	.damageRate0 {
+		background-color: #2e3436 !important;
+		color: #ffffff;
+	}
 
-.damageRateModified{
-	box-sizing: border-box;
-	border: 2px solid green;
-}
+	.damageRateModified{
+		box-sizing: border-box;
+		border: 2px solid green;
+	}
 
-#damageControls{
-	height: 80px;
-}
+	#damageControls{
+		height: 80px;
+	}
 
-#abilityHiddenModifierName{
-	text-align: left;
-}
+	#abilityHiddenModifierName{
+		text-align: left;
+	}
 
 
-#movesContent{
+	#movesContent{
 
-}
+	}
 
-#movesContent .row{
-	/*padding:0 0 0;*/
-}
-#movesContent .column{
-	float:left;
-	width:15%;
-	font-size:13px;
-	text-align: center;
-	padding:0 0% 2%;
-}
+	#movesContent .row{
+		/*padding:0 0 0;*/
+	}
+	#movesContent .column{
+		float:left;
+		width:15%;
+		font-size:13px;
+		text-align: center;
+		padding:0 0% 2%;
+	}
 
-.pp-number:nth-of-type(odd), .power-number:nth-of-type(odd), .accuracy-number:nth-of-type(odd), .learntLevel:nth-of-type(odd) {
-	background-color: #ccc;
-}
+	.pp-number:nth-of-type(odd), .power-number:nth-of-type(odd), .accuracy-number:nth-of-type(odd), .learntLevel:nth-of-type(odd) {
+		background-color: #ccc;
+	}
 
-.column#name{
-	width:30%;
-	/*font-size: 15px;*/
-}
+	.column#name{
+		width:30%;
+		/*font-size: 15px;*/
+	}
 
-.column#category, .column#contest, .column#learntLevel, .column#type{
-	width:18%;
-}
-.column#pp, .column#power, .column#accuracy{
-	width:10%;
-}
+	.column#category, .column#contest, .column#learntLevel, .column#type{
+		width:18%;
+	}
+	.column#pp, .column#power, .column#accuracy{
+		width:10%;
+	}
 
-#movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
-	font-size: 16px;
-}
+	#movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
+		font-size: 16px;
+	}
 
-/*Section: Gender*/
-.baseChart {
-	width: 100%;
-	height: 24px;
-	line-height: 24px;
-	background-color: #CCC;
-	margin-bottom:5px;
-	margin-top:5px;
-	color: #ffffff;
-}
+	/*Section: Gender*/
+	.baseChart {
+		width: 100%;
+		height: 24px;
+		line-height: 24px;
+		background-color: #CCC;
+		margin-bottom:5px;
+		margin-top:5px;
+		color: #ffffff;
+	}
 
-#genderChartFemale {
-	background-color: #F85888;
-	color:#ffffff;
-	height: 24px;
-	border: 0px;
-	float: left;
-	text-align: center;
-	line-height: 24px;
+	#genderChartFemale {
+		background-color: #F85888;
+		color:#ffffff;
+		height: 24px;
+		border: 0px;
+		float: left;
+		text-align: center;
+		line-height: 24px;
 
-}
+	}
 
-#genderChartMale {
-	background-color: #6890F0;
-	color:#ffffff;
-	border: 0px;
-	height: 24px;
-	float: left;
-	text-align: center;
-	line-height: 24px;
-}
+	#genderChartMale {
+		background-color: #6890F0;
+		color:#ffffff;
+		border: 0px;
+		height: 24px;
+		float: left;
+		text-align: center;
+		line-height: 24px;
+	}
 
-#hatchingContainer{
-	height: 40px;
-	line-height: 40px;
-}
+	#hatchingContainer{
+		height: 40px;
+		line-height: 40px;
+	}
 
-#totalSteps{
-	text-align: center;
-	float: left;
-	/*background-color: #ff0000;*/
-}
+	#totalSteps{
+		text-align: center;
+		float: left;
+		/*background-color: #ff0000;*/
+	}
 
-.stepsFlameBodyOPower {
-	background-color: #7038F8;
-}
+	.stepsFlameBodyOPower {
+		background-color: #7038F8;
+	}
 
-.stepsFlameBody{
-	background-color: #F08030;
-}
+	.stepsFlameBody{
+		background-color: #F08030;
+	}
 
-.stepsOPower{
-	background-color: #6890F0;
-}
+	.stepsOPower{
+		background-color: #6890F0;
+	}
 
-/*Section: Stats*/
-#canvas {
-	width:100% !important;
-	height: auto !important;
-}
+	/*Section: Stats*/
+	#canvas {
+		width:100% !important;
+		height: auto !important;
+	}
 
-#baseStatsContent .column{
-	float:left;
-	/*width:30%;*/
-	line-height: 30px;
-	/*font-size:13px;*/
-	/*padding:0 0% 2%;*/
-}
-.statName {
-	/*width: 110px;*/
-	width: 30%;
+	#baseStatsContent .column{
+		float:left;
+		/*width:30%;*/
+		line-height: 30px;
+		/*font-size:13px;*/
+		/*padding:0 0% 2%;*/
+	}
+	.statName {
+		/*width: 110px;*/
+		width: 30%;
 	/*box-sizing: border-box;
 	border: 1px solid red;*/
 	text-align: right;
@@ -601,6 +607,20 @@ section:nth-of-type(1) .tab{
 	float: left;
 	width: 33%;
 	line-height: 30px;
+}
+
+.textLeft{
+	text-align: left;
+}
+
+.textCenter{
+	text-align: center;
+}
+
+.vmiddle{
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
 }
 
 .massive {
@@ -733,36 +753,36 @@ input:checked + .slider:before {
 
 /*****************Animations****************/
 .sk-three-bounce {
-  margin: 10px auto;
-  width: 200px;
-  text-align: center; }
-.sk-three-bounce .sk-child {
-  width: 30px !important;
-  height: 30px !important;
-  background-color: #333;
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-three-bounce 2s ease-in-out 0s infinite both;
-          animation: sk-three-bounce 2s ease-in-out 0s infinite both; }
-.sk-three-bounce .sk-bounce1 {
-  -webkit-animation-delay: -0.32s;
-          animation-delay: -0.32s; }
-.sk-three-bounce .sk-bounce2 {
-  -webkit-animation-delay: -0.16s;
-          animation-delay: -0.16s; }
+	margin: 10px auto;
+	width: 200px;
+	text-align: center; }
+	.sk-three-bounce .sk-child {
+		width: 30px !important;
+		height: 30px !important;
+		background-color: #333;
+		border-radius: 100%;
+		display: inline-block;
+		-webkit-animation: sk-three-bounce 2s ease-in-out 0s infinite both;
+		animation: sk-three-bounce 2s ease-in-out 0s infinite both; }
+		.sk-three-bounce .sk-bounce1 {
+			-webkit-animation-delay: -0.32s;
+			animation-delay: -0.32s; }
+			.sk-three-bounce .sk-bounce2 {
+				-webkit-animation-delay: -0.16s;
+				animation-delay: -0.16s; }
 
-@-webkit-keyframes sk-three-bounce {
-  0%, 80%, 100% {
-    -webkit-transform: scale(0);
-            transform: scale(0); }
-  40% {
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
+				@-webkit-keyframes sk-three-bounce {
+					0%, 80%, 100% {
+						-webkit-transform: scale(0);
+						transform: scale(0); }
+						40% {
+							-webkit-transform: scale(1);
+							transform: scale(1); } }
 
-@keyframes sk-three-bounce {
-  0%, 80%, 100% {
-    -webkit-transform: scale(0);
-            transform: scale(0); }
-  40% {
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
+							@keyframes sk-three-bounce {
+								0%, 80%, 100% {
+									-webkit-transform: scale(0);
+									transform: scale(0); }
+									40% {
+										-webkit-transform: scale(1);
+										transform: scale(1); } }

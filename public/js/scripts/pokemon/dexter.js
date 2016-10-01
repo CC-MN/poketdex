@@ -1,9 +1,18 @@
 function getDexterText(){
   //get dexter text
-  $.each(responsePokemonSpecies.flavor_text_entries, function(index, value){
+  if (PAGE_TYPE == 'item') {
+    var entriesObject = itemResponse.flavor_text_entries;
+  } else {
+    var entriesObject = responsePokemonSpecies.flavor_text_entries;
+  }
+  $.each(entriesObject, function(index, value){
     var v = value;
     if(v.language.name === 'en'){
-      POKEDEXTEXT = v.flavor_text;
+      if (PAGE_TYPE == 'item') {
+        POKEDEXTEXT = v.text;
+      }else{
+        POKEDEXTEXT = v.flavor_text;
+      }
       return false; //break out of .each loop
     }
   });

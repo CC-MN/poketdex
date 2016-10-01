@@ -21,7 +21,20 @@ Pokedex.prototype = {
 		return url;
 	},
 	getItem : function(name){
-		var url = BASE_URL + 'item/' + name + '/';
+		// name = (name.indexOf('?') > -1) ? name : name + '/';
+		var url = BASE_URL + 'item/' + name;
+		return url;
+	},
+	getMachine : function(name){
+		var url = BASE_URL + 'machine/' + name + '/';
+		return url;
+	},
+	getBerry : function(name){
+		var url = BASE_URL + 'berry/' + name + '/';
+		return url;
+	},
+	getMove : function(name){
+		var url = BASE_URL + 'move/' + name + '/';
 		return url;
 	},
 	getJSON : function(URL){

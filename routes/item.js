@@ -5,9 +5,7 @@ var Pokedex = new PokedexLib();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	//error out
-	res.status(500);
-	res.render('error', {err : '', message : 'no item name passed', response : ''});
+	renderContent('1', req, res); //default to master-ball
 });
 
 /* GET home page. */
@@ -25,12 +23,18 @@ function renderContent(id, req, res){
 		//get item info
 		content.itemResponse = response;
 		content.itemResponseString = JSON.stringify(response);
-		if(response.type !== 'err'){
-			res.render('item', content);
-		}
+		// return Pokedex.getJSON(Pokedex.getItem('?limit=999'));
+		return Pokedex.getJSON(Pokedex.getItem('?limit=999'));
 		
-	});
+	}).then(function(response){
 
+			content.allItemNames = response;
+			content.allItemNamesString = JSON.stringify(response);
+
+			if(response.type !== 'err'){
+				res.render('item', content);
+			}
+		});
 }
 
 function errorHandling(response, req, res){

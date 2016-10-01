@@ -26,6 +26,7 @@
 		var responsePokemon = {{& pokemonResponseString }};
 		var responsePokemonSpecies = {{& pokemonSpeciesDataString }};
 		var responsePokemonNames = {{& allPokemonNamesString}};
+		console.log(responsePokemonNames);
 	</script>
 
 	<script type="text/javascript">
@@ -47,8 +48,8 @@
 				<a href="/"><img src="/images/interface/nav-home.png" /><br />Home</a>
 				<a href="javascript:void(0)" onclick="closeNav()"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
 				<a href="/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
-				<a href="#"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
-				<a href="#"><img src="/images/interface/nav-settings.png" /><br />Settings</a>
+				<a href="/location/"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
+				<a href="/settings/"><img src="/images/interface/nav-settings.png" /><br />Settings</a>
 			</div>
 			<!-- SideNav -->
 			<div id="topBar">
