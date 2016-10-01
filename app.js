@@ -24,6 +24,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use('/', routes);
+app.use('/pokemon', pokemon);
+app.use('/item', item);
+app.use('/request', request);
+
 // SASS Integration
 app.use(
   sass({
@@ -37,11 +42,6 @@ app.use(
 ); 
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', routes);
-app.use('/pokemon', pokemon);
-app.use('/item', item);
-app.use('/request', request);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
