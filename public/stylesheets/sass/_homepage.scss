@@ -1,0 +1,10 @@
+.twitter-container{
+	width:800px;
+	margin:0 auto;
+}
+
+@media screen and (max-height: 450px), screen and (max-width: 800px){
+	.twitter-container{
+		width:100%;
+	}
+}

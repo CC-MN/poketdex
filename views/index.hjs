@@ -40,9 +40,11 @@
 		</nav>
 	</header>
 	<div id="topSpacer"></div>
-	<a class="twitter-timeline" data-lang="en" data-link-color="#00B7FF" href="https://twitter.com/PoketDex/lists/poketdex-news">
-		A Twitter List by PoketDex
-	</a>
-	<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<div class="twitter-container">
+		<a class="twitter-timeline" data-lang="en" data-link-color="#00B7FF" href="https://twitter.com/PoketDex/lists/poketdex-news">
+			A Twitter List by PoketDex
+		</a>
+		<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+	</div>
 </body>
 </html>
