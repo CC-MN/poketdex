@@ -34,67 +34,6 @@ function setPokemonPageBindings(){
   });
 }
 
-function pokemonAutoComplete() {
-
-  $.each(responsePokemonNames.results, function(index, value){
-    var name = value.name;
-    POKEMON_NAMES.push(name);
-  });
-  var options = {
-    data        :   POKEMON_NAMES,
-    theme       :   'square',
-    adjustWidth : false,
-
-    list        :   {
-      match          : {
-        enabled: true
-      },
-      onChooseEvent   :   function(){
-        loadOverlay();
-        var pokemonName = $("#pokemonSearchBox").getSelectedItemData();
-        changePokemon(pokemonName);
-      }
-    }
-  }
-
-  $('#pokemonSearchBox').easyAutocomplete(options);
-
-}
-
-function changePokemon(pokemonID) {
-  console.log(pokemonID);
-  if (pokemonID !== null) {
-    pokemonID = pokemonID.toLowerCase();
-    //make sure that pokemon name exists
-    if(POKEMON_NAMES.indexOf(pokemonID) > -1){
-
-      window.location = "./" + pokemonID;
-    }
-  };
-};
-
-function showSearch(){
-  if ($( "#searchContainer" ).hasClass("hidden")) {
-    $('#searchContainer').removeClass("hidden");
-    $('#pokemonSearchBox').focus();
-  }else {
-    $('#searchContainer').addClass("hidden");
-  }
-}
-
-function showSection(sectionName){
-  sectionName = sectionName.trim();
-
-  if ($( "#" + sectionName ).hasClass("hidden")) {
-    $('.' + sectionName + ' button').html('&#8211;');
-    $('#' + sectionName).removeClass("hidden").addClass("expanded");
-    $('#' + sectionName).focus();
-  }else {
-    $('.' + sectionName + ' button').html('+');
-    $('#' + sectionName).addClass("hidden").removeClass("expanded");
-  }
-}
-
 
 //Section: Abilities
 function getAbilityDetail(pokemonAbilities){
@@ -830,14 +769,6 @@ function buildStatsChart(){
   $('#statSpAttack').html(responsePokemon.stats[2].base_stat).width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
   $('#statSpDefense').html(responsePokemon.stats[1].base_stat).width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
   $('#statSpeed').html(responsePokemon.stats[0].base_stat).width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
-}
-
-// Call Page Change Animation
-function loadOverlay(){
-  console.log('loading new page...');
-  $('#searchContainer').addClass('hidden');
-  $('#loadingDiv').removeClass('hidden');
-  $('#loadingAnimation').removeClass('hidden');
 }
 
 /*

@@ -1,7 +1,6 @@
 // GLOBAL VARIABLES
 var URL_PARAMS = {};
 var PAGE_TYPE = "item";
-var ITEM_NAMES = [];
 var POKEDEXTEXT = null;
 var DEXTER_STATE = 0;
 
@@ -11,7 +10,7 @@ $(document).ready(function(){
 	getQS(URL_PARAMS);
 
 	//auto complete for pokemon search
-	itemAutoComplete();
+	setAutoComplete(responseItemNames.results, 'itemSearchBox');
 	//set POKEDEXTEXT
 	getDexterText();
   

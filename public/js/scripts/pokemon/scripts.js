@@ -2,7 +2,6 @@
 var URL_PARAMS = {};
 var PAGE_TYPE = "pokemon";
 var POKEMON_MOVES = [];
-var POKEMON_NAMES = [];
 var POKEDEXTEXT = null;
 var DEXTER_STATE = 0;
 var FLAMEBODY = "off"
@@ -26,7 +25,7 @@ $(document).ready(function(){
 	BREEDING_MOD_CYCLES = responsePokemonSpecies.hatch_counter + 1;
 
 	//auto complete for pokemon search
-	pokemonAutoComplete();
+	setAutoComplete(responsePokemonNames.results, 'pokemonSearchBox');
 	//set POKEDEXTEXT
 	getDexterText();
 
