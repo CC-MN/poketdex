@@ -3,11 +3,11 @@
 /**
  * Module dependencies.
  */
-var cluster = require('cluster');
-var app = require('../app');
-var debug = require('debug')('myapp:server');
-var http = require('http');
-var numCPUs = require('os').cpus().length;
+var cluster     = require('cluster');
+var app         = require('../app');
+var debug       = require('debug')('myapp:server');
+var http        = require('http');
+var numCPUs     = require('os').cpus().length;
 
 /**
  * Get port from environment and store in Express.

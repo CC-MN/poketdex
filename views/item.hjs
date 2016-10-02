@@ -5,7 +5,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel='stylesheet' href='/stylesheets/style.css' media="screen"/>
-	<link rel='stylesheet' href='/stylesheets/types.css' media="screen"/>
 	<link rel='stylesheet' href='/js/autocomplete/easy-autocomplete.min.css' media="screen"/>
 	<link rel='stylesheet' href='/js/autocomplete/easy-autocomplete.themes.min.css' media="screen"/>
 	<link rel="shortcut icon" href="/images/app/favicon.ico" type="image/x-icon" />
