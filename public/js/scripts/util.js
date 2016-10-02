@@ -35,14 +35,13 @@ function showSection(sectionName){
   }
 }
 
-function setAutoComplete(results, searchBox) {
-  var array = [];
+function setAutoComplete(results, searchBox, passedArray) {
   $.each(results, function(index, value){
     var name = value.name;
-    array.push(name);
+    passedArray.push(name);
   });
   var options = {
-    data        :   array,
+    data        :   passedArray,
     theme       :   'square',
     adjustWidth : false,
 
@@ -53,7 +52,7 @@ function setAutoComplete(results, searchBox) {
       onChooseEvent   :   function(){
         loadOverlay();
         var pokemonName = $("#" + searchBox).getSelectedItemData();
-        changePage(pokemonName, array);
+        changePage(pokemonName, passedArray);
       }
     }
   }

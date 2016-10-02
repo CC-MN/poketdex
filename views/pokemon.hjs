@@ -79,7 +79,7 @@
 	</header>
 
 	<div id="searchContainer" class="hidden">
-		<input id="pokemonSearchBox" placeholder="Enter Pokemon Name" onchange="changePokemon(this.value)">
+		<input id="pokemonSearchBox" placeholder="Enter Pokemon Name" onchange="changePage(this.value, POKEMON_NAMES)">
 	</div>
 	<div class="container">		
 		<div class="pokemon">

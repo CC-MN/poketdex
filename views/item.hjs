@@ -56,7 +56,7 @@
 		</nav>
 	</header>
 	<div id="searchContainer" class="hidden">
-		<input id="itemSearchBox" placeholder="Enter Item Name" onchange="changeItem(this.value)">
+		<input id="itemSearchBox" placeholder="Enter Item Name" onchange="changePage(this.value, ITEM_NAMES)">
 	</div>
 	<div class="container">		
 		<div class="item">
