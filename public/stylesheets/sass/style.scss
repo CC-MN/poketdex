@@ -54,3 +54,21 @@ button.active {
 
 @import 'types';
 @import 'pokeball-animation';
+
+#loadingDiv{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	opacity: 0.8;
+	z-index: 1000;
+}
+
+#loadingAnimation{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 1002;
+	padding-top: 50%;
+	opacity: 1;
+}

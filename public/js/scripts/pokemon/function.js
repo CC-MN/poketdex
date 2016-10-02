@@ -50,6 +50,7 @@ function pokemonAutoComplete() {
         enabled: true
       },
       onChooseEvent   :   function(){
+        loadOverlay();
         var pokemonName = $("#pokemonSearchBox").getSelectedItemData();
         changePokemon(pokemonName);
       }
@@ -676,7 +677,7 @@ function showPokemonEggGroup(type, data){
   var html = '';
   for (var i = 0; i < data.pokemon_species.length; i++) {
     var pkmnID = getIDFromPokemonURL(data.pokemon_species[i].url);
-    html += '<a href="/pokemon/' + pkmnID +'"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>';
+    html += '<a href="/pokemon/' + pkmnID +'" onclick="loadOverlay()"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>';
   };
   $('#' + type).html(html);
 }
@@ -829,6 +830,14 @@ function buildStatsChart(){
   $('#statSpAttack').html(responsePokemon.stats[2].base_stat).width(responsePokemon.stats[2].base_stat / 255 * 100 + "%");
   $('#statSpDefense').html(responsePokemon.stats[1].base_stat).width(responsePokemon.stats[1].base_stat / 255 * 100 + "%");
   $('#statSpeed').html(responsePokemon.stats[0].base_stat).width(responsePokemon.stats[0].base_stat / 255 * 100 + "%");
+}
+
+// Call Page Change Animation
+function loadOverlay(){
+  console.log('loading new page...');
+  $('#searchContainer').addClass('hidden');
+  $('#loadingDiv').removeClass('hidden');
+  $('#loadingAnimation').removeClass('hidden');
 }
 
 /*
