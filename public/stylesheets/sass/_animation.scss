@@ -54,10 +54,12 @@
 /*****************PageChange****************/
 
 .sk-circle {
-  margin: auto;
+  margin: 0 auto;
   width: 200px;
   height: 200px;
-  position: relative; }
+  position: relative; 
+  top:40%;
+}
   .sk-circle .sk-child {
     width: 100%;
     height: 100%;
@@ -185,6 +187,5 @@
   height: 100%;
   width: 100%;
   z-index: 1002;
-  padding-top: 50%;
   opacity: 1;
 }

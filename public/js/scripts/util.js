@@ -50,7 +50,7 @@ function setAutoComplete(results, searchBox, passedArray) {
         enabled: true
       },
       onChooseEvent   :   function(){
-        loadOverlay();
+        
         var pokemonName = $("#" + searchBox).getSelectedItemData();
         changePage(pokemonName, passedArray);
       }
@@ -67,7 +67,7 @@ function changePage(pokemonID, passedArray) {
     pokemonID = pokemonID.toLowerCase();
     //make sure that pokemon name exists
     if(passedArray.indexOf(pokemonID) > -1){
-
+      loadOverlay();
       window.location = "./" + pokemonID;
     }
   };
