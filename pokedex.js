@@ -37,6 +37,9 @@ Pokedex.prototype = {
 		var url = BASE_URL + 'move/' + name + '/';
 		return url;
 	},
+	getLocation : function(name){
+		var url = BASE_URL + 'location/' + name + '/';
+	},
 	getJSON : function(URL){
 		const cacheResult = DITTO.get(URL);
 
