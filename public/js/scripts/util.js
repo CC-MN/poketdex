@@ -84,7 +84,7 @@ function showSearch(){
 
 // Call Page Change Animation
 function loadOverlay(){
-  alert('load overlay');
+  // alert('load overlay');
   console.log('loading new page...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
