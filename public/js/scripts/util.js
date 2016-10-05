@@ -52,13 +52,18 @@ function setAutoComplete(results, searchBox, passedArray) {
       onChooseEvent   :   function(){
         
         var pokemonName = $("#" + searchBox).getSelectedItemData();
-        changePage(pokemonName, passedArray);
+        newFunction(pokemonName, passedArray);
+        // changePage(pokemonName, passedArray);
       }
     }
   }
 
   $('#' + searchBox).easyAutocomplete(options);
 
+}
+
+function newFunction(pokemonName, passedArray) {
+  showSearch();
 }
 
 function changePage(pokemonID, passedArray) {
