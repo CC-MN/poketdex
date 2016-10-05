@@ -72,7 +72,7 @@ function changePage(pokemonID, passedArray) {
     pokemonID = pokemonID.toLowerCase();
     //make sure that pokemon name exists
     if(passedArray.indexOf(pokemonID) > -1){
-      loadOverlay();
+      loadOverlay(pokemonID);
       // window.location = "./" + pokemonID;
     }
   };
@@ -88,12 +88,13 @@ function showSearch(){
 }
 
 // Call Page Change Animation
-function loadOverlay(){
+function loadOverlay(pokemonID){
   // alert('load overlay');
   $('#loadingAnimation').removeClass('hidden');
   console.log('loading new page...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
+  window.location = "./" + pokemonID;
   // $('#loadingAnimation').removeClass('hidden');
 }
 
