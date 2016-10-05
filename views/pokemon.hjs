@@ -41,7 +41,8 @@
 <body>
 	<div id="loadingDiv" class="hidden"></div>
 	<div id="loadingAnimation" class="hidden">
-		<div class="sk-circle">
+		Hello
+<!-- 		<div class="sk-circle">
 			<div class="sk-circle1 sk-child"></div>
 			<div class="sk-circle2 sk-child"></div>
 			<div class="sk-circle3 sk-child"></div>
@@ -54,7 +55,7 @@
 			<div class="sk-circle10 sk-child"></div>
 			<div class="sk-circle11 sk-child"></div>
 			<div class="sk-circle12 sk-child"></div>
-		</div>
+		</div> -->
 	</div>
 	<header>
 		<nav>
