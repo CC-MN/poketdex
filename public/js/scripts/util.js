@@ -73,7 +73,7 @@ function changePage(pokemonID, passedArray) {
     //make sure that pokemon name exists
     if(passedArray.indexOf(pokemonID) > -1){
       loadOverlay();
-      window.location = "./" + pokemonID;
+      // window.location = "./" + pokemonID;
     }
   };
 };
