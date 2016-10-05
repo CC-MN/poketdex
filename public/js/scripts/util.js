@@ -85,10 +85,11 @@ function showSearch(){
 // Call Page Change Animation
 function loadOverlay(){
   // alert('load overlay');
+  $('#loadingAnimation').removeClass('hidden');
   console.log('loading new page...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
-  $('#loadingAnimation').removeClass('hidden');
+  // $('#loadingAnimation').removeClass('hidden');
 }
 
 
