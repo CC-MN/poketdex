@@ -41,7 +41,7 @@
 <body>
 	<div id="loadingDiv" class="hidden"></div>
 	<div id="loadingAnimation" class="hidden">
-		Hello
+		We're just getting that for you...
 <!-- 		<div class="sk-circle">
 			<div class="sk-circle1 sk-child"></div>
 			<div class="sk-circle2 sk-child"></div>
