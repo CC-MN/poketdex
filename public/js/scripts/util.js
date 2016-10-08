@@ -58,7 +58,15 @@ function setAutoComplete(results, searchBox, passedArray) {
       onKeyEnterEvent : function(){
         var pokemonName = $("#" + searchBox).getSelectedItemData();
         // newFunction(pokemonName, passedArray);
-        changePage(pokemonName, passedArray);
+        // changePage(pokemonName, passedArray);
+        if (pokemonName !== null) {
+        pokemonName = pokemonID.toLowerCase();
+        //make sure that pokemon name exists
+        if(passedArray.indexOf(pokemonName) > -1){
+          console.log('x');
+          loadOverlay(pokemonName);
+          // window.location = "./" + pokemonID;
+        }
       }
     }
   }
@@ -71,17 +79,18 @@ function newFunction(pokemonName, passedArray) {
   showSearch();
 }
 
-function changePage(pokemonID, passedArray) {
-  console.log(pokemonID);
-  if (pokemonID !== null) {
-    pokemonID = pokemonID.toLowerCase();
-    //make sure that pokemon name exists
-    if(passedArray.indexOf(pokemonID) > -1){
-      console.log('x');
-      loadOverlay(pokemonID);
-      // window.location = "./" + pokemonID;
-    }
-  };
+function changePage(pokemonID) {
+  window.location = "./" + pokemonID;
+  // console.log(pokemonID);
+  // if (pokemonID !== null) {
+  //   pokemonID = pokemonID.toLowerCase();
+  //   //make sure that pokemon name exists
+  //   if(passedArray.indexOf(pokemonID) > -1){
+  //     console.log('x');
+  //     loadOverlay(pokemonID);
+  //     
+  //   }
+  // };
 };
 
 function showSearch(){
@@ -101,6 +110,7 @@ function loadOverlay(pokemonID){
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
   // window.location = "./" + pokemonID;
+  changePage(pokemonID);
   // $('#loadingAnimation').removeClass('hidden');
 }
 
