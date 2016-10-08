@@ -40,33 +40,54 @@ function setAutoComplete(results, searchBox, passedArray) {
     var name = value.name;
     passedArray.push(name);
   });
-  var options = {
-    data        :   passedArray,
-    theme       :   'square',
-    adjustWidth :   false,
 
-    list        :   {
-      match          : {
-        enabled: true
-      },
-      onChooseEvent   :   function(){
-        var pokemonName = $("#" + searchBox).getSelectedItemData();
-        // newFunction(pokemonName, passedArray);
-        // changePage(pokemonName, passedArray);
-        if (pokemonName !== null) {
-          pokemonName = pokemonName.toLowerCase();
-          //make sure that pokemon name exists
-          if(passedArray.indexOf(pokemonName) > -1){
-            console.log('x');
-            loadOverlay(pokemonName);
-            // window.location = "./" + pokemonID;
-          }
-        }
+  searchBox = document.getElementById(searchBox);
+  new Awesomplete(searchBox, {
+    list        :   passedArray,
+    minChars    :   3,
+    maxChars    :   50
+  });
+
+  searchBox.addEventListener('awesomplete-selectcomplete', function(data){    
+    console.log(data);
+    var pokemonName = data.text.value || null; 
+    if (pokemonName !== null) {
+      pokemonName = pokemonName.toLowerCase();
+      //make sure that pokemon name exists
+      if(passedArray.indexOf(pokemonName) > -1){
+        loadOverlay(pokemonName);
+        // window.location = "./" + pokemonID;
       }
     }
-  }
+  });
 
-  $('#' + searchBox).easyAutocomplete(options);
+  // var options = {
+  //   data        :   passedArray,
+  //   theme       :   'square',
+  //   adjustWidth :   false,
+
+  //   list        :   {
+  //     match          : {
+  //       enabled: true
+  //     },
+  //     onChooseEvent   :   function(){
+  //       var pokemonName = $("#" + searchBox).getSelectedItemData();
+  //       // newFunction(pokemonName, passedArray);
+  //       // changePage(pokemonName, passedArray);
+  //       if (pokemonName !== null) {
+  //         pokemonName = pokemonName.toLowerCase();
+  //         //make sure that pokemon name exists
+  //         if(passedArray.indexOf(pokemonName) > -1){
+  //           console.log('x');
+  //           loadOverlay(pokemonName);
+  //           // window.location = "./" + pokemonID;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  // $('#' + searchBox).easyAutocomplete(options);
 
 }
 
@@ -94,7 +115,7 @@ function loadOverlay(pokemonID){
   console.log('loading new page...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
-  changePage(pokemonID);
+  // changePage(pokemonID);
 }
 
 
