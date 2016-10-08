@@ -49,9 +49,12 @@ function setAutoComplete(results, input, passedArray) {
   });
 
   searchBox.addEventListener('awesomplete-selectcomplete', function(data){ 
-    console.log('xxxxx');   
     console.log(data);
-    var pokemonName = data.text.value || null; 
+
+    var pokemonName = (data.text) ?  data.text.value : null; 
+    pokemonName = (!pokemonName) ? $(data.srcElement).val() : null;
+    console.log(pokemonName);
+
     if (pokemonName !== null) {
       pokemonName = pokemonName.toLowerCase();
       //make sure that pokemon name exists
@@ -59,12 +62,13 @@ function setAutoComplete(results, input, passedArray) {
         loadOverlay(pokemonName);
       }
     }
-  });
+  }, false);
 
   $('#' + input).keyup(function (e) {
     if (e.keyCode == 13) {
       // Do something
-      console.log('i am here');
+      var event = new Event('awesomplete-selectcomplete');
+      searchBox.dispatchEvent(event);
     }
   });
 
@@ -91,10 +95,14 @@ function showSearch(){
 function loadOverlay(pokemonID){
   // alert('load overlay');
   $('#loadingAnimation').removeClass('hidden');
-  console.log('loading new page...');
+  console.log('show overlay...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
-  changePage(pokemonID);
+  setTimeout(function(){ 
+    console.log('change page');
+    changePage(pokemonID);
+  }, 500);
+  
 }
 
 
