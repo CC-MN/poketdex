@@ -115,7 +115,7 @@ function loadOverlay(pokemonID){
   console.log('loading new page...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
-  // changePage(pokemonID);
+  changePage(pokemonID);
 }
 
 
