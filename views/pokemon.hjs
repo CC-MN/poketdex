@@ -81,8 +81,8 @@
 	</header>
 
 	<div id="searchContainer" class="hidden">
-		<!-- <input id="pokemonSearchBox" placeholder="Enter Pokemon Name" onchange="changePage(this.value, POKEMON_NAMES)"> -->
-		<input id="pokemonSearchBox" placeholder="Enter Pokemon Name">
+		<input id="pokemonSearchBox" placeholder="Enter Pokemon Name" onchange="changePage(this.value, POKEMON_NAMES)">
+		<!-- <input id="pokemonSearchBox" placeholder="Enter Pokemon Name"> -->
 	</div>
 	<div class="container">		
 		<div class="pokemon">
