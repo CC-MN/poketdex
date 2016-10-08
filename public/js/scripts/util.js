@@ -50,6 +50,12 @@ function setAutoComplete(results, searchBox, passedArray) {
         enabled: true
       },
       onChooseEvent   :   function(){
+        // console.log('y');
+        // var pokemonName = $("#" + searchBox).getSelectedItemData();
+        // // newFunction(pokemonName, passedArray);
+        // changePage(pokemonName, passedArray);
+      },
+      onKeyEnterEvent : function(){
         console.log('y');
         var pokemonName = $("#" + searchBox).getSelectedItemData();
         // newFunction(pokemonName, passedArray);
