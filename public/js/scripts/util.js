@@ -35,20 +35,21 @@ function showSection(sectionName){
   }
 }
 
-function setAutoComplete(results, searchBox, passedArray) {
+function setAutoComplete(results, input, passedArray) {
   $.each(results, function(index, value){
     var name = value.name;
     passedArray.push(name);
   });
 
-  searchBox = document.getElementById(searchBox);
+  var searchBox = document.getElementById(input);
   new Awesomplete(searchBox, {
     list        :   passedArray,
     minChars    :   3,
     maxChars    :   50
   });
 
-  searchBox.addEventListener('awesomplete-selectcomplete', function(data){    
+  searchBox.addEventListener('awesomplete-selectcomplete', function(data){ 
+    console.log('xxxxx');   
     console.log(data);
     var pokemonName = data.text.value || null; 
     if (pokemonName !== null) {
@@ -56,38 +57,16 @@ function setAutoComplete(results, searchBox, passedArray) {
       //make sure that pokemon name exists
       if(passedArray.indexOf(pokemonName) > -1){
         loadOverlay(pokemonName);
-        // window.location = "./" + pokemonID;
       }
     }
   });
 
-  // var options = {
-  //   data        :   passedArray,
-  //   theme       :   'square',
-  //   adjustWidth :   false,
-
-  //   list        :   {
-  //     match          : {
-  //       enabled: true
-  //     },
-  //     onChooseEvent   :   function(){
-  //       var pokemonName = $("#" + searchBox).getSelectedItemData();
-  //       // newFunction(pokemonName, passedArray);
-  //       // changePage(pokemonName, passedArray);
-  //       if (pokemonName !== null) {
-  //         pokemonName = pokemonName.toLowerCase();
-  //         //make sure that pokemon name exists
-  //         if(passedArray.indexOf(pokemonName) > -1){
-  //           console.log('x');
-  //           loadOverlay(pokemonName);
-  //           // window.location = "./" + pokemonID;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
-  // $('#' + searchBox).easyAutocomplete(options);
+  $('#' + input).keyup(function (e) {
+    if (e.keyCode == 13) {
+      // Do something
+      console.log('i am here');
+    }
+  });
 
 }
 
