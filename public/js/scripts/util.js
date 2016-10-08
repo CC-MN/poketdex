@@ -50,7 +50,7 @@ function setAutoComplete(results, searchBox, passedArray) {
         enabled: true
       },
       onChooseEvent   :   function(){
-        
+        console.log('y');
         var pokemonName = $("#" + searchBox).getSelectedItemData();
         // newFunction(pokemonName, passedArray);
         changePage(pokemonName, passedArray);
@@ -72,6 +72,7 @@ function changePage(pokemonID, passedArray) {
     pokemonID = pokemonID.toLowerCase();
     //make sure that pokemon name exists
     if(passedArray.indexOf(pokemonID) > -1){
+      console.log('x');
       loadOverlay(pokemonID);
       // window.location = "./" + pokemonID;
     }
