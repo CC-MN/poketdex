@@ -56,7 +56,6 @@ function setAutoComplete(results, searchBox, passedArray) {
         // changePage(pokemonName, passedArray);
       },
       onKeyEnterEvent : function(){
-        console.log('y');
         var pokemonName = $("#" + searchBox).getSelectedItemData();
         // newFunction(pokemonName, passedArray);
         changePage(pokemonName, passedArray);
@@ -101,7 +100,7 @@ function loadOverlay(pokemonID){
   console.log('loading new page...');
   $('#searchContainer').addClass('hidden');
   $('#loadingDiv').removeClass('hidden');
-  window.location = "./" + pokemonID;
+  // window.location = "./" + pokemonID;
   // $('#loadingAnimation').removeClass('hidden');
 }
 
