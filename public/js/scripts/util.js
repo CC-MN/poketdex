@@ -59,7 +59,7 @@ function setAutoComplete(results, input, passedArray) {
       pokemonName = pokemonName.toLowerCase();
       //make sure that pokemon name exists
       if(passedArray.indexOf(pokemonName) > -1){
-        loadOverlay(pokemonName);
+        changePage(pokemonName);
       }
     }
   }, false);
@@ -79,6 +79,9 @@ function newFunction(pokemonName, passedArray) {
 }
 
 function changePage(pokemonID) {
+  console.log('show overlay...');
+  $('.overlay').removeClass('hidden');
+  $('#searchContainer').addClass('hidden');
   window.location = "./" + pokemonID;
 };
 
@@ -91,19 +94,6 @@ function showSearch(){
   }
 }
 
-// Call Page Change Animation
-function loadOverlay(pokemonID){
-  // alert('load overlay');
-  $('#loadingAnimation').removeClass('hidden');
-  console.log('show overlay...');
-  $('#searchContainer').addClass('hidden');
-  $('#loadingDiv').removeClass('hidden');
-  setTimeout(function(){ 
-    console.log('change page');
-    changePage(pokemonID);
-  }, 500);
-  
-}
 
 
 function getQS(object){
