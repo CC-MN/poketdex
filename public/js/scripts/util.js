@@ -60,12 +60,13 @@ function setAutoComplete(results, searchBox, passedArray) {
         // newFunction(pokemonName, passedArray);
         // changePage(pokemonName, passedArray);
         if (pokemonName !== null) {
-        pokemonName = pokemonID.toLowerCase();
-        //make sure that pokemon name exists
-        if(passedArray.indexOf(pokemonName) > -1){
-          console.log('x');
-          loadOverlay(pokemonName);
-          // window.location = "./" + pokemonID;
+          pokemonName = pokemonName.toLowerCase();
+          //make sure that pokemon name exists
+          if(passedArray.indexOf(pokemonName) > -1){
+            console.log('x');
+            loadOverlay(pokemonName);
+            // window.location = "./" + pokemonID;
+          }
         }
       }
     }
