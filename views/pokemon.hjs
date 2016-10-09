@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="/js/scripts/pokemon/pokemonMoves.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/abilities.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/typeEffectiveness.js"></script>
-	<script type="text/javascript" src="/js/scripts/pokemon/sorttable.js"></script>
+	<script type="text/javascript" src="/js/scripts/sorttable.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/scripts.js"></script>
@@ -333,7 +333,8 @@
 						</div>
 						<div class="clearfloat"></div> -->
 
-						<table id="movesTable">
+						<table id="movesTable" class="sortable">
+							<thead>
 							<tr>
 								<th id="name">Name</th>
 								<th id="type" class="move-type battleMoves">Type</th>
@@ -344,6 +345,9 @@
 								<th id="learntLevel">Lvl</th>
 								<th id="contest" class="contestMoves hidden">Contest</th>
 							</tr>
+							</thead>
+							<tbody>
+							</tbody>
 						</table>
 					</div>
 				</section>

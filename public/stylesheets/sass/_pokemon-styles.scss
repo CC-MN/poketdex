@@ -212,18 +212,18 @@ section:nth-of-type(1) .tab{
 
 	.move-name{
 		width:98px;
-		max-width:98px !important;
+		max-width:110px !important;
 	}
 
-	.move-name, .move-type, .category-type{
+	/*.move-name, .move-type, .category-type{
 		font-size: 15px;
-	}
+	}*/
 
 	.learntLevel, .power-number, .pp-number, .accuracy-number{
 		font-size: 13px;
 	}
 
-	#movesTable tr:nth-of-type(even) td{
+	#movesTable tr:not(.hidden):nth-of-type(even) td{
 		background-color: #cccccc;
 	}
 

@@ -462,7 +462,7 @@ function buildMoveList(moves){
   $.each(POKEMON_MOVES, function(i,v){
     var moveName = v.moveName;
     if(MOVE_OBJECT[moveName]){
-      $('#movesTable tr:last').after('<tr class="filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '"></tr>');
+      $('#movesTable tbody').append('<tr class="filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '"></tr>');
       $('#movesTable tr:last').append('<td class="move-name ' + MOVE_OBJECT[moveName]['type'] + '">' + moveName.replace('-',' ') + '</td>');
       $('#movesTable tr:last').append('<td class="move-type ' + MOVE_OBJECT[moveName]['type'] + ' battleMoves">' + MOVE_OBJECT[moveName]['type'] + '</td>');
       $('#movesTable tr:last').append('<td class="category-type ' + MOVE_OBJECT[moveName]['category'] + ' toggle_hide battleMoves">' + MOVE_OBJECT[moveName]['category'] + '</td>');
