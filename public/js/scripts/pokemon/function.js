@@ -476,7 +476,7 @@ function buildMoveList(moves){
       } else if (v.learntMethod == "egg") {
         $('#movesTable tr:last').append('<td class="learntLevel">Egg</td>');
       } else {
-        $('#movesTable tr:last').append('<td class="learntLevel">' + v.learntLevel + '</td>');
+        $('#movesTable tr:last').append('<td class="learntLevel">' + ("0" + v.learntLevel).slice(-2) + '</td>');
       };
       $('#movesTable tr:last').append('<td class="contest-type ' + MOVE_OBJECT[moveName]['contest'] + ' hidden contestMoves">' + MOVE_OBJECT[moveName]['contest'] + '</td>');
     }

@@ -215,6 +215,10 @@ section:nth-of-type(1) .tab{
 		max-width:110px !important;
 	}
 
+	.move-type, .category-type{
+		width: 72px;
+	}
+
 	.move-name, .move-type, .category-type{
 		font-size: 15px;
 	}
