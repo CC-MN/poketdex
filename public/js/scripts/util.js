@@ -36,6 +36,7 @@ function showSection(sectionName){
 }
 
 function setAutoComplete(results, input, passedArray) {
+
   $.each(results, function(index, value){
     var name = value.name;
     passedArray.push(name);
@@ -44,7 +45,7 @@ function setAutoComplete(results, input, passedArray) {
   var searchBox = document.getElementById(input);
   new Awesomplete(searchBox, {
     list        :   passedArray,
-    minChars    :   3,
+    minChars    :   2,
     maxChars    :   50
   });
 
@@ -52,7 +53,7 @@ function setAutoComplete(results, input, passedArray) {
     console.log(data);
 
     var pokemonName = (data.text) ?  data.text.value : null; 
-    pokemonName = (!pokemonName) ? $(data.srcElement).val() : null;
+    pokemonName = (!pokemonName) ? $(data.srcElement).val() : pokemonName;
     console.log(pokemonName);
 
     if (pokemonName !== null) {
@@ -74,10 +75,6 @@ function setAutoComplete(results, input, passedArray) {
 
 }
 
-function newFunction(pokemonName, passedArray) {
-  showSearch();
-}
-
 function changePage(pokemonID) {
   console.log('show overlay...');
   $('.overlay').removeClass('hidden');
@@ -88,13 +85,11 @@ function changePage(pokemonID) {
 function showSearch(){
   if ($( "#searchContainer" ).hasClass("hidden")) {
     $('#searchContainer').removeClass("hidden");
-    $('#pokemonSearchBox').focus();
+    $('.searchBox').focus();
   }else {
     $('#searchContainer').addClass("hidden");
   }
 }
-
-
 
 function getQS(object){
   /*

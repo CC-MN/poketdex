@@ -31,6 +31,7 @@
   padding: 0;
   margin: 24px 0 0;
   background: #fff;
+  cursor: pointer;
 }
 
 .awesomplete > ul > li{
@@ -40,4 +41,9 @@
 
 .awesomplete > ul:empty {
   display: none;
+}
+
+.awesomplete mark{
+  background : yellow;
+  font-weight : bold;
 }

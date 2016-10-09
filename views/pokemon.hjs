@@ -72,7 +72,7 @@
 				<span id="navButton" onclick="openNav()">&#9776;</span>
 				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
 				<span id="dexId">Dex No : {{ pokemonResponse.id }} / </span>
-				<span id="dexName" onclick="useList()">{{ pokemonResponse.name }}</span>
+				<span id="dexName">{{ pokemonResponse.name }}</span>
 				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
 		</nav>
@@ -80,7 +80,7 @@
 
 	<div id="searchContainer" class="hidden">
 		<!-- <input id="pokemonSearchBox" placeholder="Enter Pokemon Name" onchange="changePage(this.value, POKEMON_NAMES)"> -->
-		<input id="pokemonSearchBox" type="search" placeholder="Enter Pokemon Name">
+		<input id="pokemonSearchBox" class="searchBox" type="search" placeholder="Enter Pokemon Name">
 	</div>
 	<div class="container">		
 		<div class="pokemon">

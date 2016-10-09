@@ -5,13 +5,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel='stylesheet' href='/stylesheets/style.css' media="screen"/>
-	<link rel='stylesheet' href='/js/autocomplete/easy-autocomplete.min.css' media="screen"/>
-	<link rel='stylesheet' href='/js/autocomplete/easy-autocomplete.themes.min.css' media="screen"/>
 	<link rel="shortcut icon" href="/images/app/favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="/images/app/ios-icon.png">
 	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/autocomplete/jquery.easy-autocomplete.min.js"></script>
+	<script type="text/javascript" src="/js/awesomeplete/awesomplete.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/scripts/util.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
@@ -35,6 +33,25 @@
 	</script>
 </head>
 <body>
+	<div id="loadingDiv" class="overlay hidden"></div>
+	<div id="loadingAnimation" class="overlay hidden">
+		<div class="sk-circle">
+			<div class="sk-circle1 sk-child"></div>
+			<div class="sk-circle2 sk-child"></div>
+			<div class="sk-circle3 sk-child"></div>
+			<div class="sk-circle4 sk-child"></div>
+			<div class="sk-circle5 sk-child"></div>
+			<div class="sk-circle6 sk-child"></div>
+			<div class="sk-circle7 sk-child"></div>
+			<div class="sk-circle8 sk-child"></div>
+			<div class="sk-circle9 sk-child"></div>
+			<div class="sk-circle10 sk-child"></div>
+			<div class="sk-circle11 sk-child"></div>
+			<div class="sk-circle12 sk-child"></div>
+		</div>
+		<!-- <img src="/images/premierball.png" width="200px" /><br /> -->
+		We're just getting that for you...
+	</div>
 	<header>
 		<nav>
 			<!-- SideNav -->
@@ -56,7 +73,7 @@
 		</nav>
 	</header>
 	<div id="searchContainer" class="hidden">
-		<input id="itemSearchBox" placeholder="Enter Item Name" onchange="changePage(this.value, ITEM_NAMES)">
+		<input id="itemSearchBox" class="searchBox" type="search" placeholder="Enter Item Name">
 	</div>
 	<div class="container">		
 		<div class="item">
