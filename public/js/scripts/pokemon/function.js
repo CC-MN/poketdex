@@ -462,22 +462,23 @@ function buildMoveList(moves){
   $.each(POKEMON_MOVES, function(i,v){
     var moveName = v.moveName;
     if(MOVE_OBJECT[moveName]){
-      $('#movesContent #name').append('<div class="move-name filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + ' ' + MOVE_OBJECT[moveName]['type'] + '">' + moveName + '</div>');
-      $('#movesContent #power').append('<div class="power-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['power'] + '</div>');
-      $('#movesContent #pp').append('<div class="pp-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['pp'] + '</div>');
-      $('#movesContent #type').append('<div class="' + MOVE_OBJECT[moveName]['type'] + ' filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['type'] + '</div>');
-      $('#movesContent #accuracy').append('<div class="accuracy-number filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['accuracy'] + '</div>');
-      $('#movesContent #category').append('<div class="category-type filterable ' + MOVE_OBJECT[moveName]['category'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['category'] + '</div>');
-      $('#movesContent #contest').append('<div class="contest-type filterable ' + MOVE_OBJECT[moveName]['contest'] + ' filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + MOVE_OBJECT[moveName]['contest'] + '</div>');
+      $('#movesTable tr:last').after('<tr class="filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '"></tr>');
+      $('#movesTable tr:last').append('<td class="move-name ' + MOVE_OBJECT[moveName]['type'] + '">' + moveName.replace('-',' ') + '</td>');
+      $('#movesTable tr:last').append('<td class="move-type ' + MOVE_OBJECT[moveName]['type'] + ' battleMoves">' + MOVE_OBJECT[moveName]['type'] + '</td>');
+      $('#movesTable tr:last').append('<td class="category-type ' + MOVE_OBJECT[moveName]['category'] + ' toggle_hide battleMoves">' + MOVE_OBJECT[moveName]['category'] + '</td>');
+      $('#movesTable tr:last').append('<td class="power-number battleMoves">' + MOVE_OBJECT[moveName]['power'] + '</td>');
+      $('#movesTable tr:last').append('<td class="pp-number battleMoves">' + MOVE_OBJECT[moveName]['pp'] + '</td>');
+      $('#movesTable tr:last').append('<td class="accuracy-number battleMoves">' + MOVE_OBJECT[moveName]['accuracy'] + '</td>');
       if (v.learntMethod == "tutor") {
-        $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">Tutor</div>');
+        $('#movesTable tr:last').append('<td class="learntLevel">Tutor</td>');
       } else if (v.learntMethod == "machine") {
-        $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">TM</div>');
+        $('#movesTable tr:last').append('<td class="learntLevel">TM</td>');
       } else if (v.learntMethod == "egg") {
-        $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">Egg</div>');
+        $('#movesTable tr:last').append('<td class="learntLevel">Egg</td>');
       } else {
-        $('#movesContent #learntLevel').append('<div class="learntLevel filterable filter_method_' + v.learntMethod +' filter_type_' + MOVE_OBJECT[moveName]['type'] + ' filter_category_' + MOVE_OBJECT[moveName]['category'] + ' filter_contest_' + MOVE_OBJECT[moveName]['contest'] + '">' + v.learntLevel + '</div>');
+        $('#movesTable tr:last').append('<td class="learntLevel">' + v.learntLevel + '</td>');
       };
+      $('#movesTable tr:last').append('<td class="contest-type ' + MOVE_OBJECT[moveName]['contest'] + ' hidden contestMoves">' + MOVE_OBJECT[moveName]['contest'] + '</td>');
     }
 
   });
@@ -493,7 +494,7 @@ function toggleMovesMode(){
 
     $("#movesToggleTypeContainer").addClass("hidden");
     $("#movesToggleTypeContainer").removeClass("half");
-    $("#type").addClass("toggle_hide");
+    // $("#type").addClass("toggle_hide");
   }else{
     console.log("battle mode");
     $('.contestMoves').addClass('hidden');
@@ -501,19 +502,19 @@ function toggleMovesMode(){
 
     $("#movesToggleTypeContainer").removeClass("hidden");
     $("#movesToggleTypeContainer").addClass("half");
-    $("#type").removeClass("toggle_hide");
+    // $("#type").removeClass("toggle_hide");
   }
 }
 
 function toggleMovesTypes(){
   if(document.getElementById('movesToggleType').checked){
     console.log("show category");
-    $('#category').removeClass("toggle_hide");
-    $('#type').addClass("toggle_hide");
+    $('.category-type').removeClass("toggle_hide");
+    $('.move-type').addClass("toggle_hide");
   }else{
     console.log("show types");
-    $('#type').removeClass("toggle_hide");
-    $('#category').addClass("toggle_hide");
+    $('.move-type').removeClass("toggle_hide");
+    $('.category-type').addClass("toggle_hide");
   }
 }
 

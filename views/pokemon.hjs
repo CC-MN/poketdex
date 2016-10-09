@@ -305,8 +305,8 @@
 						</select>
 					</div>
 					
-					<div class="row">
-						<div id="name" class="column">
+					<div class="row" style="text-align:center;">
+						<!-- <div id="name" class="column">
 							Name
 						</div>
 						<div id="type" class="column">
@@ -327,14 +327,24 @@
 						<div id="learntLevel" class="column">
 							Lvl
 						</div>
-<!-- 						<div id="method" class="column">
-							Method
-						</div> -->
 						
 						<div id="contest" class="column hidden contestMoves">
 							Contest
 						</div>
-						<div class="clearfloat"></div>
+						<div class="clearfloat"></div> -->
+
+						<table id="movesTable">
+							<tr>
+								<th id="name">Name</th>
+								<th id="type" class="move-type battleMoves">Type</th>
+								<th id="category" class="category-type toggle_hide battleMoves">Category</th>
+								<th id="power" class="battleMoves">Pwr</th>
+								<th id="pp" class="battleMoves">PP</th>
+								<th id="accuracy" class="battleMoves">Acc</th>
+								<th id="learntLevel">Lvl</th>
+								<th id="contest" class="contestMoves hidden">Contest</th>
+							</tr>
+						</table>
 					</div>
 				</section>
 

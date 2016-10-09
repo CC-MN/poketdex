@@ -204,40 +204,27 @@ section:nth-of-type(1) .tab{
 		text-align: left;
 	}
 
+	/*Section: Moves*/
 
-	#movesContent{
-
+	#movesTable{
+		/*border-spacing: 0px;*/
 	}
 
-	#movesContent .row{
-		/*padding:0 0 0;*/
-	}
-	#movesContent .column{
-		float:left;
-		width:15%;
-		font-size:13px;
-		text-align: center;
-		padding:0 0% 2%;
+	.move-name{
+		width:98px;
+		max-width:98px !important;
 	}
 
-	.pp-number:nth-of-type(odd), .power-number:nth-of-type(odd), .accuracy-number:nth-of-type(odd), .learntLevel:nth-of-type(odd) {
-		background-color: #ccc;
+	.move-name, .move-type, .category-type{
+		font-size: 15px;
 	}
 
-	.column#name{
-		width:30%;
-		/*font-size: 15px;*/
+	.learntLevel, .power-number, .pp-number, .accuracy-number{
+		font-size: 13px;
 	}
 
-	.column#category, .column#contest, .column#learntLevel, .column#type{
-		width:18%;
-	}
-	.column#pp, .column#power, .column#accuracy{
-		width:10%;
-	}
-
-	#movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
-		font-size: 16px;
+	#movesTable tr:nth-of-type(even) td{
+		background-color: #cccccc;
 	}
 
 	/*Section: Gender*/
