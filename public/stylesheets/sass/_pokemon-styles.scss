@@ -227,7 +227,7 @@ section:nth-of-type(1) .tab{
 		font-size: 13px;
 	}
 
-	#movesTable tr:not(.hidden):nth-of-type(even) td{
+	#movesTable tr:nth-of-type(even) .power-number, #movesTable tr:nth-of-type(even) .pp-number, #movesTable tr:nth-of-type(even) .accuracy-number, #movesTable tr:nth-of-type(even) .learntLevel{
 		background-color: #cccccc;
 	}
 
