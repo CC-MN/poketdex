@@ -306,32 +306,6 @@
 					</div>
 					
 					<div class="row">
-						<!-- <div id="name" class="column">
-							Name
-						</div>
-						<div id="type" class="column">
-							Type
-						</div>
-						<div id="category" class="column toggle_hide battleMoves">
-							Category
-						</div>
-						<div id="power" class="column battleMoves">
-							Pwr
-						</div>
-						<div id="pp" class="column battleMoves">
-							PP
-						</div>
-						<div id="accuracy" class="column battleMoves">
-							Acc
-						</div>
-						<div id="learntLevel" class="column">
-							Lvl
-						</div>
-						
-						<div id="contest" class="column hidden contestMoves">
-							Contest
-						</div>
-						<div class="clearfloat"></div> -->
 
 						<table id="movesTable" class="sortable">
 							<thead>
