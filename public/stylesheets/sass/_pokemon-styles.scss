@@ -204,40 +204,29 @@ section:nth-of-type(1) .tab{
 		text-align: left;
 	}
 
-
-	#movesContent{
-
+	/*Section: Moves*/
+	table#movesTable{
+		margin-bottom:20px;
+	}
+	.move-name{
+		width:150px;
 	}
 
-	#movesContent .row{
-		/*padding:0 0 0;*/
-	}
-	#movesContent .column{
-		float:left;
-		width:15%;
-		font-size:13px;
-		text-align: center;
-		padding:0 0% 2%;
+	.move-type, .category-type, .contest-type{
+		width: 110px;
 	}
 
-	.pp-number:nth-of-type(odd), .power-number:nth-of-type(odd), .accuracy-number:nth-of-type(odd), .learntLevel:nth-of-type(odd) {
-		background-color: #ccc;
+	.move-name, .move-type, .category-type{
+		font-size: 15px;
 	}
 
-	.column#name{
-		width:30%;
-		/*font-size: 15px;*/
+	.learntLevel, .power-number, .pp-number, .accuracy-number{
+		font-size: 13px;
+		width:60px;
 	}
 
-	.column#category, .column#contest, .column#learntLevel, .column#type{
-		width:18%;
-	}
-	.column#pp, .column#power, .column#accuracy{
-		width:10%;
-	}
-
-	#movesTypeList, #movesCategoryList, #movesContestList, #movesMethodList, #opower {
-		font-size: 16px;
+	#movesTable tr:nth-of-type(even) .power-number, #movesTable tr:nth-of-type(even) .pp-number, #movesTable tr:nth-of-type(even) .accuracy-number, #movesTable tr:nth-of-type(even) .learntLevel{
+		background-color: #cccccc;
 	}
 
 	/*Section: Gender*/
@@ -467,7 +456,7 @@ select {
 	-webkit-padding-end: 20px;
 	-webkit-padding-start: 2px;
 	-webkit-user-select: none;
-	background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+	background-image: url("http://i62.tinypic.com/15xvbd5.png"), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
 	background-position: 97% center;
 	background-repeat: no-repeat;
 	border: 1px solid #AAA;
@@ -576,3 +565,31 @@ input:checked + .slider:before {
 #movesToggleSwitch input:checked + .slider:before{
 	content: "C" !important;
 }
+
+/*
+	Mobile Styles (Pokemon Page)
+*/
+
+@media screen and (max-height:450px), screen and (max-width:800px){
+	.move-name{
+		width:98px;
+		max-width:110px !important;
+	}
+
+	.move-type, .category-type, .contest-type{
+		width: 72px;
+	}
+
+	.move-name, .move-type, .category-type{
+		font-size: 15px;
+	}
+
+	.learntLevel, .power-number, .pp-number, .accuracy-number{
+		font-size: 13px;
+	}
+
+	#movesTable tr:nth-of-type(even) .power-number, #movesTable tr:nth-of-type(even) .pp-number, #movesTable tr:nth-of-type(even) .accuracy-number, #movesTable tr:nth-of-type(even) .learntLevel{
+		background-color: #cccccc;
+	}
+}
+

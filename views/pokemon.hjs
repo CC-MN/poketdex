@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="/js/scripts/pokemon/pokemonMoves.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/abilities.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/typeEffectiveness.js"></script>
-	<script type="text/javascript" src="/js/scripts/pokemon/sorttable.js"></script>
+	<script type="text/javascript" src="/js/scripts/sorttable.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/scripts.js"></script>
@@ -306,35 +306,23 @@
 					</div>
 					
 					<div class="row">
-						<div id="name" class="column">
-							Name
-						</div>
-						<div id="type" class="column">
-							Type
-						</div>
-						<div id="category" class="column toggle_hide battleMoves">
-							Category
-						</div>
-						<div id="power" class="column battleMoves">
-							Pwr
-						</div>
-						<div id="pp" class="column battleMoves">
-							PP
-						</div>
-						<div id="accuracy" class="column battleMoves">
-							Acc
-						</div>
-						<div id="learntLevel" class="column">
-							Lvl
-						</div>
-<!-- 						<div id="method" class="column">
-							Method
-						</div> -->
-						
-						<div id="contest" class="column hidden contestMoves">
-							Contest
-						</div>
-						<div class="clearfloat"></div>
+
+						<table id="movesTable" class="sortable">
+							<thead>
+							<tr>
+								<th id="name">Name</th>
+								<th id="type" class="move-type battleMoves">Type</th>
+								<th id="category" class="category-type toggle_hide battleMoves">Category</th>
+								<th id="power" class="battleMoves">Pwr</th>
+								<th id="pp" class="battleMoves">PP</th>
+								<th id="accuracy" class="battleMoves">Acc</th>
+								<th id="learntLevel">Lvl</th>
+								<th id="contest" class="contestMoves hidden">Contest</th>
+							</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
 					</div>
 				</section>
 
