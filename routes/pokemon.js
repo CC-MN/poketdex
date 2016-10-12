@@ -41,6 +41,11 @@ function renderContent(id, req, res){
 			content.allPokemonNames = response;
 			content.allPokemonNamesString = JSON.stringify(response);
 
+			content.partials = {
+				header 		: 	'partials/header',
+				loading 	: 	'partials/loading'
+			}
+
 			if(response.type !== 'err'){
 				res.render('pokemon', content);
 			}

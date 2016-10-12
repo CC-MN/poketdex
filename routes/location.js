@@ -24,6 +24,11 @@ function renderContent(id, req, res){
 		
 		content.locationData = response;
 		content.locationDataString = JSON.stringify(response);
+		content.pageName = response.name;
+		content.partials = {
+			header 		: 	'partials/header',
+			loading 	: 	'partials/loading'
+		}
 		
 		if(response.type !== 'err'){
 			res.render('location', content);

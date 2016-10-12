@@ -1,0 +1,37 @@
+<header>
+	<nav>
+		<!-- SideNav -->
+		<div id="mySidenav" class="sidenav">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="/"><img src="/images/interface/nav-home.png" /><br />Home</a>
+			<a href="/pokemon/"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
+			<a href="/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
+			<a href="/location/"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
+			<a href="/settings/"><img src="/images/interface/nav-settings.png" /><br />Settings</a>
+		</div>
+		<!-- SideNav -->
+		<div id="topBar">
+			<span id="navButton" onclick="openNav()">&#9776;</span>
+
+			{{#index}}
+				<span id="dexName">PoketDex</span>
+				<a href="whatsapp://send?text=Check+out+PoketDex%3A%0D%0Ahttp%3A%2F%2Fwww.poketdex.com" data-action="share/whatsapp/share"><img class="shareIcon icon" src="/images/interface/icon-share.png" onclick="showSearch()"/></a>
+			{{/index}}
+
+			{{^index}}
+				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
+			{{/index}}
+			
+			{{#pokemonResponse}}
+			  <span id="dexId">Dex No : {{ pokemonResponse.id }} / </span>
+				<span id="dexName">{{ pokemonResponse.name }}</span>
+			{{/pokemonResponse}}
+
+			{{#pageName}}
+			  <span id="pageName">{{ pageName }}</span>
+			{{/pageName}}
+			
+			<button id="dexter" class="buttonDexter">&#9658;</button>
+		</div>
+	</nav>
+</header>
