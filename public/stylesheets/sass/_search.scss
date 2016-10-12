@@ -22,7 +22,7 @@
 }
 
 .awesomplete > ul {
-  position: absolute;
+  position: fixed;
   left: 0;
   z-index: 1;
   min-width: 100%;
