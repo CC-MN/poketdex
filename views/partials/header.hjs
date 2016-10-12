@@ -15,7 +15,9 @@
 
 			{{#index}}
 				<span id="dexName">PoketDex</span>
-				<a href="whatsapp://send?text=Check+out+PoketDex%3A%0D%0Ahttp%3A%2F%2Fwww.poketdex.com" data-action="share/whatsapp/share"><img class="shareIcon icon" src="/images/interface/icon-share.png" onclick="showSearch()"/></a>
+				<a href="whatsapp://send?text=Check+out+PoketDex%3A%0D%0Ahttp%3A%2F%2Fwww.poketdex.com" data-action="share/whatsapp/share">
+				<img class="shareIcon icon" src="/images/interface/icon-share.png" onclick="showSearch()"/>
+				</a>
 			{{/index}}
 
 			{{^index}}
@@ -31,7 +33,9 @@
 			  <span id="pageName">{{ pageName }}</span>
 			{{/pageName}}
 			
-			<button id="dexter" class="buttonDexter">&#9658;</button>
+			{{^index}}
+				<button id="dexter" class="buttonDexter">&#9658;</button>
+			{{/index}}
 		</div>
 	</nav>
 </header>
