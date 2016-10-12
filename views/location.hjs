@@ -13,11 +13,9 @@
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
 	<script type="text/javascript" src="/js/scripts/util.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
-	<script type="text/javascript" src="/js/scripts/item/function.js"></script>
-	<script type="text/javascript" src="/js/scripts/item/scripts.js"></script>
 	<script type="text/javascript">
-	var itemResponse = {{& itemResponseString }};
-	var responseItemNames = {{& allItemNamesString}};
+	var locationResponse = {{& locationDataString }};
+	console.log(locationResponse);
 	</script>
 	<script type="text/javascript">
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,10 +24,6 @@
 	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-81140038-1', 'auto');
 	ga('send', 'pageview');
-	</script>
-	<script type="text/javascript">
-	console.log(itemResponse);
-	console.log(responseItemNames);
 	</script>
 </head>
 <body>
@@ -67,51 +61,18 @@
 			<div id="topBar">
 				<span id="navButton" onclick="openNav()">&#9776;</span>
 				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
-				<span id="itemName">{{ itemResponse.name }}</span>
+				<span id="locationName">{{ locationData.name }}</span>
 				<button id="dexter" class="buttonDexter">&#9658;</button>
 			</div>
 		</nav>
 	</header>
 	<div id="searchContainer" class="hidden">
-		<input id="itemSearchBox" class="searchBox" type="search" placeholder="Enter Item Name">
+		<input id="locationSearchBox" class="searchBox" type="search" placeholder="Enter Location Name">
 	</div>
+	
 	<div class="container">		
-		<div class="item">
-			<div class="row">
-				<div class="onethird textCenter vmiddle">
-					<img src="/images/dex/item/{{ itemResponse.name }}.png" class="vmiddle" />
-				</div>
-				<div id="itemDescription" class="twothirds textLeft">
-					Some text.
-				</div>
-			</div>
-			<!-- Section: Held by Pokemon -->
-			<section>
-				<div id="heldPokemonTitle" class="tab heldPokemonContent hidden" data-content="heldPokemonContent">
-					<span>Held by</span>
-					<div class="iconContainer">
-						<button class="buttonController">+</button>
-					</div>
-				</div>
-				<div id="heldPokemonContent" class="content hidden textCenter">
-					<!-- content goes here -->
-					Not held by any Pokémon.
-				</div>
-			</section>
-			<!-- Section: Baby Triggers -->
-			<section>
-				<div id="babyTriggerTitle" class="tab babyTriggerContent hidden" data-content="babyTriggerContent">
-					<span>Triggers Baby Form</span>
-					<div class="iconContainer">
-						<button class="buttonController">+</button>
-					</div>
-				</div>
-				<div id="babyTriggerContent" class="content hidden textCenter">
-					<!-- content goes here -->
-					Does not trigger any babies.
-				</div>
-			</section>
-		</div>
+		
 	</div>
+
 </body>
 </html>

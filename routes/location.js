@@ -19,11 +19,14 @@ function renderContent(id, req, res){
 
 	Pokedex.getJSON(Pokedex.getLocation(id))
 	.then(function(response){
+
 		errorHandling(response, req, res);
-		//get item info
-		content.location = response;
+		
+		content.locationData = response;
+		content.locationDataString = JSON.stringify(response);
+		
 		if(response.type !== 'err'){
-			res.render('item', content);
+			res.render('location', content);
 		}
 		
 	});
