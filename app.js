@@ -9,6 +9,7 @@ var sass          = require('node-sass-middleware')
 var routes        = require('./routes/index');
 var pokemon       = require('./routes/pokemon');
 var item          = require('./routes/item');
+var location      = require('./routes/location');
 var request       = require('./routes/request');
 
 var app           = express();
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use('/', routes);
 app.use('/pokemon', pokemon);
 app.use('/item', item);
+app.use('/location', location);
 app.use('/request', request);
 
 // SASS Integration
