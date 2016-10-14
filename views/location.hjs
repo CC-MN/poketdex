@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="/js/scripts/util.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
 	<script type="text/javascript">
+	var context = { variable: 'myVariable' };
 	var locationResponse = {{& locationDataString }};
 	console.log(locationResponse);
 	</script>
@@ -27,51 +28,15 @@
 	</script>
 </head>
 <body>
-	<div id="loadingDiv" class="overlay hidden"></div>
-	<div id="loadingAnimation" class="overlay hidden">
-		<div class="sk-circle">
-			<div class="sk-circle1 sk-child"></div>
-			<div class="sk-circle2 sk-child"></div>
-			<div class="sk-circle3 sk-child"></div>
-			<div class="sk-circle4 sk-child"></div>
-			<div class="sk-circle5 sk-child"></div>
-			<div class="sk-circle6 sk-child"></div>
-			<div class="sk-circle7 sk-child"></div>
-			<div class="sk-circle8 sk-child"></div>
-			<div class="sk-circle9 sk-child"></div>
-			<div class="sk-circle10 sk-child"></div>
-			<div class="sk-circle11 sk-child"></div>
-			<div class="sk-circle12 sk-child"></div>
-		</div>
-		<!-- <img src="/images/premierball.png" width="200px" /><br /> -->
-		We're just getting that for you...
-	</div>
-	<header>
-		<nav>
-			<!-- SideNav -->
-			<div id="mySidenav" class="sidenav">
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="/"><img src="/images/interface/nav-home.png" /><br />Home</a>
-				<a href="/pokemon/"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
-				<a href="javascript:void(0)" onclick="closeNav()"><img src="/images/interface/nav-items.png" /><br />Items</a>
-				<a href="/location/"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
-				<a href="/settings/"><img src="/images/interface/nav-settings.png" /><br />Settings</a>
-			</div>
-			<!-- SideNav -->
-			<div id="topBar">
-				<span id="navButton" onclick="openNav()">&#9776;</span>
-				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
-				<span id="locationName">{{ locationData.name }}</span>
-				<button id="dexter" class="buttonDexter">&#9658;</button>
-			</div>
-		</nav>
-	</header>
+	{{> loading }}
+	
+	{{> header }}
+
 	<div id="searchContainer" class="hidden">
 		<input id="locationSearchBox" class="searchBox" type="search" placeholder="Enter Location Name">
 	</div>
 	
-	<div class="container">		
-		
+	<div class="container">	
 	</div>
 
 </body>

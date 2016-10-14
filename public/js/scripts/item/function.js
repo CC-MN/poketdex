@@ -5,8 +5,6 @@ function setItemPageBindings(){
   $('#dexter').click(function(){
     if(POKEDEXTEXT){
       speak(POKEDEXTEXT);
-    } else{
-      console.log('no POKEDEXTEXT');
     }
   });
 

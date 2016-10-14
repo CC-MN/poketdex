@@ -23,13 +23,18 @@ function renderContent(id, req, res){
 		//get item info
 		content.itemResponse = response;
 		content.itemResponseString = JSON.stringify(response);
-		// return Pokedex.getJSON(Pokedex.getItem('?limit=999'));
+		content.pageName = response.name;
 		return Pokedex.getJSON(Pokedex.getItem('?limit=999'));
 		
 	}).then(function(response){
 
 			content.allItemNames = response;
 			content.allItemNamesString = JSON.stringify(response);
+
+			content.partials = {
+				header 		: 	'partials/header',
+				loading 	: 	'partials/loading'
+			}
 
 			if(response.type !== 'err'){
 				res.render('item', content);
