@@ -19,8 +19,7 @@ function renderContent(req, res){
 			errorHandling(response, res);
 
 			//get pokemon info
-			content.pokemonResponse = response;
-			content.pokemonResponseString = JSON.stringify(response);
+			content.pokemonString = JSON.stringify(response);
 			content.pageName = 'Pokemon List';
 
 			content.partials = {

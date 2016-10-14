@@ -20,9 +20,9 @@
 				</a>
 			{{/index}}
 
-			{{^index}}
+			{{^index}} {{^pokemonString}} <!-- Poketdex Page -->
 				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
-			{{/index}}
+			{{/pokemonString}} {{/index}}
 			
 			{{#pokemonResponse}}
 			  <span id="dexId">Dex No : {{ pokemonResponse.id }} / </span>
@@ -33,9 +33,9 @@
 			  <span id="pageName">{{ pageName }}</span>
 			{{/pageName}}
 			
-			{{^index}}
+			{{^index}} {{^pokemonString}} <!-- Poketdex Page -->
 				<button id="dexter" class="buttonDexter">&#9658;</button>
-			{{/index}}
+			{{/pokemonString}} {{/index}} 
 		</div>
 	</nav>
 </header>

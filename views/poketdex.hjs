@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="/js/scripts/poketdex/poketdex.js"></script>
 	<script type="text/javascript" src="/js/scripts/poketdex/scripts.js"></script>
 	<script type="text/javascript">
-	var responsePokemon = {{& pokemonResponseString }};
+	var responsePokemon = {{& pokemonString }};
 	console.log(responsePokemon);
 	</script>
 	<script type="text/javascript">
@@ -33,10 +33,10 @@
 	
 	{{> header }}
 
-	<div id="searchContainer" class="hidden">
+<!-- 	<div id="searchContainer" class="hidden">
 		<input id="pokemonSearchBox" class="searchBox" type="search" placeholder="Enter Pokemon Name">
 	</div>
-	
+ -->	
 	<div id="poketdex" class="container">	
 		<div class="pokemonList"></div>
 	</div>

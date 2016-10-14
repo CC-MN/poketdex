@@ -3,6 +3,6 @@ $(document).ready(function(){
 
 	console.log(poketdex);
 	// auto complete for pokemon search
-	setAutoComplete(poketdex.pokemonNames, 'pokemonSearchBox', poketdex.pokemonNames);
+	// setAutoComplete(poketdex.pokemonNames, 'pokemonSearchBox', poketdex.pokemonNames);
 
 });
