@@ -1,0 +1,29 @@
+#poketdex{
+	margin-top:30px;
+}
+#poketdex .pokemonList{
+	display: block;
+	position: relative;
+	text-align: center;
+
+}
+#poketdex .pokemonList .pokemon{
+	display: inline-block;
+	text-align: center;
+	width:auto;
+	margin:0 10px 10px;
+}
+#poketdex .pokemonList .pokemon .pokemonId{
+	font-weight:italic;
+}
+#poketdex .pokemonList .pokemon .pokemonName{
+	font-weight:bold;
+	margin-bottom:5px;
+}
+#poketdex .pokemonList .pokemon .pokemonImage{
+	width:200px;
+}
+#poketdex .pokemonList .pokemon .pokemonImage img{
+	width:200px;
+	height:auto;
+}

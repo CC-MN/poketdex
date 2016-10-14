@@ -10,6 +10,7 @@ var routes        = require('./routes/index');
 var pokemon       = require('./routes/pokemon');
 var item          = require('./routes/item');
 var location      = require('./routes/location');
+var poketdex      = require('./routes/poketdex');
 var request       = require('./routes/request');
 
 var app           = express();
@@ -29,6 +30,7 @@ app.use('/', routes);
 app.use('/pokemon', pokemon);
 app.use('/item', item);
 app.use('/location', location);
+app.use('/poketdex', poketdex);
 app.use('/request', request);
 
 // SASS Integration
