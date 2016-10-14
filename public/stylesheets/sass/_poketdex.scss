@@ -21,9 +21,21 @@
 	margin-bottom:5px;
 }
 #poketdex .pokemonList .pokemon .pokemonImage{
-	width:200px;
+	width:150px;
 }
 #poketdex .pokemonList .pokemon .pokemonImage img{
-	width:200px;
+	width:150px;
 	height:auto;
+}
+
+@media screen and (max-height: 450px), screen and (max-width: 800px){
+	
+	#poketdex .pokemonList .pokemon .pokemonImage{
+		width:100px;
+	}
+	#poketdex .pokemonList .pokemon .pokemonImage img{
+		width:100px;
+		height:auto;
+	}
+
 }
