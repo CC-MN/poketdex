@@ -37,7 +37,7 @@
 		listPokemon : function(object){
 
 			var imageUrl = '/images/dex/pokemon-large/' + object.id + '.png';
-			imageUrl = ( imageExists(imageUrl) ) ? imageUrl : '/images/dex/default.png';
+			// imageUrl = ( imageExists(imageUrl) ) ? imageUrl : '/images/dex/default.png';
 		
 			var html 		= 		'<div class="pokemon">';
 			html 				+= 		'<div class="pokemonId">#' + object.id + '</div>';
