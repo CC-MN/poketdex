@@ -10,15 +10,17 @@
 #poketdex .pokemonList .pokemon{
 	display: inline-block;
 	text-align: center;
-	width:auto;
+	width:150px;
 	margin:0 10px 10px;
 }
 #poketdex .pokemonList .pokemon .pokemonId{
 	font-weight:italic;
+	width:100%
 }
 #poketdex .pokemonList .pokemon .pokemonName{
 	font-weight:bold;
 	margin-bottom:5px;
+	width:100%;
 }
 #poketdex .pokemonList .pokemon .pokemonImage{
 	width:150px;
@@ -30,6 +32,10 @@
 
 @media screen and (max-height: 450px), screen and (max-width: 800px){
 	
+	#poketdex .pokemonList .pokemon{
+		width:100px;
+	}
+
 	#poketdex .pokemonList .pokemon .pokemonImage{
 		width:100px;
 	}
