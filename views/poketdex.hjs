@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/awesomeplete/awesomplete.js"></script>
 	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
-	<script type="text/javascript" src="/js/scripts/util.js"></script>
+	<script type="text/javascript" src="/js/scripts/utilities.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
 	<script type="text/javascript" src="/js/scripts/poketdex/poketdex.js"></script>
 	<script type="text/javascript" src="/js/scripts/poketdex/scripts.js"></script>
