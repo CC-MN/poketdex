@@ -2,7 +2,7 @@
 	<nav>
 		<!-- SideNav -->
 		<div id="mySidenav" class="sidenav">
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<a href="javascript:void(0)" class="closebtn">&times;</a>
 			<a href="/"><img src="/images/interface/nav-home.png" /><br />Home</a>
 			<a href="/pokemon/"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
 			<a href="/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
@@ -11,17 +11,17 @@
 		</div>
 		<!-- SideNav -->
 		<div id="topBar">
-			<span id="navButton" onclick="openNav()">&#9776;</span>
+			<span id="navButton">&#9776;</span>
 
 			{{#index}}
 				<span id="dexName">PoketDex</span>
 				<a href="whatsapp://send?text=Check+out+PoketDex%3A%0D%0Ahttp%3A%2F%2Fwww.poketdex.com" data-action="share/whatsapp/share">
-				<img class="shareIcon icon" src="/images/interface/icon-share.png" onclick="showSearch()"/>
+				<img class="shareIcon icon" src="/images/interface/icon-share.png"/>
 				</a>
 			{{/index}}
 
 			{{^index}} {{^pokemonString}} <!-- Poketdex Page -->
-				<img class="icon" src="/images/interface/icon-search.png" onclick="showSearch()"/>&nbsp;
+				<img class="icon" src="/images/interface/icon-search.png" onclick="Utilities.showSearch()"/>&nbsp;
 			{{/pokemonString}} {{/index}}
 			
 			{{#pokemonResponse}}

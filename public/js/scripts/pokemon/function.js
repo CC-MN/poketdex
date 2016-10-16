@@ -11,7 +11,7 @@ function setPokemonPageBindings(){
   $('section div.tab').click(function(){
     var contentClass = $(this).attr('data-content') || null;
     if(contentClass){
-      showSection(contentClass);
+      Utilities.showSection(contentClass);
     }
   });
 
@@ -32,6 +32,16 @@ function setPokemonPageBindings(){
   $('#opower').change(function(){
     opower(BREEDING_STEPS_PER_CYCLE,this.value);
   });
+
+    // set global bindings
+  $('#navButton').click(function(){
+    Utilities.openNav();
+  });
+
+  $('.closebtn').click(function(){
+    Utilities.closeNav();
+  });
+
 }
 
 
@@ -65,7 +75,7 @@ function evolutionChain(id, data){
   $('#evolutionChainContent .row').append('<div class="column"></div>');
 
   $('#evolutionChainContent .row .column').append('<div class="pokemon"></div>');
-  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + getIDFromPokemonURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(data.chain.species.url) + '.png" /></a>');
+  $('#evolutionChainContent .row .column .pokemon').append('<a href="/pokemon/' + Utilities.getIDFromPokemonURL(data.chain.species.url) + '"><img class="model" src="/images/dex/pokemon/' + Utilities.getIDFromPokemonURL(data.chain.species.url) + '.png" /></a>');
   $('#evolutionChainContent .row .column .pokemon').append('<div class="evolutionName">' + data.chain.species.name + '</div>');
   //if a baby pokemon that requires a trigger item, include that
   if (data.baby_trigger_item) {
@@ -104,7 +114,7 @@ function evolutionChain(id, data){
         $('#megaEvolution').removeClass('hidden');
         var html = '';
         html += '<div class="pokemon">';
-        html += '<a href="/pokemon/' + getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img class="model" src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>';
+        html += '<a href="/pokemon/' + Utilities.getIDFromPokemonURL(responsePokemonSpecies.varieties[i].pokemon.url) + '"><img class="model" src="/images/dex/pokemon/' + responsePokemonSpecies.id + megaName + '.png" /></a>';
         html += '<div class="evolutionName">' + responsePokemonSpecies.varieties[i].pokemon.name + '</div>';
         html += '</div>';
 
@@ -203,7 +213,7 @@ function buildEvolutionContent(className, evolutionInformation){
   }
 
   var html = '<div class="pokemon">';
-  html += '<a href="/pokemon/' + getIDFromPokemonURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(evolutionURL) + '.png" /></a>';
+  html += '<a href="/pokemon/' + Utilities.getIDFromPokemonURL(evolutionURL) + '"><img class="model" src="/images/dex/pokemon/' + Utilities.getIDFromPokemonURL(evolutionURL) + '.png" /></a>';
 
   //loop through content object
   $.each(content, function(k, v){
@@ -616,7 +626,7 @@ function showPokemonEggGroup(type, data){
   // console.log(data);
   var html = '';
   for (var i = 0; i < data.pokemon_species.length; i++) {
-    var pkmnID = getIDFromPokemonURL(data.pokemon_species[i].url);
+    var pkmnID = Utilities.getIDFromPokemonURL(data.pokemon_species[i].url);
     html += '<a href="/pokemon/' + pkmnID +'" onclick="loadOverlay()"><img src ="/images/dex/pokemon/' + pkmnID + '.png"></a>';
   };
   $('#' + type).html(html);

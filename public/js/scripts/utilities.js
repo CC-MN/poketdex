@@ -37,20 +37,20 @@
       }
     },
 
-    setAutoComplete : function(results, input, passedArray) {
-
+    setAutoComplete : function(results, input) {
+      var array = [];
       $.each(results, function(index, value){
         var name = value.name;
-        passedArray.push(name);
+        array.push(name);
       });
 
       var searchBox = document.getElementById(input);
       new Awesomplete(searchBox, {
-        list        :   passedArray,
+        list        :   array,
         minChars    :   2,
         maxChars    :   50
       });
-
+      var _self = this;
       searchBox.addEventListener('awesomplete-selectcomplete', function(data){ 
         console.log(data);
 
@@ -61,8 +61,8 @@
         if (pokemonName !== null) {
           pokemonName = pokemonName.toLowerCase();
           //make sure that pokemon name exists
-          if(passedArray.indexOf(pokemonName) > -1){
-            changePage(pokemonName);
+          if(array.indexOf(pokemonName) > -1){
+            _self.changePage(pokemonName);
           }
         }
       }, false);
