@@ -36,6 +36,7 @@ function renderContent(req, res){
 function errorHandling(response, req, res){
 	if(response.type === 'err'){
 		if(res.headersSent){
+			console.log(response.type);
 			//return next(response);
 		}else{
 			res.status(response.status);

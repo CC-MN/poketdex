@@ -2,7 +2,9 @@
 
   'use strict';
 
-  this.Utilities = function(){
+  var Utilities = function(){
+    // this.setOpenNavEvent();
+    // this.setCloseNavEvent();
   }
 
   Utilities.prototype = {
@@ -18,7 +20,7 @@
       /* 
         Grabs the value between the last two /'s 
         (i.e http://pokeapi.co/api/v2/pokemon/1/ => 1)
-      */
+        */
       // var id = url.replace(/(.*)(pokemon|pokemon\-species)\/(.*)\//, '$3');
       var id = url.replace(/.*\/.*\/(.*?)\//, '$1');
       return id;
@@ -111,4 +113,40 @@
 
   }
 
-}).call(this);
+  function init(){ 
+    console.log('----- utilities init -----');
+    var me = self.Utilities;
+
+    $('#navButton').click(function(){
+      me.openNav();
+    });
+
+    $('.closebtn').click(function(){
+      me.closeNav();
+    });
+  }
+
+   // Are we in a browser? Check for Document constructor
+  if (typeof Document !== "undefined") {
+    // DOM already loaded?
+    if (document.readyState !== "loading") {
+      init();
+    }else {
+      // Wait for it
+      document.addEventListener("DOMContentLoaded", init);
+    }
+  }
+
+  // Make sure to export Awesomplete on self when in a browser
+  if (typeof self !== "undefined") {
+    self.Utilities = Utilities;
+  }
+
+  // Expose Awesomplete as a CJS module
+  if (typeof module === "object" && module.exports) {
+    module.exports = Utilities;
+  }
+
+  return Utilities;
+
+}());
