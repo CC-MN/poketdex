@@ -12,18 +12,19 @@ function setItemPageBindings(){
   $('section div.tab').click(function(){
     var contentClass = $(this).attr('data-content') || null;
     if(contentClass){
-      showSection(contentClass);
+      Utilities.showSection(contentClass);
     }
   });
 
-  //AJAX Binding
-  $('.request').click(function(){
-    var className = $(this).attr('data-request');
-    var url = requestID(className);
-    if(url){
-      requestInfo(className, url);
-    }
+  // set global bindings
+  $('#navButton').click(function(){
+    Utilities.openNav();
   });
+
+  $('.closebtn').click(function(){
+    Utilities.closeNav();
+  });
+
 }
 
 // Item Page Details
@@ -43,7 +44,7 @@ function checkIfHeld(){
     $('#heldPokemonContent').html('');
     for (var i = 0; i < itemResponse.held_by_pokemon.length; i++) {
       console.log(itemResponse.held_by_pokemon[i].pokemon.url);
-      $('#heldPokemonContent').append('<a href="/pokemon/' + getIDFromPokemonURL(itemResponse.held_by_pokemon[i].pokemon.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(itemResponse.held_by_pokemon[i].pokemon.url) + '.png" /></a>')
+      $('#heldPokemonContent').append('<a href="/pokemon/' + Utilities.getIDFromPokemonURL(itemResponse.held_by_pokemon[i].pokemon.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(itemResponse.held_by_pokemon[i].pokemon.url) + '.png" /></a>')
       // getIDFromPokemonURL(itemResponse.held_by_pokemon[i].pokemon.url);
     };
     $('#heldPokemonTitle').removeClass('hidden');
@@ -58,7 +59,7 @@ function checkBabyItem(){
     // for (var i = 0; i < Things.length; i++) {
     //   Things[i]
     // };
-    $('#babyTriggerContent').append('<a href="/pokemon/' + getIDFromPokemonURL(itemResponse.baby_trigger_for.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(itemResponse.baby_trigger_for.url) + '.png" /></a>')
+    $('#babyTriggerContent').append('<a href="/pokemon/' + Utilities.getIDFromPokemonURL(itemResponse.baby_trigger_for.url) + '"><img class="model" src="/images/dex/pokemon/' + getIDFromPokemonURL(itemResponse.baby_trigger_for.url) + '.png" /></a>')
     $('#babyTriggerTitle').removeClass('hidden');
   };
 }

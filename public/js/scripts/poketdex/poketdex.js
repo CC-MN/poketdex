@@ -1,9 +1,12 @@
 (function() {
 
-	this.PoketDex = function(array, element){
+ 'use strict';
 
+	this.PoketDex = function(array, element){
+		console.log(this);
 		this.pokemonArray = array;
 		this.pokemonElement = element;
+		this.Utilities = new Utilities();
 		// console.log(this);
 
 		this.getID(this.pokemonArray);
@@ -13,29 +16,25 @@
 	/*	
 		Prototype Methods
 	*/
-
+	// PoketDex.prototype = new Utilities(); //pull in all our utility functions
 	PoketDex.prototype = {
-		getID : function(array) {
+		getID  : function(array){
 			var _self = this;
 			var names = [];
-			$.each(array, function(i, v){
-				var id = getIDFromPokemonURL(v.url);
-				var pokemonName = v.name;
+			for(var i = 0; i < array.length; i++){
+				var id = _self.Utilities.getIDFromPokemonURL(array[i].url);
+				var pokemonName = array[i].name;
 				var object = {
 					id 					: 	id,
 					pokemonName : 	pokemonName
-				};
+				}
 				names.push(pokemonName);
-				_self.listPokemon(object)
-
-			});
+				_self.listPokemon(object);
+			}
 
 			this.pokemonNames = names;
-
 		},
-
 		listPokemon : function(object){
-
 			var imageUrl = '/images/dex/pokemon-large/' + object.id + '.png';
 			// imageUrl = ( imageExists(imageUrl) ) ? imageUrl : '/images/dex/default.png';
 		
@@ -45,8 +44,7 @@
 			html				+=		'<div class="pokemonImage"><img src="' + imageUrl + '" /></div>'
 			html 				+=		'</div>';
 
-			$(this.pokemonElement).append(html);
-
+			document.querySelector(this.pokemonElement).innerHTML += html;
 		}
 	}
 
@@ -60,15 +58,11 @@
 
     http.open('HEAD', image_url, false);
     http.send();
-
     // console.log(http);
-    // console.log(http.status);
 
     var exists = (http.status === 200) ? true : false;
-
     return exists;
 
 	}
 
-}());
-	
+}).call(this);
