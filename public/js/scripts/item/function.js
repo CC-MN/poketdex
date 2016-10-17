@@ -16,15 +16,6 @@ function setItemPageBindings(){
     }
   });
 
-  // set global bindings
-  $('#navButton').click(function(){
-    Utilities.openNav();
-  });
-
-  $('.closebtn').click(function(){
-    Utilities.closeNav();
-  });
-
 }
 
 // Item Page Details

@@ -32,16 +32,7 @@ function setPokemonPageBindings(){
   $('#opower').change(function(){
     opower(BREEDING_STEPS_PER_CYCLE,this.value);
   });
-
-    // set global bindings
-  $('#navButton').click(function(){
-    Utilities.openNav();
-  });
-
-  $('.closebtn').click(function(){
-    Utilities.closeNav();
-  });
-
+  
 }
 
 
