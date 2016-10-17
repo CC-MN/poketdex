@@ -275,10 +275,10 @@
 								<th id="name">Name</th>
 								<th id="type" class="move-type battleMoves">Type</th>
 								<th id="category" class="category-type toggle_hide battleMoves">Category</th>
-								<th id="power" class="battleMoves">Pwr</th>
-								<th id="pp" class="battleMoves">PP</th>
-								<th id="accuracy" class="battleMoves">Acc</th>
-								<th id="learntLevel">Lvl</th>
+								<th id="power" class="sorttable_numeric battleMoves">Pwr</th>
+								<th id="pp" class="sorttable_numeric battleMoves">PP</th>
+								<th id="accuracy" class="sorttable_numeric battleMoves">Acc</th>
+								<th id="sorttable_numeric learntLevel">Lvl</th>
 								<th id="contest" class="contestMoves hidden">Contest</th>
 							</tr>
 							</thead>
