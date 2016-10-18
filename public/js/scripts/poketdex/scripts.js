@@ -1,8 +1,7 @@
 var Utilities = new Utilities();
+var PoketDex = new PoketDex(responsePokemon.results, '.pokemonList');
 
 $(document).ready(function(){
-
-	var poketdex = new PoketDex(responsePokemon.results, '.pokemonList');
-	console.log(poketdex);
-
+	console.log(Utilities);
+	console.log(PoketDex);
 });

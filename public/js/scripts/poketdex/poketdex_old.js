@@ -2,13 +2,14 @@
 
  'use strict';
 
-	var PoketDex = function(array, element){
-		/*	
-			Set the object
-		*/
+	this.PoketDex = function(array, element){
 		console.log(this);
 		this.pokemonArray = array;
 		this.pokemonElement = element;
+		// console.log(this);
+
+		this.getID(this.pokemonArray);
+
 	}
 
 	/*	
@@ -45,30 +46,21 @@
 		}
 	}
 
-	function init(){
-		/*
-			Run on page load
-		*/
-		var me = self.PoketDex;
-		me.getID(me.pokemonArray);
-		
+	/*	
+		Private Methods
+	*/
+
+	function imageExists(image_url){
+
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', image_url, false);
+    http.send();
+    // console.log(http);
+
+    var exists = (http.status === 200) ? true : false;
+    return exists;
+
 	}
 
-	// set Event Listener to run once DOM has loaded
-	if(typeof Document){
-		document.addEventListener("DOMContentLoaded", init);
-	}
-
-	// Make sure to export PoketDex on self when in a browser
-	if (typeof self !== "undefined") {
-		self.PoketDex = PoketDex;
-	}
-
-	// Expose PoketDex as a CJS module (ES5)
-	if (typeof module === "object" && module.exports) {
-		module.exports = PoketDex;
-	}
-
-	return PoketDex;
-
-}());
+}).call(this);

@@ -2,10 +2,7 @@
 
   'use strict';
 
-  var Utilities = function(){
-    // this.setOpenNavEvent();
-    // this.setCloseNavEvent();
-  }
+  var Utilities = function(){}
 
   Utilities.prototype = {
     openNav : function(){
@@ -42,7 +39,7 @@
     setAutoComplete : function(results, input) {
       var array = [];
       $.each(results, function(index, value){
-        var name = value.name;
+        var name = value.name.replace(/\-/ig, ' ');
         array.push(name);
       });
 
@@ -131,7 +128,7 @@
     // DOM already loaded?
     if (document.readyState !== "loading") {
       init();
-    }else {
+    }else{
       // Wait for it
       document.addEventListener("DOMContentLoaded", init);
     }
