@@ -1,5 +1,9 @@
+.spacer{
+	height: 50px;
+}
+
 #poketdex{
-	margin-top:30px;
+	/*margin-top:30px;*/
 }
 #poketdex .pokemonList{
 	display: block;
@@ -44,4 +48,27 @@
 		height:auto;
 	}
 
+}
+
+.typeSelect{
+	width:100px;
+}
+
+#and:hover, #or:hover{
+    -webkit-transition: 0.5s ease;
+            transition: 0.5s ease;
+    /*border-bottom: 1px solid blue;*/
+    background-color: yellow;
+    /*width: 30px;*/
+    /*margin-right: 9px;*/
+}
+
+#filter:hover{
+	color: #fff;
+	background-color: #78C850;
+}
+
+#reset:hover{
+	color: #fff;
+	background-color: #C03028;
 }

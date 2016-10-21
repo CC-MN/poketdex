@@ -76,6 +76,10 @@
 
     },
 
+    showOverlay : function() {
+      $('.overlay').removeClass('hidden');
+    },
+
     changePage : function(pokemonID) {
       console.log('show overlay...');
       $('.overlay').removeClass('hidden');

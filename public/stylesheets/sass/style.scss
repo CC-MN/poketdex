@@ -27,6 +27,15 @@ td{
 	text-align: center;
 }
 
+button{
+	font-size: 16px;
+	height: 30px;
+	width: 80px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
 .row{
 	display: block;
 	width: 100%;
@@ -58,9 +67,50 @@ button.active {
 	box-shadow: none;
 }
 
+/*Layout Containers*/
+.half{
+	float: left;
+	width: 50%;
+	line-height: 30px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.twothirds{
+	float: left;
+	width: 66%;
+	line-height: 30px;
+	text-align: center;
+}
+
+.onethird{
+	float: left;
+	width: 33%;
+	line-height: 30px;
+}
+
+.textLeft{
+	text-align: left;
+}
+
+.textCenter{
+	text-align: center;
+}
+
+.vmiddle{
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.buttonRow{
+	padding-top: 15px;
+}
+
 @import 'homepage';
 @import 'nav';
-@import 'search';
+/*@import 'search';*/
 @import 'pokemon-styles';
 @import 'poketdex';
 

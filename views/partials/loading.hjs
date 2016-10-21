@@ -15,5 +15,7 @@
 		<div class="sk-circle12 sk-child"></div>
 	</div>
 	<!-- <img src="/images/premierball.png" width="200px" /><br /> -->
+	<div id="loadingMessage">
 	We're just getting that for you...
+	</div>
 </div>

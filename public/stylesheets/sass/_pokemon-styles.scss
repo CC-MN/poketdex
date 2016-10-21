@@ -406,43 +406,6 @@ section:nth-of-type(1) .tab{
 	background-color: #AB2813;
 }
 
-/*Layout Containers*/
-.half{
-	float: left;
-	width: 50%;
-	/*border: 1px solid black;*/
-	line-height: 30px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-}
-
-.twothirds{
-	float: left;
-	width: 66%;
-	line-height: 30px;
-	text-align: center;
-}
-
-.onethird{
-	float: left;
-	width: 33%;
-	line-height: 30px;
-}
-
-.textLeft{
-	text-align: left;
-}
-
-.textCenter{
-	text-align: center;
-}
-
-.vmiddle{
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-}
 
 .massive {
 	height:700px;
@@ -456,7 +419,7 @@ select {
 	-webkit-padding-end: 20px;
 	-webkit-padding-start: 2px;
 	-webkit-user-select: none;
-	background-image: url("http://i62.tinypic.com/15xvbd5.png"), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+	background-image: url("http://i62.tinypic.com/15xvbd5.png");
 	background-position: 97% center;
 	background-repeat: no-repeat;
 	border: 1px solid #AAA;

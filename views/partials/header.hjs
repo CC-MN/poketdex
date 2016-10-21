@@ -31,6 +31,7 @@
 
 			{{#pageName}}
 			  <span id="pageName">{{ pageName }}</span>
+			  <img class="shareIcon icon" src="/images/interface/icon-filter.png"/ onclick="Utilities.showSearch()">
 			{{/pageName}}
 			
 			{{^index}} {{^pokemonString}} <!-- Poketdex Page -->

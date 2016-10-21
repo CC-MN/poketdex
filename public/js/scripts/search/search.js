@@ -35,11 +35,11 @@
 			var imageUrl = '/images/dex/pokemon-large/' + object.id + '.png';
 			// imageUrl = ( imageExists(imageUrl) ) ? imageUrl : '/images/dex/default.png';
 		
-			var html 		= 		'<div class="pokemon">';
+			var html 		= 		'<a href="' + object.id + '"><div class="pokemon">';
+			html				+=		'<div class="pokemonImage"><img src="' + imageUrl + '" /></div>'
 			html 				+= 		'<div class="pokemonId">#' + object.id + '</div>';
 			html 				+= 		'<div class="pokemonName">' + object.pokemonName.replace(/\-/g, ' ') + '</div>';
-			html				+=		'<div class="pokemonImage"><img src="' + imageUrl + '" /></div>'
-			html 				+=		'</div>';
+			html 				+=		'</div></a>';
 
 			document.querySelector(this.pokemonElement).innerHTML += html;
 		}
