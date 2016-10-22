@@ -1,0 +1,49 @@
+/*
+  Autocomplete Search Base CSS
+*/
+
+.awesomplete [hidden] {
+  display: none;
+}
+
+.awesomplete .visually-hidden {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+.awesomplete {
+  display: block;
+  position: relative;
+  width:100%;
+}
+
+.awesomplete > input {
+  display: block;
+}
+
+.awesomplete > ul {
+  position: fixed;
+  left: 0;
+  z-index: 1;
+  min-width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.awesomplete > ul > li{
+  margin:10px 0;
+  text-transform: capitalize;
+}
+
+.awesomplete > ul:empty {
+  display: none;
+}
+
+.awesomplete mark{
+  background : yellow;
+  font-weight : bold;
+}
