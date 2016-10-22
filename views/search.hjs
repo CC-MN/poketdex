@@ -10,7 +10,7 @@
 	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<meta property="og:site_name" content="Poketdex: Advanced Search">
 	<meta property="og:title" content="Poketdex: Advanced Search" />
-	<meta property="og:description" content="Search & Filter Pokémon by Type, Ability and Move" />
+	<meta property="og:description" content="Search & Filter Pokémon by Type(s)" />
 	<meta property="og:image" itemprop="image" content="http://www.poketdex.com/images/app/ios-icon.png">
 	<meta property="og:type" content="website" />
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
@@ -47,7 +47,7 @@
 -->
 <div id="searchContainer" class="row hidden">
 	<div class="onethird textCenter">
-	<select id="type1" class ="typeSelect" onclick="" onchange="">
+	<select id="type1" class ="typeSelect" onclick="" onchange="toggleInputs()">
 		<option value ="">Type 1</option>
 		<option value ="normal">Normal</option>
 		<option value ="fire">Fire</option>
@@ -75,12 +75,10 @@
 		<option value="or">or</option>
 	</select> -->
 
-	<div id="andor" class="onethird textCenter">
-	<span id="and">And</span> / <span id="or">Or</span>
-	</div>
+	<div id="andor" class="onethird textCenter" onclick="toggleRule()">Or</div>
 
 	<div class="onethird textCenter">
-	<select id="type2" class ="typeSelect" onclick="" onchange="">
+	<select disabled id="type2" class ="typeSelect" onclick="" onchange="resetRule()">
 		<option value ="">Type 2</option>
 		<option value ="normal">Normal</option>
 		<option value ="fire">Fire</option>
@@ -104,8 +102,8 @@
 	</div>
 	<div class="clearfloat"></div>
 	<div class="row textCenter buttonRow">
-		<button id="filter" onclick="filterType($('#type1').val(),$('#type2').val())">Filter</button>
-		<button id="reset" onclick="">Reset</button>
+		<button disabled id="filter" onclick="filterType($('#type1').val(),$('#type2').val())">Filter</button>
+		<button id="reset" onclick="reset()">Reset</button>
 	</div>
 </div>
 <div id="poketdex" class="container">	
