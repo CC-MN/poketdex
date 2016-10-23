@@ -18,6 +18,7 @@
 		getID  : function(array, type){
 			var _self = this;
 			var names = [];
+			var ids		= [];
 			for(var i = 0; i < array.length; i++){
 				var id = (type === 'type') ? Utilities.getIDFromPokemonURL(array[i].pokemon.url) : Utilities.getIDFromPokemonURL(array[i].url);
 				var pokemonName = (type === 'type') ? array[i].pokemon.name : array[i].name;
@@ -25,10 +26,12 @@
 					id 					: 	id,
 					pokemonName : 	pokemonName
 				}
+				ids.push(id);
 				names.push(pokemonName);
 				_self.listPokemon(object);
 			}
 			if(!this.pokemonName){
+				this.pokemonIds		= ids;
 				this.pokemonNames = names;
 			}
 		},
@@ -36,7 +39,7 @@
 			var imageUrl = '/images/dex/pokemon-large/' + object.id + '.png';
 			// imageUrl = ( imageExists(imageUrl) ) ? imageUrl : '/images/dex/default.png';
 		
-			var html 		= 		'<a href="' + object.id + '"><div class="pokemon">';
+			var html 		= 		'<a href="../pokemon/' + object.id + '"><div class="pokemon">';
 			html				+=		'<div class="pokemonImage"><img src="' + imageUrl + '" /></div>'
 			html 				+= 		'<div class="pokemonId">#' + object.id + '</div>';
 			html 				+= 		'<div class="pokemonName">' + object.pokemonName.replace(/\-/g, ' ') + '</div>';
@@ -75,6 +78,47 @@
 		  if ($("#type2").val() == '') {
 		    $('#andor span').text('Or');
 		  };
+		},
+		manageFilterRequest : function(response, show, and, empty){
+			// console.log(this);
+			// console.log(response);
+			var _self = this;
+			if(empty){
+				_self.pokemonIds = [];
+				_self.pokemonIds = _self.pokemonIds.concat(response);
+			}
+
+			if(!and && !empty){
+				//or statement so lets add response
+				_self.pokemonIds = _self.pokemonIds.concat(response);
+			}
+
+			if(and && show){
+				// and statement
+				// lets compare the response with our current pokemonId's if it exists already leave it else we remove
+
+				var array = [];
+				$.each(_self.pokemonIds, function( index, value ) {
+					console.log(value);
+		      for( var i=0, len=response.length; i<len; i++ ){
+	          if( Utilities.getIDFromPokemonURL( response[i].pokemon.url ) === Utilities.getIDFromPokemonURL(value.pokemon.url) ) {
+	            array.push(value);
+	          }
+		      }
+		      // return true;
+			  });	
+			  
+				_self.pokemonIds = array;
+			}
+
+			if(show){
+				console.log(_self.pokemonIds);
+				_self.getID(_self.pokemonIds, 'type');
+				$('.overlay').addClass('hidden');
+			}
+
+			return;
+
 		}
 
 	}

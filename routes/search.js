@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 function renderContent(req, res){
 	var content = { title : 'Pokemon API' }
 
-	Pokedex.getJSON(Pokedex.getPokemon('?limit=999'))
+	Pokedex.getJSON(Pokedex.getPokemon('?limit=100'))
 	.then(function(response){
 
 			errorHandling(response, res);
