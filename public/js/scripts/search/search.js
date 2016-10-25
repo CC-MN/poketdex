@@ -82,6 +82,7 @@
 
 		filterType : function(type1, type2){
 			Utilities.showOverlay();
+			this.requestsCompleted = 0;
 			var _self = this;
 
 		  var msg = (!type2) ? 'Searching for ' + type1 + ' Pokémon...' : 'Searching for ' + type1 + ' and ' + type2 + ' Pokémon...';
@@ -100,6 +101,7 @@
 		        return;
 		      }else{
 		        _self.manageFilterRequest(typePokemon.pokemon, false, and, true);
+		        _self.requestsCompleted = 1;
 		      }
 		    }
 		  }
@@ -107,6 +109,7 @@
 		  if(!type2){
 		    return; //lets get out of function is no type 2
 		  }
+
 		  //lets get our second type
 		  var xhr2 = new XMLHttpRequest();
 		  xhr2.open("GET","http://pokeapi.co/api/v2/type/" + type2 + "/", true);
@@ -114,9 +117,23 @@
 		  xhr2.onreadystatechange = function(){
 		    if(xhr2.readyState == 4 && xhr2.status == 200){
 		      var type2Pokemon = JSON.parse(xhr2.responseText);
-		      _self.manageFilterRequest(type2Pokemon.pokemon, true, and, false)
+		      // _self.manageFilterRequest(type2Pokemon.pokemon, true, and, false);
+		      _self.filterTypeTwo(type2Pokemon);
 		    }
 		  }
+		},
+
+		filterTypeTwo : function(response){
+			// console.log(self.PoketDex);
+			var _self = self.PoketDex;
+			
+			if(_self.requestsCompleted === 0){
+				setTimeout(_self.filterTypeTwo, 1000, response);
+				return;
+			}
+			var and = ($('#andor').text().toLowerCase() === 'and') ? true : false;
+			_self.manageFilterRequest(response.pokemon, true, and, false);
+
 		},
 
 		manageFilterRequest : function(response, show, and, empty){
@@ -136,17 +153,19 @@
 			if(and && show){
 				// and statement
 				// lets compare the response with our current pokemonId's if it exists already leave it else we remove
+				// console.log(_self);
 
 				var array = [];
-				console.log(_self);
-				$.each(_self.pokemonIds, function( index, value ) {
-
+				var pokemonIds = _self.pokemonIds;
+				// console.log(pokemonIds);
+				
+				$.each(pokemonIds, function( index, value ) {
+					// console.log(value);
 		      for( var i=0, len=response.length; i<len; i++ ){
-	          if( Utilities.getIDFromPokemonURL( response[i].pokemon.url ) === Utilities.getIDFromPokemonURL(_self.pokemonIds[index].pokemon.url) ) {
+	          if( Utilities.getIDFromPokemonURL( response[i].pokemon.url ) === Utilities.getIDFromPokemonURL(value.pokemon.url) ) {
 	            array.push(value);
 	          }
 		      }
-		      // return true;
 			  });	
 			  
 				_self.pokemonIds = array;

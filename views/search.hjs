@@ -24,7 +24,6 @@
 	<script type="text/javascript" src="/js/scripts/utilities.js"></script>
 	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
 	<script type="text/javascript" src="/js/scripts/search/search.js"></script>
-	<script type="text/javascript" src="/js/scripts/search/function.js"></script>
 	<script type="text/javascript" src="/js/scripts/search/scripts.js"></script>
 	
 	<script type="text/javascript">
