@@ -1,5 +1,9 @@
+.spacer{
+	height: 50px;
+}
+
 #poketdex{
-	margin-top:30px;
+	/*margin-top:30px;*/
 }
 #poketdex .pokemonList{
 	display: block;
@@ -30,6 +34,33 @@
 	height:auto;
 }
 
+.typeSelect{
+	width:100px;
+}
+
+#andor{
+
+}
+#andor span{
+	cursor:pointer;
+}
+
+#and:hover, #or:hover{
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  background-color: yellow;
+}
+
+#filter:hover{
+	color: #fff;
+	background-color: #78C850;
+}
+
+#reset:hover{
+	color: #fff;
+	background-color: #C03028;
+}
+
 @media screen and (max-height: 450px), screen and (max-width: 800px){
 	
 	#poketdex .pokemonList .pokemon{
@@ -45,3 +76,4 @@
 	}
 
 }
+

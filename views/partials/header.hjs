@@ -7,7 +7,7 @@
 			<a href="/pokemon/"><img src="/images/interface/nav-pokemon.png" /><br />Pokemon</a>
 			<a href="/item/"><img src="/images/interface/nav-items.png" /><br />Items</a>
 			<a href="/location/"><img src="/images/interface/nav-locations.png" /><br />Locations</a>
-			<a href="/poketdex/"><img src="/images/interface/nav-pokedex.png" /><br />PoketDex</a>
+			<a href="/search/"><img src="/images/interface/nav-pokedex.png" /><br />Search</a>
 		</div>
 		<!-- SideNav -->
 		<div id="topBar">
@@ -31,6 +31,7 @@
 
 			{{#pageName}}
 			  <span id="pageName">{{ pageName }}</span>
+			  <img class="shareIcon icon" src="/images/interface/icon-filter.png"/ onclick="Utilities.showSearch()">
 			{{/pageName}}
 			
 			{{^index}} {{^pokemonString}} <!-- Poketdex Page -->

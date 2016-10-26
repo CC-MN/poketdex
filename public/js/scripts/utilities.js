@@ -50,6 +50,7 @@
         maxChars    :   50
       });
       var _self = this;
+
       searchBox.addEventListener('awesomplete-selectcomplete', function(data){ 
         console.log(data);
 
@@ -61,7 +62,7 @@
           pokemonName = pokemonName.toLowerCase();
           //make sure that pokemon name exists
           if(array.indexOf(pokemonName) > -1){
-            _self.changePage(pokemonName);
+            _self.changePage(pokemonName.replace(/\s/g, '-'));
           }
         }
       }, false);
@@ -74,6 +75,10 @@
         }
       });
 
+    },
+
+    showOverlay : function() {
+      $('.overlay').removeClass('hidden');
     },
 
     changePage : function(pokemonID) {

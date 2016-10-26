@@ -20,7 +20,7 @@ function renderContent(req, res){
 
 			//get pokemon info
 			content.pokemonString = JSON.stringify(response);
-			content.pageName = 'Pokemon List';
+			content.pageName = 'PoketDex';
 
 			content.partials = {
 				header 		: 	'partials/header',
@@ -28,7 +28,7 @@ function renderContent(req, res){
 			}
 
 			if(response.type !== 'err'){
-				res.render('poketdex', content);
+				res.render('search', content);
 			}
 		});
 }

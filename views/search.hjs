@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PoketDex - A Mobile Pokedex</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel='stylesheet' href='/stylesheets/style.css' media="screen"/>
+	<link rel="shortcut icon" href="/images/app/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/images/app/ios-icon.png">
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
+	<meta property="og:site_name" content="Poketdex: Advanced Search">
+	<meta property="og:title" content="Poketdex: Advanced Search" />
+	<meta property="og:description" content="Search & Filter Pokémon by Type(s)" />
+	<meta property="og:image" itemprop="image" content="http://www.poketdex.com/images/app/ios-icon.png">
+	<meta property="og:type" content="website" />
+	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/awesomeplete/awesomplete.js"></script>
+	<script type="text/javascript" src="/js/responsiveVoice/responsiveVoice.js"></script>
+
+	<script type="text/javascript">
+		var responsePokemon = {{& pokemonString }};
+	</script>
+
+	<script type="text/javascript" src="/js/scripts/utilities.js"></script>
+	<script type="text/javascript" src="/js/scripts/pokemon/dexter.js"></script>
+	<script type="text/javascript" src="/js/scripts/search/search.js"></script>
+	<script type="text/javascript" src="/js/scripts/search/scripts.js"></script>
+	
+	<script type="text/javascript">
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-81140038-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+</head>
+<body>
+	{{> loading }}
+	
+	{{> header }}
+
+	<!-- 	<div id="searchContainer" class="hidden">
+			<input id="pokemonSearchBox" class="searchBox" type="search" placeholder="Enter Pokemon Name">
+		</div>
+	-->
+	<div id="searchContainer" class="row hidden">
+		<div class="onethird textCenter">
+		<select id="type1" class ="typeSelect">
+			<option value ="">Type 1</option>
+			<option value ="normal">Normal</option>
+			<option value ="fire">Fire</option>
+			<option value ="fighting">Fighting</option>
+			<option value ="water">Water</option>
+			<option value ="flying">Flying</option>
+			<option value ="grass">Grass</option>
+			<option value ="poison">Poison</option>
+			<option value ="electric">Electric</option>
+			<option value ="ground">Ground</option>
+			<option value ="psychic">Psychic</option>
+			<option value ="rock">Rock</option>
+			<option value ="ice">Ice</option>
+			<option value ="bug">Bug</option>
+			<option value ="dragon">Dragon</option>
+			<option value ="ghost">Ghost</option>
+			<option value ="dark">Dark</option>
+			<option value ="steel">Steel</option>
+			<option value ="fairy">Fairy</option>
+		</select>
+		</div>
+
+		<div id="andor" class="onethird textCenter"><span>Or</span></div>
+
+		<div class="onethird textCenter">
+		<select disabled id="type2" class ="typeSelect">
+			<option value ="">Type 2</option>
+			<option value ="normal">Normal</option>
+			<option value ="fire">Fire</option>
+			<option value ="fighting">Fighting</option>
+			<option value ="water">Water</option>
+			<option value ="flying">Flying</option>
+			<option value ="grass">Grass</option>
+			<option value ="poison">Poison</option>
+			<option value ="electric">Electric</option>
+			<option value ="ground">Ground</option>
+			<option value ="psychic">Psychic</option>
+			<option value ="rock">Rock</option>
+			<option value ="ice">Ice</option>
+			<option value ="bug">Bug</option>
+			<option value ="dragon">Dragon</option>
+			<option value ="ghost">Ghost</option>
+			<option value ="dark">Dark</option>
+			<option value ="steel">Steel</option>
+			<option value ="fairy">Fairy</option>
+		</select>
+		</div>
+		<div class="clearfloat"></div>
+		<div class="row textCenter buttonRow">
+			<button disabled id="filter">Filter</button>
+			<button id="reset">Reset</button>
+		</div>
+	</div>
+	<div id="poketdex" class="container">	
+		<div class="pokemonList"></div>
+	</div>
+
+</body>
+</html>
