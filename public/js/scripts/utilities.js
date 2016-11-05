@@ -139,12 +139,10 @@
     }
   }
 
-  // Make sure to export Awesomplete on self when in a browser
   if (typeof self !== "undefined") {
     self.Utilities = Utilities;
   }
 
-  // Expose Awesomplete as a CJS module
   if (typeof module === "object" && module.exports) {
     module.exports = Utilities;
   }
