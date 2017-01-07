@@ -61,6 +61,13 @@
 	background-color: #C03028;
 }
 
+#filter, #reset{
+	width: 80px;
+	border-radius: 4px;
+}
+
+
+
 @media screen and (max-height: 450px), screen and (max-width: 800px){
 	
 	#poketdex .pokemonList .pokemon{
