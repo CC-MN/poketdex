@@ -82,6 +82,7 @@ app.use(function(err, req, res, next) {
 
 app.listen(app.get('port'), function() {
   var portNumber = app.get('port');
+  console.log(portNumber);
   var msg = 'http://localhost:' + portNumber;
   console.log(msg)
 });
