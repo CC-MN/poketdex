@@ -10,7 +10,7 @@ var routes        = require('./routes/index');
 var pokemon       = require('./routes/pokemon');
 var item          = require('./routes/item');
 var location      = require('./routes/location');
-var search      = require('./routes/search');
+var search        = require('./routes/search');
 var request       = require('./routes/request');
 
 var app           = express();

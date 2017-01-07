@@ -65,7 +65,7 @@ function normalizePort(val) {
     return val;
   }
 
-  if (port >= 0) {
+  if (port >= 0 && port <= 65536) {
     // port number
     return port;
   }
