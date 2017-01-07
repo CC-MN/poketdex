@@ -14,6 +14,7 @@ var numCPUs     = require('os').cpus().length;
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+console.log('port is on ' + port);
 // var port = process.env.PORT || '3000';
 app.set('port', port);
 
