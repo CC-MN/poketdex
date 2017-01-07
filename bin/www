@@ -14,8 +14,6 @@ var numCPUs     = require('os').cpus().length;
  */
 
 var port = normalizePort(process.env.PORT || '3000');
-console.log('port is on ' + port);
-// var port = process.env.PORT || '3000';
 app.set('port', port);
 
 if (cluster.isMaster) {
@@ -59,7 +57,6 @@ if (cluster.isMaster) {
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
-  console.log(port);
 
   if (isNaN(port)) {
     // named pipe

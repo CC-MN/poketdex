@@ -3,8 +3,8 @@
   "description" : "A simple pokemon database website",
   "version": "0.0.0",
   "engines": {
-    "node": "5.11.1",
-    "npm": "3.8.6"
+    "node": "7.0.0",
+    "npm": "3.9.3"
   },
   "private": true,
   "repository" : { 
